@@ -1,0 +1,592 @@
+{
+  "date": "2026-11-12",
+  "title": "סקירת טכנולוגיה יומית – 12 בנובמבר 2026",
+  "language": "he",
+  "format_version": "2-layered",
+  "period": {
+    "from": "2026-11-11T07:00:00+02:00",
+    "to": "2026-11-12T07:30:00+02:00"
+  },
+  "exec_summary": [
+    "היום בעיקר אבטחה: חולשה קריטית בשרת האינטרנט Apache, חולשה עם קוד ניצול פומבי ב-React וב-Next.js, ומתקפה פעילה דרך ScreenConnect על ספקי IT מנוהלים. כדאי לוודא עוד היום שאין אצלנו רכיבים חשופים.",
+    "בבינה המלאכותית, הכסף ממשיך לזרום: TSMC תשקיע עד מיליארד דולר באנת'רופיק ובאופן-איי-איי, והכנסות אופן-איי-איי עברו לפי דיווח 10 מיליארד דולר ברבעון. מיקרוסופט הראתה שאפשר להשתיל דלת אחורית במודל דרך עריכה של פחות מעשרה נוירונים, ולכן צריך לבדוק את מקור המודלים שמריצים אצלנו.",
+    "דאטאבריקס הפכה את Genie ל-agent שעובד באופן רציף על נתוני הארגון, ובענן אמזון וגוגל הוסיפו כלים לבידוד עומסים ולחישוב חסוי.",
+    "באנבידיה, הספקית המרכזית של שבבי AI, הדירקטוריון שוקל לפי דיווחים להדיח את המנכ\"ל ג'נסן הואנג. אין השפעה מיידית עלינו, אבל כדאי לעקוב."
+  ],
+  "items": [
+    {
+      "id": 1,
+      "section": "בינה מלאכותית",
+      "topic_key": "ai",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "חברת TSMC תשקיע עד מיליארד דולר באנת'רופיק ובאופן-איי-איי",
+      "exec_summary": "יצרנית השבבים הגדולה בעולם נכנסת כבעלת מניות בשתי מעבדות ה-AI המובילות, ובמקביל דווח על זינוק בהכנסות אופן-איי-איי.",
+      "summary": "דירקטוריון TSMC אישר ב-10 בנובמבר השקעה של עד 500 מיליון דולר במניות אנת'רופיק במחיר ההנפקה (טווח של 70–78 דולר למניה), ועד 500 מיליון דולר במניות בכורה של אופן-איי-איי. לפי Bloomberg, בדיווח שצוטט ב-TechCrunch, ההכנסות הרבעוניות של אופן-איי-איי עברו לראשונה 10 מיליארד דולר, לעומת 6.7 מיליארד ברבעון השני, והשוליים התפעוליים המותאמים השתפרו מ-150%- ל-109%-. אנת'רופיק דיווחה קודם על הכנסות של 17 מיליארד דולר ברבעון השלישי.",
+      "why_it_matters": "ספקיות המודלים שאנחנו נשענים עליהן מתחזקות כלכלית ונקשרות לשרשרת אספקת השבבים. זה מקטין את סיכון הספק, אבל גם מחזק את כוח התמחור שלהן.",
+      "action": null,
+      "entities": [
+        "TSMC",
+        "Anthropic",
+        "OpenAI",
+        "Bloomberg"
+      ],
+      "sources": [
+        {
+          "label": "הודעת הדירקטוריון של TSMC",
+          "url": "https://pr.tsmc.com/english/news/3352",
+          "type": "article",
+          "source_id": "",
+          "reliability": 5
+        },
+        {
+          "label": "דיווח TechCrunch על הכנסות אופן-איי-איי",
+          "url": "https://techcrunch.com/2026/11/11/openais-quarterly-revenue-reportedly-crosses-10b-for-the-first-time/",
+          "type": "article",
+          "source_id": "techcrunch",
+          "reliability": 3
+        },
+        {
+          "label": "דיווח Reuters דרך CNA",
+          "url": "https://www.channelnewsasia.com/business/tsmc-invest-up-1-billion-in-anthropic-openai-6539881",
+          "type": "article",
+          "source_id": "reuters-tech",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "section": "בינה מלאכותית",
+      "topic_key": "ai",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "team"
+      ],
+      "headline": "מיקרוסופט: דלת אחורית ב-agent דרך עריכה של פחות מעשרה נוירונים",
+      "exec_summary": "מחקר של מיקרוסופט מראה שמי שיכול לשנות את קובץ המשקולות של מודל יכול לגרום ל-agent להריץ פקודה זדונית כשמופיע טריגר.",
+      "summary": "חוקרי Microsoft Research הציגו את Lazarus, שיטה שעורכת נוירונים רדומים בשכבה האחרונה של המודל בלי אימון מחדש. ב-Nemotron-Terminal-8B שבעה נוירונים הספיקו כדי שהמודל יפיק פקודת הורדה והרצה של סקריפט ב-98.8% מהמקרים שבהם הופיע הטריגר, והשיטה עבדה גם על Qwen3.6-27B ו-Gemma-4-31B-IT. לפי מיקרוסופט אין עדות לשימוש בשיטה בפועל, והזיהוי האמין דורש השוואה מול המשקולות המקוריים. בנפרד, מעבדת FORGE של מיקרוסופט סיכמה סריקה של הקרנל של לינוקס בעזרת AI: 26,502 ממצאים גולמיים הניבו 59 דיווחים, 33 מספרי CVE ושמונה ניצולים מאומתים להשגת root.",
+      "why_it_matters": "אם אנחנו מריצים מודלים עם משקולות פתוחים או עושים להם fine-tune, ה-checkpoint הוא רכיב בשרשרת האספקה ממש כמו קוד. ה-agent מריץ את הפקודה עם כל ההרשאות שנתנו לו.",
+      "action": "לאמת hash ומקור לכל checkpoint שמורץ אצלנו, להגביל הרשאות כתיבה למאגר המודלים, ולהריץ agents בסביבה מבודדת עם הרשאות מינימליות.",
+      "entities": [
+        "Microsoft Research",
+        "Lazarus",
+        "Nemotron-Terminal-8B",
+        "Qwen3.6-27B",
+        "Gemma-4-31B-IT",
+        "Microsoft FORGE",
+        "Linux kernel"
+      ],
+      "sources": [
+        {
+          "label": "הבלוג של Microsoft Research",
+          "url": "https://www.microsoft.com/en-us/research/blog/lazare-veni-foras-reprogramming-dormant-neurons-to-backdoor-ai-agents/",
+          "type": "blog",
+          "source_id": "",
+          "reliability": 5
+        },
+        {
+          "label": "הבלוג של Microsoft Security",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/10/detecting-sleeper-agents-hiding-in-ai-model-neurons/",
+          "type": "blog",
+          "source_id": "ms-threat-intel",
+          "reliability": 4
+        },
+        {
+          "label": "מחקר FORGE על הקרנל",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/lessons-from-59-linux-kernel-bug-reports/",
+          "type": "blog",
+          "source_id": "ms-threat-intel",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "section": "דאטה",
+      "topic_key": "data",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "דאטאבריקס הפכה את Genie ל-agent אוטונומי על נתוני הארגון",
+      "exec_summary": "דאטאבריקס מציעה AI שעובד ברציפות על משימות דאטה ארוכות, עם בקרות הוצאה והרשאות, ומתחבר גם לצ'אטים של ספקים אחרים.",
+      "summary": "דאטאבריקס הציגה ב-11 בנובמבר את Genie החדש, coworker אוטונומי שעוקב אחרי משימות ארוכות, מבקש קלטים חסרים ופועל כשמגיע מידע חדש, בתוך guardrails שהארגון מגדיר. Genie Ontology, שכבת הקשר עסקי שנבנית מלוחות בקרה, שאילתות SQL ומסמכים, יצאה לזמינות כללית, ו-Unity Gateway מאפשר לשלוט בגישה לכלים, לעקוב אחרי פעולות ולהגביל הוצאות. בנוסף הושקו תוספים של Genie ל-ChatGPT, ל-Claude, ל-Microsoft Copilot Cowork ול-Grok Bot.",
+      "why_it_matters": "זה כיוון השוק לדאטה: agents שעובדים על נתונים מנוהלים עם הקשר עסקי משותף, ולא רק צ'אט שעונה על שאלות. ארגון שכבר עובד על Databricks מקבל את זה בלי להוסיף פלטפורמה.",
+      "action": "אם אנחנו על Databricks, כדאי לבחון את Genie Ontology על תחום עסקי אחד ולהגדיר מגבלות הוצאה ב-Unity Gateway לפני שמפעילים משימות אוטונומיות.",
+      "entities": [
+        "Databricks",
+        "Genie",
+        "Genie Ontology",
+        "Unity Gateway",
+        "ChatGPT",
+        "Claude",
+        "Microsoft Copilot Cowork",
+        "Grok Bot"
+      ],
+      "sources": [
+        {
+          "label": "הבלוג של דאטאבריקס על Genie החדש",
+          "url": "https://www.databricks.com/blog/new-genie-autonomous-ai-complex-enterprise-work",
+          "type": "blog",
+          "source_id": "databricks",
+          "reliability": 5
+        },
+        {
+          "label": "הכרזת הזמינות של Genie Ontology",
+          "url": "https://www.databricks.com/blog/announcing-ga-genie-ontology",
+          "type": "blog",
+          "source_id": "databricks",
+          "reliability": 5
+        },
+        {
+          "label": "הפוסט של דאטאבריקס",
+          "url": "https://x.com/databricks/status/2120630182876741718",
+          "type": "x",
+          "source_id": "databricks",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "section": "דאטה",
+      "topic_key": "data",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "low",
+      "audience": [
+        "team"
+      ],
+      "headline": "גוגל הוסיפה ל-AlloyDB פונקציות SQL לסיווג ולחילוץ בעזרת Gemini",
+      "exec_summary": "אפשר לסווג טקסט ולחלץ ממנו שדות ישירות בשאילתת SQL, בלי להוציא את הנתונים מבסיס הנתונים.",
+      "summary": "גוגל העלתה לתצוגה מקדימה שתי פונקציות חדשות במנוע השאילתות של AlloyDB AI: ai.classify ו-ai.extract. הן זמינות בהרחבה google_ml_integration מגרסה 1.6.1 על PostgreSQL 18, ומאפשרות לסווג טקסט חופשי כמו פניות תמיכה או חשבוניות ולחלץ ממנו שדות מובנים בתוך השאילתה.",
+      "why_it_matters": "זה חוסך קוד אפליקטיבי, זמן תגובה והעברה של מידע רגיש בין מערכות, כשהנתונים הלא-מובנים כבר יושבים בבסיס נתונים תפעולי.",
+      "action": null,
+      "entities": [
+        "Google Cloud",
+        "AlloyDB AI",
+        "PostgreSQL 18",
+        "Gemini"
+      ],
+      "sources": [
+        {
+          "label": "הבלוג של Google Cloud",
+          "url": "https://cloud.google.com/blog/products/databases/ai-classify-and-ai-extract-functions-in-alloydb-ai/",
+          "type": "blog",
+          "source_id": "gcp-blog",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "section": "קוונטים",
+      "topic_key": "quantum",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "low",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "ריגטי וזנאדו פרסמו דוחות רבעוניים: מעט הכנסות והרבה מזומנים",
+      "exec_summary": "חברות המחשוב הקוונטי הציבוריות עדיין מכניסות מעט, אבל יש להן מזומנים למחקר לשנים הקרובות.",
+      "summary": "ריגטי דיווחה על הכנסות של 1.4 מיליון דולר ברבעון השלישי, הפסד תפעולי של 33.2 מיליון ו-497.1 מיליון דולר במזומן ובהשקעות. לפי החברה, אמינות שערי שני קיוביטים במערכת Cepheus-1 של 108 קיוביטים היא 99.5% בחציון, והיעד הוא מערכת של יותר מ-300 קיוביטים באמינות של כ-99.7% עד אמצע 2028. זנאדו הפוטונית דיווחה על הכנסות של 1.31 מיליון דולר, הוצאות מחקר ופיתוח של 25.56 מיליון ומזומנים של 286.47 מיליון דולר, ועל התחייבויות מימון ממשלתי של כ-150 מיליון דולר.",
+      "why_it_matters": "התמונה עקבית: הטכנולוגיה מתקדמת לפי מפות דרכים, אבל ההכנסות המסחריות עדיין זניחות. זה הזמן ללמוד ולהתנסות דרך הענן, לא לרכוש.",
+      "action": null,
+      "entities": [
+        "Rigetti",
+        "Cepheus-1",
+        "Xanadu",
+        "DARPA QBI"
+      ],
+      "sources": [
+        {
+          "label": "ההודעה של ריגטי דרך The Quantum Insider",
+          "url": "https://thequantuminsider.com/2026/11/11/rigetti-q3-2026-results-quantum-computing-roadmap/",
+          "type": "article",
+          "source_id": "tqi",
+          "reliability": 3
+        },
+        {
+          "label": "הדוח של זנאדו ב-Quantum Computing Report",
+          "url": "https://quantumcomputingreport.com/xanadu-reports-q3-2026-results-with-286m-cash-balance-and-expanding-rd-commitments/",
+          "type": "article",
+          "source_id": "qcr",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "section": "ענן ותשתיות",
+      "topic_key": "cloud",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "אמזון הרחיבה את Lambda MicroVMs ל-x86 והוסיפה בידוד רשת לפודים ב-EKS",
+      "exec_summary": "אמזון הוסיפה כלים להרצת קוד שנוצר על ידי AI בבידוד מלא ולהפרדת רשת בין אפליקציות על אותו cluster.",
+      "summary": "שירות Lambda MicroVMs, שנותן VM מבודד לכל משתמש או משימה ומיועד גם להרצת קוד שנוצר על ידי AI, תומך עכשיו גם בארכיטקטורת x86 לצד Graviton, כך שאפשר להריץ כלים קיימים בלי הידור מחדש. ב-EKS Auto Mode אפשר כעת להצמיד security groups לפודים בודדים, בלי תוספת מחיר, באשכולות Kubernetes 1.36 ומעלה. במקביל הוצגה ב-CloudWatch תצוגת accelerated compute insights לניטור ניצולת ועלויות של מאיצי GPU לפי עומס עבודה.",
+      "why_it_matters": "אלה אבני בניין לסביבות שבהן agents מריצים קוד, ולהפרדה בין עומסים בלי לפצל node pools. תצוגת ה-GPU עוזרת לשלוט בהוצאה הגדולה ביותר בתשתיות AI.",
+      "action": "צוות הפלטפורמה יכול לבחון את MicroVMs לסביבת ההרצה של agents ושל CI, ולבדוק אם security groups לפודים מחליפים node pools נפרדים אצלנו.",
+      "entities": [
+        "Amazon Web Services",
+        "AWS Lambda MicroVMs",
+        "Amazon EKS Auto Mode",
+        "Amazon CloudWatch"
+      ],
+      "sources": [
+        {
+          "label": "הודעת AWS על MicroVMs ב-x86",
+          "url": "https://aws.amazon.com/about-aws/whats-new/2026/11/aws-lambda-microvms-x86-architecture/",
+          "type": "blog",
+          "source_id": "aws-whats-new",
+          "reliability": 5
+        },
+        {
+          "label": "הודעת AWS על EKS Auto Mode",
+          "url": "https://aws.amazon.com/about-aws/whats-new/2026/11/amazon-eks-auto-mode-security-groups-for-pods/",
+          "type": "blog",
+          "source_id": "aws-whats-new",
+          "reliability": 5
+        },
+        {
+          "label": "סקירת The New Stack על CloudWatch",
+          "url": "https://thenewstack.io/cloudwatch-accelerated-compute-insights/",
+          "type": "article",
+          "source_id": "thenewstack",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "section": "ענן ותשתיות",
+      "topic_key": "cloud",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "low",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "גוגל הוסיפה שני TPU חדשים: לחישוב חסוי ולחלונות הקשר ענקיים",
+      "exec_summary": "גוגל מציעה שבב AI שמגן על נתונים רגישים גם בזמן העיבוד, ושבב כפול לעבודה עם הקשר ארוך מאוד.",
+      "summary": "גוגל הכריזה השבוע על TPU 8tx ועל TPU 8i Max, וכך הגיעה לארבע מערכות TPU מהדור השמיני בשנה אחת. TPU 8tx נועד ל-inference חסוי ול-fine-tune על מידע רגיש: הוא בנוי על הסיליקון של 8t עם מארחי AMD EPYC מהדור החמישי, שומר על הנתונים והמשקולות מוצפנים ומבודדים גם בזמן העיבוד, ולפי גוגל מספק latency נמוך עד פי 2 לעומת 8t. TPU 8i Max מחבר שני שבבי 8i לאריזה אחת, עם פי 2 חישוב, SRAM ורוחב פס של HBM, ולפי Data Center Knowledge עם 384GB של HBM.",
+      "why_it_matters": "חישוב חסוי בחומרה פותח אפשרות להריץ מודלים על מידע רגולטורי בענן ציבורי. זה רלוונטי ללקוחות ולמגזרים שנמנעו עד היום מ-AI בענן.",
+      "action": null,
+      "entities": [
+        "Google Cloud",
+        "TPU 8tx",
+        "TPU 8i Max",
+        "AMD EPYC"
+      ],
+      "sources": [
+        {
+          "label": "הבלוג של גוגל",
+          "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+          "type": "blog",
+          "source_id": "google-ai-blog",
+          "reliability": 5
+        },
+        {
+          "label": "הפוסט של Google Cloud",
+          "url": "https://x.com/googlecloud/status/2120683167040377236",
+          "type": "x",
+          "source_id": "gcp-blog",
+          "reliability": 5
+        },
+        {
+          "label": "כתבת Data Center Knowledge",
+          "url": "https://www.datacenterknowledge.com/data-center-chips/google-adds-tpu-8tx-8i-max-for-enterprise-ai",
+          "type": "article",
+          "source_id": "",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "חולשה קריטית בשרת Apache מאפשרת הרצת קוד מרחוק דרך HTTP/2",
+      "exec_summary": "יש לעדכן שרתי Apache לגרסה 2.4.71; החולשה קריטית ונפוצה מאוד בענן.",
+      "summary": "החולשה CVE-2026-119618, בדירוג CVSS 9.8, נמצאת במודול mod_http2 של Apache HTTP Server בגרסאות 2.4.55 עד 2.4.70, ומאפשרת לתוקף לא מזוהה לשבש את הזיכרון ולהריץ קוד. היא נמצאה בנפרד על ידי אנת'רופיק ועל ידי צוות המחקר של Google Cloud, ותוקנה בגרסה 2.4.71, אבל חלק מהפצות לינוקס עדיין לא שחררו חבילה מעודכנת. לפי Wiz, ב-64% מסביבות הענן יש משאבים פגיעים; בזמן הפרסום לא היה קוד ניצול ולא דווח על ניצול בפועל.",
+      "why_it_matters": "שרת Apache נמצא גם בתוך images של קונטיינרים ובמוצרים של צד שלישי, לא רק בשרתים שמנהלים ישירות.",
+      "action": "למפות היום כל Apache עם HTTP/2 מופעל, כולל בקונטיינרים, לעדכן ל-2.4.71 או לחבילת ההפצה המתוקנת, ובמקום שאין עדיין תיקון לשקול לנטרל זמנית את HTTP/2.",
+      "entities": [
+        "Apache HTTP Server",
+        "mod_http2",
+        "Wiz",
+        "Anthropic",
+        "Google Cloud"
+      ],
+      "sources": [
+        {
+          "label": "ניתוח Wiz",
+          "url": "https://www.wiz.io/blog/cve-2026-119618-rce-apache-http-server-vulnerability",
+          "type": "blog",
+          "source_id": "wiz-research",
+          "reliability": 4
+        },
+        {
+          "label": "הפוסט של The Hacker News",
+          "url": "https://x.com/TheHackersNews/status/2120746775455858849",
+          "type": "x",
+          "source_id": "thehackernews",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "team"
+      ],
+      "headline": "קוד ניצול פומבי לחולשה קריטית ב-React Server Components וב-Next.js",
+      "exec_summary": "מי שמריץ אפליקציות Next.js 16 צריך לעדכן ל-16.4.1; כבר יש קוד ניצול פומבי.",
+      "summary": "החולשה CVE-2026-126187, בדירוג CVSS 9.5, מאפשרת הרצת קוד בשרת בלי הזדהות בחבילות react-server-dom בגרסאות 19.0.0 עד 19.3.0, וב-Next.js בגרסאות 16.0.0 עד 16.4.0 עם App Router ו-Cache Components. היא מתממשת רק בתנאי נדיר: פונקציית use cache שמחזירה כמה typed arrays יחד עם ערך שבשליטת התוקף. התיקונים הם React 19.0.9, 19.1.10, 19.2.9 או 19.3.1 ו-Next.js 16.4.1; קוד ניצול פומבי פורסם ב-GitHub ב-8 בנובמבר, ועדיין לא דווח על ניצול בפועל.",
+      "why_it_matters": "גם אם התנאי נדיר, קוד ניצול פומבי מקצר מאוד את הזמן עד לסריקות המוניות, ו-Next.js נפוץ מאוד באפליקציות ווב.",
+      "action": "לעדכן את כל אפליקציות Next.js ו-React בצד השרת לגרסאות המתוקנות, ואם אי אפשר מיד, לבדוק אם יש פונקציות use cache כאלה ולהדק את בדיקת ההרשאות ב-Server Actions.",
+      "entities": [
+        "React",
+        "Next.js",
+        "Vercel",
+        "GitHub Advisory Database"
+      ],
+      "sources": [
+        {
+          "label": "ייעוץ האבטחה ב-GitHub",
+          "url": "https://github.com/advisories/GHSA-xqc2-xf4c-x3h3",
+          "type": "report",
+          "source_id": "github-blog",
+          "reliability": 5
+        },
+        {
+          "label": "הפוסט של The Hacker News",
+          "url": "https://x.com/TheHackersNews/status/2120564070697038012",
+          "type": "x",
+          "source_id": "thehackernews",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "מתקפה פעילה על ספקי IT מנוהלים דרך ScreenConnect",
+      "exec_summary": "תוקפים פורצים לספקי IT מנוהלים דרך כלי השליטה מרחוק ScreenConnect ומשם מגיעים למחשבי הלקוחות.",
+      "summary": "חברת Huntress זיהתה ב-11 בנובמבר קמפיין שהחל בסביבות 19:47 שעון ישראל נגד מופעי ScreenConnect בענן: התוקפים משתמשים ב-Run Command כדי להתקין לקוחות ScreenConnect זדוניים על מחשבי הקצה. בדיווח הראשון נספרו שישה ספקים שנפרצו ו-286 מחשבי קצה ב-47 ארגונים, ובבוקר כבר דווח על 288 מחשבים ב-48 ארגונים. ConnectWise השביתה מטעמי זהירות חמש הרחבות צד שלישי בכ-400 סביבות של שותפים.",
+      "why_it_matters": "אם ספק IT חיצוני מנהל אצלנו מחשבים או שרתים דרך ScreenConnect, החשיפה שלו היא החשיפה שלנו.",
+      "action": "לברר היום עם ספקי ה-IT החיצוניים אם הם עובדים עם ScreenConnect ואם נפגעו, ולחפש אצלנו התקנות ScreenConnect לא מוכרות או חיבורים מרחוק חריגים.",
+      "entities": [
+        "ConnectWise",
+        "ScreenConnect",
+        "Huntress",
+        "MSP"
+      ],
+      "sources": [
+        {
+          "label": "כתבת BleepingComputer",
+          "url": "https://www.bleepingcomputer.com/news/security/active-screenconnect-attacks-breach-msps-impact-dozens-of-organizations/",
+          "type": "article",
+          "source_id": "bleeping",
+          "reliability": 4
+        },
+        {
+          "label": "עדכון The Hacker News",
+          "url": "https://x.com/TheHackersNews/status/2120738768806404225",
+          "type": "x",
+          "source_id": "thehackernews",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "גל עדכונים: פורטינט, איוונטי וזן אורקסטרה, וחלק כבר מנוצל",
+      "exec_summary": "כמה ספקי אבטחה ותשתית שחררו עשרות תיקונים קריטיים, ובאחד המוצרים כבר יש ניצול פעיל.",
+      "summary": "פורטינט פרסמה 89 הודעות אבטחה שמתקנות כמעט 100 חולשות, מהן כ-17 קריטיות, ורוב התיקונים הקריטיים הם ב-FortiMail, ב-FortiAuthenticator, ב-FortiOS, ב-FortiManager וב-FortiAnalyzer. איוונטי תיקנה 13 חולשות, ובהן CVE-2026-121653 ב-Endpoint Manager (CVSS 9.8, הזרקת SQL שמובילה להרצת קוד, תוקנה ב-2024 SU8) ו-CVE-2026-121683 ב-Cloud Services Application (CVSS 9.4). חברת Vates מזהירה שתוקף מנצל עקיפת הזדהות קריטית ב-Xen Orchestra יחד עם חולשת אפס-יום, ומחייבת עדכון לגרסאות 6.9.2 או 6.10.1.",
+      "why_it_matters": "אלה מוצרים שיושבים בקצה הרשת ובניהול התשתית, והם יעד מועדף לתוקפים מיד אחרי פרסום התיקונים.",
+      "action": "לתעדף את Xen Orchestra (ניצול פעיל), אחריו Ivanti EPM ו-CSA, ואז את מוצרי פורטינט שמותקנים אצלנו לפי רשימת הקריטיים.",
+      "entities": [
+        "Fortinet",
+        "Ivanti",
+        "Vates",
+        "Xen Orchestra",
+        "XCP-ng"
+      ],
+      "sources": [
+        {
+          "label": "כתבת SecurityWeek על פורטינט",
+          "url": "https://www.securityweek.com/fortinet-patches-nearly-100-vulnerabilities/",
+          "type": "article",
+          "source_id": "securityweek",
+          "reliability": 3
+        },
+        {
+          "label": "כתבת SecurityWeek על Citrix ואיוונטי",
+          "url": "https://www.securityweek.com/citrix-ivanti-patch-critical-and-high-severity-vulnerabilities/",
+          "type": "article",
+          "source_id": "securityweek",
+          "reliability": 3
+        },
+        {
+          "label": "כתבת SecurityWeek על Xen Orchestra",
+          "url": "https://www.securityweek.com/critical-xen-orchestra-flaws-exploited-in-attacks/",
+          "type": "article",
+          "source_id": "securityweek",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "תוקפים משתמשים בכלי pentest מבוססי AI, ומפתחות AI גנובים עולים כסף",
+      "exec_summary": "כלי בדיקות חדירה אוטונומיים מבוססי AI כבר משמשים לפריצות לענן, ומפתחות API של ספקי AI הפכו ליעד יקר.",
+      "summary": "לפי Arctic Wolf, תוקפים מפעילים מתשתית ב-Alibaba Cloud את AntiFox, פלטפורמת pentest אוטונומית בקוד פתוח שהתפצלה מ-ARTEX, ומשתמשים בה כדי לנצל שירותי ווב, להתקין webshells ולגנוב סודות מחשבונות AWS בעזרת זהויות IAM תקפות. פלטפורמת Railway דיווחה שמפתחות של ספקי AI שנגנבו מלקוחותיה בפריצה באוקטובר שימשו לשימוש לא מורשה בהיקף מוערך של 740 אלף דולר, והתחייבה לכסות את החיובים כשהספק לא מחזיר אותם. נושן הודיעה שהפריצה ל-Fireworks AI חשפה תמלילי שיחות של Notion AI בכמה סביבות עבודה, מתוך מאגר הנתונים של פיצ'ר Insights.",
+      "why_it_matters": "מפתחות AI ו-inference אצל צד שלישי הם עכשיו נכס שתוקפים מחפשים במפורש, והאוטומציה של התקיפה מקצרת את הזמן מפריצה לנזק.",
+      "action": "להגדיר מגבלות הוצאה והתראות על כל מפתח של ספק AI, להחליף מפתחות ששמורים בפלטפורמות צד שלישי, ולבקש מספקי ה-inference שלנו פירוט על הבידוד ועל שמירת הנתונים.",
+      "entities": [
+        "AntiFox",
+        "ARTEX",
+        "Arctic Wolf",
+        "Alibaba Cloud",
+        "AWS",
+        "Railway",
+        "Notion",
+        "Fireworks AI"
+      ],
+      "sources": [
+        {
+          "label": "כתבת BleepingComputer על AntiFox",
+          "url": "https://www.bleepingcomputer.com/news/security/hackers-use-antifox-ai-agents-in-aws-credential-theft-attacks/",
+          "type": "article",
+          "source_id": "bleeping",
+          "reliability": 4
+        },
+        {
+          "label": "כתבת The Hacker News על Railway",
+          "url": "https://thehackernews.com/2026/11/railway-says-stolen-customer-ai-keys.html",
+          "type": "article",
+          "source_id": "thehackernews",
+          "reliability": 3
+        },
+        {
+          "label": "כתבת BleepingComputer על Notion",
+          "url": "https://www.bleepingcomputer.com/news/security/notion-says-fireworks-breach-exposed-customer-ai-chat-transcripts/",
+          "type": "article",
+          "source_id": "bleeping",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "section": "מערכות ומוצרים",
+      "topic_key": "products",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "management"
+      ],
+      "headline": "אנבידיה: דיווחים שהדירקטוריון שוקל להדיח את ג'נסן הואנג",
+      "exec_summary": "דיווחים על הדחה אפשרית של מנכ\"ל אנבידיה הפילו את המניה; אין השפעה מיידית על האספקה.",
+      "summary": "לפי Wall Street Journal, בדיווח שצוטט ב-TechCrunch, הדירקטוריון של אנבידיה התכנס כדי להחליט על עתידו של ג'נסן הואנג, שמנהל את החברה 33 שנים, אחרי שהודה בפרשה עם אישה שלפי המודיעין האמריקאי היא מרגלת סינית. ה-New York Times דיווח בנוסף על קשר עם מנהלת שכפופה לו. המניה ירדה בכ-8% במסחר המאוחר ובכ-11% בחמישה ימים, ולפי Bloomberg החברה עובדת עם חברת גיוס חיצונית לאיתור מחליף.",
+      "why_it_matters": "אנבידיה היא ספקית מרכזית של מחשוב AI לכל הענן. החלפת מנהיגות פתאומית בלי יורש מוגדר עלולה להשפיע בהמשך על מפת הדרכים ועל התמחור, אבל לא על האספקה בטווח המיידי.",
+      "action": null,
+      "entities": [
+        "NVIDIA",
+        "Jensen Huang",
+        "Wall Street Journal",
+        "Bloomberg"
+      ],
+      "sources": [
+        {
+          "label": "כתבת TechCrunch",
+          "url": "https://techcrunch.com/2026/11/11/nvidias-stock-drops-as-board-reportedly-preps-to-oust-ceo-jensen-huang/",
+          "type": "article",
+          "source_id": "techcrunch",
+          "reliability": 3
+        },
+        {
+          "label": "כתבת The Verge",
+          "url": "https://www.theverge.com/tech/1031652/jensen-huang-rumor",
+          "type": "article",
+          "source_id": "verge",
+          "reliability": 4
+        }
+      ]
+    }
+  ],
+  "watchlist": [
+    {
+      "text": "חברת Q-CTRL הכניסה את ה-Dynamics Simulator שלה לקטלוג IBM Quantum Functions, עם האצה של פי 12 על Nighthawk r2 לעומת Heron r3.",
+      "url": "https://quantumcomputingreport.com/q-ctrl-deploys-fire-opal-dynamics-simulator-on-ibm-quantum-functions-achieving-12x-speedup-on-nighthawk/"
+    },
+    {
+      "text": "אנבידיה תרמה ל-CNCF את OpenShell, סביבת ריצה לאבטחה ולממשל של agents, כפרויקט Sandbox.",
+      "url": "https://thenewstack.io/nvidia-donates-openshell-cncf/"
+    },
+    {
+      "text": "חברת השבבים הבריטית Fractile גייסה 720 מיליון דולר לשבבי inference מבוססי DRAM מוערם.",
+      "url": "https://techcrunch.com/2026/11/11/with-720m-round-britains-fractile-gets-a-leg-up-in-the-race-for-ai-chips/"
+    },
+    {
+      "text": "יונייטד איירליינס אוסרת על AI agents להזמין טיסות בשם נוסעים, סימן מוקדם למאבק על גישת agents לאתרים.",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1031623/united-unauthorized-ai-agents"
+    }
+  ]
+}

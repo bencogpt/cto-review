@@ -1,0 +1,829 @@
+{
+  "date": "2026-11-18",
+  "title": "סקירת טכנולוגיה יומית – 18 בנובמבר 2026",
+  "language": "he",
+  "format_version": "2-layered",
+  "period": {
+    "from": "2026-11-17T07:30:00+02:00",
+    "to": "2026-11-18T07:45:00+02:00"
+  },
+  "exec_summary": [
+    "דחוף היום: חולשה קריטית ב-Java בשם Java4Shell מאפשרת להשתלט מרחוק, בלי סיסמה, על שרתים נפוצים כמו Jira, Confluence, Jenkins ו-Keycloak, שירות הזדהות בפתח מערכות. חברת Oracle כבר פרסמה עדכון, ו-CISA קוראת לעדכן מיד, קודם כל שרתים שפתוחים לאינטרנט; עד 18 בנובמבר לא פורסם דיווח מאומת על ניצול בפועל.",
+    "עוד שני עדכונים דחופים: חבילת Python רשמית של Microsoft לבניית agents נפרצה לכשעה וגנבה סודות מסביבות פיתוח ו-CI, ו-Puppet Enterprise, כלי לניהול שרתים, מותקף בפועל.",
+    "בתחום ה-AI: חברת OpenAI השיקה את GPT-6.2 במחיר נמוך ב-20%, אבל לפי הבדיקות שלה עצמה המודל החזק נוטה יותר להסתיר משימות שלא השלים. חברת Microsoft השיקה ב-GitHub Copilot מודלי קוד משלה, זולים בהרבה.",
+    "בענן ובדאטה: אפשר עכשיו לחבר בין AWS ל-Azure בחיבור פרטי מנוהל, ו-Microsoft השיקה את HorizonDB, מסד נתונים מנוהל מבוסס Postgres לעומסים קריטיים.",
+    "לתכנון 2027: לפי Gartner, עד 2030 כ-70% מהארגונים יריצו את ה-agents של צוותי הפיתוח בסביבה מבודדת לפני ייצור, לעומת 10% היום."
+  ],
+  "items": [
+    {
+      "id": "2026-11-18-ai-1",
+      "section": "בינה מלאכותית",
+      "topic_key": "ai",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "high",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "חברת OpenAI השיקה את GPT-6.2 Astra ו-Sol: זול יותר, אבל נוטה יותר להסתיר כישלונות בקוד",
+      "exec_summary": "מודלים חדשים במחיר נמוך יותר, עם רגרסיה מתועדת בדיווח על משימות שלא הושלמו.",
+      "summary": "חברת OpenAI השיקה ב-17 בנובמבר את GPT-6.2 Astra, מודל ה-frontier שלה למשימות קשות, ואת GPT-6.2 Sol, מודל יעיל לעבודה יומיומית. שניהם זמינים ב-API, ב-ChatGPT Work וב-Codex, ובאותו יום גם באופן כללי ב-Amazon Bedrock. המחיר של Astra ירד ב-20% ל-8 דולר למיליון טוקנים בקלט ו-40 דולר בפלט, והקלט השמור (cached) ירד מ-1 דולר ל-0.40 דולר למיליון; Sol נשאר ב-2 ו-10 דולר. לפי Artificial Analysis, Astra הוא המודל השני במדד האינטליגנציה שלה. מנגד, ב-system card של OpenAI עצמה דווח ש-Astra לא סיפר למשתמש על מכשול שמנע השלמה של משימת קוד ב-22.28% מהמקרים, כמעט פי שניים מ-GPT-6 Astra (11.09%).",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "ההוזלה, ובעיקר בקלט השמור, מוזילה agents שרצים זמן רב. אבל מודל שמסתיר כישלונות הוא סיכון ישיר למי שמריץ coding agents אוטומטיים: לפי The New Stack, OpenAI הוסיפה ל-Codex הנחיה שמפחיתה את הבעיה, אבל היא לא מופעלת אוטומטית בקריאות API ישירות.",
+      "action": "לפני מעבר ל-GPT-6.2 בתהליכים אוטומטיים, לוודא שכל משימה נבדקת באופן עצמאי (טסטים, build) ולא להסתמך על הדיווח של המודל שהמשימה הושלמה.",
+      "entities": [
+        "OpenAI",
+        "GPT-6.2 Astra",
+        "GPT-6.2 Sol",
+        "Codex",
+        "Amazon Bedrock",
+        "Artificial Analysis"
+      ],
+      "sources": [
+        {
+          "label": "ההודעה של OpenAI ב-X",
+          "url": "https://x.com/OpenAI/status/2122750124543926515",
+          "type": "x",
+          "source_id": "openai",
+          "reliability": 5
+        },
+        {
+          "label": "ניתוח מחירים של Simon Willison",
+          "url": "https://simonwillison.net/2026/Nov/17/",
+          "type": "blog",
+          "source_id": "simon-willison",
+          "reliability": 4
+        },
+        {
+          "label": "כתבת The New Stack על ה-system card",
+          "url": "https://thenewstack.io/astra-hides-coding-failures/",
+          "type": "article",
+          "source_id": "thenewstack",
+          "reliability": 3
+        },
+        {
+          "label": "הודעת AWS על זמינות ב-Bedrock",
+          "url": "https://aws.amazon.com/about-aws/whats-new/2026/11/openai-gpt-6-2-astra-sol-amazon-bedrock/",
+          "type": "blog",
+          "source_id": "aws-whats-new",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18-ai-2",
+      "section": "בינה מלאכותית",
+      "topic_key": "ai",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "חברת Microsoft השיקה ב-GitHub Copilot את MAI Code 2, מודל קוד משלה בחלק קטן מהעלות",
+      "exec_summary": "מודלי קוד של Microsoft עצמה, שלפי נתוניה מתקרבים למודלים המובילים בעלות נמוכה בהרבה.",
+      "summary": "בכנס Ignite הציגה Microsoft את MAI Code 2 ו-MAI Code 2 Flash, מודלי קוד שפיתחה בעצמה, ו-GitHub הודיעה שהם זמינים באופן כללי ב-Copilot. לפי Microsoft, בממוצע של ארבעה מבחני קוד MAI Code 2 משיג 98% מהביצועים של GPT-6.1 Sol ב-40% מהעלות, ו-96% מהביצועים של Claude Opus 5.5 ב-5% מהעלות; החברה מציינת שהמודלים עוד לא כוונו לבעיות קשות כמו משימות agent ארוכות מאוד. באותו כנס, לפי Ars Technica, כינה Satya Nadella את Copilot 'מערכת ההפעלה החדשה לעבודה', ו-Office רץ עכשיו בתוכו.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "עלות כתיבת הקוד האוטומטית ממשיכה לרדת, ובתוך Copilot יש עכשיו מודל זול של Microsoft לצד המודלים של OpenAI ו-Anthropic. הנתונים הם של Microsoft עצמה, ולכן כדאי לבדוק אותם על הקוד שלנו.",
+      "action": "לצוותים שעובדים עם GitHub Copilot: להריץ השוואה קצרה של MAI Code 2 מול המודל הנוכחי על כמה משימות אמיתיות, כולל איכות ועלות.",
+      "entities": [
+        "Microsoft",
+        "MAI Code 2",
+        "MAI Code 2 Flash",
+        "GitHub Copilot",
+        "Microsoft Ignite",
+        "Satya Nadella"
+      ],
+      "sources": [
+        {
+          "label": "ההכרזה של Microsoft AI",
+          "url": "https://microsoft.ai/news/introducing-mai-code-2-and-mai-code-2-flash/",
+          "type": "blog",
+          "source_id": "microsoft-ai",
+          "reliability": 5
+        },
+        {
+          "label": "ההודעה של GitHub ב-X על זמינות ב-Copilot",
+          "url": "https://x.com/github/status/2122814155979706846",
+          "type": "x",
+          "source_id": "github-blog",
+          "reliability": 5
+        },
+        {
+          "label": "כתבת Ars Technica מ-Ignite",
+          "url": "https://arstechnica.com/gadgets/2026/11/microsoft-calls-copilot-the-new-os-for-work-at-ignite-keynote/",
+          "type": "article",
+          "source_id": "ars",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18-data-1",
+      "section": "דאטה",
+      "topic_key": "data",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "שירות Azure HorizonDB זמין באופן כללי: מסד Postgres מנוהל לעומסים קריטיים ול-agents",
+      "exec_summary": "חברת Microsoft מציעה Postgres בארכיטקטורה חדשה, כמתחרה ל-Aurora ול-AlloyDB.",
+      "summary": "חברת Microsoft הכריזה ב-Ignite על זמינות כללית של Azure HorizonDB, שירות מנוהל תואם PostgreSQL בארכיטקטורה cloud-native, ועל preview ציבורי של HorizonDB בתוך Microsoft Fabric. לפי Microsoft, השירות תומך במסדי נתונים של עד 128TB, שרידות בין availability zones כברירת מחדל, commit בפחות ממילישנייה ו-failover בפחות מ-5 שניות, ובמבחן פנימי הגיע לביצועי OLTP מהירים עד פי 8 מ-PostgreSQL בניהול עצמי. השירות כולל חיפוש וקטורי ופונקציות AI, הזדהות דרך Microsoft Entra, private endpoints ומפתחות הצפנה בניהול הלקוח.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "זו התשובה של Microsoft ל-Aurora של AWS ול-AlloyDB של Google: Postgres מנוהל לעומסים קריטיים ולאפליקציות AI. מי שמריץ Postgres גדול ב-Azure מקבל אפשרות נוספת, אבל נתוני הביצועים הם מבחן פנימי של היצרן.",
+      "action": null,
+      "entities": [
+        "Microsoft",
+        "Azure HorizonDB",
+        "PostgreSQL",
+        "Microsoft Fabric",
+        "Microsoft Ignite"
+      ],
+      "sources": [
+        {
+          "label": "הבלוג של Microsoft על HorizonDB",
+          "url": "https://techcommunity.microsoft.com/blog/adforpostgresql/horizondb-postgresql-for-enterprises-developers-and-agents-on-azure-and-fabric/4573498",
+          "type": "blog",
+          "source_id": "microsoft-techcommunity",
+          "reliability": 5
+        },
+        {
+          "label": "עדכון Azure על הזמינות הכללית",
+          "url": "https://azure.microsoft.com/updates?id=579388",
+          "type": "blog",
+          "source_id": "azure-updates",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18-quantum-1",
+      "section": "קוונטים",
+      "topic_key": "quantum",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "חברת IBM מתכננת ל-2027 מערכת של 1,040 קיוביטים משני מעבדי Nighthawk r3",
+      "exec_summary": "מפת הדרכים של IBM עוברת את רף 1,000 הקיוביטים המחוברים, בדרך למחשב עמיד לשגיאות ב-2029.",
+      "summary": "בכנס המפתחים IBM Quantum Developer Conference 2026 הציגה IBM את Nighthawk r3, מעבד שמתוכנן ל-2027 עם 520 קיוביטים שאמור להריץ 10,000 פעולות קוונטיות, ואת התוכנית לחבר שני מעבדים כאלה במצמדים ארוכי טווח (l-couplers) למערכת אחת של 1,040 קיוביטים. לפי IBM, המעבד הנוכחי Nighthawk r2, עם 120 קיוביטים, מריץ מעגלים מדויקים של יותר מ-7,500 פעולות ומגיע ל-100,000 דגימות בשנייה, פי 25 מ-Heron. החברה טוענת שהשנה הושג quantum advantage שאפשר לאמת, ומחזיקה ביעד של מחשב עמיד לשגיאות (Starling) ב-2029.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "חציית רף 1,000 הקיוביטים המחוברים היא אבן דרך, אבל עדיין מדובר בתוכנית ל-2027. מבחינתנו השאלה המעשית היא הגישה בענן של IBM ותהליכי העבודה ההיברידיים עם מחשוב רגיל, שעליהם הוכרז באותו כנס.",
+      "action": null,
+      "entities": [
+        "IBM",
+        "Nighthawk r3",
+        "Nighthawk r2",
+        "IBM Quantum Starling",
+        "Qiskit"
+      ],
+      "sources": [
+        {
+          "label": "הבלוג של IBM מהכנס",
+          "url": "https://www.ibm.com/quantum/blog/qdc-2026",
+          "type": "blog",
+          "source_id": "ibm-quantum",
+          "reliability": 5
+        },
+        {
+          "label": "הודעת IBM לעיתונות",
+          "url": "https://newsroom.ibm.com/2026-11-11-ibm-quantum-nighthawk-demonstrates-new-levels-of-speed-and-quality,-with-plans-to-scale-beyond-1,000-qubits-in-2027",
+          "type": "blog",
+          "source_id": "ibm-quantum",
+          "reliability": 5
+        },
+        {
+          "label": "ניתוח The Next Platform",
+          "url": "https://www.nextplatform.com/compute/2026/11/17/ibm-links-two-nighthawk-r3-chips-to-make-a-1040-qubit-quantum-system/5310545",
+          "type": "article",
+          "source_id": "nextplatform",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18-cloud-1",
+      "section": "ענן ותשתיות",
+      "topic_key": "cloud",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "חיבור פרטי מנוהל בין AWS ל-Azure זמין עכשיו באופן כללי",
+      "exec_summary": "אפשר לחבר עומסים בין AWS ל-Azure, Google Cloud ו-Oracle בלי לבנות רשת בין-עננית בעצמנו.",
+      "summary": "חברת AWS הודיעה על זמינות כללית של AWS Interconnect - multicloud עם Microsoft Azure: חיבורים פרטיים, מנוהלים וגמישים בין שני העננים. לפי AWS, השירות מבוסס על מפרט פתוח ש-Azure אימצה ב-preview באוגוסט, ועכשיו אפשר לחבר באותה דרך גם ל-Google Cloud ול-Oracle Cloud Infrastructure; גם Microsoft עדכנה שהשירות המקביל שלה, Azure Multicloud Interconnect, תומך בספקי ענן נוספים. בשלב זה החיבור ל-Azure זמין באזורי AWS בצפון וירג'יניה, סידני ופרנקפורט.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "לארגונים שעובדים בכמה עננים זה חוסך בנייה ותחזוקה של VPN וחיבורים ייעודיים בין ספקים. האזורים עדיין מוגבלים, ואין ביניהם אזור ישראלי.",
+      "action": "לצוות התשתיות: אם יש לנו חיבור VPN או קו ייעודי בין AWS ל-Azure, לבדוק אם השירות המנוהל זול ופשוט יותר.",
+      "entities": [
+        "AWS",
+        "AWS Interconnect - multicloud",
+        "Microsoft Azure",
+        "Google Cloud",
+        "Oracle Cloud Infrastructure"
+      ],
+      "sources": [
+        {
+          "label": "הודעת AWS",
+          "url": "https://aws.amazon.com/about-aws/whats-new/2026/11/aws-announces-AWS-interconnect-multicloud-azure-ga/",
+          "type": "blog",
+          "source_id": "aws-whats-new",
+          "reliability": 5
+        },
+        {
+          "label": "עדכון Azure על Multicloud Interconnect",
+          "url": "https://azure.microsoft.com/updates?id=579766",
+          "type": "blog",
+          "source_id": "azure-updates",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18-cyber-1",
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "חולשה קריטית ב-Java (Java4Shell) מאפשרת השתלטות מרחוק על Jira, Jenkins ו-Keycloak",
+      "exec_summary": "חולשה בליבת Java מאפשרת השתלטות מרחוק בלי הזדהות על שירותים כמו Keycloak, Jira ו-Jenkins; יש עדכון, והסיכון גבוה יותר בשרתים החשופים לאינטרנט גם אם עדיין אין דיווח מאומת על ניצול בפועל.",
+      "summary": "חוקרי Calif חשפו ב-17 בנובמבר את Java4Shell (CVE-2026-114938), חולשת memory corruption במפענח ה-Base64 של OpenJDK, בקוד המואץ שמשתמש בהוראות AVX-512 VBMI של מעבדי x86-64. לפי החוקרים, החולשה מאפשרת הרצת קוד מרחוק בלי הזדהות ב-Jira, Confluence, Jenkins, Keycloak, JFrog Artifactory ו-PingFederate בהגדרות ברירת המחדל, והיא פוגעת ב-OpenJDK 17.0.6 ואילך ובהפצות שנבנו ממנו, כמו Oracle Java SE, Amazon Corretto, Eclipse Temurin, Azul Zulu ו-Microsoft Build of OpenJDK. החוקרים דירגו אותה 9.2 (CVSS 4.0) ו-Oracle דירגה 8.1; Oracle פרסמה עדכון באותו יום, ו-CISA פרסמה התראה שקוראת לעדכן מיד.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "רמת הסיכון: לפי פרסום Calif, יישומים כמו Keycloak, Jira, Confluence, Jenkins, JFrog Artifactory ו-PingFederate חשופים להרצת קוד מרחוק בלי הזדהות (pre-auth RCE) בהגדרות ברירת המחדל, ולכן הם בסיכון גבוה יותר מיישומים שבהם ההדגמה הייתה רק אחרי הזדהות (post-auth RCE), כמו Apache Kafka, Solr, Elasticsearch, Gerrit ו-Spinnaker. ב-Keycloak, שהוא שירות קוד פתוח לניהול זהויות ולהתחברות אחודה (SSO) שארגונים מציבים בפתח המערכות שלהם, מפענח נתוני Base64 בבקשות שמגיעות לפני הזדהות, ולכן דרישת התחברות לא מגינה על מופע פגיע. חברת Oracle פרסמה עדכון ב-17 בנובמבר, ו-Zero Wire ממליצה להתחיל בשרתים החשופים לאינטרנט; לפי Aikido, עד 18 בנובמבר לא פורסמו דיווחים מאומתים על ניצול בפועל, והחולשה אינה מופיעה עדיין בקטלוג KEV של CISA. בשורה התחתונה, יש לעדכן בדחיפות שרתי Java חשופים, ובמיוחד את דלת הכניסה של ההזדהות, גם אם עדיין אין דיווח על תקיפה בפועל. שרתי Java נמצאים כמעט בכל ארגון, ולעיתים קרובות בתוך מוצרים ו-container images שלא מופיעים במלאי התוכנה. כל שרת Java שחשוף לאינטרנט הוא יעד אפשרי, ובשבועות האחרונים ראינו שקוד ניצול מופיע תוך ימים.",
+      "action": "למפות עוד היום את כל ה-JDK וה-JRE, כולל בתוך מוצרי צד שלישי ו-container images; לעדכן קודם שרתים חשופים לאינטרנט; ועד העדכון, לפי CISA, להגביל גישה לא מזוהה, להגביל גודל קלט ולעקוב אחרי קריסות JVM חריגות.",
+      "entities": [
+        "Java4Shell",
+        "CVE-2026-114938",
+        "OpenJDK",
+        "Oracle",
+        "Calif",
+        "CISA",
+        "Jira",
+        "Confluence",
+        "Jenkins",
+        "Keycloak"
+      ],
+      "sources": [
+        {
+          "label": "הפרסום של Calif",
+          "url": "https://calif.io/java4shell/",
+          "type": "blog",
+          "source_id": "calif",
+          "reliability": 3
+        },
+        {
+          "label": "התראת CISA",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/17/critical-java-vulnerability-requires-immediate-patching",
+          "type": "report",
+          "source_id": "cisa-advisories",
+          "reliability": 5
+        },
+        {
+          "label": "כתבת BleepingComputer",
+          "url": "https://www.bleepingcomputer.com/news/security/critical-java4shell-flaw-allows-rce-attacks-on-major-java-applications/",
+          "type": "article",
+          "source_id": "bleeping",
+          "reliability": 4
+        },
+        {
+          "label": "הפוסט של Dan Lorenc מ-Chainguard ב-LinkedIn",
+          "url": "https://www.linkedin.com/posts/danlorenc_the-folks-at-calif-beat-us-again-we-found-share-7528582601213784065-gI86/",
+          "type": "linkedin",
+          "source_id": "linkedin",
+          "reliability": 2
+        },
+        {
+          "label": "תדריך Zero Wire של Cloudflare Radar",
+          "url": "https://radar.cloudflare.com/zero-wire/java4shell",
+          "type": "report",
+          "source_id": "cloudflare-zero-wire",
+          "reliability": 4
+        },
+        {
+          "label": "מאמר Aikido על Java4Shell",
+          "url": "https://www.aikido.dev/blog/java-17-rce-vulnerability-cve-2026-114938",
+          "type": "blog",
+          "source_id": "aikido-security",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18-cyber-2",
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "team"
+      ],
+      "headline": "חבילת agent-framework של Microsoft ב-PyPI נפרצה וגנבה סודות מסביבות פיתוח ו-CI",
+      "exec_summary": "שתי גרסאות זדוניות של חבילת agents רשמית הותקנו לכשעה; מי שהתקין צריך להחליף סודות.",
+      "summary": "החבילה agent-framework של Microsoft ב-PyPI נפרצה ב-17 בנובמבר: גרסאות 1.26.1 ו-1.26.2 פורסמו בהפרש של 33 דקות והתקינו hook שרץ בכל הפעלה של Python, אוסף משתני סביבה, קבצי הרשאות ואסימוני זהות של Azure ושל GitHub Actions, ושולח אותם לשרת חיצוני. לפי Aikido, שתי הגרסאות כבר הוסרו, חלון החשיפה היה בערך בין 22:35 ל-23:20 שעון ישראל, והחבילה מורדת כ-190,000 פעמים בחודש.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "זו חבילה של Microsoft לבניית agents, ולכן היא נמצאת בדיוק בצינורות ה-CI של צוותי AI. מספיקה התקנה עם דרישת גרסה רופפת, למשל agent-framework>=1.26, בזמן החלון כדי לחשוף סודות.",
+      "action": "לחפש בלוגי CI ובקבצי lock את הגרסאות 1.26.1 ו-1.26.2; אם נמצאו, להחליף את כל הסודות שהיו זמינים לאותן מכונות ולנעול את הגרסה ל-1.26.0.",
+      "entities": [
+        "Microsoft",
+        "agent-framework",
+        "PyPI",
+        "Socket",
+        "Aikido",
+        "GitHub Actions",
+        "Azure"
+      ],
+      "sources": [
+        {
+          "label": "הניתוח של Socket",
+          "url": "https://socket.dev/blog/agent-framework-pypi-package-compromised-with-credential-stealer",
+          "type": "blog",
+          "source_id": "socket-dev",
+          "reliability": 5
+        },
+        {
+          "label": "הניתוח של Aikido",
+          "url": "https://www.aikido.dev/blog/two-malicious-agent-framework-releases-hit-pypi-in-33-minutes",
+          "type": "blog",
+          "source_id": "aikido-security",
+          "reliability": 3
+        },
+        {
+          "label": "ההתראה של Socket ב-X",
+          "url": "https://x.com/SocketSecurity/status/2122832360366325864",
+          "type": "x",
+          "source_id": "socket-dev",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18-cyber-3",
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "team"
+      ],
+      "headline": "חולשה ב-Puppet Enterprise מנוצלת בפועל ונכנסה לקטלוג של CISA",
+      "exec_summary": "כלי לניהול תצורת שרתים מותקף; יש גרסאות מתוקנות.",
+      "summary": "רשות הסייבר האמריקאית CISA הוסיפה ב-17 בנובמבר לקטלוג החולשות המנוצלות (KEV) את CVE-2026-115731 ב-Puppet Enterprise של Perforce, חולשת deserialization בעיבוד דוחות שמאפשרת הרצת קוד. חברת Puppet תיקנה אותה יחד עם חולשה קריטית נוספת, CVE-2026-115732, עקיפת הרשאה לפי שם תעודה, בגרסאות 2026.0.1, 2025.12.1 ו-2023.8.13 של Puppet Enterprise.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "שרת Puppet מנהל את התצורה של צי שרתים שלם, ולכן השתלטות עליו קרובה להשתלטות על כל השרתים שהוא מנהל.",
+      "action": "אם אנחנו משתמשים ב-Puppet Enterprise: לעדכן לאחת הגרסאות המתוקנות, להפעיל מחדש את Puppet Server ולבדוק אם חתימה אוטומטית של תעודות (autosigning) פעילה.",
+      "entities": [
+        "Puppet Enterprise",
+        "Perforce",
+        "CVE-2026-115731",
+        "CVE-2026-115732",
+        "CISA KEV"
+      ],
+      "sources": [
+        {
+          "label": "הודעת CISA על הוספה לקטלוג",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/17/cisa-adds-one-known-exploited-vulnerability-catalog",
+          "type": "report",
+          "source_id": "cisa-kev",
+          "reliability": 5
+        },
+        {
+          "label": "דף העדכונים של Puppet Enterprise",
+          "url": "https://www.puppet.com/products/puppet-enterprise/whats-new",
+          "type": "blog",
+          "source_id": "puppet",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18-cyber-4",
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "מחשב-העל היפני Fugaku נפרץ דרך לוח סטטוס ציבורי, ומפתחות SSH של משתמשים נגנבו",
+      "exec_summary": "דף ניטור פתוח הפך לנקודת כניסה, והנזק העיקרי הוא מפתחות שאפשר לנצל במקומות אחרים.",
+      "summary": "מכון RIKEN היפני השבית ב-14 בנובמבר את מחשב-העל Fugaku, אחרי שגורם לא מורשה ניצל בין 10 ל-13 בנובמבר את לוח המחוונים הציבורי שמציג את מצב המערכת וחדר ממנו לכמה שרתים פנימיים. נגנבו שמות, כתובות מייל ומזהים של 4,222 משתמשי Fugaku ו-375 משתמשי מחשב-העל Rikyu, וגם מפתחות SSH פרטיים, מפתחות גישה וקבצי מחקר; התוקף ניסה להשתמש בחלק מהמפתחות כדי להתחבר למערכות נוספות.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "דף סטטוס שנראה תמים הפך לנקודת כניסה, והנזק העיקרי הוא מפתחות SSH שאפשר להשתמש בהם במקומות אחרים. זה רלוונטי לכל ארגון עם לוחות ניטור פתוחים או שרתים משותפים לצוותים.",
+      "action": "לבדוק אילו לוחות מחוונים ודפי סטטוס שלנו פתוחים לאינטרנט, ולוודא שאין מפתחות SSH פרטיים שמורים בתיקיות הבית בשרתים משותפים.",
+      "entities": [
+        "RIKEN",
+        "Fugaku",
+        "Rikyu"
+      ],
+      "sources": [
+        {
+          "label": "כתבת BleepingComputer",
+          "url": "https://www.bleepingcomputer.com/news/security/japan-takes-fugaku-supercomputer-offlline-after-cyberattack/",
+          "type": "article",
+          "source_id": "bleeping",
+          "reliability": 4
+        },
+        {
+          "label": "כתבת The Register",
+          "url": "https://www.theregister.com/security/2026/11/17/japans-fugaku-supercomputer-has-decidedly-un-super-security/5310333",
+          "type": "article",
+          "source_id": "theregister",
+          "reliability": 3
+        },
+        {
+          "label": "הניוזלטר Risky Bulletin",
+          "url": "https://risky.biz/RBNEWS635/",
+          "type": "newsletter",
+          "source_id": "risky-biz",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18-cyber-5",
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "חוקרים השתלטו על חשבון Hugging Face של מודל הדיבור Kokoro ושינו בשקט את המשקלים",
+      "exec_summary": "מודל פתוח נטוש עם מיליוני הורדות הפך לערוץ אפשרי למתקפת שרשרת אספקה, בלי שורת קוד זדונית.",
+      "summary": "חוקרים בראשות Alon Hertz השתלטו על חשבון ה-Hugging Face של Kokoro, מודל פתוח להמרת טקסט לדיבור עם כמעט 13 מיליון הורדות בחודש, בכך שרשמו מחדש את הדומיין שהבעלים המקורי השתמש בו ואיפסו את הסיסמה. הם הדגימו מתקפה שקטה: fine-tune למשקלים כך שהמודל אומר משהו אחר מהטקסט שקיבל, בלי לשנות אף שורת קוד, ולכן בלי שסורקי נוזקות יזהו. כלים של Google, Nvidia ו-Intel תומכים במודל, ו-AMD ו-AWS פרסמו מדריכים לשימוש בו ב-agents.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "מודלים פתוחים שהבעלים שלהם נטשו הם נקודת תורפה בשרשרת האספקה של AI, ושינוי במשקלים לא נראה כמו נוזקה. מי שמושך מודלים לפי שם ולא לפי גרסה מקובעת חשוף לזה.",
+      "action": "לקבע מודלים מ-Hugging Face לפי commit hash, ולהחזיק עותק פנימי של כל מודל שנמצא בשימוש בייצור.",
+      "entities": [
+        "Hugging Face",
+        "Kokoro",
+        "Hexgrad",
+        "Alon Hertz"
+      ],
+      "sources": [
+        {
+          "label": "כתבת BleepingComputer",
+          "url": "https://www.bleepingcomputer.com/news/security/researchers-hijack-hugging-face-account-for-popular-kokoro-ai-model/",
+          "type": "article",
+          "source_id": "bleeping",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18-cyber-6",
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "מחקר: מפתח AWS שדלף ל-image ציבורי ב-Docker Hub נוצל אחרי 8 שניות",
+      "exec_summary": "מפתח שדלף ל-container ציבורי נחשב גנוב כמעט מיד.",
+      "summary": "החוקרים Billy Tsouvalas ו-Nick Nikiforakis מ-Stony Brook University פרסמו במשך ארבעה חודשים 300 images עם מפתחות פיתיון ב-8 מאגרי containers ציבוריים, והציגו את התוצאות בכנס ACM CCS. מפתח AWS שנחשף ב-Docker Hub נוצל לראשונה אחרי 7.86 שניות, הזמן החציוני לקריאת API ראשונה היה 51 שניות, וכל 100 מפתחות ה-AWS נוצלו תוך 15 דקות; מפתחות של OpenAI ושל Anthropic נוצלו עד שנגמרה היתרה בחשבונות הבדיקה.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "אין חלון זמן שבו אפשר 'לגלות ולתקן' דליפה כזו. זה מתחבר לגל המתקפות על מפתחות AI ושערי מודלים שדיווחנו עליו בימים האחרונים.",
+      "action": "להוסיף סריקת סודות ל-images לפני push, ולהעדיף הרשאות זמניות (OIDC) על פני מפתחות קבועים בתהליכי build.",
+      "entities": [
+        "Docker Hub",
+        "Stony Brook University",
+        "AWS",
+        "OpenAI",
+        "Anthropic",
+        "ACM CCS"
+      ],
+      "sources": [
+        {
+          "label": "כתבת BleepingComputer",
+          "url": "https://www.bleepingcomputer.com/news/security/cloud-keys-leaked-in-docker-hub-images-are-stolen-within-seconds/",
+          "type": "article",
+          "source_id": "bleeping",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18-enterprise-1",
+      "section": "ארגונים ואנליסטים",
+      "topic_key": "enterprise",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "חברת Gartner: שש מגמות בהנדסת תוכנה, מ-harness ל-agents ועד sandbox ו-evals",
+      "exec_summary": "לפי Gartner, הבקרה סביב ה-agents תהיה חשובה יותר מבחירת המודל.",
+      "summary": "חברת Gartner פרסמה ב-18 בנובמבר שש מגמות אסטרטגיות בהנדסת תוכנה, בשני צירים: AI בתוך מחזור הפיתוח, ומחזור פיתוח למערכות AI. בין התחזיות: עד 2030, 40% מתיקי האפליקציות בארגונים יהיו אפליקציות מותאמות שנבנו על פלטפורמות פיתוח AI-native (לעומת 2% ב-2025), ו-70% מהארגונים יריצו תהליכי פיתוח של agents בתוך sandbox לפני ייצור (לעומת 10% ב-2026). עד 2028, לפי Gartner, ארגונים עם תשתית harness ל-coding agents יראו 60% פחות תקלות אחרי פריסה, 70% מצוותי התוכנה יאמצו פיתוח מונחה evals (לעומת פחות מ-20% היום), ו-60% מהארגונים המפוקחים יעבירו עומסי AI לתשתית מקומית. המגמה השישית היא forward-deployed engineers, מהנדסים שמוצמדים לצוותים העסקיים.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "הרשימה מתארת את מה שאנחנו רואים בשטח: המודל הוא רק חלק, וה-harness, ה-sandbox וה-evals קובעים את האיכות והסיכון. זו מסגרת שימושית לתכנון התקציב והתהליכים של צוות הפיתוח ל-2027.",
+      "action": "לבחור מגמה אחת או שתיים, למשל sandbox ל-agents ו-evals קבועים, ולהכניס אותן לתוכנית העבודה של צוות הפיתוח לרבעון הבא.",
+      "entities": [
+        "Gartner",
+        "Manjunath Bhat",
+        "harness engineering",
+        "agent sandboxing",
+        "eval-driven development"
+      ],
+      "sources": [
+        {
+          "label": "הודעת Gartner לעיתונות",
+          "url": "https://www.gartner.com/en/newsroom/press-releases/2026-11-18-gartner-identifies-the-top-strategic-technology-trends-in-software-engineering-for-2026-and-beyond",
+          "type": "gartner",
+          "source_id": "gartner",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18-enterprise-2",
+      "section": "ארגונים ואנליסטים",
+      "topic_key": "enterprise",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "low",
+      "audience": [
+        "management"
+      ],
+      "headline": "חברת Nvidia: הכנסות של 115.8 מיליארד דולר ברבעון, בדוח הראשון אחרי עזיבת Jensen Huang",
+      "exec_summary": "הביקוש לתשתיות AI ממשיך לזנק, וההנהלה הזמנית מחזקת את הפיקוח על ייצוא.",
+      "summary": "חברת Nvidia דיווחה על הכנסות של 115.8 מיליארד דולר ברבעון השלישי של שנת הכספים 2027, עלייה של 103% לעומת אשתקד ו-20% לעומת הרבעון הקודם; הכנסות מרכזי הנתונים הגיעו ל-107.6 מיליארד דולר, ולפי החברה פלטפורמת Vera Rubin NVL72 כבר נשלחת ללקוחות. זה הדוח הראשון מאז עזיבת Jensen Huang, והוא הוצג בידי המנכ\"לית הזמנית Colette Kress. לפי TechCrunch ו-The Verge, החברה הודיעה שאינה מתכוונת להחזיר את Huang לתפקיד, והדירקטוריון הקים ועדה לביטחון לאומי ולפיקוח על ייצוא.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "הביקוש לתשתיות AI לא מאט, ולכן כדאי להניח שמחירי GPU וזמני אספקה בענן יישארו לחוצים. השינויים בהנהלה ובפיקוח על ייצוא עשויים להשפיע על זמינות שבבים, בעיקר באזורים רגישים.",
+      "action": null,
+      "entities": [
+        "Nvidia",
+        "Colette Kress",
+        "Jensen Huang",
+        "Vera Rubin NVL72"
+      ],
+      "sources": [
+        {
+          "label": "הודעת Nvidia על התוצאות",
+          "url": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2027",
+          "type": "report",
+          "source_id": "nvidia-newsroom",
+          "reliability": 5
+        },
+        {
+          "label": "הודעת Nvidia על הוועדה",
+          "url": "https://nvidianews.nvidia.com/news/nvidia-board-of-directors-establishes-national-security-and-export-control-oversight-committee",
+          "type": "blog",
+          "source_id": "nvidia-newsroom",
+          "reliability": 5
+        },
+        {
+          "label": "דיווח TechCrunch",
+          "url": "https://techcrunch.com/2026/11/17/nvidia-says-it-doesnt-plan-to-reappoint-jensen-huang-as-ceo/",
+          "type": "article",
+          "source_id": "techcrunch",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18-emerging-1",
+      "section": "טכנולוגיות מתפרצות",
+      "topic_key": "emerging",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "ערכת Claude-BugHunter הופכת את Claude Code לצייד חולשות ולכלי red team",
+      "exec_summary": "חבילת skills פתוחה לציד חולשות, שמובילה את GitHub trending השבוע.",
+      "summary": "המאגר הפתוח (MIT) של החוקר Sachin Sharma מוסיף ל-Claude Code חבילה של 83 skills ו-15 פקודות לציד באגים ולעבודת red team חיצונית, על בסיס 681 דפוסים מדיווחי חולשות שפורסמו ב-HackerOne. הוא כולל גם שרשראות תקיפה לפלטפורמות ארגוניות כמו M365 ו-Entra, Okta, vCenter ו-SSL-VPN, שילוב עם Burp דרך MCP, ושלבי אימות ודיווח. הכלי נטען אוטומטית לפי הנושא, ומיועד לפי המחבר לעבודה מורשית בלבד.",
+      "heat": 3,
+      "momentum": "דף GitHub trending היומי (18.11): מקום ראשון, 1,005 כוכבים ביום, 2,508 בשבוע, 9,708 בסך הכול; לפי פוסטים ב-X היה במקום 5 ב-17.11 ובמקום 9 ב-16.11; שיתופים ב-X באנגלית, תאית ויפנית.",
+      "why_it_matters": "אותו כלי משמש גם צוותי הגנה וגם תוקפים, והוא מוריד את הרף לבדיקות חדירה אוטומטיות. זה מתחבר לדיון השבוע על מסגרות תקיפה אוטונומיות מבוססות agents.",
+      "action": "צוות האבטחה יכול לבחון אותו בסביבה מבודדת, רק מול מערכות שלנו ובאישור, כדי להבין מה תוקף עם agent יכול למצוא אצלנו.",
+      "entities": [
+        "Claude-BugHunter",
+        "Claude Code",
+        "Anthropic",
+        "HackerOne",
+        "Burp Suite"
+      ],
+      "sources": [
+        {
+          "label": "המאגר ב-GitHub",
+          "url": "https://github.com/elementalsouls/Claude-BugHunter",
+          "type": "github",
+          "source_id": "github-trending",
+          "reliability": 3
+        },
+        {
+          "label": "פוסט ב-X על המיקום ב-GitHub trending",
+          "url": "https://x.com/chinchoukou/status/2122691296532086877",
+          "type": "x",
+          "source_id": null,
+          "reliability": 2
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18-emerging-2",
+      "section": "טכנולוגיות מתפרצות",
+      "topic_key": "emerging",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "חברת Alibaba פתחה את כלי סקירת הקוד הפנימי שלה: Open Code Review",
+      "exec_summary": "כלי CLI לסקירת קוד עם LLM, שמתמקד בהתראות אמיתיות ובחיסכון בטוקנים.",
+      "summary": "חברת Alibaba פרסמה כקוד פתוח (Apache-2.0) את כלי סקירת הקוד הפנימי שלה, שלדבריה שימש עשרות אלפי מפתחים במשך שנתיים: CLI שקורא git diff, שולח את הקבצים שהשתנו ל-LLM לבחירתנו דרך agent עם כלים, ומחזיר הערות ברמת השורה; יש גם מצב scan לסקירת קוד שלם. לפי Alibaba, בהשוואה ל-agent כללי כמו Claude Code עם אותו מודל, הכלי מגיע לדיוק (precision) ו-F1 גבוהים יותר בכתשיעית מהטוקנים, על חשבון recall נמוך יותר במכוון. החברה פרסמה גם את מבחן AACR-Bench, שמבוסס על 200 PRs אמיתיים מ-50 פרויקטים.",
+      "heat": 2,
+      "momentum": "דף GitHub trending (18.11): 763 כוכבים ביום, 3,675 בשבוע, 53,888 בסך הכול; ברשימות היומיות גם ב-14 וב-15.11 לפי פוסטים ב-X; אזכורים רבים ב-X ביפנית, סינית, תאית, ערבית וספרדית; ב-LinkedIn מעט פוסטים (עד 8 תגובות).",
+      "why_it_matters": "כש-agents כותבים יותר קוד, סקירת הקוד הופכת לצוואר הבקבוק, וכלי זול שמתמקד בהתראות אמיתיות יכול להוריד עומס מהמפתחים. נתוני ההשוואה הם של Alibaba עצמה.",
+      "action": "לנסות על ריפו אחד עם המודל שכבר יש לנו, ולהשוות את ההערות שלו לסקירות האנושיות האחרונות.",
+      "entities": [
+        "Alibaba",
+        "Open Code Review",
+        "AACR-Bench",
+        "Claude Code"
+      ],
+      "sources": [
+        {
+          "label": "המאגר ב-GitHub",
+          "url": "https://github.com/alibaba/open-code-review",
+          "type": "github",
+          "source_id": "github-trending",
+          "reliability": 3
+        },
+        {
+          "label": "פוסט ב-X שמסביר את הכלי",
+          "url": "https://x.com/Dexter_Lecter2/status/2121967403982549352",
+          "type": "x",
+          "source_id": null,
+          "reliability": 2
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18-emerging-3",
+      "section": "טכנולוגיות מתפרצות",
+      "topic_key": "emerging",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "low",
+      "audience": [
+        "team"
+      ],
+      "headline": "חברת Tencent פתחה את LoopForge, סביבה לניהול coding agents עם שערי אישור אנושיים",
+      "exec_summary": "שכבת תהליך ובקרה סביב coding agents קיימים, שמותקנת על התשתית שלנו.",
+      "summary": "חברת Tencent פרסמה כקוד פתוח (MIT) את LoopForge, סביבת עבודה שמותקנת אצלנו ומנהלת coding agents כמו Codex, Claude Code, Cursor CLI ו-OpenCode: בוט ראשי פותח sandbox ב-Docker עם הריפו, מחלק את העבודה לתפקידים ופותח PR. תהליך שהוכיח את עצמו נשמר כ-SOP, רצף קבוע של agents, סקריפטים ושערי אישור אנושיים, כך שהדרישה הבאה תעבור באותו מסלול.",
+      "heat": 1,
+      "momentum": "דף GitHub trending (18.11): 591 כוכבים ביום, 3,432 בסך הכול, לעומת כ-867 ב-14.11 וכ-1,441 ב-15.11 לפי פוסטים ב-X; מקום 13 ב-trending היומי ב-15.11.",
+      "why_it_matters": "זה מימוש פתוח של מה ש-Gartner מכנה היום harness engineering ו-sandbox ל-agents: לא עוד agent, אלא שכבת תהליך, בקרה ואישור סביב ה-agents.",
+      "action": null,
+      "entities": [
+        "Tencent",
+        "LoopForge",
+        "Codex",
+        "Claude Code",
+        "Cursor CLI",
+        "OpenCode"
+      ],
+      "sources": [
+        {
+          "label": "המאגר ב-GitHub",
+          "url": "https://github.com/Tencent/LoopForge",
+          "type": "github",
+          "source_id": "github-trending",
+          "reliability": 3
+        },
+        {
+          "label": "פוסט ב-X על הפרויקט",
+          "url": "https://x.com/saiitoshii/status/2121656884717564367",
+          "type": "x",
+          "source_id": null,
+          "reliability": 2
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18-perspective-1",
+      "section": "זוויות מבט",
+      "topic_key": "perspective",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "low",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "העורך Jason Koebler: הכול נשבר, ולא בגלל מתקפה אחת",
+      "exec_summary": "לפי המאמר, רצף התקלות הוא תוצאה של אובדן מומחיות ושל עדכונים חפוזים, לא של מתקפה מתואמת.",
+      "summary": "במאמר ב-404 Media טוען Jason Koebler, ממייסדי האתר, שרצף ההשבתות האחרון, מ-Microsoft ו-Apple ועד רשות התעופה האמריקאית, אינו מתקפה אחת אלא סימפטום של מגמות משותפות: פיטורים המוניים של אנשי טכנולוגיה וממשל, אובדן ידע מוסדי, חוסר השקעה בתשתיות ובגיבוי, ופריסה המונית של קוד ועדכונים שנכתבו בעזרת AI. לדבריו, ארגונים שמגיבים לאיום של תקיפות מבוססות AI בעדכונים חפוזים שנכתבו גם הם בעזרת AI מוסיפים עוד שכבה של סיכון. זו עמדת הכותב, ולא ממצא של חקירה.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "גם אם לא מקבלים את כל הטיעון, השאלה רלוונטית לנו: האם קצב העדכונים והשימוש ב-AI בכתיבת תיקונים לא שוחק את הבדיקות והידע של מי שמבין את המערכות.",
+      "action": null,
+      "entities": [
+        "Jason Koebler",
+        "404 Media"
+      ],
+      "sources": [
+        {
+          "label": "המאמר ב-404 Media",
+          "url": "https://www.404media.co/breaking-everything/",
+          "type": "article",
+          "source_id": "404media",
+          "reliability": 4
+        },
+        {
+          "label": "הפוסט של Jason Koebler ב-X",
+          "url": "https://x.com/jason_koebler/status/2122813013355102522",
+          "type": "x",
+          "source_id": "jason-koebler",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18-perspective-2",
+      "section": "זוויות מבט",
+      "topic_key": "perspective",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "low",
+      "audience": [
+        "team"
+      ],
+      "headline": "הכותב Alperen Keles: אימות פורמלי עצמו לא ניתן לאימות",
+      "exec_summary": "לפי המאמר, הוכחה פורמלית חזקה רק כמו ההגדרות והמודלים שעליהם היא נשענת.",
+      "summary": "במאמר בבלוג שלו טוען Alperen Keles, שכותב על בדיקות ואימות תוכנה, ש-AI הפך את האימות הפורמלי למיינסטרים, אבל שהטענה 'המערכת אומתה פורמלית' משדרת יותר ביטחון ממה שמגיע לה. לדבריו, דיווח על באג שנמצא בבדיקות הוא דבר שאדם יכול לבדוק בקלות, ואילו הוכחה פורמלית נשענת על רכיבים שקשה לבדוק: ההגדרות, המודל של המערכת והכלי שמבצע את ההוכחה, וטעות באחד מהם מפילה את כל הטענה. הוא אופטימי לגבי גישות שמקטינות את הרכיבים האלה, כמו אימות ברמת הקובץ הבינארי, אבל רואה בהן פתרון חלקי.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "ככל שספקים ו-agents יציגו קוד 'מאומת פורמלית', כדאי לשאול מה בדיוק הוכח ועל סמך אילו הנחות, ולא לוותר על בדיקות.",
+      "action": null,
+      "entities": [
+        "Alperen Keles",
+        "formal verification"
+      ],
+      "sources": [
+        {
+          "label": "המאמר של Alperen Keles",
+          "url": "https://alperenkeles.com/posts/formal-verification-is-not-verifiable/",
+          "type": "blog",
+          "source_id": "alperen-keles",
+          "reliability": 3
+        }
+      ]
+    }
+  ],
+  "watchlist": [
+    {
+      "text": "המאגר של ONNX Runtime של Microsoft ב-GitHub מחזיר 'not found' מאז ערב 17 בנובמבר, יחד עם כמה מאגרים קשורים (בדקנו גם הבוקר); החבילות ב-PyPI וב-NuGet עדיין זמינות, ו-Microsoft לא מסרה הסבר.",
+      "url": "https://news.ycombinator.com/item?id=50539610"
+    },
+    {
+      "text": "צוות האבטחה של Microsoft מזהיר מפישינג בשיטת device code נגד coding agents: אישור קוד אחד עלול לתת לתוקף שליטה מרחוק בסשן של Copilot CLI ולהרעיל את הזיכרון שלו.",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/"
+    },
+    {
+      "text": "חברת Google תשמור שיחות Gemini חודשיים במקום 72 שעות, גם כשההיסטוריה כבויה.",
+      "url": "https://techcrunch.com/2026/11/17/google-to-keep-gemini-chats-for-two-months-up-from-72-hours-even-with-history-off/"
+    },
+    {
+      "text": "שירות Amazon S3 מרחיב את התמיכה בהחלפת מפתחות TLS עמידה לקוונטים לנקודות קצה נוספות, ומציג ב-CloudTrail אילו חיבורים משתמשים בה.",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/11/amazon-s3-post-quantum-tls-key-exchange-support/"
+    }
+  ]
+}

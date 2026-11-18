@@ -1,0 +1,553 @@
+{
+  "date": "2026-11-11",
+  "title": "סקירת טכנולוגיה יומית – 11 בנובמבר 2026",
+  "language": "he",
+  "format_version": "2-layered",
+  "period": {
+    "from": "2026-11-10T09:40:00+02:00",
+    "to": "2026-11-11T21:40:00+02:00"
+  },
+  "exec_summary": [
+    "היום מתחיל באבטחה: יש עדכון דחוף לדפדפן Chrome ולדפדפנים מבוססי Chromium, עדכוני אבטחה של מיקרוסופט שכוללים חולשה מנוצלת ב-Outlook, ובדיקה האם פועלים אצלנו מוצרי Barracuda או מערכת הניהול N-central של N-able.",
+    "במקביל, ספקי הבינה המלאכותית פתחו מודלים חדשים לעבודה מורכבת, וגוגל השיקה היום ממשק זול ומהיר להחלטות סגורות כמו ניתוב בקשות ובדיקות מדיניות.",
+    "בענן, אמזון מאפשרת לבדוק שירותי AWS על המחשב המקומי בלי לשלם תוספת, וצוותי דאטה יכולים להגדיר מדדים אחידים ב-BigQuery גם ללוחות בקרה וגם ל-agents.",
+    "בקוונטים, יבמ הציגה מפת דרכים למעבד גדול יותר ולמערכת של יותר מאלף קיוביטים ב-2027; זה לא מוצר שזמין היום, אבל כיוון השוק ברור."
+  ],
+  "items": [
+    {
+      "id": "ai-gemini-4-carbon",
+      "section": "בינה מלאכותית",
+      "topic_key": "ai",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "גוגל פתחה את Gemini 4 Carbon למפתחים ולארגונים",
+      "exec_summary": "גוגל פתחה את המודל החזק שלה למשימות מורכבות במחיר היכרות זהה למודל היומיומי, עד סוף החודש.",
+      "summary": "ב-10 בנובמבר פתחה גוגל את Gemini 4 Carbon לכל המפתחים והארגונים המשלמים דרך ה-API ב-AI Studio וב-Gemini for business, והוא מתגלגל גם למנויי Google AI Ultra באפליקציה, ב-Antigravity וב-AI Mode בחיפוש. לפי גוגל זה ה-frontier model שלה לסייבר ולעבודות long-horizon בתוכנה, במחקר ובעבודה מורכבת, בעוד Argon נשאר הבחירה לרוב העבודה השוטפת. המודל מדורג ראשון ב-CursorBench 4.0, ב-WANDR של Perplexity וב-AutomationBench של Zapier, בעלות למשימה הנמוכה ביותר מפי שניים מהמודל החיצוני הבא אחריו, ומחירו לתקופת ההיכרות זהה ל-Argon: 2 דולר למיליון טוקנים ב-input ו-10 דולר ב-output, עד 30 בנובמבר, ואחר כך 4 ו-20 דולר בהתאמה.",
+      "why_it_matters": "אם הצוות כבר עובד עם מודלים של גוגל, Carbon יכול לשפר משימות קשות בלי לשנות את מחיר ההיכרות עד סוף החודש, אבל הוא צורך יותר טוקנים ולא מתאים כברירת מחדל לכל שיחה.",
+      "action": "להריץ פיילוט קצר על כמה משימות הנדסה או ניתוח מורכבות, להשוות איכות ועלות מול Argon, ולבחון את תצוגת /swarm ב-Antigravity לתפקידי תכנון ובקרה.",
+      "entities": [
+        "Google",
+        "Google DeepMind",
+        "Gemini 4 Carbon",
+        "Gemini 4 Argon",
+        "Google Antigravity",
+        "Fairwind Program"
+      ],
+      "sources": [
+        {
+          "label": "ההודעה הרשמית של גוגל",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+          "type": "blog",
+          "source_id": "google-ai-blog",
+          "reliability": 5
+        },
+        {
+          "label": "הפוסט של Google DeepMind",
+          "url": "https://x.com/GoogleDeepMind/status/2120219371473617099",
+          "type": "x",
+          "source_id": "deepmind",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "ai-claude-fable-mythos-5-2",
+      "section": "בינה מלאכותית",
+      "topic_key": "ai",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "אנת'רופיק השיקה את Claude Fable 5.2 ואת Claude Mythos 5.2",
+      "exec_summary": "אנת'רופיק הוציאה שני מודלים תאומים למשימות הטכניות הקשות ביותר, במחיר נמוך יותר ובפלט מהיר יותר, כש-Opus נשאר המודל היומיומי.",
+      "summary": "ב-9 בנובמבר השיקה אנת'רופיק את Claude Fable 5.2 ואת Claude Mythos 5.2, שמבוססים על אותו מודל.‏ Fable זמין לכולם, כולל ב-AWS, ב-Google Cloud וב-Azure, עם מגבלות שימוש בסייבר ובביולוגיה; לפי החברה פחתו חסימות שווא בכ-60% בסייבר ובכ-40% בביולוגיה.‏ Mythos שמור לארגונים מאומתים בתוכניות Life Sciences ו-Cyber Verification, ובמבחן הפנימי CVE Rediscovery הוא מצא 10.2% יותר חולשות מ-Opus 5.5 ו-14.4% יותר מ-Mythos 5.1. המחיר ירד ל-8 דולר למיליון טוקנים ב-input ול-40 דולר ב-output, הפלט מהיר עד כ-30% לעומת גרסת 5.1, ויש מצב מהיר אופציונלי ב-16 ו-80 דולר שמאיץ את הייצור עד פי 2.5. החברה ממליצה להתחיל ב-Opus 5.5 כמודל יומיומי, ולעלות ל-Fable או ל-Mythos רק כשהמשימה דורשת זאת.",
+      "why_it_matters": "השילוב של מחיר נמוך יותר, פלט מהיר יותר ומודל ייעודי לסייבר משנה את בחירת הכלים לעבודות קשות, בלי לבטל את הצורך במודל יומיומי זול יותר.",
+      "action": "לעדכן את מטריצת המודלים: Opus למשימות שוטפות, Fable לפיילוט על מיגרציות וניתוח מורכב, ולבדוק אם לצוות הסייבר כדאי להגיש בקשה ל-Mythos.",
+      "entities": [
+        "Anthropic",
+        "Claude Fable 5.2",
+        "Claude Mythos 5.2",
+        "Claude Opus 5.5",
+        "Amazon Web Services",
+        "Google Cloud",
+        "Microsoft Azure"
+      ],
+      "sources": [
+        {
+          "label": "ההודעה של אנת'רופיק",
+          "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+          "type": "blog",
+          "source_id": "anthropic",
+          "reliability": 5
+        },
+        {
+          "label": "הפוסט של Claude",
+          "url": "https://x.com/claudeai/status/2119867114450268322",
+          "type": "x",
+          "source_id": "anthropic",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "ai-gemini-decisions-api",
+      "section": "בינה מלאכותית",
+      "topic_key": "ai",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "גוגל השיקה היום את Gemini Decisions API למענה על שאלות סגורות",
+      "exec_summary": "גוגל הוציאה היום מודל וממשק זולים ומהירים להחלטות כן/לא, בחירה וציון, בלי לייצר טקסט.",
+      "summary": "ב-11 בנובמבר הציגה גוגל את Gemini Decisions API, מופעל על המודל החדש Gemini Decision 1, בתוך ה-Gemini API ב-Google AI Studio. במקום לייצר תשובה טוקן-טוקן, המודל מעריך קלט רב-אופנויות (טקסט, תמונות, שמע, וידאו וקבצי PDF, עד 256K טוקנים) מול עד 1,000 שאלות מסוג כן/לא, בחירה מ-2 עד 255 אפשרויות, או ציון לפי סולם, ומחזיר הסתברויות וציון ביטחון תוך 150 עד 250 אלפיות השנייה. המחיר הוא 10 סנט למיליון טוקני input, בלי חיוב על output, ולפי גוגל זה כמעט פי חמישה זול יותר ממסלול Gemini 3.5 Flash-Lite בסט המבחנים המשותף. התמיכה ב-Google Cloud מתוכננת להגיע בהמשך, וכבר מתגלגלות אינטגרציות ל-OpenRouter, ל-LangChain, ל-Vercel ולכלים נוספים.",
+      "why_it_matters": "זה כלי פרקטי לניתוב מודלים, לבחירת כלים ולשכבת מדיניות ב-agents, במחיר ובזמן תגובה שמתאימים לשימוש בקו הייצור ולא רק לניסוי.",
+      "action": "לבנות מבחן קטן על ניתוב בקשות או על בדיקת מדיניות מול כללי הארגון, ולמדוד דיוק, כיול ועלות מול המסווג או קריאת המודל שבהם משתמשים היום.",
+      "entities": [
+        "Google",
+        "Google DeepMind",
+        "Gemini Decisions API",
+        "Gemini Decision 1",
+        "Google AI Studio"
+      ],
+      "sources": [
+        {
+          "label": "ההודעה הרשמית של גוגל",
+          "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+          "type": "blog",
+          "source_id": "google-ai-blog",
+          "reliability": 5
+        },
+        {
+          "label": "הפוסט של גוגל",
+          "url": "https://x.com/Google/status/2120583966272983331",
+          "type": "x",
+          "source_id": "google-ai-blog",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "data-bigquery-measures-ga",
+      "section": "דאטה",
+      "topic_key": "data",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "גוגל העבירה את BigQuery measures לזמינות כללית",
+      "exec_summary": "גוגל מאפשרת עכשיו להגדיר מדדים עסקיים וקשרי ישויות באותו מודל ב-BigQuery, כדי שלוחות בקרה ו-agents יעבדו על אותם מספרים.",
+      "summary": "ב-10 בנובמבר הודיעה גוגל ש-BigQuery measures זמין באופן כללי. השירות יושב על BigQuery Graph ומאפשר להגדיר מדדים עסקיים ישירות על הישויות שהם מתארים, בלי להזיז נתונים למערכת סמנטית נפרדת. המטרה היא שלוחות בקרה ב-Looker, שאילתות SQL, ניתוח שיחתי ו-AI agents יעבדו לפי אותה לוגיקה, וכך יצטמצמו פערי הגדרות וניחושים בסוכנים. אפשר גם לקמפל מודלים קיימים מ-LookML לגרף ולמדדים מקוריים ב-BigQuery.",
+      "why_it_matters": "בלי שכבת מדדים אחידה, agents נוטים לענות בביטחון על מספרים שלא הוגדרו כמו בלוח הבקרה של ההנהלה.",
+      "action": "לבדוק אם יש מדד ליבה אחד, למשל הכנסה או סיכון, שאפשר להגדיר תחילה ב-BigQuery ולחבר גם לדשבורד וגם לסוכן.",
+      "entities": [
+        "Google Cloud",
+        "BigQuery",
+        "BigQuery measures",
+        "BigQuery Graph",
+        "Looker"
+      ],
+      "sources": [
+        {
+          "label": "הבלוג של Google Cloud",
+          "url": "https://cloud.google.com/blog/products/data-analytics/bigquery-measures-ga-unifying-bi-metrics-and-knowledge-graphs/",
+          "type": "blog",
+          "source_id": "gcp-blog",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "products-claude-workspace-tools",
+      "section": "דאטה",
+      "topic_key": "data",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "אנת'רופיק מגלגלת גיליונות, לוחות וחיבורים ישירים מתוך Claude",
+      "exec_summary": "אנת'רופיק מוסיפה ל-Claude כלים לעבודה על גיליונות, לוחות ודשבורדים, וחיבור חי אל יישומים כמו Adobe ו-Atlassian.",
+      "summary": "אנת'רופיק החלה לפרוס את Claude Sheets, Whiteboards ו-Claude Data, שמאפשרים לבנות גיליונות, לארגן רעיונות וליצור לוחות מידע מתוך השיחה, בלי לעבור בין יישומים. במקביל הופיעו מחברים אינטראקטיביים שפותחים ממשק מלא של שותפים כמו Adobe, Atlassian ו-Box ליד השיחה, עם סנכרון חי של השינויים. תוספים ל-Salesforce, ל-NetSuite ול-Workday נמצאים ב-beta, וכלי פגישות שייכנס לשיחות כדי לתעד ולעדכן מסמכים מתוכנן להגיע בהמשך.",
+      "why_it_matters": "זה מעביר את העבודה מצ'אט למרחב עבודה, ויכול לחסוך זמן בתקציבים, בדשבורדים ובעריכת מסמכים, אבל גם מרחיב את משטח הגישה של המודל לנתוני הארגון.",
+      "action": "לבחון פיילוט מצומצם על מחבר אחד או על גיליון פנימי, ולוודא מראש אילו הרשאות ומקורות נתונים נפתחים ל-Claude.",
+      "entities": [
+        "Anthropic",
+        "Claude Sheets",
+        "Claude Whiteboards",
+        "Claude Data",
+        "Adobe",
+        "Atlassian",
+        "Box",
+        "Salesforce",
+        "NetSuite",
+        "Workday"
+      ],
+      "sources": [
+        {
+          "label": "המאמר של Claude",
+          "url": "https://claude.com/resources/articles/more-ways-to-work-with-claude-sheets-whiteboards-and-interactive-connectors",
+          "type": "article",
+          "source_id": "anthropic",
+          "reliability": 5
+        },
+        {
+          "label": "הפוסט של Claude",
+          "url": "https://x.com/claudeai/status/2120206365759094857",
+          "type": "x",
+          "source_id": "anthropic",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "cloud-aws-emulator",
+      "section": "ענן ותשתיות",
+      "topic_key": "cloud",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "אמזון השיקה את AWS Emulator לבדיקות מקומיות בלי תוספת מחיר",
+      "exec_summary": "אמזון מאפשרת להריץ אמולטור מקומי של ממשקי AWS על המחשב, בחינם, כדי לבדוק קוד וסוכנים בלי לפרוס לענן.",
+      "summary": "ב-11 בנובמבר הכריזה אמזון על AWS Emulator, אמולטור מקומי שמדבר עם ה-CLI, עם ה-SDK ועם coding agents דרך כתובת HTTPS מקומית, באותם ממשקים שמשתמשים בהם בענן. אין דמי שירות נוספים, משלמים רק על משאבים שנפרסים ב-AWS; ההתקנה היא מחבילות RPM או Debian בלינוקס, וב-macOS וב-Windows מריצים אותו ב-Docker. הוא מאזין כברירת מחדל רק על המחשב עצמו, מייצר מפתחות שמתחילים ב-EMULATOR, ומחזיר 501 על פעולה שעדיין לא מומשה. אמזון מפרסמת ציוני נאמנות לכל שירות, ומדגישה שהאמולטור אינו מעריך מדיניות IAM כמו הענן האמיתי, וכל מופע פועל כחשבון יחיד בלי התנהגות בין חשבונות או בין אזורים.",
+      "why_it_matters": "זה יכול לקצר לולאות בדיקה של מפתחים ושל agents שיוצרים משאבי ענן, אבל אסור להסתמך עליו לבדיקת אבטחה או הרשאות.",
+      "action": "לבחור שירות אחד שהצוות בודק הרבה, למשל S3 או DynamoDB, ולבדוק את ציון הנאמנות בתיעוד לפני שמעבירים אליו בדיקות קיימות.",
+      "entities": [
+        "Amazon Web Services",
+        "AWS Emulator",
+        "Amazon S3",
+        "Amazon DynamoDB"
+      ],
+      "sources": [
+        {
+          "label": "הבלוג של AWS",
+          "url": "https://aws.amazon.com/blogs/aws/test-your-applications-against-aws-locally-with-aws-emulator/",
+          "type": "blog",
+          "source_id": "aws-news",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "quantum-ibm-nighthawk-r3",
+      "section": "קוונטים",
+      "topic_key": "quantum",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "יבמ הציגה מפת דרכים למעבד Nighthawk r3 ולמערכת של יותר מאלף קיוביטים",
+      "exec_summary": "יבמ הודיעה על מעבד קוונטי גדול יותר שמתוכנן ל-2027, ועל תוכנית לחבר שני מעבדים למערכת של 1,040 קיוביטים.",
+      "summary": "ב-11 בנובמבר הודיעה יבמ ש-IBM Quantum Nighthawk r3 ייבנה כך שיבצע במדויק 10,000 פעולות קוונטיות על 520 קיוביטים ניתנים לתכנות, עם 2,034 קיוביטים פיזיים בסך הכול. ב-2027 היא מתכננת לחבר שני מעבדי r3 למערכת אחת עם 1,040 קיוביטים, באמצעות עשרה מחברי l-couplers בין שבבים. המעבד הזמין היום הוא Nighthawk r2, שהושק בספטמבר: הוא תומך ביותר מ-7,500 פעולות על 120 קיוביטים ומגיע לפי יבמ עד 100,000 דגימות בשנייה. לקוחות ושותפים, בהם E.ON, Algorithmiq ו-Q-CTRL, הריצו עד כה יותר מ-34 מיליארד מעגלים על r2, ודיווחו על האצות של עד פי 19 לעומת מעבדים קודמים של יבמ.",
+      "why_it_matters": "זו הודעת כיוון ולא השקה זמינה, אבל היא מראה שיבמ ממשיכה במסלול של מודולריות ומהירות, ושווה לעקוב אחריה אם יש לצוות ניסויים או שותפויות בקוונטים.",
+      "action": "אם כבר יש גישה לפלטפורמת יבמ, לבדוק אילו עומסים רצים על r2; אין צורך לתכנן פרויקט סביב r3 לפני שיוצע בפועל.",
+      "entities": [
+        "IBM",
+        "IBM Quantum Nighthawk r3",
+        "IBM Quantum Nighthawk r2",
+        "E.ON",
+        "Algorithmiq",
+        "Q-CTRL"
+      ],
+      "sources": [
+        {
+          "label": "ההודעה של יבמ",
+          "url": "https://newsroom.ibm.com/2026-11-11-ibm-quantum-nighthawk-demonstrates-new-levels-of-speed-and-quality,-with-plans-to-scale-beyond-1,000-qubits-in-2027",
+          "type": "blog",
+          "source_id": "ibm-quantum",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "cyber-chrome-cve-2026-125350",
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "גוגל תיקנה ב-Chrome חולשת אפס-יום שמנוצלת בפועל, השמינית השנה",
+      "exec_summary": "גוגל הוציאה עדכון דחוף ל-Chrome אחרי חולשת שימוש-אחרי-שחרור ב-XML שכבר מנוצלת בהתקפות.",
+      "summary": "ערוץ היציב של Chrome עודכן לגרסה 157.0.8103.50/.51 ב-Windows וב-Mac, ול-157.0.8103.50 בלינוקס, עם תשעה תיקוני אבטחה. אחת החולשות, CVE-2026-125350, היא שימוש-אחרי-שחרור ברכיב ה-XML; גוגל כותבת במפורש שקיים עבורה ניצול בשטח. ב-10 בנובמבר הוסיפה סוכנות CISA את החולשה לקטלוג החולשות המנוצלות (KEV), והורתה לסוכנויות פדרליות בארצות הברית להשלים את התיקון עד 24 בנובמבר. התיקון רלוונטי גם לדפדפנים מבוססי Chromium, ויש להתקין את העדכון שלהם כשהוא מתפרסם.",
+      "why_it_matters": "חולשה בדפדפן שמנוצלת בפועל היא נתיב כניסה נפוץ לתחנות עבודה, והעדכון צריך להגיע מהר לכל המשתמשים ולא רק לשרתים.",
+      "action": "לוודא ש-Chrome בארגון מעודכן ל-157.0.8103.50 או חדש יותר ושהדפדפן אותחל מחדש, ולבדוק את מצב Edge ודפדפנים מבוססי Chromium אחרים.",
+      "entities": [
+        "Google Chrome",
+        "CVE-2026-125350",
+        "CISA",
+        "Chromium"
+      ],
+      "sources": [
+        {
+          "label": "הודעת העדכון של Chrome",
+          "url": "https://chromereleases.googleblog.com/2026/11/stable-channel-update-for-desktop_018223192.html",
+          "type": "blog",
+          "source_id": null,
+          "reliability": 5
+        },
+        {
+          "label": "ההתראה של CISA",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/10/cisa-adds-six-known-exploited-vulnerabilities-catalog",
+          "type": "report",
+          "source_id": "cisa-advisories",
+          "reliability": 5
+        },
+        {
+          "label": "הפוסט של CISA Cyber",
+          "url": "https://x.com/CISACyber/status/2120252459037634856",
+          "type": "x",
+          "source_id": "cisa-kev",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "cyber-microsoft-outlook-kev",
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "מיקרוסופט פרסמה את עדכוני נובמבר, וחולשה ב-Outlook כבר בקטלוג המנוצלות",
+      "exec_summary": "מיקרוסופט הוציאה את עדכוני האבטחה של נובמבר, וסוכנות CISA הוסיפה לקטלוג המנוצלות חולשה ב-Outlook שפועלת בלי אזהרה למשתמש.",
+      "summary": "ב-10 בנובמבר הוסיפה סוכנות CISA שישה פריטים לקטלוג ה-KEV, ובהם CVE-2026-124194 ב-Microsoft Office Outlook, המתוארת כפעולה לא בטוחה שמתבצעת בלי אזהרה למשתמש. מיקרוסופט פרסמה במקביל את עדכוני האבטחה של נובמבר 2026, ואלה המקור להתקנת התיקון. עד שהעמדות והשרתים מעודכנים, הסיכון הוא שקובץ או הודעה מעוצבים יגרמו ל-Outlook לבצע פעולה מסוכנת בלי שהמשתמש יאושר עליה כרגיל.",
+      "why_it_matters": "יישום הדוא\"ל הזה פתוח אצל רוב העובדים, וחולשה שמנוצלת בפועל דורשת עדכון רוחבי ולא רק תיקון נקודתי בשרת.",
+      "action": "להתקין את עדכוני האבטחה של מיקרוסופט לנובמבר 2026 בהקדם, לוודא שגם Outlook וגם שאר רכיבי Office מקבלים את החבילה, ולבדוק את שאר הפריטים שנוספו ל-KEV באותו יום.",
+      "entities": [
+        "Microsoft",
+        "Microsoft Outlook",
+        "CVE-2026-124194",
+        "CISA",
+        "MSRC"
+      ],
+      "sources": [
+        {
+          "label": "ההתראה של CISA",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/10/cisa-adds-six-known-exploited-vulnerabilities-catalog",
+          "type": "report",
+          "source_id": "cisa-advisories",
+          "reliability": 5
+        },
+        {
+          "label": "הערות השחרור של מיקרוסופט לנובמבר 2026",
+          "url": "https://msrc.microsoft.com/update-guide/releaseNote/2026-Nov",
+          "type": "blog",
+          "source_id": "msrc",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "cyber-barracuda-esg",
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "חולשות במוצרי Barracuda, ובהן ESG, מנוצלות לקבלת הרשאות root",
+      "exec_summary": "חברת Barracuda דיווחה שניצול של שתי חולשות, כולל במערך אבטחת הדוא\"ל שלה, כבר פגע במספר קטן של ארגונים.",
+      "summary": "חברת Barracuda עדכנה ב-9 בנובמבר שנצפתה פעילות ניצול של שתי חולשות במוצרים שלה, והיא השפיעה על מספר קטן של ארגונים. הראשונה, CVE-2026-116606, היא עקיפת הרשאות בלי הזדהות בממשק הניהול של Email Security Gateway, בציון CVSS 9.3; השנייה, CVE-2026-111560, היא הזרקת פקודות בציון 8.6, ופוגעת גם ב-ESG וגם ב-ADC, ב-Message Archiver, ב-WAF, ב-WAF Control Center וב-Web Security Gateway. שילוב שתיהן עלול לתת גישת root, והניצול דורש גישה לממשק הניהול, גם אם לא סיסמה. ב-10 בנובמבר הוסיפה CISA את שתי החולשות לקטלוג ה-KEV. ל-ESG פורסמו הטלאים BNSF-40425 לגרסאות 9.4.017 ומעלה ו-BNSF-40430 לגרסאות מוקדמות יותר, והחברה ממליצה להגביל את ממשק הניהול לרשתות פנימיות אמינות.",
+      "why_it_matters": "מכשיר אבטחת דוא\"ל חשוף הוא יעד אטרקטיבי, וארגונים שחשפו את ממשק הניהול לאינטרנט נמצאים בסיכון מיידי.",
+      "action": "לבדוק אם יש אצלנו מוצר Barracuda מהרשימה, לוודא שהטלאים מותקנים, לחסום גישה חיצונית לממשק הניהול, ולבדוק לוגים לשינויי תצורה ולשחזור גיבויים חריגים.",
+      "entities": [
+        "Barracuda Networks",
+        "Email Security Gateway",
+        "CVE-2026-116606",
+        "CVE-2026-111560",
+        "CISA"
+      ],
+      "sources": [
+        {
+          "label": "ההודעה הרשמית של Barracuda",
+          "url": "https://trust.barracuda.com/security/pre-authentication-authorization-bypass-command-injection",
+          "type": "blog",
+          "source_id": null,
+          "reliability": 5
+        },
+        {
+          "label": "ההתראה של CISA",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/10/cisa-adds-six-known-exploited-vulnerabilities-catalog",
+          "type": "report",
+          "source_id": "cisa-advisories",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "cyber-nable-able2shell",
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "חברת N-able תיקנה שבע חולשות ב-N-central אחרי פרסום פומבי של עשרות ממצאים",
+      "exec_summary": "חברת N-able הוציאה תיקון דחוף למערכת הניהול מרחוק שלה אחרי שחוקר פרסם קוד הוכחה לעשרות חולשות, כולל רצף בלי הזדהות.",
+      "summary": "ב-9 בנובמבר פורסם תיאור בשם Able2Shell, עם קוד הוכחה ל-33 ממצאים מדווחים ב-N-central, מערכת ניטור וניהול מרחוק שמשמשת ספקי שירות וצוותי IT. לפי הדיווחים, אחד הרצפים אינו דורש הזדהות ומגיע להרצת פקודות בחשבון השירות, ורצפים אחרים מגיעים להרשאות root. ב-10 בנובמבר הוציאה N-able את N-central 2026.4 Hotfix 2, בניית 2026.4.1.26, שמתקן שבע חולשות בציון CVSS 4 בין 8.3 ל-9.3, ובהן XXE, SSRF, הזרקת OGNL והרצת קוד מרחוק. ב-11 בנובמבר אישרה החברה שכל שרתי הענן שלה בכל האזורים שודרגו; לקוחות מקומיים צריכים להשאיר שרתים כבויים עד לשדרוג, ואז לעדכן קודם Agents ואחר כך Probes. לפי הדיווחים נרשמו ניסיונות סריקה ומול מלכודות, אך עד 10 בנובמבר לא דווח על פריצה מאושרת לשרת לקוח. מתוכנן גם תיקון המשך.",
+      "why_it_matters": "פריצה לכלי ניהול מרחוק עלולה לפתוח גישה רחבה לתחנות ולשרתים שמנוהלים דרכו, כולל אצל לקוחות של ספק שירות.",
+      "action": "אם N-central פועל אצלנו או אצל ספק מנהל, לוודא שהשרת בגרסה 2026.4.1.26, לעדכן Agents ואז Probes, ולבדוק לוגים מ-8 בנובמבר ואילך לחשבונות מנהל חדשים ולמפגשי שליטה חריגים.",
+      "entities": [
+        "N-able",
+        "N-central",
+        "Able2Shell",
+        "CVE-2026-125883",
+        "CVE-2026-125882"
+      ],
+      "sources": [
+        {
+          "label": "דף הסטטוס של N-central",
+          "url": "https://status.n-able.com/category/n-central/",
+          "type": "blog",
+          "source_id": null,
+          "reliability": 5
+        },
+        {
+          "label": "סיכום Tenable",
+          "url": "https://www.tenable.com/blog/able2shell-frequently-asked-questions-for-reported-n-able-n-central-zero-day-vulnerabilities",
+          "type": "article",
+          "source_id": null,
+          "reliability": 4
+        },
+        {
+          "label": "העדכון של Rapid7",
+          "url": "https://www.rapid7.com/blog/post/etr-critical-vulnerabilities-in-n-able-n-central-prompt-hosted-shutdown/",
+          "type": "article",
+          "source_id": null,
+          "reliability": 4
+        },
+        {
+          "label": "דיווח TechCrunch",
+          "url": "https://techcrunch.com/2026/11/10/n-able-takes-its-remote-access-service-offline-after-researcher-publishes-dozens-of-zero-day-bugs/",
+          "type": "article",
+          "source_id": "techcrunch",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": "cyber-wiz-qubole",
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "team"
+      ],
+      "headline": "חוקרי Wiz תיעדו ניצול של הרשאות Qubole בחשבונות AWS של לקוחות",
+      "exec_summary": "תוקפים השתמשו באישורי זהות מחשבון הענן של Qubole כדי להיכנס לתפקידי שילוב אצל לקוחות, לגנוב סודות ולמשוך נתונים מ-S3.",
+      "summary": "חברת Wiz, בשיתוף Sentra ו-Mandiant, דיווחה שבין 14 ל-26 באוקטובר השתמש תוקף באישורי IAM מחשבון AWS המשויך ל-Qubole, מספר 805246085872, כדי לקבל על עצמו תפקידי שילוב שלקוחות יצרו עבור הספק. משם הוא סרק משאבים, אסף סודות מ-Lambda, מ-Secrets Manager ומ-SSM Parameter Store, ואימת אותם בין השאר עם TruffleHog, ואחר כך הוריד עצמים ממאגרי S3 שהתפקיד יכול היה להגיע אליהם. החברה ממליצה לבדוק ב-CloudTrail מ-1 באוקטובר ואילך אירועי AssumeRole מהחשבון הזה שמגיעים מכתובת שאינה של AWS, ובמיוחד את המזהה AIDA3W7DIFLYOLTK63SFS. נצפתה גם פעילות נפרדת בין 8 ל-11 באוקטובר עם מפתחות AWS של לקוחות שנוצרו לשילוב עם Qubole.",
+      "why_it_matters": "גם מי שכבר לא משתמש ב-Qubole עלול להשאיר תפקיד אמון פתוח, וזה מספיק כדי להיכנס לחשבון ולגעת בסודות ובנתונים.",
+      "action": "למפות תפקידי IAM שמאמינים לחשבון חיצוני, לחפש את נתיב ה-Qubole בלוגים, למחוק שילובים שאינם בשימוש, להצר הרשאות, ולסובב כל סוד שהתפקיד יכול היה לקרוא אם נמצאה פעילות חשודה.",
+      "entities": [
+        "Wiz",
+        "Qubole",
+        "Amazon Web Services",
+        "Sentra",
+        "Mandiant",
+        "AWS Secrets Manager"
+      ],
+      "sources": [
+        {
+          "label": "הדוח של Wiz",
+          "url": "https://www.wiz.io/blog/qubole-cross-account-access-abused-in-the-wild",
+          "type": "blog",
+          "source_id": "wiz-research",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": "products-gemini-robotics-2-5",
+      "section": "מערכות ומוצרים",
+      "topic_key": "products",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "low",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "גוגל הציגה את Gemini Robotics 2.5, מודל פעולה לרובוטים שעדיין שמור לשותפים",
+      "exec_summary": "גוגל הוציאה דור חדש של מודל לשליטה ברובוטים, עם ניסוי במפעלי מרצדס, אבל הוא עדיין לא זמין כ-API ציבורי.",
+      "summary": "גוגל ו-DeepMind הציגו את Gemini Robotics 2.5, שלדבריהן הוא מודל ה-vision-language-action היכול ביותר שלהן עד כה, ומגדיל גם את מגוון המיומנויות שרובוט יכול ללמוד וגם את מהירות הרכישה. לפי החברה הוא נבחן ביותר מ-200 משימות, כולל שימוש בכלים וטיפול בחפצים גמישים, והשיג שיעור הצלחה גבוה ב-30% עד 100% וביצוע מהיר ב-20% עד 30% לעומת קווי הבסיס הקודמים שלה. בניסוי בשטח עם Apptronik ומרצדס, רובוט אנושי Apollo 2 ביצע קיטום חלקים בקווי ייצור בקצ'קמט שבהונגריה ובזינדלפינגן שבגרמניה, עם 96% הצלחה. המודל מתגלגל כעת לשותפי רובוטיקה, ואינו מוצע כ-API ציבורי.",
+      "why_it_matters": "המעבר מניסויי מעבדה לקו ייצור אמיתי הוא סימן שהתחום מתבגר, גם אם אין כאן כלי שאפשר לאמץ מחר בבוקר.",
+      "action": null,
+      "entities": [
+        "Google DeepMind",
+        "Gemini Robotics 2.5",
+        "Apptronik",
+        "Apollo 2",
+        "Mercedes-Benz"
+      ],
+      "sources": [
+        {
+          "label": "הבלוג של DeepMind",
+          "url": "https://deepmind.google/blog/gemini-robotics-2-5-accelerates-real-world-physical-intelligence/",
+          "type": "blog",
+          "source_id": "deepmind",
+          "reliability": 5
+        },
+        {
+          "label": "הפוסט של גוגל",
+          "url": "https://x.com/Google/status/2120549213826093271",
+          "type": "x",
+          "source_id": "google-ai-blog",
+          "reliability": 5
+        }
+      ]
+    }
+  ],
+  "watchlist": [
+    {
+      "text": "שווה לבדוק את תצוגת /swarm ב-Antigravity, שמפעילה צוות סוכנים מקבילים על אותה משימה.",
+      "url": "https://antigravity.google/docs/swarm/"
+    },
+    {
+      "text": "מחר, 12 בנובמבר, בשעה 20:00 שעון ישראל, ייערך אירוע הסייבר החי של OpenAI, Cyber at the Frontier.",
+      "url": "https://openai.com/cyber-at-the-frontier/"
+    },
+    {
+      "text": "כדאי לקרוא את דוח ESET על כלי Cereal של קבוצת Turla, שהופך שרת Exchange לערוץ שליטה סמוי.",
+      "url": "https://www.welivesecurity.com/en/eset-research/exchange-for-breakfast-turlas-cereal-tricks-are-not-for-kids/"
+    },
+    {
+      "text": "גוגל העלתה לתצוגה מקדימה את Gemini for healthcare, סוכן עם מחברים למערכות רשומות רפואיות ותביעות.",
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/gemini-for-healthcare"
+    }
+  ]
+}

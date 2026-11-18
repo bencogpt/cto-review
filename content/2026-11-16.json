@@ -1,0 +1,820 @@
+{
+  "date": "2026-11-16",
+  "title": "סקירת טכנולוגיה יומית – 16 בנובמבר 2026",
+  "language": "he",
+  "format_version": "2-layered",
+  "period": {
+    "from": "2026-11-15T07:00:00+02:00",
+    "to": "2026-11-16T07:45:00+02:00"
+  },
+  "exec_summary": [
+    "סייבר דורש היום פעולה: חברת Barracuda נפרצה דרך מפתח ענן שנשאר פעיל אצל ספק AI אחרי שהפרויקט הסתיים, וה-FBI מזהיר מכלי תקיפה מבוסס AI שמקצר פריצות לשעות ספורות. כדאי לבדוק השבוע אילו מפתחות גישה שלנו נמצאים אצל ספקים.",
+    "קישורים מקוצרים ישנים של Bitly נחטפו והפנו לתוכן אחר, ובתוסף הנפוץ uBlock Origin תוקנה חולשה חמורה. כדאי לבדוק קישורים כאלה באתרים ובמסמכים שלנו ולוודא שהדפדפנים מעודכנים.",
+    "חולשות ייחשפו מהר יותר: Project Zero של Google תקצר את זמן הגילוי ל-60 יום ב-2027 ול-30 יום ב-2028, ו-GitHub תפסיק מ-8 בדצמבר התראות אבטחה במאגרים שלא היו פעילים שנה.",
+    "בבינה המלאכותית ובשוק: חברת Alibaba השיקה את Qwen4-Max, מודל חזק וזול יותר מקודמו; ב-Nvidia נמשכת הסערה סביב המנכ\"ל הבא ומגבלות ייצוא חדשות לסין; ו-Microsoft מעלה מינואר את מחירי הענן בהודו ב-15.7%."
+  ],
+  "items": [
+    {
+      "id": 1,
+      "section": "בינה מלאכותית",
+      "topic_key": "ai",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "חברת Alibaba השיקה את Qwen4-Max, מודל הדגל החדש שלה עם חלון הקשר של מיליון טוקנים",
+      "exec_summary": "מודל סגור, רב-מודאלי וזול יותר מקודמו, שמתקרב למודלי הצמרת ותואם ל-API של OpenAI ושל Anthropic.",
+      "summary": "חברת Alibaba השיקה ב-16 בנובמבר את Qwen4-Max, מודל reasoning רב-מודאלי בארכיטקטורת MoE עם ראייה מובנית וחלון הקשר של מיליון טוקנים. הוא זמין ב-Alibaba Cloud Model Studio, ב-OpenRouter וב-Vercel AI Gateway, ותומך ב-tool calling, בחיפוש ובפלט מובנה, עם תאימות ל-API של OpenAI ושל Anthropic. לפי החברה הוא עוקף את Qwen3.8-Max עם עד כ-50% פחות טוקנים, ועלות ממוצעת למשימה נמוכה ביותר מ-60%; במדד Artificial Analysis קיבל 43 נקודות, 9 יותר מקודמו ו-3 פחות מ-Kimi K3.1 Pro, בעלות למשימה נמוכה בכ-11%. המשקולות לא פורסמו, ו-Alibaba מבטיחה גרסאות קטנות יותר של הסדרה בקרוב.",
+      "why_it_matters": "מודלים סיניים ממשיכים לצמצם את הפער במחיר נמוך, והתאימות ל-API הקיימים הופכת החלפה לקלה מבחינה טכנית. מנגד, שימוש במודל של ספק סיני מעלה שאלות של רגולציה, ריבונות נתונים ומדיניות רכש, שצריך לברר לפני ניסוי.",
+      "action": "אם אנחנו בוחנים מודלים חלופיים, להוסיף את Qwen4-Max לסט ההשוואה הפנימי רק אחרי בדיקת מדיניות הנתונים והדרישות הרגולטוריות, ולעקוב אחרי הגרסאות הקטנות שיאפשרו בדיקה מקומית.",
+      "entities": [
+        "Alibaba",
+        "Qwen4-Max",
+        "Qwen3.8-Max",
+        "Artificial Analysis",
+        "Kimi K3.1 Pro",
+        "OpenRouter",
+        "Vercel AI Gateway"
+      ],
+      "sources": [
+        {
+          "label": "הודעת השחרור ב-Alibaba Cloud Model Studio",
+          "url": "https://www.alibabacloud.com/help/en/model-studio/newly-released-models",
+          "type": "article",
+          "source_id": "qwen",
+          "reliability": 5
+        },
+        {
+          "label": "פוסט ההשקה של Qwen ב-X",
+          "url": "https://x.com/Alibaba_Qwen/status/2122148127520289151",
+          "type": "x",
+          "source_id": "qwen",
+          "reliability": 5
+        },
+        {
+          "label": "ניתוח Artificial Analysis ב-X",
+          "url": "https://x.com/ArtificialAnlys/status/2122161629592953032",
+          "type": "x",
+          "source_id": "artificial-analysis",
+          "reliability": 4
+        },
+        {
+          "label": "דיווח Reuters על ההשקה (דרך StreetInsider)",
+          "url": "https://www.streetinsider.com/Reuters/Alibaba+unveils+new+flagship+AI+model+with+safety+upgrades/27346433.html",
+          "type": "article",
+          "source_id": "reuters-tech",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "section": "בינה מלאכותית",
+      "topic_key": "ai",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "low",
+      "audience": [
+        "team"
+      ],
+      "headline": "חברת OpenAI פתחה בלוג מדע: פיזיקאי ו-GPT-6 Astra מציעים הגדרה של המודל הסטנדרטי על סריג",
+      "exec_summary": "הפוסט הראשון בבלוג המדע החדש מתאר עבודה משותפת של חוקר ומודל על בעיה פתוחה בפיזיקה.",
+      "summary": "חברת OpenAI פתחה ב-15 בנובמבר בלוג חדש למדע, והפוסט הראשון בו נכתב על ידי הפיזיקאי Nathaniel Craig, ראש קבוצת תורת החלקיקים באוניברסיטת קליפורניה בסנטה ברברה ומדען אורח ב-OpenAI. לדבריו, GPT-6 Astra עזר להפוך אסטרטגיה שלו להגדרה מועמדת, לא-פרטורבטיבית, של המודל הסטנדרטי על סריג, והוביל את פיתוח ההוכחה המפורטת, שפורסמה כ-preprint באוקטובר. Craig עצמו מדגיש שזו התחלה ולא סוף, ושדרוש דיון בין מומחים כדי לקבוע אם ההגדרה עומדת בכל הדרישות.",
+      "why_it_matters": "מעבדות ה-AI ממצבות את המודלים המתקדמים כשותפי מחקר ולא רק ככלי לכתיבת קוד. כדאי להבחין בין טענה של החברה על עצמה לבין אימות של הקהילה המדעית, שעדיין לא הושלם.",
+      "action": null,
+      "entities": [
+        "OpenAI",
+        "GPT-6 Astra",
+        "Nathaniel Craig",
+        "UC Santa Barbara",
+        "Standard Model"
+      ],
+      "sources": [
+        {
+          "label": "הפוסט בבלוג המדע של OpenAI",
+          "url": "https://openai.com/index/step-toward-defining-the-standard-model/",
+          "type": "blog",
+          "source_id": "openai",
+          "reliability": 5
+        },
+        {
+          "label": "ההודעה של OpenAI ב-X",
+          "url": "https://x.com/OpenAI/status/2122123437141553630",
+          "type": "x",
+          "source_id": "openai",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "section": "דאטה",
+      "topic_key": "data",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "low",
+      "audience": [
+        "team"
+      ],
+      "headline": "חברת Databricks מפרסמת מדדים עסקיים מ-Unity Catalog ישירות ל-Power BI",
+      "exec_summary": "הגדרה אחת של מדדים כמו הכנסה ושולי רווח, שמשמשת גם את הדוחות ב-Power BI וגם את ה-agents.",
+      "summary": "חברת Databricks הציגה את Publish to Power BI, שמפרסם metric views של Unity Catalog ישירות כמודלים סמנטיים ב-Power BI, כך שהגדרות המדדים נשארות במקום אחד ומשמשות גם דשבורדים, Genie ו-agents. אפשר לפרסם ידנית מ-Catalog Explorer או להוסיף משימת Power BI ל-Lakeflow Job כדי לשמור על סנכרון בייצור. היכולת זמינה בתצוגה מקדימה פרטית; היא הוכרזה ב-10 בנובמבר, ו-Databricks קידמה אותה שוב ב-X ביום ראשון.",
+      "why_it_matters": "כשכל צוות מגדיר בעצמו מדדים ב-Power BI, המספרים מתפצלים, ו-agents שעונים על שאלות עסקיות מקבלים תשובות סותרות. שכבה סמנטית אחת היא תנאי לסמוך על תשובות של AI על הנתונים שלנו.",
+      "action": null,
+      "entities": [
+        "Databricks",
+        "Unity Catalog",
+        "metric views",
+        "Power BI",
+        "Lakeflow Jobs",
+        "Genie"
+      ],
+      "sources": [
+        {
+          "label": "הבלוג של Databricks על Publish to Power BI",
+          "url": "https://www.databricks.com/blog/unity-catalog-metric-views-now-power-bi-one-unified-governed-semantic-layer-all-your-reporting",
+          "type": "blog",
+          "source_id": "databricks",
+          "reliability": 5
+        },
+        {
+          "label": "הפוסט של Databricks ב-X",
+          "url": "https://x.com/databricks/status/2122009551645921771",
+          "type": "x",
+          "source_id": "databricks",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "section": "קוונטים",
+      "topic_key": "quantum",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "low",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "מבחן השוואתי: מחשבים קוונטיים בענן שוזרים רק חלק קטן מהקיוביטים שלהם",
+      "exec_summary": "מספר הקיוביטים במעבד רחוק ממספר הקיוביטים שאפשר באמת להפעיל יחד.",
+      "summary": "קונסורציום ספרדי בהובלת Gradiant, אוניברסיטת חבל הבאסקים (UPV/EHU) ו-BCAM בדק תשעה מעבדים קוונטיים של חמישה ספקים, דרך גישת ענן רגילה ובלי error mitigation, ומדד מהו מצב GHZ (שזירה של קבוצת קיוביטים כמכלול אחד) הגדול ביותר שכל מעבד מצליח לייצר. המעבד IBM Phoenix (Nighthawk r2), עם 120 קיוביטים, הגיע ל-27 קיוביטים שזורים בלבד, כ-23% מהמעבד, ו-Heron r2 עם 156 קיוביטים הגיע ל-24; לעומתם, מחשב היונים הלכודים של AQT, עם 12 קיוביטים, שזר את כולם.",
+      "why_it_matters": "מספר הקיוביטים בהודעה השיווקית אינו מלמד כמה מהם אפשר להפעיל יחד בחישוב אמיתי. כשנבחן הצעות, ניסויים או שותפויות בקוונטים, כדאי לשאול על מדדים מעשיים כאלה ולא רק על גודל המעבד.",
+      "action": null,
+      "entities": [
+        "Gradiant",
+        "UPV/EHU",
+        "BCAM",
+        "IBM",
+        "IQM",
+        "AQT",
+        "GHZ"
+      ],
+      "sources": [
+        {
+          "label": "דיווח Quantum Computing Report על המחקר",
+          "url": "https://quantumcomputingreport.com/cross-platform-cloud-benchmark-reveals-wide-gap-between-physical-qubit-counts-and-entangled-ghz-state-sizes/",
+          "type": "article",
+          "source_id": "qcr",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "section": "ענן ותשתיות",
+      "topic_key": "cloud",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "חברת Microsoft מעדכנת מחירי ענן במטבעות מקומיים: עלייה של 15.7% בהודו, ירידה בסין ובאוסטרליה",
+      "exec_summary": "מ-1 בינואר 2027 משתנים מחירי Commercial Cloud בחמישה מטבעות; השקל לא ברשימה.",
+      "summary": "חברת Microsoft הודיעה לשותפים שמ-1 בינואר 2027 ישתנו מחירי Commercial Cloud בחמישה מטבעות: עלייה של 15.7% ברופי הודי (ועד 20% במוצרי on-prem) ושל 10% בדולר ניו זילנדי, וירידה של 4% בדולר אוסטרלי, של 5.9% בכתר נורווגי ועד 8.5% ביואן סיני. זה הסבב הראשון במנגנון שהוכרז ביולי, שבו המחיר המקומי נקבע פעם בשנה, בינואר. השקל אינו ברשימה הזו.",
+      "why_it_matters": "גם בלי שינוי במחיר הדולרי, תמחור במטבע מקומי יכול לשנות בבת אחת את הוצאות הענן והרישוי. מי שיש לו צוותים, לקוחות או חוזים שמחויבים במטבעות האלה צריך לעדכן את תקציב 2027.",
+      "action": "לבדוק אם יש לנו מנויים או חוזים של Microsoft שמחויבים ברופי או בדולר ניו זילנדי, ואם כן, לבחון מול השותף הקדמה של חידושים לדצמבר.",
+      "entities": [
+        "Microsoft",
+        "Microsoft Commercial Cloud",
+        "Azure",
+        "21Vianet"
+      ],
+      "sources": [
+        {
+          "label": "הודעת Microsoft לשותפים ב-Partner Center",
+          "url": "https://learn.microsoft.com/en-us/partner-center/announcements/2026-november",
+          "type": "article",
+          "source_id": "",
+          "reliability": 5
+        },
+        {
+          "label": "דיווח The Register",
+          "url": "https://www.theregister.com/off-prem/2026/11/15/microsoft-lifts-indian-cloud-prices-by-15-percent-cuts-costs-in-china/5309993",
+          "type": "article",
+          "source_id": "theregister",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "section": "ענן ותשתיות",
+      "topic_key": "cloud",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "low",
+      "audience": [
+        "team"
+      ],
+      "headline": "שני נתבים חדשים עצרו את כל הטיסות בארה\"ב: ציוד חדש פגש רשת ישנה",
+      "exec_summary": "נתבי Juniper שהותקנו לאחרונה הציפו את רשת התקשורת של ה-FAA, והמראות נעצרו בכל המדינה.",
+      "summary": "ביום שישי, 13 בנובמבר, הורתה רשות התעופה האמריקאית FAA על עצירת המראות בכל ארצות הברית, אחרי שנתבי Juniper של HPE שהותקנו לאחרונה באתר רדיו באל דוראדו שבארקנסו ובאתר מכ\"ם באמרילו שבטקסס התחילו לשלוח כמות גדולה של נתונים לכל רשת התקשורת של הרשות. לפי הדיווחים, הרשת הישנה, שחלקה מבוסס נחושת, לא עמדה בעומס, והתקשורת בין הבקרים לטייסים נפגעה. לפי HPE הנתבים פעלו כמתוכנן, והשאלה אם מדובר בבעיה בחומרה, בתצורה או בהתקנה עדיין בבדיקה.",
+      "why_it_matters": "שדרוג קטן בקצה הרשת יכול להשבית מערכת שלמה כשהוא פוגש תשתית ותיקה. זו תזכורת לבדוק שינויי רשת בסביבה מבודדת, לפרוס בהדרגה ולהגביל מראש תעבורת broadcast.",
+      "action": null,
+      "entities": [
+        "FAA",
+        "HPE",
+        "Juniper Networks",
+        "L3Harris"
+      ],
+      "sources": [
+        {
+          "label": "דיווח Tom's Hardware",
+          "url": "https://www.tomshardware.com/networking/two-hpe-juniper-network-routers-grounded-all-the-us-flights-on-friday-faas-decades-old-copper-network-buckled-under-a-feature-hpe-says-worked-as-intended-creaking-air-traffic-communication-system-became-overloaded-by-very-high-rate-pinging",
+          "type": "article",
+          "source_id": "tomshardware",
+          "reliability": 3
+        },
+        {
+          "label": "ניוזלטר this week in security",
+          "url": "https://this.weekinsecurity.com/this-week-in-security-november-15-2026-edition/",
+          "type": "newsletter",
+          "source_id": "this-week-in-security",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "חברת Barracuda נפרצה דרך מפתח ענן שנשכח אצל ספק AI, וה-FBI מזהיר מכלי התקיפה ARTEX",
+      "exec_summary": "מפתח שלא בוטל אחרי פרויקט עם ספק נתן לתוקף 44 שעות בתוך הענן; כלי AI אוטומטי מקצר פריצות לשעות.",
+      "summary": "חברת האבטחה Barracuda פרסמה תחקיר: תוקף השתמש במפתח גישה לענן שהחברה נתנה לספק AI בפרויקט קודם ולא ביטלה, ושנחשף בקובץ תצורה במאגר GitHub של הספק כשסביבת הפיתוח שלו נפרצה. במשך כ-44 שעות, ב-1 וב-2 בנובמבר, התוקף קרא secrets, פענח קובצי state של infrastructure-as-code ועבר בין כ-10 חשבונות ענן, מערכת אנליטיקה, טוקן גישה לקוד ואשכולות Kubernetes; הוא הגיע גם למערכת שמחזיקה credentials של לקוחות XDR, והחברה ביקשה מהלקוחות שקיבלו הודעה להחליף אותם. לפי Barracuda, הדפוס תואם תקיפות אוטומטיות מבוססות AI, ו-Risky Business מקשר את האירוע ל-ARTEX, framework קוד פתוח שמפעיל AI agents מעל מודלים מסחריים; ה-FBI פרסם עליו התראת FLASH ביום שישי, ולפיה חלק מהפריצות הגיעו להרשאות מיוחסות בפחות משלוש שעות.",
+      "why_it_matters": "מפתח שנשכח אצל ספק הוא בדיוק סוג הפרצה שכלים אוטומטיים מוצאים מהר. ככל שאנחנו עובדים עם יותר ספקי AI ונותנים להם גישה לנתונים ולענן, רשימת המפתחות שהוצאו החוצה הופכת לנכס שצריך לנהל.",
+      "action": "לעבור עוד השבוע על כל המפתחות, הטוקנים וה-service accounts שניתנו לספקים חיצוניים, לבטל את מה שלא בשימוש ולקצר תוקף; לוודא שקובצי state ויומני build לא חושפים secrets, ולהגדיר התראה על שימוש חריג במפתחות של ספקים.",
+      "entities": [
+        "Barracuda",
+        "Barracuda XDR",
+        "ARTEX",
+        "FBI",
+        "Kubernetes"
+      ],
+      "sources": [
+        {
+          "label": "התחקיר של Barracuda: Forty-four hours",
+          "url": "https://it.blog.barracuda.com/2026/11/11/anatomy-of-a-machine-speed-intrusion",
+          "type": "blog",
+          "source_id": "",
+          "reliability": 4
+        },
+        {
+          "label": "ההודעה המעודכנת במרכז האמון של Barracuda",
+          "url": "https://trust.barracuda.com/security/barracuda-xdr-integration-credentials",
+          "type": "article",
+          "source_id": "",
+          "reliability": 4
+        },
+        {
+          "label": "דיווח BleepingComputer על התראת ה-FBI",
+          "url": "https://www.bleepingcomputer.com/news/security/fbi-warns-artex-ai-hacking-tool-is-powering-global-cyberattacks/",
+          "type": "article",
+          "source_id": "bleeping",
+          "reliability": 4
+        },
+        {
+          "label": "ניוזלטר Risky Bulletin",
+          "url": "https://news.risky.biz/risky-bulletin-hackers-accessed-barracudas-cloud/",
+          "type": "newsletter",
+          "source_id": "risky-biz",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "medium",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "קישורים מקוצרים ישנים של Bitly נחטפו והפנו לתוכן אחר",
+      "exec_summary": "קישורי bit.ly לא פעילים נרשמו מחדש בידי אחרים; Bitly משביתה את הקישורים שנפגעו.",
+      "summary": "ב-15 בנובמבר התברר שקישורי Bitly ישנים ולא פעילים נרשמו מחדש בידי גורמים אחרים והפנו לתוכן שאינו קשור; בין הדוגמאות ציוץ של Burger King מ-2011, ולפי CNN גם קישורים בפוסטים ישנים של ה-FBI ושל משרד ההגנה האמריקאי. חברת Bitly אישרה ב-X שזיהתה תקלה שאפשרה למחזר קישורים ישנים, השעתה את החשבונות המעורבים ומשביתה את הקישורים שנפגעו.",
+      "why_it_matters": "קישורים מקוצרים מפוזרים אצלנו במסמכים, במצגות, בפוסטים ישנים, בקודי QR ובתיעוד. אם ספק הקיצור מאבד שליטה עליהם, קישור שלנו יכול להוביל לפישינג או לתוכן מביך בלי שנגענו בו.",
+      "action": "לסרוק את האתרים, התיעוד ותבניות המייל שלנו לקישורי bit.ly ולבדוק לאן הם מפנים, ולהעביר קישורים חשובים לדומיין שבשליטתנו.",
+      "entities": [
+        "Bitly",
+        "Burger King",
+        "CNN"
+      ],
+      "sources": [
+        {
+          "label": "ההודעה של Bitly ב-X",
+          "url": "https://x.com/Bitly/status/2122045450786152588",
+          "type": "x",
+          "source_id": "",
+          "reliability": 4
+        },
+        {
+          "label": "תחקיר Ransom News על החטיפה",
+          "url": "https://ransomnews.com/burger-king-tweet-bitly-link-hijack-2026/",
+          "type": "article",
+          "source_id": "",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "חולשה ב-uBlock Origin אפשרה לאתר זדוני להריץ קוד בכל אתר; העדכון כבר זמין",
+      "exec_summary": "חולשת universal XSS בתוסף לחסימת פרסומות, שתוקנה בגרסה 1.75.4.",
+      "summary": "החוקר Smitty van Bodegom פרסם ב-15 בנובמבר פרטים על חולשת universal XSS ב-uBlock Origin ל-Firefox (MV2): אתר זדוני יכול היה להטמיע את בורר האלמנטים של התוסף בתוך iframe שקוף, לגרום למשתמש ללחוץ ולהוסיף trusted filters שמריצים JavaScript בכל אתר אחר. לפי הודעת האבטחה ב-GitHub, גרסאות 1.75.2 ומטה פגיעות והתיקון המלא נמצא ב-1.75.4; בעיה דומה אך מוגבלת יותר השפיעה גם על uBO Lite. החוקר מציין שמודל GPT-5.6 Sol עשה את רוב העבודה הקשה באיתור החולשה.",
+      "why_it_matters": "תוספי דפדפן רצים עם גישה לכל אתר שאנחנו גולשים בו, כולל מערכות פנימיות. וזו עוד דוגמה לכך שמודלים מוצאים חולשות גם בכלים נפוצים ומוערכים.",
+      "action": "לוודא שבדפדפנים בארגון uBlock Origin מעודכן לפחות לגרסה 1.75.4, ולעבור על רשימת התוספים המאושרים.",
+      "entities": [
+        "uBlock Origin",
+        "uBO Lite",
+        "Firefox",
+        "GPT-5.6 Sol"
+      ],
+      "sources": [
+        {
+          "label": "הפוסט של החוקר",
+          "url": "https://iter.ca/post/ubo-uxss/",
+          "type": "blog",
+          "source_id": "",
+          "reliability": 3
+        },
+        {
+          "label": "הודעת האבטחה של uBlock Origin ב-GitHub",
+          "url": "https://github.com/gorhill/uBlock/security/advisories/GHSA-cmqw-9r2w-6wv2",
+          "type": "article",
+          "source_id": "",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "צוות Project Zero של Google מקצר את זמן הגילוי: 60 יום ב-2027 ו-30 יום ב-2028",
+      "exec_summary": "פרטי חולשות יפורסמו מהר יותר, גם אם כבר יצא תיקון; הנימוק הוא קצב הגילוי והניצול בעזרת AI.",
+      "summary": "צוות Project Zero של Google הודיע ב-13 בנובמבר על מדיניות Full X: פרטי חולשה יפורסמו X ימים אחרי הדיווח לספק, בלי קשר למועד התיקון. כרגע X הוא 90 (במקום 90+30 עד היום), ב-2 בפברואר 2027 הוא יירד ל-60 וב-3 בינואר 2028 ל-30, ורוב החריגים בוטלו; חולשות שמנוצלות בפועל ימשיכו להיות מטופלות לפי מדיניות של 7 ימים. הצוות מסביר שגילוי וניצול חולשות בעזרת AI הפכו את לוחות הזמנים הקודמים לארוכים מדי.",
+      "why_it_matters": "פרסום מוקדם יותר אומר פחות זמן להתקין תיקונים לפני שהפרטים בחוץ, ואחרים כנראה ילכו בעקבות Google. קצב התיקונים שלנו ושל הספקים שלנו צריך להתאים את עצמו.",
+      "action": "לבחון את יעדי הזמן שלנו להתקנת תיקונים קריטיים ולתכנן לעמוד בימים ולא בשבועות, ולשאול ספקים מרכזיים מה התוכנית שלהם.",
+      "entities": [
+        "Google Project Zero",
+        "Full X disclosure policy"
+      ],
+      "sources": [
+        {
+          "label": "הפוסט של Project Zero: Policy and Disclosure 2026",
+          "url": "https://projectzero.google/2026/11/disclosure-policy.html",
+          "type": "blog",
+          "source_id": "project-zero",
+          "reliability": 5
+        },
+        {
+          "label": "מדיניות הגילוי המעודכנת",
+          "url": "https://projectzero.google/vulnerability-disclosure-policy.html",
+          "type": "article",
+          "source_id": "project-zero",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "section": "מערכות ומוצרים",
+      "topic_key": "products",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "חברת GitHub תשבית התראות Dependabot במאגרים שלא היו פעילים שנה, החל מ-8 בדצמבר",
+      "exec_summary": "מאגרים שקטים יפסיקו לקבל התראות על חולשות בתלויות, אלא אם יש מדיניות ארגונית אכופה.",
+      "summary": "חברת GitHub הודיעה שמ-8 בדצמבר 2026 התראות Dependabot יכובו ברוב המאגרים שלא הייתה בהם פעילות בשנה האחרונה; ההתראות הקיימות יועברו לארכיון ולא יימחקו. פעילות לצורך זה היא רק push לענף או לתג, יצירת המאגר או הפעלת ההתראות, ולא issues או תגובות. מאגרים עם security configuration אכוף שמפעיל את ההתראות, או בארגונים שנועלים את ההגדרה, לא יושפעו; השינוי חל על github.com ועל GitHub Enterprise Cloud with data residency, אבל לא על GitHub Enterprise Server.",
+      "why_it_matters": "מאגר שאיש לא דחף אליו קוד שנה יכול עדיין לרוץ בייצור או לשמש תלות של מערכת אחרת, ודווקא שם נפסיק לקבל התראות על חולשות.",
+      "action": "להפעיל security configuration אכוף שמדליק התראות Dependabot בכל מאגרי הארגון, או לפחות למפות עד 8 בדצמבר מאגרים שקטים שעדיין בשימוש.",
+      "entities": [
+        "GitHub",
+        "Dependabot",
+        "GitHub Enterprise Cloud"
+      ],
+      "sources": [
+        {
+          "label": "הודעת GitHub ב-Changelog",
+          "url": "https://github.blog/changelog/2026-11-10-dependabot-alerts-will-pause-on-inactive-repositories/",
+          "type": "blog",
+          "source_id": "github-blog",
+          "reliability": 5
+        },
+        {
+          "label": "ניוזלטר Risky Bulletin",
+          "url": "https://news.risky.biz/risky-bulletin-hackers-accessed-barracudas-cloud/",
+          "type": "newsletter",
+          "source_id": "risky-biz",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "section": "ארגונים ואנליסטים",
+      "topic_key": "enterprise",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "management"
+      ],
+      "headline": "עדכון על Nvidia: שר האוצר דורש מנכ\"ל מבחוץ, ובוושינגטון מכינים כללים נגד גישה סינית מרחוק לשבבים",
+      "exec_summary": "הסערה סביב התפטרות ג'נסן הואנג מתרחבת לשאלות של ציות לכללי ייצוא ולמגבלות על השכרת compute.",
+      "summary": "ביום ראשון קרא שר האוצר האמריקאי סקוט בסנט ל'טלטלה דרמטית' ב-Nvidia ולמינוי מנכ\"ל מחוץ לחברה, ושאל אם החברה דחפה מכירות אסורות של שבבים כדי לנפח הכנסות. במקביל, בקונגרס, משתי המפלגות, מקדמים הצעות להדק את כללי הייצוא של שבבי AI, ולפי The Information משרד המסחר מכין כלל שיסגור את הפרצה שמאפשרת לחברות AI סיניות להשתמש בשבבי Nvidia דרך מרכזי נתונים מחוץ לסין. מנגד, עצומה להחזרת ג'נסן הואנג עברה 160 אלף חתימות, ולפי דיווחים הוא שוקל קאמבק, בעוד הדירקטוריון ממשיך בחקירה עצמאית.",
+      "why_it_matters": "מגבלות על השכרת compute במדינות שלישיות יכולות לשנות זמינות ומחירים של GPU בענן ולהוסיף דרישות רישוי לספקי ענן. וטלטלה בהנהלת Nvidia עלולה להשפיע על מפת הדרכים ועל השותפויות של ספקית שבבי ה-AI המרכזית.",
+      "action": null,
+      "entities": [
+        "Nvidia",
+        "Jensen Huang",
+        "Colette Kress",
+        "Scott Bessent",
+        "US Department of Commerce",
+        "US Congress"
+      ],
+      "sources": [
+        {
+          "label": "דיווח CNBC על דברי בסנט",
+          "url": "https://www.cnbc.com/2026/11/15/bessent-nvidia-ceo-lutnick-megaspeed.html",
+          "type": "article",
+          "source_id": "cnbc",
+          "reliability": 4
+        },
+        {
+          "label": "דיווח CNBC על הקריאות להחזיר את הואנג",
+          "url": "https://www.cnbc.com/2026/11/16/nvidia-jensen-huang-return-tech.html",
+          "type": "article",
+          "source_id": "cnbc",
+          "reliability": 4
+        },
+        {
+          "label": "דיווח The Verge על הצעות החקיקה",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1033984/congress-export-rules-ai-chips-china",
+          "type": "article",
+          "source_id": "verge",
+          "reliability": 4
+        },
+        {
+          "label": "הפוסט של The Information ב-X",
+          "url": "https://x.com/theinformation/status/2122064604935143845",
+          "type": "x",
+          "source_id": "",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "section": "ארגונים ואנליסטים",
+      "topic_key": "enterprise",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "low",
+      "audience": [
+        "management"
+      ],
+      "headline": "חברת Gartner: 30% מהעובדים שהוחלפו ב-AI יגויסו מחדש עד 2029, ולעיתים בעלות גבוהה יותר",
+      "exec_summary": "צמצומים לפני שמבינים מה העבודה העתידית דורשת יוצרים עלויות נסתרות של אובדן ידע וגיוס מחדש.",
+      "summary": "בכנס HR Symposium בסידני פרסמה Gartner ב-16 בנובמבר ארבעה סיכונים ארגוניים מתהווים ל-2027. אחד מהם: צמצומים שנעשים לפני שמבינים מה העבודה העתידית דורשת מוחקים יכולות וידע ארגוני, ו-Gartner צופה ש-30% מהעובדים שפוטרו והוחלפו ב-AI יגויסו מחדש עד 2029; בארגון של 60 אלף עובדים, צמצום של 2% וגיוס מחדש של 30% מהם עשוי לעלות קרוב ל-100 מיליון דולר. בסקר של 287 מנהלי HR בכירים, 68% דיווחו שיותר מ-10% מהמנהלים בארגון שלהם אינם מיושרים עם האסטרטגיה.",
+      "why_it_matters": "כשמתכננים אוטומציה עם agents, החיסכון מופיע מיד ואובדן הידע מתגלה לאט. זה טיעון לתכנן שינויים בכוח אדם לפי מיפוי של יכולות קריטיות, ולא רק לפי יעדי עלות.",
+      "action": null,
+      "entities": [
+        "Gartner",
+        "Dion Love",
+        "Gartner HR Symposium/Xpo"
+      ],
+      "sources": [
+        {
+          "label": "הודעת Gartner לעיתונות",
+          "url": "https://www.gartner.com/en/newsroom/press-releases/2026-11-16-gartner-unveils-top-enterprise-risks-set-to-redefine-workforces-in-2027",
+          "type": "gartner",
+          "source_id": "gartner",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "section": "טכנולוגיות מתפרצות",
+      "topic_key": "emerging",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "צוות Chrome for Developers הודיע ש-Modern Web Guidance 1.0 יציב, והמאגר מזנק ב-GitHub",
+      "exec_summary": "הכרזה רשמית ב-X על גרסה 1.0 יציבה של Modern Web Guidance, עם קפיצת הכוכבים היומית הגבוהה ביותר במגמות GitHub.",
+      "summary": "ב-13 בנובמבר הודיע החשבון הרשמי @ChromiumDev ש-Modern Web Guidance 1.0 יציב. זו ערכת skills ו-CLI של צוות Chrome, בשיתוף עם Firefox ו-Edge, שמזרימה ל-coding agents הנחיות מומחים על פלטפורמת הווב — כולל נגישות, ביצועים, אבטחה ותאימות Baseline. לפי הבלוג הרשמי (פורסם ב-10 בנובמבר) מתקינים אותה בפקודה npx modern-web-guidance@latest install, והמאגר GoogleChrome/modern-web-guidance-src זמין בקוד פתוח ברישיון Apache-2.0.",
+      "momentum": "הפוסט של @ChromiumDev מ-13 בנובמבר צבר 2,909 לייקים, 289 ריפוסטים, 61 תגובות, 51 ציטוטים, 3,610 שמירות ו-224,442 חשיפות (נבדק ב-16 בנובמבר; לחשבון היו 429,034 עוקבים). לפי צילומי GitStock היומיים הוסיף המאגר modern-web-guidance-src 1,225 כוכבים ב-14 בנובמבר, 1,220 כוכבים ב-15 בנובמבר ו-1,219 כוכבים ב-16 בנובמבר — התוספת היומית הגבוהה ביותר ברשימת אותו יום — ובבדיקה ב-16 בנובמבר היו לו 7,487 כוכבים. מאגר ההתקנה והתיעוד GoogleChrome/modern-web-guidance עמד באותה בדיקה על 18,496 כוכבים. ב-10 בנובמבר הגיע פוסט Show HN של Paul Irish ל-447 נקודות ו-146 תגובות.",
+      "heat": 3,
+      "why_it_matters": "סוכנים שכותבים ממשקי ווב נוטים לחזור על דפוסי JavaScript ישנים. שכבת הנחיות רשמית, עם שותפות חוצת-דפדפנים, יכולה לשפר איכות, נגישות ותאימות — אבל צריך לבדוק אותה על פרויקט אמיתי, ולא להניח שהמדידות של Chrome מייצגות את הקוד שלנו.",
+      "action": "להתקין את ה-CLI בסביבת ניסוי על פרויקט ווב קיים, להשוות פלט של agent עם ובלי Modern Web Guidance, ולבדוק במיוחד נגישות ו-CSS מודרני.",
+      "entities": [
+        "Modern Web Guidance",
+        "Chrome",
+        "Chrome for Developers",
+        "ChromiumDev",
+        "Firefox",
+        "Edge",
+        "GitHub",
+        "Paul Irish",
+        "Hacker News"
+      ],
+      "sources": [
+        {
+          "label": "הפוסט הרשמי ב-X של @ChromiumDev על גרסה 1.0",
+          "url": "https://x.com/ChromiumDev/status/2121339675667309047",
+          "type": "x",
+          "source_id": "modern-web-guidance",
+          "reliability": 5
+        },
+        {
+          "label": "הכרזת Modern Web Guidance 1.0 בבלוג של Chrome",
+          "url": "https://developer.chrome.com/blog/modern-web-guidance-v1",
+          "type": "blog",
+          "source_id": "modern-web-guidance",
+          "reliability": 5
+        },
+        {
+          "label": "המאגר GoogleChrome/modern-web-guidance-src ב-GitHub",
+          "url": "https://github.com/GoogleChrome/modern-web-guidance-src",
+          "type": "repo",
+          "source_id": "modern-web-guidance",
+          "reliability": 5
+        },
+        {
+          "label": "מאגר ההתקנה GoogleChrome/modern-web-guidance ב-GitHub",
+          "url": "https://github.com/GoogleChrome/modern-web-guidance",
+          "type": "repo",
+          "source_id": "modern-web-guidance",
+          "reliability": 5
+        },
+        {
+          "label": "צילום מגמות GitHub היומיות ב-GitStock, 16 בנובמבר",
+          "url": "https://gitstock.org/trending/2026-11-16",
+          "type": "article",
+          "source_id": "gitstock",
+          "reliability": 3
+        },
+        {
+          "label": "פוסט Show HN של Paul Irish ב-Hacker News",
+          "url": "https://news.ycombinator.com/item?id=50443812",
+          "type": "hn",
+          "source_id": "hn",
+          "reliability": 2
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "section": "טכנולוגיות מתפרצות",
+      "topic_key": "emerging",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "ערכת Univer Office SDK מובילה את מגמות GitHub היומיות, כמשרד פתוח ל-agents",
+      "exec_summary": "המאגר dream-num/univer דורג ראשון במגמות היומיות ב-GitHub יומיים ברצף, כ-SDK למשרד שמיועד גם ל-agents.",
+      "summary": "המאגר dream-num/univer הוא SDK בקוד פתוח (רישיון Apache-2.0) לבניית משרד AI בתוך מוצר: גיליונות, מסמכים, מצגות, חישוב, שיתוף ועיבוד קבצים, לאנשים ול-agents. לפי האתר הרשמי univer.ai הוא מתואר גם כ-Office Harness ל-agents, עם ליבה פתוחה ואפשרות לאירוח עצמי, ומוצעים גם מסלולים מסחריים החל מ-99 דולר לחודש לכל יכולות ה-SDK. הפרויקט קיים מאז 2022, והגאות הנוכחית מגיעה עם המיקוד ב-agents.",
+      "momentum": "לפי צילומי GitStock היומיים דורג המאגר שביעי ב-14 בנובמבר (עם 495 כוכבים באותו יום), ואחר כך ראשון ב-15 בנובמבר (1,041 כוכבים באותו יום) ושוב ראשון ב-16 בנובמבר (988 כוכבים באותו יום). בבדיקה ב-16 בנובמבר היו למאגר 26,617 כוכבים ב-GitHub.",
+      "heat": 3,
+      "why_it_matters": "אם agents מייצרים גיליונות ומסמכים כחלק מזרימת עבודה, SDK שאפשר לשלב במוצר ובאירוח עצמי עשוי להיות חלופה להטמעת Office בענן. צריך להפריד בין הליבה הפתוחה לבין היכולות בתשלום, ולבדוק בשלות, אבטחה והתאמה לצרכים שלנו.",
+      "action": "לקרוא את התיעוד ב-univer.ai ולבחון הדגמה של Sheets או Docs מול צורך אמיתי אחד, בלי התחייבות למסלול המסחרי.",
+      "entities": [
+        "Univer",
+        "Univer Office SDK",
+        "GitHub",
+        "Sheets",
+        "Docs"
+      ],
+      "sources": [
+        {
+          "label": "המאגר dream-num/univer ב-GitHub",
+          "url": "https://github.com/dream-num/univer",
+          "type": "repo",
+          "source_id": "univer",
+          "reliability": 5
+        },
+        {
+          "label": "האתר הרשמי של Univer",
+          "url": "https://univer.ai/",
+          "type": "blog",
+          "source_id": "univer",
+          "reliability": 5
+        },
+        {
+          "label": "צילום מגמות GitHub היומיות ב-GitStock, 16 בנובמבר",
+          "url": "https://gitstock.org/trending/2026-11-16",
+          "type": "article",
+          "source_id": "gitstock",
+          "reliability": 3
+        },
+        {
+          "label": "צילום מגמות GitHub היומיות ב-GitStock, 15 בנובמבר",
+          "url": "https://gitstock.org/trending/2026-11-15",
+          "type": "article",
+          "source_id": "gitstock",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "section": "טכנולוגיות מתפרצות",
+      "topic_key": "emerging",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "הכלי Plannotator תופס תאוצה כשכבת סקירה מקומית לתוכניות ולקוד של agents",
+      "exec_summary": "משטח סקירה מקומי לתוכניות ול-diffs של coding agents, שדורג גבוה במגמות GitHub היומיות והשבועיות.",
+      "summary": "הכלי Plannotator הוא משטח סקירה מקומי בדפדפן לעבודת coding agents: אפשר לסמן תוכניות, להגיב על diffs ולשלוח את המשוב חזרה ל-agent בלחיצה. לפי ה-README והאתר הרשמי הוא חופשי ובקוד פתוח (רישיון Apache-2.0), רץ מקומית כברירת מחדל, ומתחבר לסוכנים כמו Claude Code, Codex, Copilot CLI, Gemini CLI ו-OpenCode דרך תוספים, hooks ופקודות. שכבת Inbox מציגה החלטות, אבות-טיפוס ותוכניות בחלון אחד.",
+      "momentum": "לפי צילומי GitStock דורג המאגר backnotprop/plannotator ראשון במגמות היומיות ב-14 בנובמבר (412 כוכבים באותו יום), רביעי ב-15 בנובמבר (860 כוכבים) ורביעי ב-16 בנובמבר (866 כוכבים). בצילום השבועי מ-16 בנובמבר דורג רביעי עם תוספת של 1,719 כוכבים בשבוע. בבדיקה ב-16 בנובמבר היו למאגר 12,060 כוכבים ב-GitHub.",
+      "heat": 2,
+      "why_it_matters": "צווארי הבקבוק בעבודת agents עוברים מכתיבת קוד לאישור תוכניות ולסקירת diffs. שכבת סקירה מקומית, בלי לשלוח את התוכניות כברירת מחדל לענן, יכולה לעזור לשמור שליטה אנושית — אבל צריך לבדוק התאמה לסוכנים שאנחנו משתמשים בהם, ואת איכות המשוב שחוזר לסוכן.",
+      "action": "להתקין בסביבת ניסוי לפי התיעוד ב-plannotator.ai, ולהריץ סקירת תוכנית אחת וסקירת diff אחת מול ה-agent הרגיל שלנו.",
+      "entities": [
+        "Plannotator",
+        "GitHub",
+        "Claude Code",
+        "Codex",
+        "Copilot CLI",
+        "Gemini CLI",
+        "OpenCode"
+      ],
+      "sources": [
+        {
+          "label": "המאגר backnotprop/plannotator ב-GitHub",
+          "url": "https://github.com/backnotprop/plannotator",
+          "type": "repo",
+          "source_id": "plannotator",
+          "reliability": 5
+        },
+        {
+          "label": "האתר הרשמי של Plannotator",
+          "url": "https://plannotator.ai/",
+          "type": "blog",
+          "source_id": "plannotator",
+          "reliability": 5
+        },
+        {
+          "label": "צילום מגמות GitHub היומיות ב-GitStock, 16 בנובמבר",
+          "url": "https://gitstock.org/trending/2026-11-16",
+          "type": "article",
+          "source_id": "gitstock",
+          "reliability": 3
+        },
+        {
+          "label": "צילום מגמות GitHub השבועיות ב-GitStock, 16 בנובמבר",
+          "url": "https://gitstock.org/trending/weekly/2026-11-16",
+          "type": "article",
+          "source_id": "gitstock",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "section": "זוויות מבט",
+      "topic_key": "perspective",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "low",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "מנהל האבטחה הוותיק Phil Venables: אנחנו יודעים לאבטח מערכות, הבעיה היא קנה המידה",
+      "exec_summary": "מעבר מאבטחה 'אומנותית' לאבטחה 'תעשייתית' דרך שבעה עקרונות.",
+      "summary": "במאמר שפרסם לרגל צאת ספרו Scaling Security טוען Phil Venables, ששימש CISO ארבע פעמים, בין היתר ב-Goldman Sachs וב-Google Cloud, וכיום שותף בקרן ההשקעות Ballistic Ventures, שאנחנו יודעים לאבטח מערכת בודדת, אבל בעולם האמיתי זה נכשל בגלל מורכבות שגדלה במהירות, מחסור במומחים, אבטחה שמולבשת מבחוץ וסיכונים שתלויים זה בזה. לדבריו הפתרון הוא מעבר מעבודה 'אומנותית' לעבודה 'תעשייתית', בשבעה עקרונות שמזינים זה את זה, ובהם מדדים מובילים במקום מדדים מפגרים, אבטחה מובנית כברירת מחדל ומיקוד ב-20% מהיוזמות שמביאות 80% מההשפעה. זו דעתו האישית, והמאמר גם מקדם את ספרו.",
+      "why_it_matters": "כשכלי תקיפה אוטומטיים מאיצים את הקצב, המסגרת שלו מתאימה לשיחה עם ההנהלה: פחות כלים נוספים, יותר החלטות ארכיטקטורה שמורידות סיכון בקנה מידה.",
+      "action": null,
+      "entities": [
+        "Phil Venables",
+        "Scaling Security",
+        "Ballistic Ventures"
+      ],
+      "sources": [
+        {
+          "label": "המאמר של Phil Venables",
+          "url": "https://www.philvenables.com/post/scaling-security-the-7-pillars-of-elite-cybersecurity-programs",
+          "type": "blog",
+          "source_id": "phil-venables",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "section": "זוויות מבט",
+      "topic_key": "perspective",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "low",
+      "audience": [
+        "team"
+      ],
+      "headline": "המחבר Joe Reis: ה-AI מוזיל את ייצור הקוד, אבל לא את הפרשנות והאחריות על הנתונים",
+      "exec_summary": "העבודה בדאטה עוברת מכתיבת pipelines להגדרות עסקיות, אימות ואחריות.",
+      "summary": "במאמר בניוזלטר שלו טוען Joe Reis, שותף לכתיבת הספר Fundamentals of Data Engineering, שעבודת דאטה מתחלקת לייצור (קוד, pipelines ודשבורדים), פרשנות (מה הנתונים אומרים בהקשר העסקי) ואחריות (מי מחליט ונושא בתוצאה), וה-AI מוזיל באופן דרמטי רק את הראשון. הוא מצטט סקר של קהילת Practical Data שהוא מוביל, שלפיו 80% משתמשים ב-AI מדי יום אבל רק כ-10% שילבו אותו בתהליכי העבודה של הארגון, וכמעט 89% עדיין נאבקים בבעיות בסיסיות של data modeling. לדבריו התפקידים יתמזגו לאנשי דאטה רב-תחומיים, והשאלה הפתוחה היא איך יגדלו מהנדסים צעירים.",
+      "why_it_matters": "אם agents כותבים בשבילנו SQL ו-pipelines, ההשקעה צריכה לעבור להגדרות עסקיות אחידות, data contracts ובדיקות נכונות; אחרת נקבל לוגיקה שגויה, רק מהר יותר.",
+      "action": null,
+      "entities": [
+        "Joe Reis",
+        "Practical Data",
+        "Fundamentals of Data Engineering"
+      ],
+      "sources": [
+        {
+          "label": "המאמר של Joe Reis",
+          "url": "https://joereis.substack.com/p/do-data-roles-have-a-future",
+          "type": "newsletter",
+          "source_id": "joe-reis",
+          "reliability": 4
+        }
+      ]
+    }
+  ],
+  "watchlist": [
+    {
+      "text": "משרד המשפטים האמריקאי תפס תשתית של FaceStealer, קמפיין צפון קוריאני שמשתמש ב-deepfake בשיחות וידאו וגנב יותר מ-400 מיליון דולר בקריפטו, ותפס עוד 1.2 מיליארד דולר מפריצת Binance.",
+      "url": "https://www.justice.gov/opa/pr/justice-department-announces-actions-disrupt-north-koreas-massive-theft-cryptocurrency"
+    },
+    {
+      "text": "פרויקט Tor שחרר את גרסה 0.4.9.17 בתגובה מהירה למתקפת DDoS מתמשכת, שפוגעת ברוב מפעילי הממסרים ברשת.",
+      "url": "https://forum.torproject.org/t/security-release-0-4-9-17/22454"
+    },
+    {
+      "text": "חברת Forescout דיווחה שכלי מחקר מבוסס AI מצא 99 חולשות בעשר ספריות TCP/IP משובצות, 66 מהן חדשות, תוך 90 שעות; חלקן במכשירים שהיצרן שלהם כבר לא קיים.",
+      "url": "https://www.forescout.com/research-labs/finding-critical-infrastructure-bugs-with-off-the-shelf-ai/"
+    },
+    {
+      "text": "הפנטגון שינה את שם משרד ה-AI הראשי שלו (CDAO) ל-Super Intelligence Office, בעקבות צו נשיאותי על המונחים.",
+      "url": "https://www.securityweek.com/pentagon-renames-cdao-super-intelligence-office/"
+    }
+  ]
+}
