@@ -1,0 +1,15 @@
+/* CTO Review replica – import panel (SPEC 9.1). Uses the site tokens only; load after style.css. */
+.import-panel{margin:16px 0;padding:14px 16px;border:1px solid var(--line);border-radius:8px;background:var(--mgmt)}
+.import-panel h2{margin:0 0 8px;font-size:1rem;color:var(--navy-d)}
+.import-panel .ip-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.import-panel input[type=file]{position:absolute;inline-size:1px;block-size:1px;opacity:0;overflow:hidden}
+.import-panel label.print-btn{display:inline-block}
+.import-panel input[type=file]:focus-visible + label{outline:2px solid var(--navy);outline-offset:2px}
+.dropzone{margin-top:10px;padding:18px;border:2px dashed var(--line);border-radius:8px;text-align:center;color:var(--muted)}
+.dropzone.is-over{border-color:var(--navy);color:var(--navy)}
+.import-summary{margin-top:10px;font-size:0.875rem}
+.import-summary p{margin:4px 0}
+.import-summary.has-errors p:last-child{color:var(--red)}
+.import-panel dialog{max-inline-size:min(520px,calc(100vw - 32px));border:1px solid var(--line);border-radius:8px;overscroll-behavior:contain}
+.import-panel dialog form{display:flex;gap:8px;justify-content:flex-start;margin-top:12px}
+@media print{.import-panel{display:none}}

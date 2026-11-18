@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<title>טעינת קובץ JSON | CTO Review (רפליקה)</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/import.css">
+<script src="assets/theme.js"></script>
+<script src="assets/import.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+<header class="brief-head"><p class="kicker">רפליקה לא מקוונת · דוגמת הפעלה</p><h1>טעינת קובץ JSON</h1>
+<p class="stats">עמוד הדגמה של <span dir="ltr">assets/import.js</span>: בוחרים או גוררים קובץ סקירה יומית, קובץ ייצוא מלא, מילון מושגים או מאגר מקורות. הנתונים נשמרים רק בדפדפן הזה (IndexedDB).</p></header>
+<section class="import-panel" data-import-root aria-labelledby="ip-h">
+  <h2 id="ip-h">טעינת קובץ JSON</h2>
+  <div class="ip-row">
+    <input type="file" id="ip-file" accept=".json,application/json" multiple data-import-input>
+    <label for="ip-file" class="print-btn">בחירת קבצים</label>
+    <button type="button" class="print-btn" data-import-export>ייצוא הארכיון המקומי</button>
+  </div>
+  <div class="dropzone" data-import-drop>גררו לכאן קובץ JSON, או בחרו קובץ</div>
+  <div class="import-summary" data-import-summary role="status" aria-live="polite"></div>
+  <dialog data-import-confirm><p data-msg></p>
+    <form method="dialog"><button class="print-btn" value="yes">החלפה</button><button class="print-btn" value="no">ביטול</button></form></dialog>
+  <dialog data-import-glossary><p data-msg></p>
+    <form method="dialog"><button class="print-btn" value="merge">מיזוג</button><button class="print-btn" value="replace">החלפת המילון</button><button class="print-btn" value="">ביטול</button></form></dialog>
+</section>
+</main>
+</body>
+</html>

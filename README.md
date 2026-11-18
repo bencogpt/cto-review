@@ -56,6 +56,7 @@ The registry itself is only read, never modified.
   (topic, reliability, status, type, language, access), sort, expand-in-place cards, sanitized changelog.
   Client-side only (`assets/admin.js`); filter state is kept in the URL hash, e.g. `/admin/#topic=quantum&rel=5`.
 - `dist/admin/sources.json` – sanitized download («הורדת JSON»): sources + changelog, no `schema` block.
+- `dist/admin/export.json` – full export («ייצוא מלא (JSON)»), see «Full data export» below.
 - Sanitization (`clean_text` / `clean_source` in build.py): `delivery` -> «מנוי במייל»; inbox addresses, bot/inbox
   wording, box-browser sign-in notes and origin-account / following-list wording are rewritten
   (origin wording -> «סריקת רשת ב-X»); unknown `discovered_via` -> `other`. The build **fails** if a forbidden
@@ -64,6 +65,19 @@ The registry itself is only read, never modified.
   `data-admin`; the worker strips them (HTMLRewriter) for the reader role, so only admins see them. Covered by the same `_headers` (`/*`),
   robots.txt and `noindex,nofollow` meta. Static files only – fits the Cloudflare Pages free plan.
 
+
+## Full data export – `/admin/export.json` (2026-11-18)
+- Every build that has briefs writes `dist/admin/export.json` (`build_export` in build.py):
+  `{"format":"cto-review-export","format_version":1,"generated_at":ISO+offset,"latest":date,"counts":{briefs,glossary,sources},
+  "briefs":[all briefs, oldest first, the same objects as /YYYY-MM-DD/brief.json],"glossary":{= /glossary.json},"sources":{= /admin/sources.json}}`.
+- Link «ייצוא מלא (JSON)» on the /admin/ meta row, `download="cto-review-export-<latest brief date>.json"`. Under `/admin/`, so the worker
+  allows only the admin role (readers get 403 JSON; anonymous -> 303 to /login?next=…&need=admin). No worker change was needed.
+- Build-time asserts (build fails): glossary and sources parts must pass the full `FORBIDDEN` list; briefs (news text) must pass the identity
+  subset `EXPORT_FORBIDDEN_ID` (private account / inbox identifiers and internal wording); the whole file must contain no
+  email address and no secret / login-log pattern (`EXPORT_SECRETS`), and not the values of the box password env vars (never printed).
+- The offline replica imports it with `assets/import.js` from the replica kit (SPEC section 9). The kit sample `cto-review-export-2026-11-18.json`
+  is derived from this file after the full FORBIDDEN check (the 2026-11-12 brief is left out of the sample because its news text names a
+  third-party product that matches the full list).
 
 ## Anchors, sharing and floating controls (2026-11-17)
 - Anchors (build.py `item_anchors`, deterministic): item -> `item-` + JSON `id` (chars outside `[A-Za-z0-9_-]` -> `-`, max 80);

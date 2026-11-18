@@ -441,7 +441,7 @@ def build():
         write(DIST / "index.html", page(SITE_NAME, "<p>עדיין אין סקירות בארכיון.</p>", ""))
         write(DIST / "actions" / "index.html", page(f"דורש פעולה | {SITE_NAME}", render_actions([], "../"), "../",
                                                     cur="actions", wide=True))
-        build_admin()
+        build_admin([])
         return
     adj = lambda i: (briefs[i + 1] if i + 1 < len(briefs) else None, briefs[i - 1] if i > 0 else None)
     for i, b in enumerate(briefs):
@@ -478,7 +478,7 @@ def build():
         ensure_ascii=False, separators=(",", ":")))
     print(f"built {len(briefs)} briefs -> {DIST}")
     build_glossary(briefs)
-    build_admin()
+    build_admin(briefs)
 
 
 # ---------------------------------------------------------------------------
@@ -744,7 +744,7 @@ def render_source(s):
             f'<dl>{"".join(html_rows)}</dl></div></details></li>')
 
 
-def build_admin():
+def build_admin(briefs=()):
     if not SOURCES.exists():
         print(f"admin: registry not found at {SOURCES}; skipping", file=sys.stderr)
         return
@@ -795,6 +795,9 @@ def build_admin():
             '<h1>אזור ניהול · מאגר המקורות</h1>'
             f'<p class="stats">עודכן לאחרונה: {he_date(reg["updated"])} · גרסה {esc(reg["version"])} · '
             '<a class="dl" href="sources.json" download="cto-review-sources.json">הורדת JSON</a> · '
+            + (f'<a class="dl" href="export.json" download="cto-review-export-{briefs[0]["date"]}.json" '
+               'title="כל הסקירות, מילון המושגים ומאגר המקורות בקובץ אחד, לטעינה באתר הרפליקה">ייצוא מלא (JSON)</a> · '
+               if briefs else "") +
             '<a class="dl" href="#log">יומן שינויים</a> · '
             '<a class="dl" href="stats/">סטטיסטיקות כניסה</a></p></header>')
     body = head + "".join(summary) + filters + items + empty + '<div id="log"></div>' + "".join(log)
@@ -808,6 +811,50 @@ def build_admin():
     build_stats()
     write(DIST / "admin" / "sources.json", pub)
     print(f"built admin: {len(S)} sources, {len(reg['changelog'])} changelog entries -> {DIST / 'admin'}")
+    if briefs:
+        build_export(briefs, reg)
+
+
+# ---------------------------------------------------------------------------
+# Full data export (admin only): /admin/export.json, downloaded as cto-review-export-YYYY-MM-DD.json
+# (latest brief date). One file with every brief (the same objects as /YYYY-MM-DD/brief.json), the
+# glossary (= /glossary.json) and the sanitized sources mirror (= /admin/sources.json), for the
+# offline replica's import. Served under /admin/, so the worker allows only the admin role.
+# ---------------------------------------------------------------------------
+EXPORT_FORMAT, EXPORT_VERSION = "cto-review-export", 1
+# Briefs are news text and may legitimately name third-party products, so they get the identity
+# subset; glossary and sources must pass the full FORBIDDEN list (as in their own outputs).
+EXPORT_FORBIDDEN_ID = re.compile(r"amiram|grokbot|bencogpt|mail\.grokbot|following[\s_-]*list|תיבת הבוט|box browser", re.I)
+EXPORT_EMAIL = re.compile(r"[\w.+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+")
+EXPORT_SECRETS = re.compile(r"SESSION_SECRET|ADMIN_PASSWORD|SHARED_PASSWORD|CTO_REVIEW_\w*PASSWORD|CTO_UPLOAD_TOKEN|"
+                            r"Bearer\s+[\w-]{16,}|-----BEGIN [A-Z ]*PRIVATE KEY|\"(?:ip|vh|ua|cookie|password|token)\"\s*:", re.I)
+
+
+def build_export(briefs, reg):
+    data = {"format": EXPORT_FORMAT, "format_version": EXPORT_VERSION,
+            "generated_at": dt.datetime.now().astimezone().isoformat(timespec="seconds"),
+            "latest": briefs[0]["date"], "counts": {"briefs": len(briefs), "glossary": len(GLOSSARY["entries"]),
+                                                     "sources": len(reg["sources"])},
+            "briefs": [brief_with_glossary(b) for b in sorted(briefs, key=lambda b: b["date"])],
+            "glossary": GLOSSARY, "sources": reg}
+    text = json.dumps(data, ensure_ascii=False, indent=1)
+    parts = [("briefs", json.dumps(data["briefs"], ensure_ascii=False), EXPORT_FORBIDDEN_ID),
+             ("glossary", json.dumps(GLOSSARY, ensure_ascii=False), FORBIDDEN),
+             ("sources", json.dumps(reg, ensure_ascii=False), FORBIDDEN),
+             ("export", text, EXPORT_FORBIDDEN_ID)]
+    for name, t, rx in parts:
+        for chk in (rx, EXPORT_EMAIL, EXPORT_SECRETS):
+            m = chk.search(t)
+            if m:
+                sys.exit(f"refusing: export ({name}) contains a forbidden string near {t[max(0, m.start()-40):m.end()+40]!r}")
+    for var in ("CTO_REVIEW_SHARED_PASSWORD", "CTO_REVIEW_ADMIN_PASSWORD"):
+        v = os.environ.get(var)
+        if v and len(v) >= 4 and v in text:
+            sys.exit(f"refusing: export contains the value of {var}")  # value itself is never printed
+    write(DIST / "admin" / "export.json", text)
+    print(f"built export: {len(data['briefs'])} briefs, {len(GLOSSARY['entries'])} glossary entries, "
+          f"{len(reg['sources'])} sources, {len(text.encode('utf-8'))} bytes -> {DIST / 'admin' / 'export.json'}"
+          f" (download name cto-review-export-{briefs[0]['date']}.json)")
 
 
 def build_stats():
