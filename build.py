@@ -5,6 +5,9 @@ Usage:
   python3 build.py                       # rebuild dist/ from content/*.json
   python3 build.py --add BRIEF.json      # import a layered brief (sanitized) into content/, then rebuild
   python3 build.py --add BRIEF.json --title "..."   # optional title override for the imported day
+  python3 build.py --replica             # offline replica build: no login, «טעינת עדכון» page, client-side merge
+                                         # of imported JSON files (IndexedDB). Serve dist/ with python -m http.server.
+  Options: --out DIR (output folder, default dist/), --content DIR (brief folder, default content/).
 
 Only briefs with format_version "2-layered" are accepted.
 Every build also regenerates the admin area (dist/admin/) from the sources registry
@@ -20,6 +23,7 @@ Public pages show only the flame marker next to the tag pill (🔥 / 🔥🔥 / 
 The verified "momentum" text stays in the content JSON and is revealed in a
 hover/focus/tap tooltip; it is never printed as a «סימני תאוצה» body line.
 """
+import base64
 import argparse, datetime as dt, html, json, os, re, shutil, sys
 from pathlib import Path
 
@@ -29,6 +33,11 @@ import glossary_lib  # noqa: E402  (glossary.json matcher, shared with glossary_
 ROOT = Path(__file__).resolve().parent
 CONTENT = ROOT / "content"
 DIST = ROOT / "dist"
+# Offline replica mode (python3 build.py --replica): no login worker, no stats, no logout; adds the
+# «טעינת עדכון» admin page (/admin/import/), the client day view (/day/?d=YYYY-MM-DD) and the client runtime
+# (assets/replica.js + assets/import.js) that merges imported JSON files from IndexedDB. Relative links get an
+# explicit index.html so the folder also works from file://. The live build is unchanged when this is False.
+REPLICA = False
 SITE_NAME = "CTO Review"
 TAGLINE = "סקירת טכנולוגיה יומית"
 
@@ -371,7 +380,24 @@ def render_actions(briefs, rel):
     return "\n".join(out)
 
 
-def page(title, body, rel, aside="", cur="", wide=False, scripts=()):
+def live_scripts(rel, cur, scripts):
+    return (f'<script src="{rel}assets/app.js" defer></script>'
+            + (f'<script src="{rel}assets/admin.js" defer></script>' if cur == "admin" else "")
+            + "".join(f'<script src="{rel}assets/{x}" defer></script>' for x in scripts))
+
+
+def replica_scripts(rel, cur, scripts, attrs):
+    """Replica: data + import + runtime; replica.js renders merged data, then loads app.js / admin.js itself."""
+    data = [f"{rel}assets/replica-data.js"] + ([f"{rel}assets/replica-sources.js"] if cur in ("admin", "import") else [])
+    a = "".join(f' data-{k}="{esc(v)}"' for k, v in (attrs or {}).items())
+    return ("".join(f'<script src="{x}" defer></script>' for x in data)
+            + f'<script src="{rel}assets/import.js" defer></script>'
+            + f'<script src="{rel}assets/replica.js" defer data-rel="{esc(rel)}" data-cur="{esc(cur)}"{a}'
+            + (' data-admin-js' if cur == "admin" else "") + '></script>'
+            + "".join(f'<script src="{rel}assets/{x}" defer></script>' for x in scripts))
+
+
+def page(title, body, rel, aside="", cur="", wide=False, scripts=(), page_attrs=None):
     year = dt.date.today().year
     return f"""<!doctype html>
 <html dir="rtl" lang="he">
@@ -382,15 +408,14 @@ def page(title, body, rel, aside="", cur="", wide=False, scripts=()):
 <meta name="robots" content="noindex,nofollow">
 <title>{esc(title)}</title>
 <script src="{rel}assets/theme.js"></script>
-<link rel="preload" href="{rel}assets/fonts/heebo-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="{rel}assets/style.css">
-<link rel="icon" href="{rel}assets/favicon.svg" type="image/svg+xml">
+{'' if REPLICA else '<link rel="preload" href="'+rel+'assets/fonts/heebo-var.woff2" as="font" type="font/woff2" crossorigin>'+chr(10)}<link rel="stylesheet" href="{rel}assets/style.css">
+<link rel="icon" href="{rel}assets/favicon.svg" type="image/svg+xml">{'<link rel="stylesheet" href="'+rel+'assets/import.css">' if REPLICA else ''}
 </head>
 <body>
 <a class="skip-link" href="#main">דילוג לתוכן</a>
 <header class="masthead"><div class="wrap">
 <a class="brand" href="{rel}"><span class="mark" dir="ltr">CTO<b>Review</b></span><span class="tag">{TAGLINE}</span></a>
-<nav class="topnav" aria-label="ניווט ראשי">{nav(rel, cur)}<button type="button" class="theme-btn" data-theme-toggle aria-pressed="false" aria-label="Dark mode" title="Dark mode"><svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M21 14.3A9 9 0 1 1 9.7 3 7 7 0 0 0 21 14.3z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></button><a class="logout" href="/logout">יציאה</a></nav>
+<nav class="topnav" aria-label="ניווט ראשי">{nav(rel, cur)}<button type="button" class="theme-btn" data-theme-toggle aria-pressed="false" aria-label="Dark mode" title="Dark mode"><svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M21 14.3A9 9 0 1 1 9.7 3 7 7 0 0 0 21 14.3z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></button>{'' if REPLICA else '<a class="logout" href="/logout">יציאה</a>'}</nav>
 </div></header>
 <div class="wrap layout{' wide' if wide else ''}">
 <main id="main" tabindex="-1">{body}</main>
@@ -399,7 +424,7 @@ def page(title, body, rel, aside="", cur="", wide=False, scripts=()):
 <button type="button" class="to-top" data-to-top aria-label="חזרה לראש העמוד" title="חזרה לראש העמוד"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <footer class="foot"><div class="wrap"><bdi>{SITE_NAME}</bdi> · סקירת טכנולוגיה יומית · {year}</div></footer>
-<script src="{rel}assets/app.js" defer></script>{'<script src="'+rel+'assets/admin.js" defer></script>' if cur == "admin" else ""}{"".join('<script src="'+rel+'assets/'+x+'" defer></script>' for x in scripts)}
+{replica_scripts(rel, cur, scripts, page_attrs) if REPLICA else live_scripts(rel, cur, scripts)}
 </body>
 </html>
 """
@@ -412,16 +437,33 @@ CSP = ("default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'
        "connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'")
 
 
+REPLICA_NAV = NAV[:5] + [("admin/import/", "import", "טעינת עדכון")]
+
+
 def nav(rel, cur):
     # cur "~key" = highlight the section without aria-current (e.g. a dated brief page under ארכיון)
     hl, is_page = cur.lstrip("~"), not cur.startswith("~")
+    if REPLICA:  # no roles in the replica: every link is shown, no data-admin, no stats
+        return "".join(f'<a href="{rel}{h}"' + ((' aria-current="page" class="cur"' if is_page else ' class="cur"')
+                                               if k == hl else "") + f'>{t}</a>' for h, k, t in REPLICA_NAV)
     return "".join(f'<a href="{rel}{h}"' + (' data-admin' if k in ("admin", "stats") else '') + ((' aria-current="page" class="cur"' if is_page else ' class="cur"')
                                            if k == hl else "") + f'>{t}</a>'
                    for h, k, t in NAV)
 
 
+_REL_HREF = re.compile(r'href="(?![a-zA-Z][a-zA-Z0-9+.-]*:|/|#)([^"#?]*)((?:\?[^"#]*)?(?:#[^"]*)?)"')
+
+
+def replica_hrefs(text):
+    """Replica only: relative folder links get an explicit index.html (file:// has no directory index)."""
+    return _REL_HREF.sub(lambda m: f'href="{m.group(1)}index.html{m.group(2)}"'
+                         if m.group(1) == "" or m.group(1).endswith("/") else m.group(0), text)
+
+
 def write(path, text):
     path.parent.mkdir(parents=True, exist_ok=True)
+    if REPLICA and path.suffix == ".html":
+        text = replica_hrefs(text)
     path.write_text(text, encoding="utf-8")
 
 
@@ -432,7 +474,8 @@ def build():
     shutil.copytree(ROOT / "assets", DIST / "assets")
     # Pages advanced-mode worker: shared-password login, reader/admin roles, login stats (see README "Login").
     # Deploy MUST upload it as _worker.bundle (prep.py writes deploy-latest.js); without it the site is unprotected.
-    shutil.copy(ROOT / "worker" / "_worker.js", DIST / "_worker.js")
+    if not REPLICA:
+        shutil.copy(ROOT / "worker" / "_worker.js", DIST / "_worker.js")
     write(DIST / "robots.txt", "User-agent: *\nDisallow: /\n")
     write(DIST / "_headers", "/*\n  X-Robots-Tag: noindex, nofollow\n  X-Frame-Options: DENY\n"
           "  X-Content-Type-Options: nosniff\n  Referrer-Policy: no-referrer\n  Cache-Control: no-store\n"
@@ -449,13 +492,13 @@ def build():
         aside = f'<aside class="side"><h2>ארכיון</h2>{archive_list(briefs, "../", b["date"])}</aside>'
         older, newer = adj(i)
         write(d / "index.html", page(f'{b["title"]} | {SITE_NAME} | CTO-Review-{b["date"]}', render_brief(b, "../", older, newer), "../", aside,
-                                     cur="~home" if i == 0 else "~archive"))
+                                     cur="~home" if i == 0 else "~archive", page_attrs={"page": "day", "date": b["date"]}))
         write(d / "brief.json", json.dumps(brief_with_glossary(b), ensure_ascii=False, indent=2))
     latest = briefs[0]
     aside = f'<aside class="side"><h2>ארכיון</h2>{archive_list(briefs, "", latest["date"])}</aside>'
     write(DIST / "index.html", page(f"{SITE_NAME} – {TAGLINE} | CTO-Review-{latest['date']}",
                                     '<p class="latest-badge">הסקירה האחרונה</p>' + render_brief(latest, "", *adj(0)), "", aside,
-                                    cur="home"))
+                                    cur="home", page_attrs={"page": "home"}))
     arch = ('<header class="brief-head"><h1>ארכיון הסקירות</h1>'
             f'<p class="kicker">כל הסקירות היומיות, מהחדשה לישנה ({len(briefs)} סקירות).</p></header>'
             '<div class="asearch" role="search"><label class="fl q" for="aq"><span>חיפוש בארכיון</span>'
@@ -463,9 +506,10 @@ def build():
             '<span id="acnt" class="acnt" aria-live="polite"></span></div>'
             '<div id="archive-groups" data-index="../search.json">' + archive_grouped(briefs, "../") + '</div>'
             '<p class="empty hidden" id="aempty">לא נמצאו סקירות שמתאימות לחיפוש.</p>')
-    write(DIST / "archive" / "index.html", page(f"ארכיון | {SITE_NAME}", arch, "../", cur="archive", wide=True))
+    write(DIST / "archive" / "index.html", page(f"ארכיון | {SITE_NAME}", arch, "../", cur="archive", wide=True,
+                                                page_attrs={"page": "archive"}))
     write(DIST / "actions" / "index.html", page(f"דורש פעולה | {SITE_NAME}", render_actions(briefs, "../"), "../",
-                                                cur="actions", wide=True))
+                                                cur="actions", wide=True, page_attrs={"page": "actions"}))
     write(DIST / "index.json", json.dumps(
         [{"date": b["date"], "title": b["title"], "items": len(b["items"]), "actions": counts(b)["action"],
           "url": f'/{b["date"]}/'} for b in briefs],
@@ -479,6 +523,8 @@ def build():
     print(f"built {len(briefs)} briefs -> {DIST}")
     build_glossary(briefs)
     build_admin(briefs)
+    if REPLICA:
+        build_replica(briefs)
 
 
 # ---------------------------------------------------------------------------
@@ -587,7 +633,7 @@ def render_glossary(briefs, rel):
 def build_glossary(briefs):
     write(DIST / "glossary.json", json.dumps(GLOSSARY, ensure_ascii=False, indent=2))
     write(DIST / "glossary" / "index.html", page(f"מילון מושגים | {SITE_NAME}", render_glossary(briefs, "../"), "../",
-                                                cur="glossary", wide=True))
+                                                cur="glossary", wide=True, page_attrs={"page": "glossary"}))
     for f in (DIST / "glossary.json", DIST / "glossary" / "index.html"):
         if FORBIDDEN.search(f.read_text(encoding="utf-8")):
             sys.exit(f"refusing: forbidden wording in {f}")
@@ -598,6 +644,8 @@ def build_glossary(briefs):
 # Admin area: sanitized mirror of the technology sources registry.
 # ---------------------------------------------------------------------------
 SOURCES = Path(os.environ.get("CTO_SOURCES", "/workspace/cto-sources/sources.json"))
+if "CTO_SOURCES" not in os.environ and not SOURCES.exists() and (ROOT / "sources" / "sources.json").exists():
+    SOURCES = ROOT / "sources" / "sources.json"  # repository copy (the sanitized mirror), e.g. a build from the GitHub ZIP
 TOPIC_HE = {"ai": "בינה מלאכותית", "data": "דאטה", "quantum": "קוונטים", "systems_products": "מערכות ומוצרים",
             "cloud": "ענן", "cyber": "סייבר", "enterprise": "ארגוני"}
 STATUS_HE = {"active": "פעיל", "probation": "בניסיון", "inactive": "לא פעיל"}
@@ -744,6 +792,23 @@ def render_source(s):
             f'<dl>{"".join(html_rows)}</dl></div></details></li>')
 
 
+def admin_head(reg, latest_date):
+    """Header + meta row of /admin/. Live: downloads + stats link. Replica: downloads (merged by replica.js) + import page."""
+    dl_update = (f'<a class="dl" href="update.json" download="cto-review-update-{latest_date}.json" '
+                 'title="הסקירה האחרונה, מילון המושגים ומאגר המקורות, לעדכון היומי של אתר הרפליקה">עדכון יומי מלא (JSON)</a> · '
+                 if latest_date and not REPLICA else "")
+    dl_export = (f'<a class="dl" href="export.json" download="cto-review-export-{latest_date}.json" '
+                 'title="כל הסקירות, מילון המושגים ומאגר המקורות בקובץ אחד, לטעינה באתר הרפליקה">ייצוא מלא (JSON)</a> · '
+                 if latest_date else "")
+    tail = ('<a class="dl" href="#log">יומן שינויים</a> · <a class="dl" href="import/">טעינת עדכון</a>' if REPLICA else
+            '<a class="dl" href="#log">יומן שינויים</a> · <a class="dl" href="stats/">סטטיסטיקות כניסה</a>')
+    return ('<header class="brief-head"><p class="kicker">' + ("אזור ניהול · רפליקה" if REPLICA else "אזור ניהול · פנימי") + '</p>'
+            '<h1>אזור ניהול · מאגר המקורות</h1>'
+            f'<p class="stats">עודכן לאחרונה: {he_date(reg["updated"])} · גרסה {esc(reg["version"])} · '
+            '<a class="dl" href="sources.json" download="cto-review-sources.json">הורדת JSON</a> · '
+            + dl_update + dl_export + tail + '</p></header>')
+
+
 def build_admin(briefs=()):
     if not SOURCES.exists():
         print(f"admin: registry not found at {SOURCES}; skipping", file=sys.stderr)
@@ -791,28 +856,25 @@ def build_admin(briefs=()):
     log = ['<section class="changelog"><h2>יומן שינויים</h2><ul>']
     log += [f'<li><span class="d">{short_date(c["date"])}</span> {esc(c["change"])}</li>' for c in reg["changelog"]]
     log.append("</ul></section>")
-    head = ('<header class="brief-head"><p class="kicker">אזור ניהול · פנימי</p>'
-            '<h1>אזור ניהול · מאגר המקורות</h1>'
-            f'<p class="stats">עודכן לאחרונה: {he_date(reg["updated"])} · גרסה {esc(reg["version"])} · '
-            '<a class="dl" href="sources.json" download="cto-review-sources.json">הורדת JSON</a> · '
-            + (f'<a class="dl" href="export.json" download="cto-review-export-{briefs[0]["date"]}.json" '
-               'title="כל הסקירות, מילון המושגים ומאגר המקורות בקובץ אחד, לטעינה באתר הרפליקה">ייצוא מלא (JSON)</a> · '
-               if briefs else "") +
-            '<a class="dl" href="#log">יומן שינויים</a> · '
-            '<a class="dl" href="stats/">סטטיסטיקות כניסה</a></p></header>')
+    head = admin_head(reg, briefs[0]["date"] if briefs else None)
     body = head + "".join(summary) + filters + items + empty + '<div id="log"></div>' + "".join(log)
-    out = page(f"אזור ניהול · מאגר המקורות | {SITE_NAME}", body, "../", cur="admin", wide=True)
+    out = page(f"אזור ניהול · מאגר המקורות | {SITE_NAME}", body, "../", cur="admin", wide=True, page_attrs={"page": "admin"})
     pub = json.dumps(reg, ensure_ascii=False, indent=2)
     for name, text in (("index.html", out), ("sources.json", pub)):
         m = FORBIDDEN.search(text)
         if m:
             sys.exit(f"refusing: admin/{name} still contains a forbidden string near {text[max(0, m.start()-40):m.end()+40]!r}")
     write(DIST / "admin" / "index.html", out)
-    build_stats()
+    if not REPLICA:
+        build_stats()
     write(DIST / "admin" / "sources.json", pub)
     print(f"built admin: {len(S)} sources, {len(reg['changelog'])} changelog entries -> {DIST / 'admin'}")
     if briefs:
         build_export(briefs, reg)
+        if not REPLICA:
+            build_update(briefs, reg)
+    if REPLICA:
+        write(DIST / "assets" / "replica-sources.js", replica_js("CTO_REPLICA_SOURCES", reg, FORBIDDEN))
 
 
 # ---------------------------------------------------------------------------
@@ -830,6 +892,23 @@ EXPORT_SECRETS = re.compile(r"SESSION_SECRET|ADMIN_PASSWORD|SHARED_PASSWORD|CTO_
                             r"Bearer\s+[\w-]{16,}|-----BEGIN [A-Z ]*PRIVATE KEY|\"(?:ip|vh|ua|cookie|password|token)\"\s*:", re.I)
 
 
+def export_checked(name, data, briefs_part, extra_parts):
+    """Serialize an export-style file and refuse to write it if anything forbidden survived (see README)."""
+    text = json.dumps(data, ensure_ascii=False, indent=1)
+    parts = [("briefs", json.dumps(briefs_part, ensure_ascii=False), EXPORT_FORBIDDEN_ID)] + \
+            [(k, json.dumps(v, ensure_ascii=False), FORBIDDEN) for k, v in extra_parts] + [(name, text, EXPORT_FORBIDDEN_ID)]
+    for pname, t, rx in parts:
+        for chk in (rx, EXPORT_EMAIL, EXPORT_SECRETS):
+            m = chk.search(t)
+            if m:
+                sys.exit(f"refusing: {name} ({pname}) contains a forbidden string near {t[max(0, m.start()-40):m.end()+40]!r}")
+    for var in ("CTO_REVIEW_SHARED_PASSWORD", "CTO_REVIEW_ADMIN_PASSWORD"):
+        v = os.environ.get(var)
+        if v and len(v) >= 4 and v in text:
+            sys.exit(f"refusing: {name} contains the value of {var}")  # value itself is never printed
+    return text
+
+
 def build_export(briefs, reg):
     data = {"format": EXPORT_FORMAT, "format_version": EXPORT_VERSION,
             "generated_at": dt.datetime.now().astimezone().isoformat(timespec="seconds"),
@@ -837,24 +916,107 @@ def build_export(briefs, reg):
                                                      "sources": len(reg["sources"])},
             "briefs": [brief_with_glossary(b) for b in sorted(briefs, key=lambda b: b["date"])],
             "glossary": GLOSSARY, "sources": reg}
-    text = json.dumps(data, ensure_ascii=False, indent=1)
-    parts = [("briefs", json.dumps(data["briefs"], ensure_ascii=False), EXPORT_FORBIDDEN_ID),
-             ("glossary", json.dumps(GLOSSARY, ensure_ascii=False), FORBIDDEN),
-             ("sources", json.dumps(reg, ensure_ascii=False), FORBIDDEN),
-             ("export", text, EXPORT_FORBIDDEN_ID)]
-    for name, t, rx in parts:
-        for chk in (rx, EXPORT_EMAIL, EXPORT_SECRETS):
-            m = chk.search(t)
-            if m:
-                sys.exit(f"refusing: export ({name}) contains a forbidden string near {t[max(0, m.start()-40):m.end()+40]!r}")
-    for var in ("CTO_REVIEW_SHARED_PASSWORD", "CTO_REVIEW_ADMIN_PASSWORD"):
-        v = os.environ.get(var)
-        if v and len(v) >= 4 and v in text:
-            sys.exit(f"refusing: export contains the value of {var}")  # value itself is never printed
+    text = export_checked("export", data, data["briefs"], [("glossary", GLOSSARY), ("sources", reg)])
     write(DIST / "admin" / "export.json", text)
     print(f"built export: {len(data['briefs'])} briefs, {len(GLOSSARY['entries'])} glossary entries, "
           f"{len(reg['sources'])} sources, {len(text.encode('utf-8'))} bytes -> {DIST / 'admin' / 'export.json'}"
           f" (download name cto-review-export-{briefs[0]['date']}.json)")
+
+
+# Daily full update (admin only, live site): /admin/update.json, downloaded as cto-review-update-YYYY-MM-DD.json.
+# The latest brief + the full glossary + the sanitized sources mirror, for the replica's daily load.
+UPDATE_FORMAT, UPDATE_VERSION = "cto-review-update", 1
+
+
+def build_update(briefs, reg):
+    latest = brief_with_glossary(briefs[0])
+    data = {"format": UPDATE_FORMAT, "format_version": UPDATE_VERSION,
+            "generated_at": dt.datetime.now().astimezone().isoformat(timespec="seconds"),
+            "date": latest["date"], "counts": {"briefs": 1, "glossary": len(GLOSSARY["entries"]), "sources": len(reg["sources"])},
+            "brief": latest, "glossary": GLOSSARY, "sources": reg}
+    text = export_checked("update", data, [latest], [("glossary", GLOSSARY), ("sources", reg)])
+    write(DIST / "admin" / "update.json", text)
+    print(f"built update: brief {latest['date']}, {len(GLOSSARY['entries'])} glossary entries, {len(reg['sources'])} sources, "
+          f"{len(text.encode('utf-8'))} bytes -> {DIST / 'admin' / 'update.json'} (download name cto-review-update-{latest['date']}.json)")
+
+
+# ---------------------------------------------------------------------------
+# Offline replica (python3 build.py --replica). See README «Replica build» and SPEC section 9.
+# ---------------------------------------------------------------------------
+def replica_js(var, data, rx):
+    """Embed data as a classic script (works from file://, no fetch). '</' is escaped so the JSON cannot end the script."""
+    body = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    for chk in (rx, EXPORT_EMAIL, EXPORT_SECRETS):
+        m = chk.search(body)
+        if m:
+            sys.exit(f"refusing: {var} contains a forbidden string near {body[max(0, m.start()-40):m.end()+40]!r}")
+    return f"/* generated by build.py --replica; data, not code */\nwindow.{var}={body};\n"
+
+
+def replica_labels():
+    return {"site": SITE_NAME, "tagline": TAGLINE, "months": HE_MONTHS, "days": HE_DAYS,
+            "tags": {k: list(v) for k, v in TAGS.items()}, "heat": {str(k): list(v) for k, v in HEAT.items()},
+            "share_icon": SHARE_ICON, "share_max": SHARE_MAX, "gl_show_occ": GL_SHOW_OCC,
+            "cat_he": glossary_lib.CAT_HE, "cat_order": glossary_lib.CAT_ORDER, "item_fields": list(glossary_lib.ITEM_FIELDS),
+            "topic": TOPIC_HE, "status": STATUS_HE, "access": ACCESS_HE, "lang": LANG_HE, "type": TYPE_HE,
+            "rel": {str(k): v for k, v in REL_HE.items()}, "via": VIA_HE, "freq": FREQ_HE, "prio": PRIO_HE}
+
+
+IMPORT_PANEL = (
+    '<section class="import-panel" data-import-root data-import-manual aria-labelledby="ip-h">'
+    '<h2 id="ip-h">טעינת קובץ JSON</h2>'
+    '<p class="ip-help">אפשר לבחור או לגרור כמה קבצים יחד: סקירה יומית (<span dir="ltr">tech-brief-YYYY-MM-DD.json</span>), '
+    'עדכון יומי מלא (<span dir="ltr">cto-review-update-YYYY-MM-DD.json</span>), ייצוא מלא '
+    '(<span dir="ltr">cto-review-export-YYYY-MM-DD.json</span>), מילון מושגים או מאגר מקורות. סוג הקובץ מזוהה לבד.</p>'
+    '<div class="ip-row"><input type="file" id="ip-file" accept=".json,application/json" multiple data-import-input>'
+    '<label for="ip-file" class="print-btn">בחירת קבצים</label>'
+    '<button type="button" class="print-btn" data-import-export>ייצוא הארכיון המקומי</button>'
+    '<button type="button" class="print-btn" data-import-reset>איפוס הנתונים המקומיים</button></div>'
+    '<div class="dropzone" data-import-drop>גררו לכאן קובץ JSON, או בחרו קובץ</div>'
+    '<div class="import-summary" data-import-summary role="status" aria-live="polite"></div>'
+    '<dialog data-import-confirm><p data-msg></p><form method="dialog">'
+    '<button class="print-btn" value="yes">החלפה</button><button class="print-btn" value="no">ביטול</button></form></dialog>'
+    '<dialog data-import-glossary><p data-msg></p><form method="dialog"><button class="print-btn" value="merge">מיזוג</button>'
+    '<button class="print-btn" value="replace">החלפת המילון</button><button class="print-btn" value="">ביטול</button></form></dialog>'
+    '<dialog data-import-reset-dlg><p data-msg>למחוק את כל הנתונים שנטענו לדפדפן הזה (סקירות, מילון ומאגר מקורות)? '
+    'הסקירות שנבנו עם האתר יישארו.</p><form method="dialog"><button class="print-btn" value="yes">מחיקה</button>'
+    '<button class="print-btn" value="no">ביטול</button></form></dialog>'
+    '</section>')
+
+
+def build_replica(briefs):
+    built_at = dt.datetime.now().astimezone().isoformat(timespec="seconds")
+    data = {"format": "cto-review-replica-data", "generated_at": built_at, "labels": replica_labels(),
+            "dates": [b["date"] for b in briefs], "briefs": [brief_with_glossary(b) for b in briefs], "glossary": GLOSSARY}
+    write(DIST / "assets" / "replica-data.js", replica_js("CTO_REPLICA", data, EXPORT_FORBIDDEN_ID))
+    for f in ("import.js", "import.css", "replica.js"):
+        src = ROOT / "replica" / "assets" / f
+        if not src.exists():
+            sys.exit(f"refusing: replica build needs {src}")
+        shutil.copy(src, DIST / "assets" / f)
+    for f in ("login.js", "stats.js"):  # live-site only
+        (DIST / "assets" / f).unlink(missing_ok=True)
+    # file:// blocks font files (CORS origin "null"): embed the font in the replica's style.css as a data: URL
+    css_p = DIST / "assets" / "style.css"
+    css = css_p.read_text(encoding="utf-8")
+    font = base64.b64encode((ROOT / "assets" / "fonts" / "heebo-var.woff2").read_bytes()).decode("ascii")
+    if 'url("fonts/heebo-var.woff2")' not in css:
+        sys.exit("refusing: style.css font url not found for the replica font embedding")
+    css_p.write_text(css.replace('url("fonts/heebo-var.woff2")', f'url("data:font/woff2;base64,{font}")'), encoding="utf-8")
+    aside = '<aside class="side"><h2>ארכיון</h2>' + archive_list(briefs, "../") + '</aside>'
+    day = ('<div class="replica-day" id="replica-day"><p class="empty">טוען את הסקירה…</p>'
+           '<noscript><p class="empty">כדי להציג סקירות שנטענו מקובץ צריך JavaScript.</p></noscript></div>')
+    write(DIST / "day" / "index.html", page(f"סקירה | {SITE_NAME}", day, "../", aside, cur="~archive",
+                                            page_attrs={"page": "dayview"}))
+    body = ('<header class="brief-head"><p class="kicker">אזור ניהול · רפליקה</p><h1>טעינת עדכון</h1>'
+            '<p class="stats">טוענים כאן את הקובץ שהורד מהאתר החי. הנתונים נשמרים רק בדפדפן הזה (IndexedDB), '
+            'והאתר מתעדכן מיד: הסקירה החדשה מופיעה בעמוד הבית, בארכיון, בחיפוש, בלוח «דורש פעולה» ובמילון.</p></header>'
+            + IMPORT_PANEL +
+            '<section class="replica-status" aria-labelledby="rs-h"><h2 id="rs-h">מצב הנתונים המקומיים</h2>'
+            '<div id="replica-status"><p class="empty">טוען…</p></div></section>')
+    write(DIST / "admin" / "import" / "index.html", page(f"טעינת עדכון | {SITE_NAME}", body, "../../", cur="import", wide=True,
+                                                         page_attrs={"page": "import"}))
+    print(f"built replica runtime: {len(briefs)} built-in briefs, day view, import page -> {DIST}")
 
 
 def build_stats():
@@ -889,7 +1051,19 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--add", help="path to a layered brief JSON to import")
     ap.add_argument("--title", help="title override for the imported brief")
+    ap.add_argument("--replica", action="store_true", help="offline replica build (no login, import page, client merge)")
+    ap.add_argument("--out", help="output folder (default dist/)")
+    ap.add_argument("--content", help="folder with the brief JSON files (default content/)")
     a = ap.parse_args()
+    global REPLICA, DIST, CONTENT
+    REPLICA = a.replica or os.environ.get("CTO_REPLICA") == "1"
+    if a.out:
+        out = Path(a.out).resolve()
+        if out.exists() and any(out.iterdir()) and not (out / "index.html").exists():
+            sys.exit(f"refusing: {out} is not empty and does not look like a build output")
+        DIST = out
+    if a.content:
+        CONTENT = Path(a.content).resolve()
     if a.add:
         b = json.load(open(a.add, encoding="utf-8"))
         if b.get("format_version") != "2-layered":

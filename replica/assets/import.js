@@ -6,6 +6,8 @@
  *
  * Accepted file types (auto-detected by structure, never by file name):
  *   brief     – daily tech-brief-YYYY-MM-DD.json   {format_version:"2-layered", date, items:[...]}
+ *   update    – daily full update cto-review-update-YYYY-MM-DD.json
+ *               {format:"cto-review-update", format_version:1, generated_at, brief, glossary, sources}
  *   export    – full export cto-review-export-YYYY-MM-DD.json
  *               {format:"cto-review-export", format_version:1, generated_at, briefs, glossary, sources}
  *   glossary  – glossary.json                      {entries:[{key, term, category, definition_he, ...}]}
@@ -13,7 +15,10 @@
  *   (legacy)  – an older local backup: an array of briefs, or {briefs:[...], sources?, exported_at}
  *
  * Public API (window.CTOImport, or module.exports under Node for tests):
- *   detect(obj) -> "brief" | "export" | "glossary" | "sources" | "legacy" | null
+ *   detect(obj) -> "brief" | "update" | "export" | "glossary" | "sources" | "legacy" | null
+ *   setBaseline({brief(date), glossary(), sources()})  data built into the site (replica build): conflicts and
+ *                                                  merges also compare against it, not only against IndexedDB
+ *   clearAll() -> Promise                          «איפוס הנתונים המקומיים»
  *   validate(kind, obj) -> [hebrew error strings]  (empty = valid)
  *   importFiles(files, ui) -> Promise<summary>     files: FileList / array of File|{name,text()}
  *   exportAll() -> Promise<{name, json}>           full export of the local store, re-importable
@@ -29,6 +34,8 @@
 
   var DB_NAME = "cto-review", DB_VERSION = 1;
   var EXPORT_FORMAT = "cto-review-export", EXPORT_VERSION = 1;
+  var UPDATE_FORMAT = "cto-review-update", UPDATE_VERSION = 1;
+  var baseline = { brief: function () { return null; }, glossary: function () { return null; }, sources: function () { return null; } };
   var TAGS = ["action", "watch", "background"];
   var CATS = ["company", "product", "concept", "standard", "org"];
   var MAX_BYTES = 25 * 1024 * 1024; // refuse absurdly large files before parsing
@@ -48,6 +55,7 @@
     if (Array.isArray(o)) return o.length && o.every(function (b) { return isObj(b) && b.format_version === "2-layered"; }) ? "legacy" : null;
     if (!isObj(o)) return null;
     if (o.format === EXPORT_FORMAT) return "export";
+    if (o.format === UPDATE_FORMAT) return "update";
     if (o.format_version === "2-layered" && "date" in o) return "brief";
     if (Array.isArray(o.briefs) && !("format" in o)) return "legacy";
     if (Array.isArray(o.entries) && !("sources" in o)) return "glossary";
@@ -135,13 +143,25 @@
     return e;
   }
 
+  function validateUpdate(x) {
+    if (x.format_version !== UPDATE_VERSION) return ["גרסת הפורמט " + x.format_version + " של קובץ העדכון היומי אינה נתמכת (נתמכת גרסה " + UPDATE_VERSION + ")."];
+    var e = [];
+    if (!ts(x.generated_at)) e.push("בקובץ העדכון היומי חסר מועד יצירה תקין (generated_at).");
+    if (!isObj(x.brief)) e.push("בקובץ העדכון היומי חסרה הסקירה (brief).");
+    else e = e.concat(validateBrief(x.brief, "הסקירה"));
+    if (x.glossary !== undefined && x.glossary !== null) e = e.concat(validateGlossary(x.glossary, "המילון"));
+    if (x.sources !== undefined && x.sources !== null) e = e.concat(validateSources(x.sources, "מאגר המקורות"));
+    return e;
+  }
+
   function validate(kind, o) {
+    if (kind === "update") return validateUpdate(o);
     if (kind === "brief") return validateBrief(o);
     if (kind === "export") return validateExport(o);
     if (kind === "glossary") return validateGlossary(o);
     if (kind === "sources") return validateSources(o);
     if (kind === "legacy") return validateExport(toExport(o));
-    return ["הקובץ אינו נראה כסקירה יומית, כקובץ ייצוא מלא, כמילון מושגים או כמאגר מקורות."];
+    return ["הקובץ אינו נראה כסקירה יומית, כעדכון יומי מלא, כקובץ ייצוא מלא, כמילון מושגים או כמאגר מקורות."];
   }
 
   function stripBrief(b) { var c = {}; Object.keys(b).forEach(function (k) { if (k !== "notes") c[k] = b[k]; }); return c; }
@@ -187,7 +207,10 @@
       deleteBrief: function (date) { return run("briefs", "readwrite", function (s) { s.delete(date); }); },
       allBriefs: function () { return run("briefs", "readonly", function (s) { return s.getAll(); }); },
       getMeta: function (key) { return run("meta", "readonly", function (s) { return s.get(key); }); },
-      putMeta: function (rec) { return run("meta", "readwrite", function (s) { s.put(rec); }); }
+      putMeta: function (rec) { return run("meta", "readwrite", function (s) { s.put(rec); }); },
+      clear: function () {
+        return run("briefs", "readwrite", function (s) { s.clear(); }).then(function () { return run("meta", "readwrite", function (s) { s.clear(); }); });
+      }
     };
   }
   function memoryStore() {
@@ -199,7 +222,8 @@
       deleteBrief: function (d) { delete B[d]; return Promise.resolve(); },
       allBriefs: function () { return Promise.resolve(Object.keys(B).map(function (k) { return clone(B[k]); })); },
       getMeta: function (k) { return Promise.resolve(clone(M[k])); },
-      putMeta: function (r) { M[r.key] = clone(r); return Promise.resolve(); }
+      putMeta: function (r) { M[r.key] = clone(r); return Promise.resolve(); },
+      clear: function () { B = {}; M = {}; return Promise.resolve(); }
     };
   }
   var store = null;
@@ -232,7 +256,7 @@
   }
 
   function newSummary() {
-    return { files: [], briefsAdded: [], briefsReplaced: [], briefsKept: [], glossary: null, sources: null, errors: [] };
+    return { files: [], briefsAdded: [], briefsReplaced: [], briefsKept: [], briefsSame: [], glossary: null, sources: null, errors: [] };
   }
 
   function putBriefs(list, stamp, origin, ui, sum, askOnConflict) {
@@ -240,7 +264,9 @@
     list.slice().sort(function (a, b) { return a.date < b.date ? -1 : 1; }).forEach(function (b) {
       chain = chain.then(function () { return S().getBrief(b.date); }).then(function (old) {
         var rec = { date: b.date, brief: stripBrief(b), generated_at: stamp, imported_at: nowISO(), origin: origin };
+        old = old || baseline.brief(b.date); // a day built into the site counts as existing
         if (!old) return S().putBrief(rec).then(function () { sum.briefsAdded.push(b.date); });
+        if (JSON.stringify(stripBrief(old.brief)) === JSON.stringify(rec.brief)) { sum.briefsSame.push(b.date); return; }
         if (askOnConflict) { // daily file: never overwrite silently
           return (ui.confirm ? ui.confirm("כבר יש סקירה ל-" + heDate(b.date) + ". להחליף אותה בקובץ החדש?") : Promise.resolve(false))
             .then(function (yes) {
@@ -257,6 +283,7 @@
 
   function putGlossary(g, stamp, mode, sum) {
     return S().getMeta("glossary").then(function (old) {
+      old = old || baseline.glossary();
       var res = mode === "replace" || !old ? { data: g, added: g.entries.length, replaced: 0, all: true }
         : mergeGlossary(old.data, g, mode === "merge" || ts(stamp) > ts(old.generated_at));
       if (mode === "replace" && old) res = { data: g, added: g.entries.length, replaced: old.data.entries.length, all: true };
@@ -268,6 +295,11 @@
 
   function putSources(r, stamp, ui, sum, ask) {
     return S().getMeta("sources").then(function (old) {
+      old = old || baseline.sources();
+      if (old && JSON.stringify(old.data.sources) === JSON.stringify(r.sources) &&
+          JSON.stringify(old.data.changelog || []) === JSON.stringify(r.changelog || [])) {
+        sum.sources = { kept: true, same: true, total: r.sources.length }; return;
+      }
       var go = !old ? Promise.resolve(true)
         : ask ? (ui.confirm ? ui.confirm("להחליף את מאגר המקורות השמור במאגר שבקובץ?") : Promise.resolve(false))
         : Promise.resolve(ts(stamp) > ts(old.generated_at));
@@ -308,6 +340,11 @@
           return putGlossary(o, nowISO(), mode, sum);
         });
       }
+      if (kind === "update") { // daily full update: the brief asks on a date conflict, glossary/sources follow generated_at
+        return putBriefs([o.brief], o.generated_at, "update", ui, sum, true)
+          .then(function () { return o.glossary ? putGlossary(o.glossary, o.generated_at, "auto", sum) : null; })
+          .then(function () { return o.sources ? putSources(o.sources, o.generated_at, ui, sum, false) : null; });
+      }
       if (kind === "sources") return putSources(o, ts(o.updated) ? new Date(ts(o.updated)).toISOString() : nowISO(), ui, sum, true);
       var x = kind === "legacy" ? toExport(o) : o; // export: everything at once, newer generated_at wins per date
       return putBriefs(x.briefs, x.generated_at, "export", ui, sum, false)
@@ -335,10 +372,11 @@
     function dates(a) { return a.map(heDate).join(", "); }
     if (s.briefsAdded.length) lines.push((s.briefsAdded.length === 1 ? "נוספה סקירה אחת: " : "נוספו " + s.briefsAdded.length + " סקירות: ") + dates(s.briefsAdded) + ".");
     if (s.briefsReplaced.length) lines.push((s.briefsReplaced.length === 1 ? "הוחלפה סקירה אחת בגרסה חדשה יותר: " : "הוחלפו " + s.briefsReplaced.length + " סקירות בגרסה חדשה יותר: ") + dates(s.briefsReplaced) + ".");
+    if (s.briefsSame.length) lines.push((s.briefsSame.length === 1 ? "סקירה אחת כבר קיימת בדיוק באותו נוסח" : s.briefsSame.length + " סקירות כבר קיימות בדיוק באותו נוסח") + (s.briefsSame.length === 1 ? ", ולא שונתה: " : ", ולא שונו: ") + dates(s.briefsSame) + ".");
     if (s.briefsKept.length) lines.push((s.briefsKept.length === 1 ? "נשמרה סקירה קיימת אחת" : "נשמרו " + s.briefsKept.length + " סקירות קיימות") + " (העותק השמור חדש יותר או זהה, או שההחלפה בוטלה): " + dates(s.briefsKept) + ".");
     if (s.glossary) lines.push("מילון המושגים " + (s.glossary.mode === "replace" ? "הוחלף" : s.glossary.mode === "new" ? "נטען" : "מוזג") + ": " + s.glossary.added + " מושגים חדשים, " +
       s.glossary.replaced + " עודכנו, " + s.glossary.total + " בסך הכול.");
-    if (s.sources) lines.push(s.sources.kept ? "מאגר המקורות השמור נשאר (" + s.sources.total + " מקורות)."
+    if (s.sources) lines.push(s.sources.same ? "מאגר המקורות זהה לשמור (" + s.sources.total + " מקורות)." : s.sources.kept ? "מאגר המקורות השמור נשאר (" + s.sources.total + " מקורות)."
       : "מאגר המקורות " + (s.sources.replaced ? "הוחלף" : "נטען") + ": " + s.sources.total + " מקורות.");
     if (s.errors.length) lines.push((s.errors.length === 1 ? "קובץ אחד נדחה: " : s.errors.length + " קבצים נדחו: ") + s.errors.join(" "));
     if (!lines.length) lines.push("לא נטען אף קובץ.");
@@ -346,7 +384,8 @@
   }
 
   // ---------------------------------------------------------------- export back (SPEC 9.6)
-  function exportAll() {
+  function exportAll(merged) {
+    if (merged && typeof merged === "function") return Promise.resolve(merged()).then(function (m) { return exportData(m.briefs, m.glossary, m.sources, m.origin); });
     return Promise.all([S().allBriefs(), S().getMeta("glossary"), S().getMeta("sources")]).then(function (r) {
       var briefs = r[0].map(function (x) { return x.brief; }).sort(function (a, b) { return a.date < b.date ? -1 : 1; });
       var latest = briefs.length ? briefs[briefs.length - 1].date : new Date().toISOString().slice(0, 10);
@@ -355,6 +394,15 @@
                    briefs: briefs, glossary: r[1] ? r[1].data : null, sources: r[2] ? r[2].data : null };
       return { name: "cto-review-export-" + latest + ".json", json: JSON.stringify(data, null, 1) };
     });
+  }
+
+  function exportData(briefs, glossary, sources, origin) { // same file shape as the live site's export.json
+    briefs = briefs.slice().sort(function (a, b) { return a.date < b.date ? -1 : 1; });
+    var latest = briefs.length ? briefs[briefs.length - 1].date : new Date().toISOString().slice(0, 10);
+    var data = { format: EXPORT_FORMAT, format_version: EXPORT_VERSION, generated_at: nowISO(), origin: origin || "replica", latest: latest,
+                 counts: { briefs: briefs.length, glossary: glossary ? glossary.entries.length : 0, sources: sources ? sources.sources.length : 0 },
+                 briefs: briefs, glossary: glossary || null, sources: sources || null };
+    return { name: "cto-review-export-" + latest + ".json", json: JSON.stringify(data, null, 1) };
   }
 
   // ---------------------------------------------------------------- UI wiring (textContent only, no inline handlers)
@@ -382,8 +430,8 @@
     sum.text.forEach(function (line) { var p = document.createElement("p"); p.textContent = line; el.appendChild(p); });
     el.classList.toggle("has-errors", sum.errors.length > 0);
   }
-  function wire(root) {
-    root = root || document;
+  function wire(root, opts) {
+    root = root || document; opts = opts || {};
     var input = root.querySelector("[data-import-input]"), drop = root.querySelector("[data-import-drop]");
     var out = root.querySelector("[data-import-summary]"), exp = root.querySelector("[data-import-export]");
     var ui = { confirm: function (m) { return dialogConfirm(document.querySelector("dialog[data-import-confirm]"), m); },
@@ -395,6 +443,7 @@
         showSummary(out, sum);
         document.dispatchEvent(new CustomEvent("cto-review:data-changed", { detail: sum })); // renderers refresh home, day, archive, search, actions, glossary, admin
         if (input) input.value = "";
+        if (opts.onDone) opts.onDone(sum);
       });
     }
     if (input) input.addEventListener("change", function () { run(input.files); });
@@ -403,8 +452,23 @@
       ["dragleave", "drop"].forEach(function (t) { drop.addEventListener(t, function () { drop.classList.remove("is-over"); }); });
       drop.addEventListener("drop", function (e) { e.preventDefault(); run(e.dataTransfer && e.dataTransfer.files); });
     }
+    var rst = root.querySelector("[data-import-reset]");
+    if (rst) rst.addEventListener("click", function () {
+      var dlg = document.querySelector("dialog[data-import-reset-dlg]");
+      var go = dlg && typeof dlg.showModal === "function" ? new Promise(function (res) {
+        dlg.returnValue = ""; dlg.addEventListener("close", function h() { dlg.removeEventListener("close", h); res(dlg.returnValue === "yes"); }); dlg.showModal();
+      }) : Promise.resolve(false);
+      go.then(function (yes) {
+        if (!yes) return;
+        clearAll().then(function () {
+          if (out) { out.textContent = ""; var p = document.createElement("p"); p.textContent = "הנתונים המקומיים נמחקו. האתר מציג שוב רק את הסקירות שנבנו איתו."; out.appendChild(p); }
+          document.dispatchEvent(new CustomEvent("cto-review:data-changed", { detail: null }));
+          if (opts.onDone) opts.onDone(null);
+        });
+      });
+    });
     if (exp) exp.addEventListener("click", function () {
-      exportAll().then(function (r) {
+      exportAll(opts.exportData).then(function (r) {
         var url = URL.createObjectURL(new Blob([r.json], { type: "application/json" }));
         var a = document.createElement("a"); a.href = url; a.download = r.name; document.body.appendChild(a); a.click(); a.remove();
         setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
@@ -412,7 +476,9 @@
     });
   }
 
-  var api = { detect: detect, validate: validate, importFiles: importFiles, exportAll: exportAll, summaryText: summaryText,
+  function clearAll() { return S().clear(); }
+
+  var api = { detect: detect, setBaseline: function (b) { baseline = Object.assign(baseline, b || {}); }, clearAll: clearAll, exportData: exportData, validate: validate, importFiles: importFiles, exportAll: exportAll, summaryText: summaryText,
               mergeGlossary: mergeGlossary, idbStore: idbStore, memoryStore: memoryStore, wire: wire,
               useStore: function (s) { store = s; },
               getBriefs: function () { return S().allBriefs(); }, getMeta: function (k) { return S().getMeta(k); },
@@ -421,7 +487,7 @@
   else {
     global.CTOImport = api;
     if (typeof document !== "undefined") {
-      var boot = function () { document.querySelectorAll("[data-import-root]").forEach(function (r) { wire(r); }); };
+      var boot = function () { document.querySelectorAll("[data-import-root]:not([data-import-manual])").forEach(function (r) { wire(r); }); };
       if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
     }
   }

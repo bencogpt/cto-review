@@ -79,6 +79,42 @@ The registry itself is only read, never modified.
   is derived from this file after the full FORBIDDEN check (the 2026-11-12 brief is left out of the sample because its news text names a
   third-party product that matches the full list).
 
+## Daily full update – `/admin/update.json` (2026-11-18)
+- Every live build also writes `dist/admin/update.json` (`build_update`): `{"format":"cto-review-update","format_version":1,
+  "generated_at","date":latest,"counts","brief":{latest brief, = /YYYY-MM-DD/brief.json},"glossary":{= /glossary.json},
+  "sources":{= /admin/sources.json}}` (~0.7 MB). Same cleaning and the same build-time asserts as the full export (`export_checked`).
+- Link «עדכון יומי מלא (JSON)» on the /admin/ meta row, `download="cto-review-update-<date>.json"`, between «הורדת JSON» and
+  «ייצוא מלא (JSON)». Admin only (under /admin/); covered by `deploy/export_test.py` (anonymous 401, reader 403 on 4 path variants,
+  admin 200 + format + latest date, no identity strings, no password values, link present for admin only).
+
+## Replica build – `python build.py --replica` (2026-11-18)
+Offline copy of the site that can be **updated every day from a file**, without a rebuild and without Internet.
+```
+python build.py --replica                # -> dist/   (or: --out DIR, --content DIR; env CTO_REPLICA=1 = same)
+cd dist && python -m http.server 8000    # open http://localhost:8000/  (file:///…/dist/index.html also works, see limits)
+```
+- No login (no /login, no worker, no login.js/stats.js, no «יציאה»). Nav: הסקירה האחרונה | דורש פעולה | ארכיון | מילון מושגים |
+  מאגר מקורות | **טעינת עדכון** (`/admin/import/`). Admin views are open (it is a private offline copy).
+- `/admin/import/`: file picker (multi-file), drag & drop, auto-detects: daily brief `tech-brief-YYYY-MM-DD.json`, daily full update
+  `cto-review-update-YYYY-MM-DD.json`, full export `cto-review-export-YYYY-MM-DD.json`, `glossary.json`, `sources.json`.
+  Unknown/invalid files are rejected with a reason. Summary after every load; «ייצוא הארכיון המקומי» (merged export);
+  «איפוס הנתונים המקומיים» (confirm dialog) returns the site to its built-in content.
+- Storage: IndexedDB `cto-review` in the browser (per browser + per origin; `file://` and `http://localhost:8000` are separate).
+- Merge (`replica/assets/import.js`): built-in content counts as existing. Identical content -> «באותו נוסח», nothing asked. A daily brief
+  or the update's brief for an existing date with different content -> confirm dialog (replace / keep). Full export: newer
+  `generated_at` wins. Glossary merges by key. Sources registry: replaced as a whole when newer (asked when loaded alone).
+- Rendering (`replica/assets/replica.js`): JS port of the build.py renderers and of `glossary_lib.Matcher` (same margin notes).
+  Home shows the newest brief (built-in or loaded); a loaded day opens at `/day/?d=YYYY-MM-DD` with the same HTML/CSS; archive (+search),
+  «דורש פעולה», glossary («מה חדש» = newest brief) and the sources mirror merge the data; prev/next links join static and loaded days.
+  Then app.js/admin.js are loaded so all behaviours bind. `replica/tests/parity.test.js` checks byte-equal `<main>` output vs
+  build.py for every built-in page (28/28) plus XSS cases; `replica/tests/import.test.js` covers the merge rules.
+- Data embedded as scripts (`assets/replica-data.js`, `assets/replica-sources.js`) and the font embedded in `style.css` as data: URL,
+  so `file://` works. No network calls besides the local files; no CDN.
+- Security: every value is HTML-escaped; links only http(s) (others dropped); files are parsed as JSON only, never executed.
+- Limits: data lives in one browser profile (clearing site data removes it; reload the latest export); on `file://` the «שיתוף» URL
+  points to the live-site path (not usable offline) and Chrome may treat every file:// page as one origin; loaded days have no
+  per-day `brief.json`/PDF files (the «הורדת JSON» on a loaded day downloads the stored brief); delete = full reset only.
+
 ## Anchors, sharing and floating controls (2026-11-17)
 - Anchors (build.py `item_anchors`, deterministic): item -> `item-` + JSON `id` (chars outside `[A-Za-z0-9_-]` -> `-`, max 80);
   no id -> `item-n<order>` (1-based position in `items`); duplicates -> `-2`, `-3`. Watchlist rows -> `watch-<N>`.

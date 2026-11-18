@@ -11,6 +11,8 @@ root = a.root
 worker = os.path.join(root, '_worker.js')
 if not os.path.isfile(worker) or 'export default' not in open(worker, encoding='utf-8').read():
     sys.exit('refusing: dist/_worker.js (login worker) is missing – run build.py first')
+if os.path.exists(os.path.join(root, 'assets', 'replica.js')):
+    sys.exit('refusing: this is a replica build (build.py --replica) – rebuild the live site with build.py first')
 manifest = {}; items = []
 for d, _, fs in os.walk(root):
     for f in fs:
