@@ -13,3 +13,8 @@
 .import-panel dialog{max-inline-size:min(520px,calc(100vw - 32px));border:1px solid var(--line);border-radius:8px;overscroll-behavior:contain}
 .import-panel dialog form{display:flex;gap:8px;justify-content:flex-start;margin-top:12px}
 @media print{.import-panel{display:none}}
+.server-help{margin:16px 0;padding:14px 16px;border:1px solid var(--line);border-radius:8px}
+.server-help h2{margin:0 0 8px;font-size:1rem;color:var(--navy-d)}
+.server-help p{margin:6px 0;font-size:0.9375rem}
+.server-help pre.cmd{margin:8px 0;padding:10px 12px;border-radius:6px;background:var(--mgmt);overflow-x:auto;font-size:0.8125rem;white-space:pre-wrap;word-break:break-all;text-align:left}
+@media print{.server-help{display:none}}

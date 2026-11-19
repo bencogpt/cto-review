@@ -109,11 +109,51 @@ cd dist && python -m http.server 8000    # open http://localhost:8000/  (file://
   Then app.js/admin.js are loaded so all behaviours bind. `replica/tests/parity.test.js` checks byte-equal `<main>` output vs
   build.py for every built-in page (28/28) plus XSS cases; `replica/tests/import.test.js` covers the merge rules.
 - Data embedded as scripts (`assets/replica-data.js`, `assets/replica-sources.js`) and the font embedded in `style.css` as data: URL,
-  so `file://` works. No network calls besides the local files; no CDN.
+  so `file://` works. No network calls besides the local files and the same-origin `data/updates/` folder (below); no CDN.
 - Security: every value is HTML-escaped; links only http(s) (others dropped); files are parsed as JSON only, never executed.
 - Limits: data lives in one browser profile (clearing site data removes it; reload the latest export); on `file://` the «שיתוף» URL
   points to the live-site path (not usable offline) and Chrome may treat every file:// page as one origin; loaded days have no
   per-day `brief.json`/PDF files (the «הורדת JSON» on a loaded day downloads the stored brief); delete = full reset only.
+
+### Shared server updates folder – `data/updates/` (2026-11-19)
+Imports on «טעינת עדכון» live only in the browser that loaded them. To publish an update to **every visitor** of a hosted
+replica (e.g. Windows IIS), put the file in the site's `data/updates/` folder with the helper script. No rebuild.
+- `data/updates/manifest.json` is the index (IIS does not list folders): `{"format":"cto-review-updates-manifest","format_version":1,
+  "files":["cto-review-update-2026-11-19.json", …],"entries":[{name,kind,date,generated_at,size,sha256}],"generated_at":…}`.
+  Written only by `tools/add-update.ps1` (Windows PowerShell 5.1, no modules) or `tools/add_update.py` (Python 3, stdlib); both
+  validate the file (update / export / brief / glossary / sources, http(s) links only), copy it atomically, and rebuild the manifest
+  from every valid `*.json` in the folder, sorted by date. `-Remove <name>` / `--remove <name>` unpublishes; `-Rebuild` / `--rebuild`
+  only rewrites the manifest. `-SiteRoot` defaults to the folder above the script (the build copies both scripts to `dist/tools/`).
+- Runtime (`CTOImport.loadServer`, replica pages only, http(s) only): on every page load fetches the manifest with `cache:"no-store"`
+  + `?t=<now>`, then each listed file (`no-store`, `?v=<signature>`), and runs the same `detect`/`validate` as a manual import
+  (a file with a non-http(s) link is rejected; values are escaped at render time). Parsed files are cached in IndexedDB (`meta`
+  store, key `srv:<name>`, signature = size|sha256|generated_at from the manifest, else the ETag): a repeat visit downloads only
+  the manifest; a republished file (new sha256) is downloaded again; cache entries of files no longer listed are deleted.
+  Server data is never written into the local import store, so removing a file from the manifest removes it for everyone.
+- Precedence per day: built-in < server / this-browser import. Between server and local the newer `generated_at` wins; on a tie the
+  server copy wins. Glossaries: built-in, then every file glossary from oldest to newest merged by key (newer wins a key; a local
+  «החלפת המילון» does not hide server terms). Sources registry: taken whole from the newest file (server wins a tie).
+- Silent failure: no manifest (404), a broken manifest, a timeout (8 s) or `file://` -> the site shows built-in + local data, no errors.
+  The import page's «מצב הנתונים המקומיים» shows the server folder state, its days and any rejected file.
+- The build never ships a `manifest.json` (only `data/updates/README.txt`), so copying a new build over the site keeps published
+  updates; `build.py --replica` also preserves an existing `dist/data/updates/`.
+- `dist/web.config` (replica build only; template `replica/iis/web.config`, must match `build.py` WEB_CONFIG): default document
+  `index.html`; `.json` MIME `application/json` (`<remove>` + `<mimeMap>`, so IIS 10, which already has it, does not fail);
+  `Cache-Control: no-cache, no-store, must-revalidate` + `Pragma`/`Expires` for `data/updates`. Other servers ignore it.
+- Tests: `node replica/tests/server.test.js` (manifest, validation, cache, pruning, silent failures; env `CTO_DIST` = a live dist);
+  browser QA `/workspace/cto-review-qa/tools/replica_shared_qa.js` (fresh profiles, cache, change, precedence, removal, 404, file://).
+
+#### IIS hosting
+1. Build: `python build.py --replica`, copy the contents of `dist\` to the site folder, e.g. `C:\inetpub\wwwroot\cto-review`
+   (keep the existing `data\updates` folder when you copy a newer build).
+2. IIS Manager -> Sites -> Add Website (or an application) pointing at that folder. Static Content must be installed
+   (Windows feature «Static Content»); `web.config` sets the default document, the `.json` MIME type and no-cache for updates.
+3. Daily: on the live site as admin, `/admin/` -> «עדכון יומי מלא (JSON)» downloads `cto-review-update-YYYY-MM-DD.json`. On the server:
+   ```
+   powershell -ExecutionPolicy Bypass -File C:\inetpub\wwwroot\cto-review\tools\add-update.ps1 -File C:\Downloads\cto-review-update-YYYY-MM-DD.json -SiteRoot C:\inetpub\wwwroot\cto-review
+   ```
+   Every user sees the new day on the next page load. First time (or to backfill missing days): publish a full export
+   `cto-review-export-YYYY-MM-DD.json` the same way.
 
 ## Anchors, sharing and floating controls (2026-11-17)
 - Anchors (build.py `item_anchors`, deterministic): item -> `item-` + JSON `id` (chars outside `[A-Za-z0-9_-]` -> `-`, max 80);

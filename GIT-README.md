@@ -9,6 +9,7 @@
 - `CTO-Review-Replica-SPEC.md` – מסמך האפיון לרפליקה.
 - `replica/` – זמן הריצה של הרפליקה הלא מקוונת: `assets/import.js` (זיהוי, אימות ומיזוג של קבצים ב-IndexedDB), `assets/replica.js` (רינדור בדפדפן, זהה ל-build.py), `assets/import.css`, `import-demo.html`, קובץ ייצוא לדוגמה, ובדיקות ב-`tests/`. הפירוט בפרק 9 באפיון.
 - `deploy/export_test.py` – בדיקה שרק מנהל יכול להוריד את `/admin/export.json` ואת `/admin/update.json`.
+- `tools/` – פרסום קובץ לתיקיית העדכונים המשותפת של רפליקה מתארחת: `add-update.ps1` (Windows PowerShell 5.1) ו-`add_update.py` (Python 3). `replica/iis/web.config` – תבנית ההגדרות ל-IIS. הפירוט בסעיף 9.10 באפיון.
 
 ## בניית הרפליקה הלא מקוונת
 
@@ -41,3 +42,21 @@ CTO_DIST=dist node replica/tests/import.test.js
 ```
 
 מריצים אותה אחרי בנייה רגילה.
+
+```
+CTO_DIST=dist node replica/tests/server.test.js
+```
+
+גם אותה מריצים אחרי בנייה רגילה. היא בודקת את תיקיית העדכונים המשותפת.
+
+## אירוח הרפליקה בשרת IIS
+
+1. בונים: `python build.py --replica`, ומעתיקים את תוכן `dist` לתיקיית האתר, למשל `C:\inetpub\wwwroot\cto-review`. בהעתקה של בנייה חדשה משאירים את התיקייה `data\updates` הקיימת.
+2. מגדירים ב-IIS אתר שמצביע על התיקייה. הקובץ `web.config` שבבנייה קובע את `index.html`, את סוג ה-MIME של `.json` ואת ביטול המטמון לתיקיית העדכונים.
+3. בכל יום: באתר המקוון, בתור מנהל, `/admin/` ← «עדכון יומי מלא (JSON)». בשרת מריצים:
+
+```
+powershell -ExecutionPolicy Bypass -File C:\inetpub\wwwroot\cto-review\tools\add-update.ps1 -File C:\Downloads\cto-review-update-YYYY-MM-DD.json -SiteRoot C:\inetpub\wwwroot\cto-review
+```
+
+כל המשתמשים רואים את העדכון בטעינת העמוד הבאה. קובץ שנטען בעמוד «טעינת עדכון» משפיע רק על הדפדפן שטען אותו.

@@ -1,2790 +1,3381 @@
 {
-  "version": 1,
-  "updated": "2026-11-18",
-  "language": "he",
-  "note": "Glossary for CTO Review margin notes. Matching: aliases are whole words; Latin aliases are case-sensitive except all-lowercase aliases of category concept.",
-  "entries": [
-    {
-      "key": "rce",
-      "term": "RCE",
-      "aliases": [
-        "RCE",
-        "remote code execution"
-      ],
-      "category": "concept",
-      "definition_he": "הרצת קוד מרחוק (Remote Code Execution): חולשה שמאפשרת לתוקף להריץ פקודות משלו על שרת או מחשב מרוחק. זו בדרך כלל הדרגה החמורה ביותר, כי היא שקולה להשתלטות על המערכת."
-    },
-    {
-      "key": "pre-auth",
-      "term": "pre-auth",
-      "aliases": [
-        "pre-auth",
-        "pre-authentication"
-      ],
-      "category": "concept",
-      "definition_he": "לפני הזדהות: חולשה שאפשר לנצל בלי שם משתמש וסיסמה. היא מסוכנת במיוחד במערכות שחשופות לאינטרנט, כי כל אחד יכול לנסות לנצל אותה."
-    },
-    {
-      "key": "post-auth",
-      "term": "post-auth",
-      "aliases": [
-        "post-auth",
-        "post-authentication"
-      ],
-      "category": "concept",
-      "definition_he": "אחרי הזדהות: חולשה שאפשר לנצל רק אחרי התחברות למערכת. הסיכון נמוך יותר, אבל עדיין משמעותי כשסיסמאות דלפו או כשיש הרבה משתמשים פנימיים."
-    },
-    {
-      "key": "cve",
-      "term": "CVE",
-      "aliases": [
-        "CVE",
-        "CVEs"
-      ],
-      "category": "standard",
-      "definition_he": "מזהה ציבורי אחיד לחולשת אבטחה (Common Vulnerabilities and Exposures), למשל CVE-2026-114938. בזכותו כל הספקים, הכלים והצוותים מדברים על אותה חולשה בדיוק.",
-      "url": "https://www.cve.org"
-    },
-    {
-      "key": "cvss",
-      "term": "CVSS",
-      "aliases": [
-        "CVSS"
-      ],
-      "category": "standard",
-      "definition_he": "ציון חומרה סטנדרטי לחולשות, בסולם 0 עד 10 (9 ומעלה נחשב קריטי). הציון מתאר חומרה טכנית, ולא את הסיכון בפועל בארגון מסוים.",
-      "url": "https://www.first.org/cvss/"
-    },
-    {
-      "key": "cisa-kev",
-      "term": "CISA KEV",
-      "aliases": [
-        "CISA KEV",
-        "KEV"
-      ],
-      "category": "standard",
-      "definition_he": "קטלוג של רשות הסייבר האמריקאית CISA, שמפרט חולשות שידוע שכבר מנוצלות בפועל. חולשה שנכנסת אליו היא סימן לתעדף את העדכון מיד.",
-      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
-    },
-    {
-      "key": "cisa",
-      "term": "CISA",
-      "aliases": [
-        "CISA"
-      ],
-      "category": "org",
-      "definition_he": "רשות הסייבר והתשתיות של ארה\"ב. היא מפרסמת התראות והנחיות, ומנהלת את הקטלוג של חולשות שמנוצלות בפועל.",
-      "url": "https://www.cisa.gov"
-    },
-    {
-      "key": "zero-day",
-      "term": "zero-day",
-      "aliases": [
-        "zero-day",
-        "zero-days",
-        "יום אפס"
-      ],
-      "category": "concept",
-      "definition_he": "חולשת יום אפס: חולשה שמנוצלת או מתפרסמת לפני שיש לה תיקון רשמי, כך שלמגינים עדיין אין עדכון להתקין."
-    },
-    {
-      "key": "sso",
-      "term": "SSO",
-      "aliases": [
-        "SSO",
-        "Single Sign-On"
-      ],
-      "category": "concept",
-      "definition_he": "כניסה אחת (Single Sign-On): מנגנון שמאפשר להתחבר פעם אחת ולקבל גישה למערכות רבות. שרת ה-SSO הוא שער הכניסה לארגון, ולכן פריצה אליו מסכנת את כל המערכות שמאחוריו."
-    },
-    {
-      "key": "oidc",
-      "term": "OIDC",
-      "aliases": [
-        "OIDC",
-        "OpenID Connect"
-      ],
-      "category": "standard",
-      "definition_he": "פרוטוקול פתוח (OpenID Connect) להזדהות מול שירות כניסה מרכזי. עליו בנויים רוב פתרונות ה-SSO המודרניים."
-    },
-    {
-      "key": "waf",
-      "term": "WAF",
-      "aliases": [
-        "WAF"
-      ],
-      "category": "concept",
-      "definition_he": "חומת אש לאפליקציות ווב (Web Application Firewall): מסננת בקשות זדוניות לפני שהן מגיעות לאתר או ל-API. משמשת לעיתים כהגנה זמנית עד שמתקינים תיקון."
-    },
-    {
-      "key": "supply-chain",
-      "term": "supply chain",
-      "aliases": [
-        "supply chain",
-        "supply-chain",
-        "שרשרת אספקה",
-        "שרשרת האספקה"
-      ],
-      "category": "concept",
-      "definition_he": "מתקפת שרשרת אספקה: פריצה דרך רכיב, חבילה או ספק שהארגון סומך עליו, במקום תקיפה ישירה. כך קוד זדוני מגיע לארגונים רבים בבת אחת."
-    },
-    {
-      "key": "phishing",
-      "term": "phishing",
-      "aliases": [
-        "phishing",
-        "פישינג"
-      ],
-      "category": "concept",
-      "definition_he": "דיוג: הודעה מתחזה (מייל, SMS או אתר) שנועדה לגרום לאדם למסור סיסמה, לאשר כניסה או להתקין קוד זדוני."
-    },
-    {
-      "key": "pentest",
-      "term": "pentest",
-      "aliases": [
-        "pentest",
-        "pentests",
-        "penetration test"
-      ],
-      "category": "concept",
-      "definition_he": "מבדק חדירה: תקיפה מבוקרת ומורשית שבודקת אילו חולשות תוקף אמיתי יכול לנצל במערכות הארגון."
-    },
-    {
-      "key": "red-team",
-      "term": "red team",
-      "aliases": [
-        "red team",
-        "red-team",
-        "red teaming"
-      ],
-      "category": "concept",
-      "definition_he": "צוות אדום: צוות שמדמה תוקף אמיתי כדי לבחון את ההגנות, הזיהוי והתגובה של הארגון."
-    },
-    {
-      "key": "webshell",
-      "term": "webshell",
-      "aliases": [
-        "webshell",
-        "webshells",
-        "web shell"
-      ],
-      "category": "concept",
-      "definition_he": "סקריפט שתוקף מציב על שרת ווב פרוץ, כדי לשלוט בו מרחוק דרך הדפדפן ולחזור אליו גם אחרי שהחולשה תוקנה."
-    },
-    {
-      "key": "c2",
-      "term": "C2",
-      "aliases": [
-        "C2"
-      ],
-      "category": "concept",
-      "definition_he": "שליטה ובקרה (Command and Control): התשתית שממנה התוקף שולח פקודות למחשבים שנפרצו ומקבל מהם מידע."
-    },
-    {
-      "key": "ioc",
-      "term": "IoC",
-      "aliases": [
-        "IoC",
-        "IoCs",
-        "IOC",
-        "IOCs"
-      ],
-      "category": "concept",
-      "definition_he": "סימן לפריצה (Indicator of Compromise): כתובת IP, דומיין, קובץ או חתימה שמעידים על תקיפה, ומשמשים לחיפוש במערכות הארגון."
-    },
-    {
-      "key": "wiper",
-      "term": "wiper",
-      "aliases": [
-        "wiper",
-        "wipers"
-      ],
-      "category": "concept",
-      "definition_he": "נוזקה שמטרתה למחוק או להשמיד נתונים, ולא לגנוב אותם או לסחוט כופר. משמשת בעיקר במתקפות הרס."
-    },
-    {
-      "key": "xdr",
-      "term": "XDR",
-      "aliases": [
-        "XDR"
-      ],
-      "category": "concept",
-      "definition_he": "מערכת זיהוי ותגובה רוחבית (Extended Detection and Response), שמאחדת התראות מתחנות קצה, רשת, ענן ומייל למסך אחד."
-    },
-    {
-      "key": "soc",
-      "term": "SOC",
-      "aliases": [
-        "SOC"
-      ],
-      "category": "concept",
-      "definition_he": "מרכז ניטור ותגובה לאירועי אבטחה (Security Operations Center), שעוקב אחרי התראות מסביב לשעון."
-    },
-    {
-      "key": "rmm",
-      "term": "RMM",
-      "aliases": [
-        "RMM"
-      ],
-      "category": "concept",
-      "definition_he": "כלי ניהול וניטור מרחוק (Remote Monitoring and Management), שספקי IT משתמשים בו כדי לנהל מחשבים ושרתים של לקוחות. פריצה אליו נותנת לתוקף גישה לכל הלקוחות."
-    },
-    {
-      "key": "msp",
-      "term": "MSP",
-      "aliases": [
-        "MSP",
-        "MSPs"
-      ],
-      "category": "concept",
-      "definition_he": "ספק שירותי IT מנוהלים (Managed Service Provider), שמפעיל ומתחזק את מערכות ה-IT של ארגונים אחרים. פריצה אחת אליו יכולה לפתוח דלת לכל הלקוחות שלו."
-    },
-    {
-      "key": "llmjacking",
-      "term": "LLMjacking",
-      "aliases": [
-        "LLMjacking",
-        "LLMJacking"
-      ],
-      "category": "concept",
-      "definition_he": "גניבת מפתחות גישה לשירותי AI בענן ושימוש בהם על חשבון הקורבן, לצריכת מודלים או למכירת הגישה הלאה."
-    },
-    {
-      "key": "deserialization",
-      "term": "deserialization",
-      "aliases": [
-        "deserialization"
-      ],
-      "category": "concept",
-      "definition_he": "פענוח נתונים מובנים חזרה לאובייקטים בתוכנה. כשהנתונים מגיעים ממקור לא אמין, פענוח לא בטוח עלול לאפשר הרצת קוד."
-    },
-    {
-      "key": "memory-corruption",
-      "term": "memory corruption",
-      "aliases": [
-        "memory corruption"
-      ],
-      "category": "concept",
-      "definition_he": "שחיתות זיכרון: שגיאה שבה תוכנה כותבת או קוראת מחוץ לאזור הזיכרון המותר. תוקפים מנצלים אותה כדי להפיל את התוכנה או להריץ בה קוד."
-    },
-    {
-      "key": "race-condition",
-      "term": "race condition",
-      "aliases": [
-        "race condition"
-      ],
-      "category": "concept",
-      "definition_he": "תנאי מרוץ: תקלה שבה שתי פעולות שרצות במקביל מתנגשות, והתוצאה תלויה בתזמון. תוקפים יכולים לנצל אותה כדי לגרום לקריסה או לעקוף בדיקות."
-    },
-    {
-      "key": "null-deref",
-      "term": "NULL pointer dereference",
-      "aliases": [
-        "NULL pointer dereference"
-      ],
-      "category": "concept",
-      "definition_he": "שגיאת תכנות שבה התוכנה ניגשת לכתובת זיכרון ריקה. בדרך כלל היא גורמת לקריסה, ולכן מנוצלת בעיקר להשבתת שירות."
-    },
-    {
-      "key": "type-confusion",
-      "term": "type confusion",
-      "aliases": [
-        "type confusion"
-      ],
-      "category": "concept",
-      "definition_he": "בלבול טיפוסים: שגיאה שבה התוכנה מתייחסת לנתון כאילו הוא מסוג אחר. היא עלולה להוביל לשחיתות זיכרון ולהרצת קוד."
-    },
-    {
-      "key": "xss",
-      "term": "XSS",
-      "aliases": [
-        "XSS"
-      ],
-      "category": "concept",
-      "definition_he": "הזרקת סקריפט לאתר (Cross-Site Scripting): קוד של תוקף רץ בדפדפן של המשתמש בהקשר של אתר אחר, וכך יכול לגנוב חשבונות או נתונים."
-    },
-    {
-      "key": "syn-cookies",
-      "term": "SYN cookies",
-      "aliases": [
-        "SYN cookies"
-      ],
-      "category": "concept",
-      "definition_he": "מנגנון בליבת מערכת ההפעלה שמגן על שרתים מהצפה של בקשות חיבור TCP, בלי לשמור מצב לכל בקשה."
-    },
-    {
-      "key": "secrets",
-      "term": "secrets",
-      "aliases": [
-        "secrets"
-      ],
-      "category": "concept",
-      "definition_he": "סודות: סיסמאות, מפתחות API, אסימונים ותעודות שמערכות משתמשות בהם כדי להתחבר זו לזו. דליפה שלהם נותנת לתוקף גישה ישירה."
-    },
-    {
-      "key": "credentials",
-      "term": "credentials",
-      "aliases": [
-        "credentials"
-      ],
-      "category": "concept",
-      "definition_he": "פרטי הזדהות: שמות משתמש, סיסמאות, מפתחות ואסימונים שמאפשרים גישה למערכת."
-    },
-    {
-      "key": "csp",
-      "term": "CSP",
-      "aliases": [
-        "CSP",
-        "Content Security Policy"
-      ],
-      "category": "standard",
-      "definition_he": "מדיניות אבטחת תוכן (Content Security Policy): הוראה שאתר שולח לדפדפן, ומגדירה מאילו מקורות מותר לטעון סקריפטים ותוכן. היא מקשה על הזרקת קוד זדוני."
-    },
-    {
-      "key": "esu",
-      "term": "Extended Security Updates",
-      "aliases": [
-        "Extended Security Updates",
-        "ESU"
-      ],
-      "category": "product",
-      "definition_he": "תוכנית בתשלום של Microsoft שממשיכה לספק עדכוני אבטחה למוצרים שיצאו מהתמיכה הרגילה, לתקופה מוגבלת."
-    },
-    {
-      "key": "sigma",
-      "term": "Sigma",
-      "aliases": [
-        "Sigma"
-      ],
-      "category": "standard",
-      "definition_he": "פורמט פתוח לכתיבת חוקי זיהוי תקיפות, שאפשר להמיר לשאילתות של מערכות ניטור שונות.",
-      "url": "https://sigmahq.io"
-    },
-    {
-      "key": "sarif",
-      "term": "SARIF",
-      "aliases": [
-        "SARIF"
-      ],
-      "category": "standard",
-      "definition_he": "פורמט JSON סטנדרטי לתוצאות של כלי ניתוח קוד ואבטחה. הוא מאפשר להציג ממצאים מכלים שונים באותו מקום, למשל ב-GitHub."
-    },
-    {
-      "key": "burp-suite",
-      "term": "Burp Suite",
-      "aliases": [
-        "Burp Suite",
-        "Burp"
-      ],
-      "category": "product",
-      "definition_he": "כלי מקצועי של PortSwigger לבדיקות אבטחה של אפליקציות ווב, שמיירט ומשנה את התעבורה בין הדפדפן לשרת.",
-      "url": "https://portswigger.net/burp"
-    },
-    {
-      "key": "hackerone",
-      "term": "HackerOne",
-      "aliases": [
-        "HackerOne"
-      ],
-      "category": "company",
-      "definition_he": "פלטפורמה לתוכניות באג באונטי, שבה חוקרים מדווחים לארגונים על חולשות תמורת פרס.",
-      "url": "https://www.hackerone.com"
-    },
-    {
-      "key": "xmrig",
-      "term": "XMRig",
-      "aliases": [
-        "XMRig"
-      ],
-      "category": "product",
-      "definition_he": "תוכנת קוד פתוח לכריית המטבע Monero. תוקפים מתקינים אותה על שרתים פרוצים כדי לכרות על חשבון הקורבן."
-    },
-    {
-      "key": "mandiant",
-      "term": "Mandiant",
-      "aliases": [
-        "Mandiant"
-      ],
-      "category": "company",
-      "definition_he": "חברת תגובה לאירועי סייבר ומודיעין איומים, שנמצאת בבעלות Google."
-    },
-    {
-      "key": "gtig",
-      "term": "Google Threat Intelligence Group",
-      "aliases": [
-        "Google Threat Intelligence Group",
-        "GTIG"
-      ],
-      "category": "org",
-      "definition_he": "קבוצת מודיעין האיומים של Google (GTIG), שמאחדת צוותי מודיעין של Google ו-Mandiant ומפרסמת מחקרים על תוקפים ושיטות תקיפה."
-    },
-    {
-      "key": "project-zero",
-      "term": "Project Zero",
-      "aliases": [
-        "Google Project Zero",
-        "Project Zero"
-      ],
-      "category": "org",
-      "definition_he": "צוות חוקרי החולשות של Google, שמחפש חולשות חמורות במוצרים של כל החברות ומפרסם אותן אחרי פרק זמן קבוע לתיקון."
-    },
-    {
-      "key": "sans-isc",
-      "term": "SANS Internet Storm Center",
-      "aliases": [
-        "SANS Internet Storm Center",
-        "SANS"
-      ],
-      "category": "org",
-      "definition_he": "מכון SANS הוא גוף הדרכה ומחקר באבטחת מידע. ה-Internet Storm Center שלו עוקב אחרי סריקות ותקיפות באינטרנט ומפרסם דיווחים יומיים.",
-      "url": "https://isc.sans.edu"
-    },
-    {
-      "key": "huntress",
-      "term": "Huntress",
-      "aliases": [
-        "Huntress"
-      ],
-      "category": "company",
-      "definition_he": "חברת אבטחה אמריקאית שמספקת זיהוי ותגובה מנוהלים, בעיקר לעסקים קטנים ובינוניים ולספקי IT מנוהלים."
-    },
-    {
-      "key": "horizon3",
-      "term": "Horizon3",
-      "aliases": [
-        "Horizon3.ai",
-        "Horizon3"
-      ],
-      "category": "company",
-      "definition_he": "חברת אבטחה שמפתחת פלטפורמה לבדיקות חדירה אוטונומיות (NodeZero) ומפרסמת מחקרי חולשות."
-    },
-    {
-      "key": "wiz",
-      "term": "Wiz",
-      "aliases": [
-        "Wiz"
-      ],
-      "category": "company",
-      "definition_he": "חברת אבטחת ענן שנוסדה בישראל, וסורקת סביבות ענן כדי לאתר בהן חולשות והגדרות מסוכנות. Google הודיעה ב-2025 על רכישתה."
-    },
-    {
-      "key": "arctic-wolf",
-      "term": "Arctic Wolf",
-      "aliases": [
-        "Arctic Wolf"
-      ],
-      "category": "company",
-      "definition_he": "חברת אבטחה אמריקאית שמספקת ניטור, זיהוי ותגובה מנוהלים (SOC כשירות)."
-    },
-    {
-      "key": "aikido",
-      "term": "Aikido Security",
-      "aliases": [
-        "Aikido Security",
-        "Aikido"
-      ],
-      "category": "company",
-      "definition_he": "חברת אבטחת קוד וענן בלגית, שסורקת קוד וחבילות קוד פתוח ומפרסמת התראות על חבילות זדוניות."
-    },
-    {
-      "key": "socket",
-      "term": "Socket",
-      "aliases": [
-        "Socket"
-      ],
-      "category": "company",
-      "definition_he": "חברה לאבטחת שרשרת האספקה של קוד פתוח, שמנתחת חבילות ב-npm, ב-PyPI ובמאגרים נוספים ומזהה חבילות זדוניות.",
-      "url": "https://socket.dev"
-    },
-    {
-      "key": "check-point",
-      "term": "Check Point",
-      "aliases": [
-        "Check Point",
-        "צ'ק פוינט"
-      ],
-      "category": "company",
-      "definition_he": "חברת אבטחת המידע הישראלית הגדולה, שמפתחת חומות אש, VPN והגנות לענן ולתחנות קצה.",
-      "url": "https://www.checkpoint.com"
-    },
-    {
-      "key": "gaia-os",
-      "term": "Gaia OS",
-      "aliases": [
-        "Gaia OS",
-        "Gaia"
-      ],
-      "category": "product",
-      "definition_he": "מערכת ההפעלה של שערי האבטחה וחומות האש של Check Point."
-    },
-    {
-      "key": "fortinet",
-      "term": "Fortinet",
-      "aliases": [
-        "Fortinet",
-        "פורטינט"
-      ],
-      "category": "company",
-      "definition_he": "חברת אבטחת רשת אמריקאית, שמפתחת את חומות האש FortiGate (מערכת FortiOS) ומוצרי אבטחה רבים נוספים."
-    },
-    {
-      "key": "ivanti",
-      "term": "Ivanti",
-      "aliases": [
-        "Ivanti",
-        "איוונטי"
-      ],
-      "category": "company",
-      "definition_he": "חברה אמריקאית לניהול IT ואבטחה. מוצרי ה-VPN וניהול המכשירים שלה נפוצים בארגונים, ונפגעו בעבר מחולשות רבות."
-    },
-    {
-      "key": "barracuda",
-      "term": "Barracuda",
-      "aliases": [
-        "Barracuda Networks",
-        "Barracuda"
-      ],
-      "category": "company",
-      "definition_he": "חברת אבטחה אמריקאית שמפתחת הגנות למייל, לרשת ולאפליקציות."
-    },
-    {
-      "key": "nextron",
-      "term": "Nextron Systems",
-      "aliases": [
-        "Nextron Systems",
-        "Nextron"
-      ],
-      "category": "company",
-      "definition_he": "חברת אבטחה גרמנית שמפתחת סורקים לזיהוי פריצות, ותורמת חוקי זיהוי פתוחים כמו Sigma."
-    },
-    {
-      "key": "report-uri",
-      "term": "Report URI",
-      "aliases": [
-        "Report URI"
-      ],
-      "category": "product",
-      "definition_he": "שירות שמרכז דיווחים מדפדפנים על הפרות CSP ועל בעיות אבטחה באתרים, וכך עוזר לגלות קוד זדוני שהוזרק לאתר."
-    },
-    {
-      "key": "optimizely",
-      "term": "Optimizely",
-      "aliases": [
-        "Optimizely"
-      ],
-      "category": "company",
-      "definition_he": "פלטפורמה לניסויי A/B ולהתאמה אישית של אתרים, שמוטמעת כסקריפט JavaScript באתרים של חברות רבות. לכן כל שינוי בסקריפט שלה מגיע ישר לאתרי הלקוחות."
-    },
-    {
-      "key": "connectwise",
-      "term": "ConnectWise",
-      "aliases": [
-        "ConnectWise"
-      ],
-      "category": "company",
-      "definition_he": "חברה אמריקאית שמפתחת תוכנות לספקי IT מנוהלים, ובהן ScreenConnect לשליטה מרחוק."
-    },
-    {
-      "key": "screenconnect",
-      "term": "ScreenConnect",
-      "aliases": [
-        "ScreenConnect"
-      ],
-      "category": "product",
-      "definition_he": "כלי שליטה מרחוק של ConnectWise, שספקי IT וצוותי תמיכה משתמשים בו כדי להתחבר למחשבי לקוחות."
-    },
-    {
-      "key": "n-able",
-      "term": "N-able",
-      "aliases": [
-        "N-able"
-      ],
-      "category": "company",
-      "definition_he": "חברה שמפתחת כלים לספקי IT מנוהלים, ובהם N-central."
-    },
-    {
-      "key": "n-central",
-      "term": "N-central",
-      "aliases": [
-        "N-central"
-      ],
-      "category": "product",
-      "definition_he": "פלטפורמת ניהול וניטור מרחוק (RMM) של N-able, שספקי IT מנוהלים מנהלים דרכה את המחשבים והשרתים של הלקוחות."
-    },
-    {
-      "key": "puppet",
-      "term": "Puppet Enterprise",
-      "aliases": [
-        "Puppet Enterprise",
-        "Puppet"
-      ],
-      "category": "product",
-      "definition_he": "מערכת לניהול תצורה ואוטומציה של שרתים: מגדירים בקוד איך שרת צריך להיות מוגדר, והיא דואגת שזה יקרה. השרת המרכזי שלה שולט בכל השרתים המנוהלים."
-    },
-    {
-      "key": "perforce",
-      "term": "Perforce",
-      "aliases": [
-        "Perforce"
-      ],
-      "category": "company",
-      "definition_he": "חברת תוכנה אמריקאית שמפתחת כלי פיתוח ו-DevOps, ובבעלותה Puppet."
-    },
-    {
-      "key": "xen-orchestra",
-      "term": "Xen Orchestra",
-      "aliases": [
-        "Xen Orchestra",
-        "זן אורקסטרה"
-      ],
-      "category": "product",
-      "definition_he": "ממשק ניהול ווב לסביבות וירטואליזציה מבוססות XCP-ng, שמפותח בידי Vates."
-    },
-    {
-      "key": "xcp-ng",
-      "term": "XCP-ng",
-      "aliases": [
-        "XCP-ng"
-      ],
-      "category": "product",
-      "definition_he": "פלטפורמת וירטואליזציה בקוד פתוח מבוססת Xen, שמשמשת חלופה ל-VMware ESXi."
-    },
-    {
-      "key": "vates",
-      "term": "Vates",
-      "aliases": [
-        "Vates"
-      ],
-      "category": "company",
-      "definition_he": "חברה צרפתית שמפתחת את XCP-ng ואת Xen Orchestra."
-    },
-    {
-      "key": "esxi",
-      "term": "VMware ESXi",
-      "aliases": [
-        "VMware ESXi",
-        "ESXi"
-      ],
-      "category": "product",
-      "definition_he": "שכבת הווירטואליזציה של VMware, שמריצה מכונות וירטואליות ישירות על השרת. פריצה אליה פוגעת בכל המכונות שרצות עליה."
-    },
-    {
-      "key": "vcenter",
-      "term": "vCenter",
-      "aliases": [
-        "vCenter"
-      ],
-      "category": "product",
-      "definition_he": "ממשק הניהול המרכזי של VMware לסביבות וירטואליזציה מבוססות ESXi."
-    },
-    {
-      "key": "okta",
-      "term": "Okta",
-      "aliases": [
-        "Okta"
-      ],
-      "category": "company",
-      "definition_he": "שירות ענן לניהול זהויות ולכניסה אחידה (SSO) לארגונים."
-    },
-    {
-      "key": "entra",
-      "term": "Microsoft Entra ID",
-      "aliases": [
-        "Microsoft Entra ID",
-        "Entra ID",
-        "Entra"
-      ],
-      "category": "product",
-      "definition_he": "שירות הזהויות של Microsoft (לשעבר Azure AD), שדרכו עובדים מתחברים ל-Microsoft 365 ולמערכות ארגוניות."
-    },
-    {
-      "key": "intune",
-      "term": "Intune",
-      "aliases": [
-        "Microsoft Intune",
-        "Intune"
-      ],
-      "category": "product",
-      "definition_he": "שירות של Microsoft לניהול ולאבטחה של מחשבים וטלפונים ארגוניים מהענן."
-    },
-    {
-      "key": "clfs",
-      "term": "CLFS",
-      "aliases": [
-        "CLFS"
-      ],
-      "category": "product",
-      "definition_he": "מנגנון הלוגים המשותף של Windows (Common Log File System), רכיב בליבת המערכת שנפגע בעבר מחולשות להעלאת הרשאות."
-    },
-    {
-      "key": "kms",
-      "term": "KMS",
-      "aliases": [
-        "KMS"
-      ],
-      "category": "product",
-      "definition_he": "ראשי תיבות של Key Management Service, שיכולים לציין שני דברים: שירות להפעלת רישיונות Windows ו-Office בתוך הארגון, או שירות לניהול מפתחות הצפנה בענן. ההקשר בידיעה קובע."
-    },
-    {
-      "key": "slmgr",
-      "term": "slmgr",
-      "aliases": [
-        "slmgr.vbs",
-        "slmgr"
-      ],
-      "category": "product",
-      "definition_he": "כלי שורת פקודה של Windows לניהול רישיון ההפעלה של המערכת (slmgr.vbs)."
-    },
-    {
-      "key": "windows-defender",
-      "term": "Windows Defender",
-      "aliases": [
-        "Windows Defender"
-      ],
-      "category": "product",
-      "definition_he": "האנטי-וירוס המובנה ב-Windows, שנקרא היום Microsoft Defender Antivirus."
-    },
-    {
-      "key": "full-disk-access",
-      "term": "Full Disk Access",
-      "aliases": [
-        "Full Disk Access"
-      ],
-      "category": "concept",
-      "definition_he": "הרשאה ב-macOS שמאפשרת לאפליקציה לקרוא כמעט את כל הקבצים במחשב, כולל מידע אישי ומוגן."
-    },
-    {
-      "key": "java4shell",
-      "term": "Java4Shell",
-      "aliases": [
-        "Java4Shell"
-      ],
-      "category": "concept",
-      "definition_he": "חולשה קריטית (CVE-2026-114938) במפענח ה-Base64 של OpenJDK, שחשפו חוקרי Calif ב-17 בנובמבר 2026. היא מאפשרת השתלטות מרחוק על שרתי Java רבים, בחלקם בלי הזדהות.",
-      "url": "https://calif.io/java4shell"
-    },
-    {
-      "key": "calif",
-      "term": "Calif",
-      "aliases": [
-        "Calif"
-      ],
-      "category": "company",
-      "definition_he": "חברת מחקר אבטחה שחשפה את חולשת Java4Shell ב-Java.",
-      "url": "https://calif.io"
-    },
-    {
-      "key": "noisytcp",
-      "term": "NoisyTCP",
-      "aliases": [
-        "NoisyTCP"
-      ],
-      "category": "concept",
-      "definition_he": "חולשה (CVE-2026-99288) בת 11 שנים בטיפול של קרנל Linux בחיבורי TCP, שמאפשרת להפיל שרתים מרחוק."
-    },
-    {
-      "key": "artex",
-      "term": "ARTEX",
-      "aliases": [
-        "ARTEX"
-      ],
-      "category": "product",
-      "definition_he": "כלי תקיפה אוטונומי מבוסס AI בקוד פתוח, שתוקפים משתמשים בו ובגרסאות מפוצלות שלו כדי לנצל שירותי ווב ולגנוב סודות."
-    },
-    {
-      "key": "pentagi",
-      "term": "PentAGI",
-      "aliases": [
-        "PentAGI"
-      ],
-      "category": "product",
-      "definition_he": "מערכת קוד פתוח לבדיקות חדירה אוטונומיות, שמפעילה agents של AI עם כלי אבטחה."
-    },
-    {
-      "key": "cyberstrikeai",
-      "term": "CyberStrikeAI",
-      "aliases": [
-        "CyberStrikeAI"
-      ],
-      "category": "product",
-      "definition_he": "כלי תקיפה בקוד פתוח מבוסס AI, שמשלב מודלי שפה עם כלי אבטחה רבים לבדיקות חדירה אוטומטיות."
-    },
-    {
-      "key": "acm-ccs",
-      "term": "ACM CCS",
-      "aliases": [
-        "ACM CCS"
-      ],
-      "category": "org",
-      "definition_he": "כנס מחקר אקדמי מוביל בעולם באבטחת מחשבים."
-    },
-    {
-      "key": "ci",
-      "term": "CI/CD",
-      "aliases": [
-        "CI/CD",
-        "CI"
-      ],
-      "category": "concept",
-      "definition_he": "אינטגרציה ופריסה רציפות: תהליך אוטומטי שבונה ובודק קוד בכל שינוי (CI), ולעיתים גם פורס אותו לייצור (CD)."
-    },
-    {
-      "key": "api",
-      "term": "API",
-      "aliases": [
-        "API",
-        "APIs"
-      ],
-      "category": "concept",
-      "definition_he": "ממשק תכנותי שדרכו תוכנה אחת מדברת עם אחרת. מפתח API הוא למעשה הסיסמה של תוכנה לשירות."
-    },
-    {
-      "key": "sdk",
-      "term": "SDK",
-      "aliases": [
-        "SDK",
-        "SDKs"
-      ],
-      "category": "concept",
-      "definition_he": "ערכת פיתוח: ספריות, כלים ותיעוד שמאפשרים למפתחים לבנות תוכנה שמשתמשת בשירות או בפלטפורמה מסוימים."
-    },
-    {
-      "key": "cli",
-      "term": "CLI",
-      "aliases": [
-        "CLI"
-      ],
-      "category": "concept",
-      "definition_he": "ממשק שורת פקודה: תוכנה שמפעילים בהקלדת פקודות בטרמינל, ולא דרך חלון גרפי."
-    },
-    {
-      "key": "ide",
-      "term": "IDE",
-      "aliases": [
-        "IDE",
-        "IDEs"
-      ],
-      "category": "concept",
-      "definition_he": "סביבת פיתוח משולבת: עורך הקוד שבו מפתחים כותבים, מריצים ובודקים קוד, כמו VS Code."
-    },
-    {
-      "key": "pr",
-      "term": "pull request",
-      "aliases": [
-        "pull request",
-        "pull requests",
-        "PR",
-        "PRs"
-      ],
-      "category": "concept",
-      "definition_he": "בקשת שינוי (Pull Request): הצעה למזג קוד חדש לפרויקט, שעוברת סקירה ובדיקות לפני שהיא מתקבלת."
-    },
-    {
-      "key": "apache-2",
-      "term": "Apache-2.0",
-      "aliases": [
-        "Apache-2.0",
-        "Apache 2.0"
-      ],
-      "category": "standard",
-      "definition_he": "רישיון קוד פתוח מתירני של קרן Apache, שמאפשר גם שימוש מסחרי וכולל הגנה מפני תביעות פטנטים."
-    },
-    {
-      "key": "saas",
-      "term": "SaaS",
-      "aliases": [
-        "SaaS"
-      ],
-      "category": "concept",
-      "definition_he": "תוכנה כשירות: אפליקציה שהספק מפעיל בענן והלקוח משתמש בה דרך הדפדפן, בלי להתקין או לתחזק אותה."
-    },
-    {
-      "key": "on-prem",
-      "term": "on-prem",
-      "aliases": [
-        "on-prem",
-        "on-premises",
-        "on-premise"
-      ],
-      "category": "concept",
-      "definition_he": "התקנה בתוך מרכז הנתונים או הרשת של הארגון, ולא בענן של הספק."
-    },
-    {
-      "key": "vpn",
-      "term": "VPN",
-      "aliases": [
-        "VPN",
-        "SSL-VPN"
-      ],
-      "category": "concept",
-      "definition_he": "רשת פרטית וירטואלית: חיבור מוצפן שמאפשר לעובדים מבחוץ להתחבר לרשת הארגון. שרתי VPN חשופים לאינטרנט, ולכן הם מטרה נפוצה לתוקפים."
-    },
-    {
-      "key": "iam",
-      "term": "IAM",
-      "aliases": [
-        "IAM"
-      ],
-      "category": "concept",
-      "definition_he": "ניהול זהויות והרשאות (Identity and Access Management): מי רשאי לגשת לאילו משאבים, במיוחד בענן."
-    },
-    {
-      "key": "cdn",
-      "term": "CDN",
-      "aliases": [
-        "CDN"
-      ],
-      "category": "concept",
-      "definition_he": "רשת הפצת תוכן: שרתים מפוזרים בעולם ששומרים עותקים של אתרים וקבצים קרוב למשתמשים, כדי להאיץ את האתר ולהגן עליו."
-    },
-    {
-      "key": "multi-tenant",
-      "term": "multi-tenant",
-      "aliases": [
-        "multi-tenant",
-        "multitenant"
-      ],
-      "category": "concept",
-      "definition_he": "ריבוי דיירים: ארכיטקטורה שבה כמה לקוחות חולקים את אותה מערכת ואותה תשתית, וכל אחד אמור לראות רק את הנתונים שלו."
-    },
-    {
-      "key": "data-residency",
-      "term": "data residency",
-      "aliases": [
-        "data residency"
-      ],
-      "category": "concept",
-      "definition_he": "דרישה שהנתונים יישמרו ויעובדו רק במדינה או באזור מסוים, בגלל רגולציה או מדיניות."
-    },
-    {
-      "key": "failover",
-      "term": "failover",
-      "aliases": [
-        "failover"
-      ],
-      "category": "concept",
-      "definition_he": "מעבר אוטומטי למערכת גיבוי כשהמערכת הראשית נופלת, כדי שהשירות ימשיך לעבוד."
-    },
-    {
-      "key": "observability",
-      "term": "observability",
-      "aliases": [
-        "observability",
-        "data observability"
-      ],
-      "category": "concept",
-      "definition_he": "נראוּת: היכולת להבין מה קורה בתוך מערכת מתוך הנתונים שהיא מפיקה, כמו לוגים, מדדים ועקבות (traces)."
-    },
-    {
-      "key": "opentelemetry",
-      "term": "OpenTelemetry",
-      "aliases": [
-        "OpenTelemetry"
-      ],
-      "category": "standard",
-      "definition_he": "תקן פתוח לאיסוף לוגים, מדדים ועקבות מאפליקציות, כך שאפשר לשלוח אותם לכל כלי ניטור.",
-      "url": "https://opentelemetry.io"
-    },
-    {
-      "key": "iac",
-      "term": "infrastructure-as-code",
-      "aliases": [
-        "infrastructure-as-code",
-        "infrastructure as code",
-        "IaC"
-      ],
-      "category": "concept",
-      "definition_he": "תשתית כקוד: הגדרת שרתים, רשתות והרשאות בענן בקבצי קוד, כך שאפשר לנהל אותם בגרסאות ולפרוס אוטומטית. קובצי ה-state שלה מכילים לעיתים סודות."
-    },
-    {
-      "key": "ga",
-      "term": "GA",
-      "aliases": [
-        "GA"
-      ],
-      "category": "concept",
-      "definition_he": "זמינות כללית (General Availability): המוצר יצא מגרסת ניסיון ונתמך רשמית לשימוש בייצור."
-    },
-    {
-      "key": "preview",
-      "term": "preview",
-      "aliases": [
-        "preview",
-        "public preview"
-      ],
-      "category": "concept",
-      "definition_he": "תצוגה מקדימה: גרסה מוקדמת של מוצר לניסיון, בלי התחייבות מלאה לתמיכה וליציבות. בדרך כלל לא מומלצת לייצור."
-    },
-    {
-      "key": "deprecated",
-      "term": "deprecated",
-      "aliases": [
-        "deprecated",
-        "deprecation"
-      ],
-      "category": "concept",
-      "definition_he": "הוצא משימוש: רכיב שעדיין עובד, אבל הספק הודיע שיוסר בעתיד, ולכן צריך לתכנן מעבר."
-    },
-    {
-      "key": "fde",
-      "term": "forward-deployed engineers",
-      "aliases": [
-        "forward-deployed engineers",
-        "forward-deployed engineer"
-      ],
-      "category": "concept",
-      "definition_he": "מהנדסים שספק הטכנולוגיה מציב אצל הלקוח, כדי להטמיע את המוצר ולהתאים אותו לצרכים שלו."
-    },
-    {
-      "key": "circuit-breaker",
-      "term": "circuit breakers",
-      "aliases": [
-        "circuit breakers",
-        "circuit breaker",
-        "kill switch"
-      ],
-      "category": "concept",
-      "definition_he": "מפסק אוטומטי: מנגנון שעוצר agent או מערכת אוטומטית כשהם חורגים מגבולות מוגדרים, לפני שהנזק מתרחב."
-    },
-    {
-      "key": "data-contracts",
-      "term": "data contracts",
-      "aliases": [
-        "data contracts",
-        "data contract"
-      ],
-      "category": "concept",
-      "definition_he": "חוזי נתונים: הסכם מוגדר בין מי שמייצר נתונים לבין מי שצורך אותם (מבנה, איכות ועדכניות), כדי ששינוי במקור לא ישבור מערכות בהמשך."
-    },
-    {
-      "key": "base64",
-      "term": "Base64",
-      "aliases": [
-        "Base64"
-      ],
-      "category": "standard",
-      "definition_he": "שיטה סטנדרטית לייצג נתונים בינאריים כטקסט. משמשת כמעט בכל מקום: במייל, באסימוני כניסה, ב-API ועוד."
-    },
-    {
-      "key": "dependabot",
-      "term": "Dependabot",
-      "aliases": [
-        "Dependabot"
-      ],
-      "category": "product",
-      "definition_he": "שירות של GitHub שמתריע על חבילות פגיעות בפרויקט ופותח אוטומטית בקשות לעדכן אותן."
-    },
-    {
-      "key": "github-actions",
-      "term": "GitHub Actions",
-      "aliases": [
-        "GitHub Actions"
-      ],
-      "category": "product",
-      "definition_he": "מערכת ה-CI/CD של GitHub, שמריצה אוטומטית בנייה, בדיקות ופריסה בכל שינוי בקוד. היא מחזיקה לרוב סודות רגישים, ולכן היא מטרה לתוקפים."
-    },
-    {
-      "key": "pypi",
-      "term": "PyPI",
-      "aliases": [
-        "PyPI"
-      ],
-      "category": "product",
-      "definition_he": "מאגר החבילות הרשמי של Python, שממנו מפתחים מתקינים ספריות קוד פתוח.",
-      "url": "https://pypi.org"
-    },
-    {
-      "key": "docker",
-      "term": "Docker",
-      "aliases": [
-        "Docker"
-      ],
-      "category": "product",
-      "definition_he": "פלטפורמה לאריזה ולהרצה של תוכנה בקונטיינרים, כך שהיא רצה אותו דבר בכל מקום."
-    },
-    {
-      "key": "docker-hub",
-      "term": "Docker Hub",
-      "aliases": [
-        "Docker Hub"
-      ],
-      "category": "product",
-      "definition_he": "המאגר הציבורי הגדול של images של קונטיינרים, שממנו מורידים ומפיצים תוכנה ארוזה."
-    },
-    {
-      "key": "kubernetes",
-      "term": "Kubernetes",
-      "aliases": [
-        "Kubernetes",
-        "K8s"
-      ],
-      "category": "product",
-      "definition_he": "מערכת קוד פתוח לניהול ולהרצה של קונטיינרים בקנה מידה גדול, שהפכה לסטנדרט של תשתיות ענן.",
-      "url": "https://kubernetes.io"
-    },
-    {
-      "key": "kube-proxy",
-      "term": "kube-proxy",
-      "aliases": [
-        "kube-proxy"
-      ],
-      "category": "product",
-      "definition_he": "רכיב של Kubernetes שמנתב את תעבורת הרשת אל השירותים שרצים באשכול."
-    },
-    {
-      "key": "ipvs",
-      "term": "IPVS",
-      "aliases": [
-        "IPVS",
-        "ipvs"
-      ],
-      "category": "product",
-      "definition_he": "מנגנון איזון עומסים בליבת Linux. אחד ממצבי העבודה של kube-proxy מבוסס עליו."
-    },
-    {
-      "key": "nftables",
-      "term": "nftables",
-      "aliases": [
-        "nftables"
-      ],
-      "category": "product",
-      "definition_he": "מנגנון סינון וניתוב התעבורה המודרני בליבת Linux, שמחליף את iptables."
-    },
-    {
-      "key": "iptables",
-      "term": "iptables",
-      "aliases": [
-        "iptables"
-      ],
-      "category": "product",
-      "definition_he": "מנגנון חומת האש הוותיק בליבת Linux, שמוחלף בהדרגה ב-nftables."
-    },
-    {
-      "key": "eks",
-      "term": "Amazon EKS",
-      "aliases": [
-        "Amazon EKS Auto Mode",
-        "Amazon EKS",
-        "EKS"
-      ],
-      "category": "product",
-      "definition_he": "שירות Kubernetes המנוהל של AWS."
-    },
-    {
-      "key": "ecs",
-      "term": "Amazon ECS",
-      "aliases": [
-        "Amazon ECS",
-        "ECS"
-      ],
-      "category": "product",
-      "definition_he": "שירות הקונטיינרים המנוהל של AWS (Elastic Container Service), חלופה פשוטה יותר ל-Kubernetes."
-    },
-    {
-      "key": "ec2",
-      "term": "Amazon EC2",
-      "aliases": [
-        "Amazon EC2",
-        "EC2"
-      ],
-      "category": "product",
-      "definition_he": "שירות השרתים הווירטואליים של AWS."
-    },
-    {
-      "key": "lambda",
-      "term": "AWS Lambda",
-      "aliases": [
-        "AWS Lambda",
-        "Lambda"
-      ],
-      "category": "product",
-      "definition_he": "שירות ה-serverless של AWS: מריץ קוד בתגובה לאירועים, בלי שהלקוח מנהל שרתים."
-    },
-    {
-      "key": "nitro",
-      "term": "Nitro",
-      "aliases": [
-        "AWS Nitro",
-        "Nitro"
-      ],
-      "category": "product",
-      "definition_he": "מערכת החומרה והווירטואליזציה של AWS, שמבודדת בין מכונות של לקוחות שונים ברמת החומרה."
-    },
-    {
-      "key": "nitro-sandboxes",
-      "term": "Nitro Sandboxes",
-      "aliases": [
-        "Nitro Sandboxes"
-      ],
-      "category": "product",
-      "definition_he": "שירות של AWS שמריץ pods, משימות ומכונות וירטואליות קלות בבידוד החומרה של Nitro, בלי תוספת מחיר, גם לקוד שכתב LLM."
-    },
-    {
-      "key": "bedrock",
-      "term": "Amazon Bedrock",
-      "aliases": [
-        "Amazon Bedrock",
-        "Bedrock"
-      ],
-      "category": "product",
-      "definition_he": "שירות של AWS שנותן גישה דרך API למודלי AI של כמה ספקים, בתוך חשבון הענן של הארגון."
-    },
-    {
-      "key": "aws-interconnect",
-      "term": "AWS Interconnect",
-      "aliases": [
-        "AWS Interconnect - multicloud",
-        "AWS Interconnect"
-      ],
-      "category": "product",
-      "definition_he": "שירות של AWS לחיבור רשת פרטי ומנוהל בין AWS לעננים אחרים, בלי לעבור באינטרנט הציבורי."
-    },
-    {
-      "key": "redshift",
-      "term": "Amazon Redshift",
-      "aliases": [
-        "Amazon Redshift",
-        "Redshift"
-      ],
-      "category": "product",
-      "definition_he": "מחסן הנתונים המנוהל של AWS לשאילתות אנליטיות על כמויות גדולות של נתונים."
-    },
-    {
-      "key": "s3-vectors",
-      "term": "S3 Vectors",
-      "aliases": [
-        "Amazon S3 Vectors",
-        "S3 Vectors"
-      ],
-      "category": "product",
-      "definition_he": "שירות של AWS לאחסון וקטורים (embeddings) בתוך S3 ולחיפוש לפי דמיון, למשל עבור RAG."
-    },
-    {
-      "key": "alloydb",
-      "term": "AlloyDB",
-      "aliases": [
-        "AlloyDB AI",
-        "AlloyDB"
-      ],
-      "category": "product",
-      "definition_he": "מסד נתונים מנוהל של Google Cloud, תואם PostgreSQL, עם יכולות AI ווקטורים מובנות."
-    },
-    {
-      "key": "postgresql",
-      "term": "PostgreSQL",
-      "aliases": [
-        "PostgreSQL",
-        "Postgres"
-      ],
-      "category": "product",
-      "definition_he": "מסד נתונים רלציוני בקוד פתוח, מהנפוצים בעולם, שמשמש בסיס לשירותים מנוהלים רבים בענן.",
-      "url": "https://www.postgresql.org"
-    },
-    {
-      "key": "pg-dump",
-      "term": "pg_dump",
-      "aliases": [
-        "pg_dump",
-        "pg_restore"
-      ],
-      "category": "product",
-      "definition_he": "כלי הגיבוי (pg_dump) והשחזור (pg_restore) הסטנדרטיים של PostgreSQL."
-    },
-    {
-      "key": "plperl",
-      "term": "plperl",
-      "aliases": [
-        "plperl",
-        "PL/Perl"
-      ],
-      "category": "product",
-      "definition_he": "הרחבה של PostgreSQL שמאפשרת לכתוב פונקציות בתוך המסד בשפת Perl."
-    },
-    {
-      "key": "horizondb",
-      "term": "Azure HorizonDB",
-      "aliases": [
-        "Azure HorizonDB",
-        "HorizonDB"
-      ],
-      "category": "product",
-      "definition_he": "שירות מסד נתונים מנוהל של Microsoft Azure, תואם PostgreSQL, לעומסים קריטיים ולאפליקציות AI."
-    },
-    {
-      "key": "oltp",
-      "term": "OLTP",
-      "aliases": [
-        "OLTP"
-      ],
-      "category": "concept",
-      "definition_he": "עיבוד טרנזקציות שוטף: עומס של הרבה קריאות וכתיבות קטנות ומהירות, כמו הזמנות או תשלומים במערכת תפעולית."
-    },
-    {
-      "key": "lakehouse",
-      "term": "lakehouse",
-      "aliases": [
-        "lakehouse"
-      ],
-      "category": "concept",
-      "definition_he": "ארכיטקטורת נתונים שמשלבת את האחסון הזול של אגם נתונים עם יכולות הניהול והשאילתות של מחסן נתונים."
-    },
-    {
-      "key": "iceberg",
-      "term": "Apache Iceberg",
-      "aliases": [
-        "Apache Iceberg",
-        "Iceberg"
-      ],
-      "category": "standard",
-      "definition_he": "פורמט טבלאות פתוח לאגמי נתונים, שמאפשר לכמה מנועים שונים לקרוא ולכתוב לאותן טבלאות, כולל חזרה לגרסאות קודמות.",
-      "url": "https://iceberg.apache.org"
-    },
-    {
-      "key": "time-travel",
-      "term": "time travel",
-      "aliases": [
-        "time travel"
-      ],
-      "category": "concept",
-      "definition_he": "יכולת לשאול טבלה כפי שהייתה בנקודת זמן קודמת, לצורכי ביקורת, שחזור או השוואה."
-    },
-    {
-      "key": "bm25",
-      "term": "BM25",
-      "aliases": [
-        "BM25"
-      ],
-      "category": "concept",
-      "definition_he": "שיטת דירוג קלאסית לחיפוש טקסט, שמדרגת מסמכים לפי הופעת מילות החיפוש בהם. היום משלבים אותה עם חיפוש וקטורי בחיפוש היברידי."
-    },
-    {
-      "key": "databricks",
-      "term": "Databricks",
-      "aliases": [
-        "Databricks",
-        "דאטאבריקס"
-      ],
-      "category": "company",
-      "definition_he": "חברת פלטפורמת נתונים ו-AI, שמאפשרת לארגונים לאחסן, לעבד ולנתח נתונים ולבנות עליהם מודלים."
-    },
-    {
-      "key": "unity-catalog",
-      "term": "Unity Catalog",
-      "aliases": [
-        "Unity Catalog"
-      ],
-      "category": "product",
-      "definition_he": "שכבת הקטלוג וההרשאות של Databricks, שמנהלת במקום אחד את הנתונים, המודלים וההרשאות עליהם."
-    },
-    {
-      "key": "fabric",
-      "term": "Microsoft Fabric",
-      "aliases": [
-        "Microsoft Fabric"
-      ],
-      "category": "product",
-      "definition_he": "פלטפורמת הנתונים והאנליטיקה המאוחדת של Microsoft, שמשלבת אגם נתונים, הנדסת נתונים ו-Power BI."
-    },
-    {
-      "key": "power-bi",
-      "term": "Power BI",
-      "aliases": [
-        "Power BI"
-      ],
-      "category": "product",
-      "definition_he": "כלי הדשבורדים והניתוח העסקי של Microsoft."
-    },
-    {
-      "key": "ssh",
-      "term": "SSH",
-      "aliases": [
-        "SSH"
-      ],
-      "category": "standard",
-      "definition_he": "פרוטוקול מוצפן לכניסה מרחוק לשרתים ולניהולם. מפתחות SSH הם למעשה הסיסמאות לשרתים."
-    },
-    {
-      "key": "nginx",
-      "term": "Nginx",
-      "aliases": [
-        "Nginx",
-        "NGINX",
-        "nginx"
-      ],
-      "category": "product",
-      "definition_he": "שרת ווב ושרת proxy בקוד פתוח, מהנפוצים באינטרנט."
-    },
-    {
-      "key": "apache-httpd",
-      "term": "Apache HTTP Server",
-      "aliases": [
-        "Apache HTTP Server",
-        "Apache httpd"
-      ],
-      "category": "product",
-      "definition_he": "שרת הווב בקוד פתוח של קרן Apache, מהוותיקים והנפוצים באינטרנט."
-    },
-    {
-      "key": "mod-http2",
-      "term": "mod_http2",
-      "aliases": [
-        "mod_http2"
-      ],
-      "category": "product",
-      "definition_he": "המודול של Apache HTTP Server שמטפל בפרוטוקול HTTP/2."
-    },
-    {
-      "key": "starlette",
-      "term": "Starlette",
-      "aliases": [
-        "Starlette"
-      ],
-      "category": "product",
-      "definition_he": "ספריית Python קלה לבניית שרתי ווב אסינכרוניים, שעליה מבוססת גם FastAPI."
-    },
-    {
-      "key": "rust",
-      "term": "Rust",
-      "aliases": [
-        "Rust"
-      ],
-      "category": "product",
-      "definition_he": "שפת תכנות מודרנית שמונעת מראש שגיאות זיכרון נפוצות, ולכן נבחרת יותר ויותר לרכיבי מערכת ואבטחה."
-    },
-    {
-      "key": "playwright",
-      "term": "Playwright",
-      "aliases": [
-        "Playwright"
-      ],
-      "category": "product",
-      "definition_he": "ספרייה בקוד פתוח של Microsoft לשליטה אוטומטית בדפדפנים, לבדיקות ולאוטומציה."
-    },
-    {
-      "key": "chromium",
-      "term": "Chromium",
-      "aliases": [
-        "Chromium"
-      ],
-      "category": "product",
-      "definition_he": "פרויקט הקוד הפתוח שעליו מבוססים Chrome, Edge ודפדפנים רבים נוספים."
-    },
-    {
-      "key": "ublock",
-      "term": "uBlock Origin",
-      "aliases": [
-        "uBlock Origin"
-      ],
-      "category": "product",
-      "definition_he": "תוסף דפדפן פופולרי בקוד פתוח לחסימת פרסומות ורכיבי מעקב."
-    },
-    {
-      "key": "ubo-lite",
-      "term": "uBO Lite",
-      "aliases": [
-        "uBO Lite"
-      ],
-      "category": "product",
-      "definition_he": "הגרסה המצומצמת של uBlock Origin, שבנויה לכללי התוספים החדשים של Chrome (Manifest V3)."
-    },
-    {
-      "key": "bitly",
-      "term": "Bitly",
-      "aliases": [
-        "Bitly"
-      ],
-      "category": "company",
-      "definition_he": "שירות לקיצור קישורים ולמעקב אחרי לחיצות עליהם."
-    },
-    {
-      "key": "vercel",
-      "term": "Vercel",
-      "aliases": [
-        "Vercel"
-      ],
-      "category": "company",
-      "definition_he": "פלטפורמת ענן לאירוח ולפריסה של אתרים ואפליקציות ווב, והחברה שמפתחת את Next.js."
-    },
-    {
-      "key": "nextjs",
-      "term": "Next.js",
-      "aliases": [
-        "Next.js"
-      ],
-      "category": "product",
-      "definition_he": "ספריית פיתוח פופולרית לבניית אתרים ואפליקציות ווב מבוססות React, של חברת Vercel.",
-      "url": "https://nextjs.org"
-    },
-    {
-      "key": "react",
-      "term": "React",
-      "aliases": [
-        "React"
-      ],
-      "category": "product",
-      "definition_he": "ספריית JavaScript של Meta לבניית ממשקי משתמש, מהנפוצות בעולם.",
-      "url": "https://react.dev"
-    },
-    {
-      "key": "rsc",
-      "term": "React Server Components",
-      "aliases": [
-        "React Server Components"
-      ],
-      "category": "product",
-      "definition_he": "רכיבי React שרצים בשרת ולא בדפדפן. Next.js ומסגרות נוספות משתמשים בהם."
-    },
-    {
-      "key": "stylex",
-      "term": "StyleX",
-      "aliases": [
-        "StyleX"
-      ],
-      "category": "product",
-      "definition_he": "ספריית קוד פתוח של Meta לכתיבת עיצוב (CSS) מתוך JavaScript."
-    },
-    {
-      "key": "atlassian",
-      "term": "Atlassian",
-      "aliases": [
-        "Atlassian"
-      ],
-      "category": "company",
-      "definition_he": "חברת התוכנה שמפתחת את Jira, Confluence ו-Bitbucket."
-    },
-    {
-      "key": "jira",
-      "term": "Jira",
-      "aliases": [
-        "Jira"
-      ],
-      "category": "product",
-      "definition_he": "מערכת לניהול משימות, באגים ופרויקטים של Atlassian, נפוצה מאוד בצוותי פיתוח."
-    },
-    {
-      "key": "confluence",
-      "term": "Confluence",
-      "aliases": [
-        "Confluence"
-      ],
-      "category": "product",
-      "definition_he": "מערכת הוויקי והתיעוד הארגוני של Atlassian."
-    },
-    {
-      "key": "jenkins",
-      "term": "Jenkins",
-      "aliases": [
-        "Jenkins"
-      ],
-      "category": "product",
-      "definition_he": "שרת אוטומציה בקוד פתוח לבנייה, לבדיקה ולפריסה של קוד (CI/CD). הוא מחזיק לרוב גישה לקוד ולסודות של הארגון.",
-      "url": "https://www.jenkins.io"
-    },
-    {
-      "key": "artifactory",
-      "term": "JFrog Artifactory",
-      "aliases": [
-        "JFrog Artifactory",
-        "Artifactory"
-      ],
-      "category": "product",
-      "definition_he": "מאגר מרכזי של JFrog לאחסון ולהפצה של חבילות תוכנה ו-images בתוך הארגון."
-    },
-    {
-      "key": "pingfederate",
-      "term": "PingFederate",
-      "aliases": [
-        "PingFederate"
-      ],
-      "category": "product",
-      "definition_he": "שרת ארגוני לכניסה אחידה (SSO) ולניהול זהויות של Ping Identity."
-    },
-    {
-      "key": "keycloak",
-      "term": "Keycloak",
-      "aliases": [
-        "Keycloak"
-      ],
-      "category": "product",
-      "definition_he": "שרת קוד פתוח לניהול זהויות ולכניסה אחידה (SSO), שמנהל משתמשים, סיסמאות והרשאות עבור אפליקציות רבות. הוא עומד בפתח של מערכות רבות, ולכן פריצה אליו מסכנת את כולן.",
-      "url": "https://www.keycloak.org"
-    },
-    {
-      "key": "kafka",
-      "term": "Kafka",
-      "aliases": [
-        "Apache Kafka",
-        "Kafka"
-      ],
-      "category": "product",
-      "definition_he": "פלטפורמת קוד פתוח להעברת זרמי הודעות ואירועים בין מערכות בזמן אמת.",
-      "url": "https://kafka.apache.org"
-    },
-    {
-      "key": "solr",
-      "term": "Solr",
-      "aliases": [
-        "Apache Solr",
-        "Solr"
-      ],
-      "category": "product",
-      "definition_he": "מנוע חיפוש בקוד פתוח של קרן Apache."
-    },
-    {
-      "key": "elasticsearch",
-      "term": "Elasticsearch",
-      "aliases": [
-        "Elasticsearch"
-      ],
-      "category": "product",
-      "definition_he": "מנוע חיפוש וניתוח של חברת Elastic, שמשמש לחיפוש באתרים ובמערכות ולניתוח לוגים."
-    },
-    {
-      "key": "gerrit",
-      "term": "Gerrit",
-      "aliases": [
-        "Gerrit"
-      ],
-      "category": "product",
-      "definition_he": "מערכת קוד פתוח לסקירת קוד לפני מיזוג, שפותחה ב-Google."
-    },
-    {
-      "key": "spinnaker",
-      "term": "Spinnaker",
-      "aliases": [
-        "Spinnaker"
-      ],
-      "category": "product",
-      "definition_he": "פלטפורמת קוד פתוח לפריסה רציפה של תוכנה לעננים, שפותחה ב-Netflix."
-    },
-    {
-      "key": "openjdk",
-      "term": "OpenJDK",
-      "aliases": [
-        "OpenJDK"
-      ],
-      "category": "product",
-      "definition_he": "המימוש הרשמי בקוד פתוח של Java, שעליו מבוססות רוב הפצות ה-Java, כולל של Oracle.",
-      "url": "https://openjdk.org"
-    },
-    {
-      "key": "jdk",
-      "term": "JDK",
-      "aliases": [
-        "JDK"
-      ],
-      "category": "product",
-      "definition_he": "ערכת הפיתוח של Java, שכוללת את סביבת ההרצה ואת כלי הפיתוח."
-    },
-    {
-      "key": "jre",
-      "term": "JRE",
-      "aliases": [
-        "JRE"
-      ],
-      "category": "product",
-      "definition_he": "סביבת ההרצה של Java, שנדרשת כדי להריץ תוכנות Java."
-    },
-    {
-      "key": "jvm",
-      "term": "JVM",
-      "aliases": [
-        "JVM"
-      ],
-      "category": "product",
-      "definition_he": "המכונה הווירטואלית שמריצה תוכנות Java ושפות נוספות."
-    },
-    {
-      "key": "hugging-face",
-      "term": "Hugging Face",
-      "aliases": [
-        "Hugging Face"
-      ],
-      "category": "company",
-      "definition_he": "הפלטפורמה המרכזית לשיתוף מודלי AI, מאגרי נתונים ודמואים בקוד פתוח, מעין GitHub של עולם ה-AI.",
-      "url": "https://huggingface.co"
-    },
-    {
-      "key": "kokoro",
-      "term": "Kokoro",
-      "aliases": [
-        "Kokoro"
-      ],
-      "category": "product",
-      "definition_he": "מודל קוד פתוח קטן להמרת טקסט לדיבור (TTS), שפורסם ב-Hugging Face בידי Hexgrad."
-    },
-    {
-      "key": "agent",
-      "term": "agents",
-      "aliases": [
-        "AI agents",
-        "AI agent",
-        "agents",
-        "agent"
-      ],
-      "category": "concept",
-      "definition_he": "סוכן AI: תוכנה שמבוססת על מודל שפה ומבצעת משימות בעצמה, בכמה צעדים: מתכננת, מפעילה כלים, קוראת תוצאות וממשיכה. בניגוד לצ'טבוט, היא פועלת במערכות ולא רק עונה."
-    },
-    {
-      "key": "agentic-ai",
-      "term": "agentic AI",
-      "aliases": [
-        "agentic AI",
-        "agentic"
-      ],
-      "category": "concept",
-      "definition_he": "גישה שבה מערכות AI פועלות בעצמן לקראת מטרה ולא רק עונות על שאלות: הן מתכננות, מפעילות כלים ומבצעות פעולות."
-    },
-    {
-      "key": "coding-agents",
-      "term": "coding agents",
-      "aliases": [
-        "coding agents",
-        "coding agent"
-      ],
-      "category": "concept",
-      "definition_he": "סוכני קוד: agents שכותבים, משנים ובודקים קוד בעצמם בתוך הפרויקט, למשל Claude Code, Codex ו-Copilot."
-    },
-    {
-      "key": "harness",
-      "term": "harness",
-      "aliases": [
-        "harness engineering",
-        "harness"
-      ],
-      "category": "concept",
-      "definition_he": "המעטפת שמסביב למודל ב-agent: ההוראות, הכלים, ההרשאות, הזיכרון ולולאת הבקרה. harness engineering הוא תכנון המעטפת הזו כך שה-agent יעבוד באמינות."
-    },
-    {
-      "key": "sandbox",
-      "term": "sandbox",
-      "aliases": [
-        "agent sandboxing",
-        "sandboxing",
-        "sandboxes",
-        "sandbox"
-      ],
-      "category": "concept",
-      "definition_he": "ארגז חול: סביבה מבודדת שבה מריצים קוד או agent, כך שגם אם משהו משתבש הוא לא יכול לפגוע בשאר המערכות."
-    },
-    {
-      "key": "evals",
-      "term": "evals",
-      "aliases": [
-        "eval-driven development",
-        "evals",
-        "eval"
-      ],
-      "category": "concept",
-      "definition_he": "הערכות: מבחנים אוטומטיים שבודקים איכות ובטיחות של מודל או agent על משימות מוגדרות, בדומה לבדיקות אוטומטיות לקוד רגיל."
-    },
-    {
-      "key": "inference",
-      "term": "inference",
-      "aliases": [
-        "inference"
-      ],
-      "category": "concept",
-      "definition_he": "הרצה של מודל AI מאומן כדי לקבל ממנו תשובה. זה רוב עלות השימוש במודלים, בניגוד לאימון."
-    },
-    {
-      "key": "fine-tune",
-      "term": "fine-tune",
-      "aliases": [
-        "fine-tuning",
-        "fine-tuned",
-        "fine-tune"
-      ],
-      "category": "concept",
-      "definition_he": "כוונון עדין: אימון נוסף של מודל קיים על נתונים ייעודיים, כדי להתאים אותו למשימה או לתחום מסוים."
-    },
-    {
-      "key": "checkpoint",
-      "term": "checkpoint",
-      "aliases": [
-        "checkpoints",
-        "checkpoint"
-      ],
-      "category": "concept",
-      "definition_he": "נקודת שמירה: עותק של משקלי המודל בשלב מסוים באימון, שאפשר לטעון, להפיץ או להמשיך ממנו."
-    },
-    {
-      "key": "abliteration",
-      "term": "abliteration",
-      "aliases": [
-        "abliteration",
-        "abliterated"
-      ],
-      "category": "concept",
-      "definition_he": "טכניקה להסרת מנגנוני הסירוב של מודל שפה פתוח בעריכה ישירה של המשקלים, כך שהמודל יענה גם על בקשות שהוא אמור לדחות."
-    },
-    {
-      "key": "alignment",
-      "term": "alignment",
-      "aliases": [
-        "alignment"
-      ],
-      "category": "concept",
-      "definition_he": "יישור: התחום שמוודא שמודלי AI פועלים לפי הכוונות והערכים של מי שמפעיל אותם, ולא מחפשים קיצורי דרך מזיקים."
-    },
-    {
-      "key": "guardrails",
-      "term": "guardrails",
-      "aliases": [
-        "guardrails"
-      ],
-      "category": "concept",
-      "definition_he": "מעקות בטיחות: כללים ומנגנונים שמגבילים מה מודל או agent רשאי לעשות או לומר."
-    },
-    {
-      "key": "reward-seeking",
-      "term": "reward-seeking",
-      "aliases": [
-        "reward-seeking",
-        "reward hacking"
-      ],
-      "category": "concept",
-      "definition_he": "נטייה של מודל שאומן בחיזוקים לחפש דרך להשיג ציון גבוה במקום לבצע את המשימה באמת, למשל לרמות במבחן."
-    },
-    {
-      "key": "context-window",
-      "term": "context window",
-      "aliases": [
-        "context window",
-        "חלון ההקשר",
-        "חלון הקשר"
-      ],
-      "category": "concept",
-      "definition_he": "חלון הקשר: כמות הטקסט (בטוקנים) שמודל יכול לקרוא ולהתחשב בה בבת אחת, כולל ההוראות, המסמכים וההיסטוריה."
-    },
-    {
-      "key": "context-rot",
-      "term": "context rot",
-      "aliases": [
-        "context rot"
-      ],
-      "category": "concept",
-      "definition_he": "התדרדרות באיכות התשובות של מודל כשההקשר שלו ארוך, ישן או מלא במידע לא רלוונטי."
-    },
-    {
-      "key": "tokens",
-      "term": "tokens",
-      "aliases": [
-        "tokens",
-        "token",
-        "טוקנים",
-        "טוקן"
-      ],
-      "category": "concept",
-      "definition_he": "טוקן: יחידת הטקסט הבסיסית שמודל שפה קורא וכותב, בערך חלק ממילה. לפיה נמדדים גם המחיר וגם גודל חלון ההקשר."
-    },
-    {
-      "key": "llm",
-      "term": "LLM",
-      "aliases": [
-        "LLMs",
-        "LLM"
-      ],
-      "category": "concept",
-      "definition_he": "מודל שפה גדול: מודל AI שאומן על כמויות עצומות של טקסט, ומסוגל לכתוב, לסכם, לתכנת ולענות על שאלות."
-    },
-    {
-      "key": "frontier-model",
-      "term": "frontier model",
-      "aliases": [
-        "frontier models",
-        "frontier model",
-        "frontier"
-      ],
-      "category": "concept",
-      "definition_he": "מודל חזית: המודלים החזקים והמתקדמים ביותר של המעבדות המובילות בכל רגע נתון."
-    },
-    {
-      "key": "moe",
-      "term": "MoE",
-      "aliases": [
-        "MoE",
-        "Mixture of Experts"
-      ],
-      "category": "concept",
-      "definition_he": "ארכיטקטורת מודל (Mixture of Experts) שבה רק חלק מהמודל, כמה «מומחים», פועל בכל צעד. כך מקבלים מודל גדול בעלות חישוב נמוכה יותר."
-    },
-    {
-      "key": "reasoning",
-      "term": "reasoning",
-      "aliases": [
-        "reasoning"
-      ],
-      "category": "concept",
-      "definition_he": "היסק: מודלים שחושבים בשלבים לפני שהם עונים, ומשקיעים יותר חישוב כדי לפתור בעיות מורכבות."
-    },
-    {
-      "key": "tool-calling",
-      "term": "tool calling",
-      "aliases": [
-        "tool calling",
-        "tool use"
-      ],
-      "category": "concept",
-      "definition_he": "קריאה לכלים: היכולת של מודל לבקש להפעיל פונקציה או כלי חיצוני (חיפוש, מסד נתונים, API) ולהשתמש בתוצאה בתשובה."
-    },
-    {
-      "key": "system-card",
-      "term": "system card",
-      "aliases": [
-        "system card"
-      ],
-      "category": "concept",
-      "definition_he": "מסמך שמעבדת AI מפרסמת עם השקת מודל, ומתאר את היכולות, מבחני הבטיחות והסיכונים שלו."
-    },
-    {
-      "key": "long-horizon",
-      "term": "long-horizon",
-      "aliases": [
-        "long-horizon"
-      ],
-      "category": "concept",
-      "definition_he": "משימות ארוכות טווח: עבודה של agent לאורך שעות ובהרבה צעדים, בלי התערבות של אדם."
-    },
-    {
-      "key": "mcp",
-      "term": "MCP",
-      "aliases": [
-        "MCP",
-        "Model Context Protocol"
-      ],
-      "category": "standard",
-      "definition_he": "פרוטוקול פתוח (Model Context Protocol) שמחבר מודלי AI ו-agents לכלים, למערכות ולמקורות נתונים בצורה אחידה. שרת MCP חושף למודל פעולות שהוא יכול לבצע.",
-      "url": "https://modelcontextprotocol.io"
-    },
-    {
-      "key": "rag",
-      "term": "RAG",
-      "aliases": [
-        "RAG"
-      ],
-      "category": "concept",
-      "definition_he": "שליפה ושילוב (Retrieval-Augmented Generation): המודל מחפש קודם מידע רלוונטי במסמכי הארגון ורק אז עונה, כדי לבסס את התשובה על נתונים עדכניים."
-    },
-    {
-      "key": "formal-verification",
-      "term": "formal verification",
-      "aliases": [
-        "formal verification",
-        "אימות פורמלי"
-      ],
-      "category": "concept",
-      "definition_he": "אימות פורמלי: הוכחה מתמטית שתוכנה עומדת בדרישות מסוימות בכל מצב, במקום רק לבדוק אותה על מקרים לדוגמה."
-    },
-    {
-      "key": "lean",
-      "term": "Lean",
-      "aliases": [
-        "Lean"
-      ],
-      "category": "product",
-      "definition_he": "שפת תכנות וכלי להוכחות מתמטיות פורמליות, שמחשב בודק את נכונותן.",
-      "url": "https://lean-lang.org"
-    },
-    {
-      "key": "tee",
-      "term": "TEE",
-      "aliases": [
-        "TEE",
-        "TEEs",
-        "confidential computing"
-      ],
-      "category": "concept",
-      "definition_he": "סביבת הרצה מבודדת ומוצפנת בתוך המעבד (Trusted Execution Environment), שבה נתונים מעובדים בלי שאפילו מפעיל השרת יכול לראות אותם."
-    },
-    {
-      "key": "gpu",
-      "term": "GPU",
-      "aliases": [
-        "GPUs",
-        "GPU"
-      ],
-      "category": "concept",
-      "definition_he": "מעבד גרפי: שבב שמבצע הרבה חישובים במקביל, ולכן משמש היום בעיקר לאימון ולהרצה של מודלי AI."
-    },
-    {
-      "key": "tpu",
-      "term": "TPU",
-      "aliases": [
-        "TPUs",
-        "TPU"
-      ],
-      "category": "product",
-      "definition_he": "שבב AI ייעודי שמפתחת Google לאימון ולהרצה של מודלים, וזמין בענן שלה."
-    },
-    {
-      "key": "hbm",
-      "term": "HBM",
-      "aliases": [
-        "HBM"
-      ],
-      "category": "concept",
-      "definition_he": "זיכרון מהיר במיוחד (High Bandwidth Memory) שמוצמד למעבדי AI. הוא אחד מצווארי הבקבוק העיקריים בייצור שבבי AI."
-    },
-    {
-      "key": "h100",
-      "term": "H100",
-      "aliases": [
-        "H100",
-        "H200"
-      ],
-      "category": "product",
-      "definition_he": "מעבדי ה-GPU של Nvidia למרכזי נתונים מדור Hopper (H100 ו-H200), שמשמשים לאימון ולהרצה של מודלי AI."
-    },
-    {
-      "key": "vera-rubin",
-      "term": "Vera Rubin",
-      "aliases": [
-        "Vera Rubin NVL72",
-        "Vera Rubin"
-      ],
-      "category": "product",
-      "definition_he": "דור מערכות ה-AI של Nvidia למרכזי נתונים שבא אחרי Blackwell. NVL72 היא תצורת ארון עם 72 מעבדים."
-    },
-    {
-      "key": "tpp",
-      "term": "TPP",
-      "aliases": [
-        "TPP"
-      ],
-      "category": "concept",
-      "definition_he": "מדד עוצמת חישוב (Total Processing Performance) שבו משתמשים כללי הייצוא האמריקאיים כדי לסווג שבבי AI."
-    },
-    {
-      "key": "anthropic",
-      "term": "Anthropic",
-      "aliases": [
-        "Anthropic",
-        "אנת'רופיק"
-      ],
-      "category": "company",
-      "definition_he": "חברת מחקר ופיתוח AI אמריקאית, שמפתחת את מודלי Claude.",
-      "url": "https://www.anthropic.com"
-    },
-    {
-      "key": "claude",
-      "term": "Claude",
-      "aliases": [
-        "Claude"
-      ],
-      "category": "product",
-      "definition_he": "משפחת מודלי ה-AI והעוזר של Anthropic."
-    },
-    {
-      "key": "claude-code",
-      "term": "Claude Code",
-      "aliases": [
-        "Claude Code"
-      ],
-      "category": "product",
-      "definition_he": "כלי ה-agent לכתיבת קוד של Anthropic. הוא רץ בטרמינל ובעורכי קוד, קורא את הפרויקט ומבצע בו שינויים ופקודות."
-    },
-    {
-      "key": "claude-managed-agents",
-      "term": "Claude Managed Agents",
-      "aliases": [
-        "Claude Managed Agents",
-        "Managed Agents"
-      ],
-      "category": "product",
-      "definition_he": "שירות של Anthropic להרצת agents מנוהלים, שאפשר להריץ גם בתוך הרשת של הארגון."
-    },
-    {
-      "key": "gemini",
-      "term": "Gemini",
-      "aliases": [
-        "Gemini"
-      ],
-      "category": "product",
-      "definition_he": "משפחת מודלי ה-AI והעוזר של Google."
-    },
-    {
-      "key": "gemini-cli",
-      "term": "Gemini CLI",
-      "aliases": [
-        "Gemini CLI"
-      ],
-      "category": "product",
-      "definition_he": "כלי agent של Google לשורת הפקודה, שמשתמש במודלי Gemini לכתיבת קוד ולמשימות בטרמינל."
-    },
-    {
-      "key": "antigravity",
-      "term": "Google Antigravity",
-      "aliases": [
-        "Google Antigravity",
-        "Antigravity"
-      ],
-      "category": "product",
-      "definition_he": "סביבת פיתוח מבוססת agents של Google, שבה agents מתכננים, כותבים ובודקים קוד."
-    },
-    {
-      "key": "deepmind",
-      "term": "DeepMind",
-      "aliases": [
-        "Google DeepMind",
-        "DeepMind"
-      ],
-      "category": "org",
-      "definition_he": "מעבדת המחקר ל-AI של Google, שמפתחת את Gemini ומערכות מחקר כמו AlphaFold ו-AlphaProof."
-    },
-    {
-      "key": "alphaproof-code",
-      "term": "AlphaProof Code",
-      "aliases": [
-        "AlphaProof Code"
-      ],
-      "category": "product",
-      "definition_he": "מערכת של DeepMind שמוכיחה באופן פורמלי, ב-Lean, תכונות של קוד, למשל תכונות אבטחה."
-    },
-    {
-      "key": "codex",
-      "term": "Codex",
-      "aliases": [
-        "Codex"
-      ],
-      "category": "product",
-      "definition_he": "ה-agent לכתיבת קוד של OpenAI, שזמין ב-CLI, בעורכי קוד ובענן."
-    },
-    {
-      "key": "codex-security",
-      "term": "Codex Security",
-      "aliases": [
-        "Codex Security"
-      ],
-      "category": "product",
-      "definition_he": "כלי של OpenAI לאיתור חולשות בקוד ולתיקונן, עם CLI ו-SDK."
-    },
-    {
-      "key": "github-copilot",
-      "term": "GitHub Copilot",
-      "aliases": [
-        "GitHub Copilot"
-      ],
-      "category": "product",
-      "definition_he": "עוזר כתיבת הקוד מבוסס ה-AI של GitHub, שמשתלב בעורכי קוד ומציע ומבצע שינויים בקוד."
-    },
-    {
-      "key": "copilot-cli",
-      "term": "Copilot CLI",
-      "aliases": [
-        "GitHub Copilot CLI",
-        "Copilot CLI"
-      ],
-      "category": "product",
-      "definition_he": "גרסת שורת הפקודה של GitHub Copilot, שמריצה agent לכתיבת קוד בטרמינל."
-    },
-    {
-      "key": "cursor",
-      "term": "Cursor",
-      "aliases": [
-        "Cursor CLI",
-        "Cursor"
-      ],
-      "category": "product",
-      "definition_he": "עורך קוד מבוסס AI (נגזר מ-VS Code) של חברת Anysphere, עם agents שכותבים ומשנים קוד."
-    },
-    {
-      "key": "opencode",
-      "term": "OpenCode",
-      "aliases": [
-        "OpenCode"
-      ],
-      "category": "product",
-      "definition_he": "כלי agent בקוד פתוח לכתיבת קוד בטרמינל, שעובד מול מודלים של ספקים שונים."
-    },
-    {
-      "key": "opencode-browse",
-      "term": "OpenCode Browse",
-      "aliases": [
-        "OpenCode Browse"
-      ],
-      "category": "product",
-      "definition_he": "שרת MCP של צוות OpenCode, כתוב ב-Rust, שמאפשר ל-agents לעבוד בתוך הדפדפן האמיתי של המשתמש."
-    },
-    {
-      "key": "open-code-review",
-      "term": "Open Code Review",
-      "aliases": [
-        "Open Code Review"
-      ],
-      "category": "product",
-      "definition_he": "כלי סקירת הקוד מבוסס ה-AI של Alibaba, שנפתח כקוד פתוח."
-    },
-    {
-      "key": "loopforge",
-      "term": "LoopForge",
-      "aliases": [
-        "LoopForge"
-      ],
-      "category": "product",
-      "definition_he": "סביבת קוד פתוח של Tencent לניהול coding agents, עם שערי אישור אנושיים לפני כל שלב."
-    },
-    {
-      "key": "plannotator",
-      "term": "Plannotator",
-      "aliases": [
-        "Plannotator"
-      ],
-      "category": "product",
-      "definition_he": "כלי קוד פתוח לסקירה מקומית של תוכניות ושינויי קוד ש-agents מציעים, לפני שמאשרים אותם."
-    },
-    {
-      "key": "univer",
-      "term": "Univer",
-      "aliases": [
-        "Univer Office SDK",
-        "Univer"
-      ],
-      "category": "product",
-      "definition_he": "ערכת קוד פתוח לבניית גיליונות, מסמכים ומצגות בתוך אפליקציות ווב, שמוצגת כמשרד פתוח שגם agents יכולים לעבוד בו."
-    },
-    {
-      "key": "astryx",
-      "term": "Astryx",
-      "aliases": [
-        "Astryx"
-      ],
-      "category": "product",
-      "definition_he": "מערכת עיצוב בקוד פתוח של Meta, שבנויה גם לשימוש של agents."
-    },
-    {
-      "key": "mwg",
-      "term": "Modern Web Guidance",
-      "aliases": [
-        "Modern Web Guidance"
-      ],
-      "category": "product",
-      "definition_he": "ערכת הנחיות ו-skills של צוות Chrome, שמעבירה ל-coding agents המלצות עדכניות לפיתוח ווב: נגישות, ביצועים ותכונות דפדפן."
-    },
-    {
-      "key": "agent-framework",
-      "term": "agent-framework",
-      "aliases": [
-        "Microsoft Agent Framework",
-        "agent-framework"
-      ],
-      "category": "product",
-      "definition_he": "חבילת קוד פתוח של Microsoft לבניית agents ומערכות מרובות agents."
-    },
-    {
-      "key": "sglang",
-      "term": "SGLang",
-      "aliases": [
-        "SGLang"
-      ],
-      "category": "product",
-      "definition_he": "מנוע קוד פתוח להרצה מהירה של מודלי שפה בשרתים (inference), שמשמש ספקי AI רבים."
-    },
-    {
-      "key": "litellm",
-      "term": "LiteLLM",
-      "aliases": [
-        "LiteLLM"
-      ],
-      "category": "product",
-      "definition_he": "ספרייה ושרת proxy בקוד פתוח שנותנים ממשק אחיד לעשרות ספקי מודלים, ולכן מחזיקים לרוב את מפתחות ה-API של הארגון."
-    },
-    {
-      "key": "openrouter",
-      "term": "OpenRouter",
-      "aliases": [
-        "OpenRouter"
-      ],
-      "category": "company",
-      "definition_he": "שירות שמאפשר לגשת דרך API אחד למודלים של ספקים רבים, ולבחור ביניהם לפי מחיר וזמינות."
-    },
-    {
-      "key": "vercel-ai-gateway",
-      "term": "Vercel AI Gateway",
-      "aliases": [
-        "Vercel AI Gateway"
-      ],
-      "category": "product",
-      "definition_he": "שירות של Vercel שמנתב בקשות למודלי AI של ספקים שונים דרך נקודת גישה אחת, עם בקרת עלויות וגיבוי בין ספקים."
-    },
-    {
-      "key": "fireworks",
-      "term": "Fireworks AI",
-      "aliases": [
-        "Fireworks AI"
-      ],
-      "category": "company",
-      "definition_he": "ספקית ענן להרצת מודלי AI (inference), שמארחת מודלים פתוחים ומודלים מותאמים של לקוחות."
-    },
-    {
-      "key": "near-ai",
-      "term": "NEAR AI",
-      "aliases": [
-        "NEAR AI"
-      ],
-      "category": "company",
-      "definition_he": "חברת AI מבית פרויקט הבלוקצ'יין NEAR, שמציעה שירותי הרצת מודלים."
-    },
-    {
-      "key": "dify",
-      "term": "Dify",
-      "aliases": [
-        "Dify"
-      ],
-      "category": "product",
-      "definition_he": "פלטפורמת קוד פתוח לבנייה ולהפעלה של אפליקציות ו-agents מבוססי מודלי שפה, בממשק ויזואלי."
-    },
-    {
-      "key": "kimi",
-      "term": "Kimi",
-      "aliases": [
-        "Kimi"
-      ],
-      "category": "product",
-      "definition_he": "משפחת מודלי AI של החברה הסינית Moonshot AI."
-    },
-    {
-      "key": "metr",
-      "term": "METR",
-      "aliases": [
-        "METR"
-      ],
-      "category": "org",
-      "definition_he": "ארגון מחקר ללא מטרות רווח שמודד יכולות מסוכנות של מודלי AI, בעיקר את היכולת שלהם לבצע משימות ארוכות בעצמם.",
-      "url": "https://metr.org"
-    },
-    {
-      "key": "apollo-research",
-      "term": "Apollo Research",
-      "aliases": [
-        "Apollo Research"
-      ],
-      "category": "org",
-      "definition_he": "ארגון מחקר בריטי שבודק אם מודלי AI מטעים או פועלים בסתר נגד הכוונות של מפעיליהם."
-    },
-    {
-      "key": "transluce",
-      "term": "Transluce",
-      "aliases": [
-        "Transluce"
-      ],
-      "category": "org",
-      "definition_he": "מעבדת מחקר ללא מטרות רווח שמפתחת כלים פתוחים להבנה ולבדיקה של מה שקורה בתוך מודלי AI."
-    },
-    {
-      "key": "goodfire",
-      "term": "Goodfire",
-      "aliases": [
-        "Goodfire"
-      ],
-      "category": "company",
-      "definition_he": "חברת מחקר שמתמחה בפענוח המנגנונים הפנימיים של מודלי AI (interpretability)."
-    },
-    {
-      "key": "artificial-analysis",
-      "term": "Artificial Analysis",
-      "aliases": [
-        "Artificial Analysis"
-      ],
-      "category": "company",
-      "definition_he": "חברה עצמאית שמשווה מודלי AI וספקים לפי איכות, מהירות ומחיר, ומפרסמת מדדים מקובלים בתעשייה."
-    },
-    {
-      "key": "libsignal",
-      "term": "libsignal",
-      "aliases": [
-        "libsignal"
-      ],
-      "category": "product",
-      "definition_he": "ספריית ההצפנה בקוד פתוח של Signal, שעליה מבוססת ההצפנה מקצה לקצה באפליקציה."
-    },
-    {
-      "key": "qubit",
-      "term": "qubit",
-      "aliases": [
-        "qubits",
-        "qubit",
-        "קיוביטים",
-        "קיוביט"
-      ],
-      "category": "concept",
-      "definition_he": "קיוביט: יחידת המידע הבסיסית של מחשב קוונטי. בניגוד לביט רגיל הוא יכול להיות בסופרפוזיציה ולהישזר עם קיוביטים אחרים. מספר הקיוביטים לבדו לא מעיד על יכולת המחשב, האיכות חשובה לא פחות."
-    },
-    {
-      "key": "ghz",
-      "term": "GHZ",
-      "aliases": [
-        "GHZ"
-      ],
-      "category": "concept",
-      "definition_he": "מצב GHZ: מצב שבו כל הקיוביטים שזורים יחד. יצירתו משמשת מבחן לאיכות של מחשב קוונטי."
-    },
-    {
-      "key": "qec",
-      "term": "quantum error correction",
-      "aliases": [
-        "quantum error correction",
-        "QEC",
-        "תיקון שגיאות קוונטי"
-      ],
-      "category": "concept",
-      "definition_he": "תיקון שגיאות קוונטי: שילוב של קיוביטים פיזיים רבים לקיוביט לוגי אחד אמין. זה התנאי למחשב קוונטי שימושי בקנה מידה."
-    },
-    {
-      "key": "error-mitigation",
-      "term": "error mitigation",
-      "aliases": [
-        "error mitigation"
-      ],
-      "category": "concept",
-      "definition_he": "הפחתת שגיאות: שיטות תוכנה שמקטינות את השפעת הרעש בחישוב קוונטי, בלי תיקון שגיאות מלא."
-    },
-    {
-      "key": "qpu",
-      "term": "QPU",
-      "aliases": [
-        "QPUs",
-        "QPU"
-      ],
-      "category": "concept",
-      "definition_he": "מעבד קוונטי (Quantum Processing Unit): החומרה שמכילה את הקיוביטים ומריצה את החישוב הקוונטי."
-    },
-    {
-      "key": "hpc",
-      "term": "HPC",
-      "aliases": [
-        "HPC"
-      ],
-      "category": "concept",
-      "definition_he": "מחשוב-על (High Performance Computing): אשכולות גדולים של מחשבים שפותרים יחד בעיות חישוב כבדות, כמו סימולציות ומחקר מדעי."
-    },
-    {
-      "key": "slurm",
-      "term": "Slurm",
-      "aliases": [
-        "Slurm"
-      ],
-      "category": "product",
-      "definition_he": "מערכת קוד פתוח לתזמון ולניהול משימות במחשבי-על ובאשכולות חישוב: היא מחליטה איזו משימה רצה, מתי ועל אילו מעבדים.",
-      "url": "https://slurm.schedmd.com"
-    },
-    {
-      "key": "cuda-q",
-      "term": "CUDA-Q",
-      "aliases": [
-        "CUDA-Q QEC",
-        "CUDA-Q"
-      ],
-      "category": "product",
-      "definition_he": "פלטפורמת התוכנה של Nvidia לתכנות מחשבים קוונטיים בשילוב מחשבים קלאסיים (GPU). QEC היא הספרייה שלה לתיקון שגיאות קוונטי."
-    },
-    {
-      "key": "qiskit",
-      "term": "Qiskit",
-      "aliases": [
-        "Qiskit"
-      ],
-      "category": "product",
-      "definition_he": "ערכת הפיתוח בקוד פתוח של IBM לתכנות מחשבים קוונטיים.",
-      "url": "https://www.ibm.com/quantum/qiskit"
-    },
-    {
-      "key": "nighthawk",
-      "term": "IBM Nighthawk",
-      "aliases": [
-        "IBM Nighthawk",
-        "Nighthawk"
-      ],
-      "category": "product",
-      "definition_he": "משפחת המעבדים הקוונטיים של IBM עם 120 קיוביטים וקישוריות גבוהה יותר בין הקיוביטים."
-    },
-    {
-      "key": "heron",
-      "term": "IBM Heron",
-      "aliases": [
-        "IBM Heron",
-        "Heron"
-      ],
-      "category": "product",
-      "definition_he": "מעבד קוונטי של IBM עם עד 156 קיוביטים (בגרסה r2)."
-    },
-    {
-      "key": "starling",
-      "term": "IBM Quantum Starling",
-      "aliases": [
-        "IBM Quantum Starling",
-        "Starling"
-      ],
-      "category": "product",
-      "definition_he": "מחשב קוונטי עמיד לשגיאות ש-IBM מתכננת לבנות עד 2029."
-    },
-    {
-      "key": "quantinuum",
-      "term": "Quantinuum",
-      "aliases": [
-        "Quantinuum"
-      ],
-      "category": "company",
-      "definition_he": "חברת מחשוב קוונטי שנוסדה ממיזוג של Honeywell Quantum Solutions ו-Cambridge Quantum, ומפתחת מחשבים מבוססי יונים לכודים."
-    },
-    {
-      "key": "pasqal",
-      "term": "Pasqal",
-      "aliases": [
-        "Pasqal"
-      ],
-      "category": "company",
-      "definition_he": "חברה צרפתית שמפתחת מחשבים קוונטיים מבוססי אטומים ניטרליים."
-    },
-    {
-      "key": "iqm",
-      "term": "IQM",
-      "aliases": [
-        "IQM"
-      ],
-      "category": "company",
-      "definition_he": "חברה פינית שמפתחת מחשבים קוונטיים על-מוליכים."
-    },
-    {
-      "key": "rigetti",
-      "term": "Rigetti",
-      "aliases": [
-        "Rigetti",
-        "ריגטי"
-      ],
-      "category": "company",
-      "definition_he": "חברה אמריקאית ציבורית שמפתחת מחשבים קוונטיים על-מוליכים."
-    },
-    {
-      "key": "xanadu",
-      "term": "Xanadu",
-      "aliases": [
-        "Xanadu",
-        "זנאדו"
-      ],
-      "category": "company",
-      "definition_he": "חברה קנדית שמפתחת מחשבים קוונטיים פוטוניים ואת ספריית PennyLane."
-    },
-    {
-      "key": "psiquantum",
-      "term": "PsiQuantum",
-      "aliases": [
-        "PsiQuantum"
-      ],
-      "category": "company",
-      "definition_he": "חברה אמריקאית שמפתחת מחשב קוונטי פוטוני בקנה מידה גדול."
-    },
-    {
-      "key": "alice-bob",
-      "term": "Alice & Bob",
-      "aliases": [
-        "Alice & Bob"
-      ],
-      "category": "company",
-      "definition_he": "חברה צרפתית שמפתחת מחשב קוונטי מבוסס cat qubits, שמוגנים מראש מפני חלק מסוגי השגיאות."
-    },
-    {
-      "key": "aqt",
-      "term": "AQT",
-      "aliases": [
-        "Alpine Quantum Technologies",
-        "AQT"
-      ],
-      "category": "company",
-      "definition_he": "חברה אוסטרית (Alpine Quantum Technologies) שמפתחת מחשבים קוונטיים מבוססי יונים לכודים."
-    },
-    {
-      "key": "q-ctrl",
-      "term": "Q-CTRL",
-      "aliases": [
-        "Q-CTRL"
-      ],
-      "category": "company",
-      "definition_he": "חברה אוסטרלית שמפתחת תוכנה לשיפור הביצועים והיציבות של מחשבים קוונטיים, וגם חיישנים קוונטיים."
-    },
-    {
-      "key": "qedma",
-      "term": "Qedma",
-      "aliases": [
-        "Qedma"
-      ],
-      "category": "company",
-      "definition_he": "חברה ישראלית שמפתחת תוכנה להפחתת שגיאות ולדיכוי רעש במחשבים קוונטיים."
-    },
-    {
-      "key": "darpa-qbi",
-      "term": "DARPA QBI",
-      "aliases": [
-        "DARPA QBI",
-        "QBI"
-      ],
-      "category": "org",
-      "definition_he": "תוכנית של סוכנות המחקר הביטחוני האמריקאית DARPA (Quantum Benchmarking Initiative), שבודקת אילו חברות יכולות להגיע למחשב קוונטי שימושי עד 2033."
-    },
-    {
-      "key": "fermilab",
-      "term": "Fermilab",
-      "aliases": [
-        "Fermilab"
-      ],
-      "category": "org",
-      "definition_he": "מעבדה לאומית אמריקאית לפיזיקת חלקיקים, ליד שיקגו."
-    },
-    {
-      "key": "riken",
-      "term": "RIKEN",
-      "aliases": [
-        "RIKEN"
-      ],
-      "category": "org",
-      "definition_he": "מכון המחקר הלאומי של יפן, שמפעיל את מחשב-העל Fugaku."
-    },
-    {
-      "key": "fugaku",
-      "term": "Fugaku",
-      "aliases": [
-        "Fugaku"
-      ],
-      "category": "product",
-      "definition_he": "מחשב-העל הלאומי של יפן, שמופעל בידי RIKEN ומשמש חוקרים רבים."
-    },
-    {
-      "key": "sc26",
-      "term": "SC26",
-      "aliases": [
-        "SC26"
-      ],
-      "category": "org",
-      "definition_he": "כנס מחשוב-העל השנתי המרכזי (Supercomputing) לשנת 2026, שבו מוכרזות מערכות HPC חדשות."
-    },
-    {
-      "key": "bis",
-      "term": "BIS",
-      "aliases": [
-        "BIS"
-      ],
-      "category": "org",
-      "definition_he": "הלשכה לתעשייה וביטחון במשרד המסחר האמריקאי, שאחראית על כללי פיקוח הייצוא, כולל על שבבי AI."
-    },
-    {
-      "key": "ai-diffusion-rule",
-      "term": "AI Diffusion Rule",
-      "aliases": [
-        "AI Diffusion Rule"
-      ],
-      "category": "standard",
-      "definition_he": "כלל פיקוח ייצוא אמריקאי מינואר 2025, שחילק את מדינות העולם לשלוש דרגות גישה לשבבי AI מתקדמים."
-    },
-    {
-      "key": "tsmc",
-      "term": "TSMC",
-      "aliases": [
-        "TSMC"
-      ],
-      "category": "company",
-      "definition_he": "יצרנית השבבים הגדולה בעולם, מטייוואן, שמייצרת את השבבים של Nvidia, Apple ורבות אחרות."
-    },
-    {
-      "key": "21vianet",
-      "term": "21Vianet",
-      "aliases": [
-        "21Vianet"
-      ],
-      "category": "company",
-      "definition_he": "חברה סינית שמפעילה את Microsoft Azure בסין ברישיון מקומי."
-    },
-    {
-      "key": "faa",
-      "term": "FAA",
-      "aliases": [
-        "FAA"
-      ],
-      "category": "org",
-      "definition_he": "רשות התעופה הפדרלית של ארה\"ב."
-    },
-    {
-      "key": "hpe",
-      "term": "HPE",
-      "aliases": [
-        "HPE",
-        "Hewlett Packard Enterprise"
-      ],
-      "category": "company",
-      "definition_he": "חברת השרתים, האחסון והרשתות Hewlett Packard Enterprise, שרכשה את Juniper Networks."
-    },
-    {
-      "key": "juniper",
-      "term": "Juniper Networks",
-      "aliases": [
-        "Juniper Networks",
-        "Juniper"
-      ],
-      "category": "company",
-      "definition_he": "יצרנית ציוד רשת אמריקאית (נתבים ומתגים), כיום חלק מ-HPE."
-    },
-    {
-      "key": "io",
-      "term": "I&O",
-      "aliases": [
-        "I&O"
-      ],
-      "category": "concept",
-      "definition_he": "תשתיות ותפעול (Infrastructure & Operations): הצוותים שמפעילים את השרתים, הרשתות והענן של הארגון."
-    },
-    {
-      "key": "ignite",
-      "term": "Microsoft Ignite",
-      "aliases": [
-        "Microsoft Ignite",
-        "Ignite"
-      ],
-      "category": "org",
-      "definition_he": "כנס הלקוחות והמפתחים השנתי של Microsoft לארגונים, שבו מוכרזים מוצרי ענן ו-AI."
-    },
-    {
-      "key": "ms-threat-intel",
-      "term": "Microsoft Threat Intelligence",
-      "aliases": [
-        "Microsoft Threat Intelligence"
-      ],
-      "category": "org",
-      "definition_he": "צוות המודיעין של Microsoft, שעוקב אחרי קבוצות תקיפה ומפרסם דוחות והתראות."
-    },
-    {
-      "key": "amazon-threat-intel",
-      "term": "Amazon Threat Intelligence",
-      "aliases": [
-        "Amazon Threat Intelligence"
-      ],
-      "category": "org",
-      "definition_he": "צוות המודיעין של Amazon, שעוקב אחרי תקיפות על תשתיות AWS ומפרסם ממצאים."
-    },
-    {
-      "key": "hacker-news",
-      "term": "Hacker News",
-      "aliases": [
-        "Hacker News"
-      ],
-      "category": "org",
-      "definition_he": "אתר קהילתי לחדשות טכנולוגיה ודיונים, של קרן ההשקעות Y Combinator."
-    },
-    {
-      "key": "pragmatic-engineer",
-      "term": "The Pragmatic Engineer",
-      "aliases": [
-        "The Pragmatic Engineer"
-      ],
-      "category": "org",
-      "definition_he": "ניוזלטר ופודקאסט פופולרי של Gergely Orosz על הנדסת תוכנה ועל חברות טכנולוגיה."
-    },
-    {
-      "key": "404-media",
-      "term": "404 Media",
-      "aliases": [
-        "404 Media"
-      ],
-      "category": "org",
-      "definition_he": "אתר חדשות טכנולוגיה עצמאי, שהוקם ב-2023 בידי עיתונאים לשעבר של Vice Motherboard."
-    }
-  ]
+ "version": 1,
+ "updated": "2026-11-19",
+ "language": "he",
+ "note": "Glossary for CTO Review margin notes. Matching: aliases are whole words; Latin aliases are case-sensitive except all-lowercase aliases of category concept.",
+ "entries": [
+  {
+   "key": "rce",
+   "term": "RCE",
+   "aliases": [
+    "RCE",
+    "remote code execution"
+   ],
+   "category": "concept",
+   "definition_he": "הרצת קוד מרחוק (Remote Code Execution): חולשה שמאפשרת לתוקף להריץ פקודות משלו על שרת או מחשב מרוחק. זו בדרך כלל הדרגה החמורה ביותר, כי היא שקולה להשתלטות על המערכת."
+  },
+  {
+   "key": "pre-auth",
+   "term": "pre-auth",
+   "aliases": [
+    "pre-auth",
+    "pre-authentication"
+   ],
+   "category": "concept",
+   "definition_he": "לפני הזדהות: חולשה שאפשר לנצל בלי שם משתמש וסיסמה. היא מסוכנת במיוחד במערכות שחשופות לאינטרנט, כי כל אחד יכול לנסות לנצל אותה."
+  },
+  {
+   "key": "post-auth",
+   "term": "post-auth",
+   "aliases": [
+    "post-auth",
+    "post-authentication"
+   ],
+   "category": "concept",
+   "definition_he": "אחרי הזדהות: חולשה שאפשר לנצל רק אחרי התחברות למערכת. הסיכון נמוך יותר, אבל עדיין משמעותי כשסיסמאות דלפו או כשיש הרבה משתמשים פנימיים."
+  },
+  {
+   "key": "cve",
+   "term": "CVE",
+   "aliases": [
+    "CVE",
+    "CVEs"
+   ],
+   "category": "standard",
+   "definition_he": "מזהה ציבורי אחיד לחולשת אבטחה (Common Vulnerabilities and Exposures), למשל CVE-2026-114938. בזכותו כל הספקים, הכלים והצוותים מדברים על אותה חולשה בדיוק.",
+   "url": "https://www.cve.org"
+  },
+  {
+   "key": "cvss",
+   "term": "CVSS",
+   "aliases": [
+    "CVSS"
+   ],
+   "category": "standard",
+   "definition_he": "ציון חומרה סטנדרטי לחולשות, בסולם 0 עד 10 (9 ומעלה נחשב קריטי). הציון מתאר חומרה טכנית, ולא את הסיכון בפועל בארגון מסוים.",
+   "url": "https://www.first.org/cvss/"
+  },
+  {
+   "key": "cisa-kev",
+   "term": "CISA KEV",
+   "aliases": [
+    "CISA KEV",
+    "KEV"
+   ],
+   "category": "standard",
+   "definition_he": "קטלוג של רשות הסייבר האמריקאית CISA, שמפרט חולשות שידוע שכבר מנוצלות בפועל. חולשה שנכנסת אליו היא סימן לתעדף את העדכון מיד.",
+   "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+  },
+  {
+   "key": "cisa",
+   "term": "CISA",
+   "aliases": [
+    "CISA"
+   ],
+   "category": "org",
+   "definition_he": "רשות הסייבר והתשתיות של ארה\"ב. היא מפרסמת התראות והנחיות, ומנהלת את הקטלוג של חולשות שמנוצלות בפועל.",
+   "url": "https://www.cisa.gov"
+  },
+  {
+   "key": "zero-day",
+   "term": "zero-day",
+   "aliases": [
+    "zero-day",
+    "zero-days",
+    "יום אפס"
+   ],
+   "category": "concept",
+   "definition_he": "חולשת יום אפס: חולשה שמנוצלת או מתפרסמת לפני שיש לה תיקון רשמי, כך שלמגינים עדיין אין עדכון להתקין."
+  },
+  {
+   "key": "sso",
+   "term": "SSO",
+   "aliases": [
+    "SSO",
+    "Single Sign-On"
+   ],
+   "category": "concept",
+   "definition_he": "כניסה אחת (Single Sign-On): מנגנון שמאפשר להתחבר פעם אחת ולקבל גישה למערכות רבות. שרת ה-SSO הוא שער הכניסה לארגון, ולכן פריצה אליו מסכנת את כל המערכות שמאחוריו."
+  },
+  {
+   "key": "oidc",
+   "term": "OIDC",
+   "aliases": [
+    "OIDC",
+    "OpenID Connect"
+   ],
+   "category": "standard",
+   "definition_he": "פרוטוקול פתוח (OpenID Connect) להזדהות מול שירות כניסה מרכזי. עליו בנויים רוב פתרונות ה-SSO המודרניים."
+  },
+  {
+   "key": "waf",
+   "term": "WAF",
+   "aliases": [
+    "WAF"
+   ],
+   "category": "concept",
+   "definition_he": "חומת אש לאפליקציות ווב (Web Application Firewall): מסננת בקשות זדוניות לפני שהן מגיעות לאתר או ל-API. משמשת לעיתים כהגנה זמנית עד שמתקינים תיקון."
+  },
+  {
+   "key": "supply-chain",
+   "term": "supply chain",
+   "aliases": [
+    "supply chain",
+    "supply-chain",
+    "שרשרת אספקה",
+    "שרשרת האספקה"
+   ],
+   "category": "concept",
+   "definition_he": "מתקפת שרשרת אספקה: פריצה דרך רכיב, חבילה או ספק שהארגון סומך עליו, במקום תקיפה ישירה. כך קוד זדוני מגיע לארגונים רבים בבת אחת."
+  },
+  {
+   "key": "phishing",
+   "term": "phishing",
+   "aliases": [
+    "phishing",
+    "פישינג"
+   ],
+   "category": "concept",
+   "definition_he": "דיוג: הודעה מתחזה (מייל, SMS או אתר) שנועדה לגרום לאדם למסור סיסמה, לאשר כניסה או להתקין קוד זדוני."
+  },
+  {
+   "key": "pentest",
+   "term": "pentest",
+   "aliases": [
+    "pentest",
+    "pentests",
+    "penetration test"
+   ],
+   "category": "concept",
+   "definition_he": "מבדק חדירה: תקיפה מבוקרת ומורשית שבודקת אילו חולשות תוקף אמיתי יכול לנצל במערכות הארגון."
+  },
+  {
+   "key": "red-team",
+   "term": "red team",
+   "aliases": [
+    "red team",
+    "red-team",
+    "red teaming"
+   ],
+   "category": "concept",
+   "definition_he": "צוות אדום: צוות שמדמה תוקף אמיתי כדי לבחון את ההגנות, הזיהוי והתגובה של הארגון."
+  },
+  {
+   "key": "webshell",
+   "term": "webshell",
+   "aliases": [
+    "webshell",
+    "webshells",
+    "web shell"
+   ],
+   "category": "concept",
+   "definition_he": "סקריפט שתוקף מציב על שרת ווב פרוץ, כדי לשלוט בו מרחוק דרך הדפדפן ולחזור אליו גם אחרי שהחולשה תוקנה."
+  },
+  {
+   "key": "c2",
+   "term": "C2",
+   "aliases": [
+    "C2"
+   ],
+   "category": "concept",
+   "definition_he": "שליטה ובקרה (Command and Control): התשתית שממנה התוקף שולח פקודות למחשבים שנפרצו ומקבל מהם מידע."
+  },
+  {
+   "key": "ioc",
+   "term": "IoC",
+   "aliases": [
+    "IoC",
+    "IoCs",
+    "IOC",
+    "IOCs"
+   ],
+   "category": "concept",
+   "definition_he": "סימן לפריצה (Indicator of Compromise): כתובת IP, דומיין, קובץ או חתימה שמעידים על תקיפה, ומשמשים לחיפוש במערכות הארגון."
+  },
+  {
+   "key": "wiper",
+   "term": "wiper",
+   "aliases": [
+    "wiper",
+    "wipers"
+   ],
+   "category": "concept",
+   "definition_he": "נוזקה שמטרתה למחוק או להשמיד נתונים, ולא לגנוב אותם או לסחוט כופר. משמשת בעיקר במתקפות הרס."
+  },
+  {
+   "key": "xdr",
+   "term": "XDR",
+   "aliases": [
+    "XDR"
+   ],
+   "category": "concept",
+   "definition_he": "מערכת זיהוי ותגובה רוחבית (Extended Detection and Response), שמאחדת התראות מתחנות קצה, רשת, ענן ומייל למסך אחד."
+  },
+  {
+   "key": "soc",
+   "term": "SOC",
+   "aliases": [
+    "SOC"
+   ],
+   "category": "concept",
+   "definition_he": "מרכז ניטור ותגובה לאירועי אבטחה (Security Operations Center), שעוקב אחרי התראות מסביב לשעון."
+  },
+  {
+   "key": "rmm",
+   "term": "RMM",
+   "aliases": [
+    "RMM"
+   ],
+   "category": "concept",
+   "definition_he": "כלי ניהול וניטור מרחוק (Remote Monitoring and Management), שספקי IT משתמשים בו כדי לנהל מחשבים ושרתים של לקוחות. פריצה אליו נותנת לתוקף גישה לכל הלקוחות."
+  },
+  {
+   "key": "msp",
+   "term": "MSP",
+   "aliases": [
+    "MSP",
+    "MSPs"
+   ],
+   "category": "concept",
+   "definition_he": "ספק שירותי IT מנוהלים (Managed Service Provider), שמפעיל ומתחזק את מערכות ה-IT של ארגונים אחרים. פריצה אחת אליו יכולה לפתוח דלת לכל הלקוחות שלו."
+  },
+  {
+   "key": "llmjacking",
+   "term": "LLMjacking",
+   "aliases": [
+    "LLMjacking",
+    "LLMJacking"
+   ],
+   "category": "concept",
+   "definition_he": "גניבת מפתחות גישה לשירותי AI בענן ושימוש בהם על חשבון הקורבן, לצריכת מודלים או למכירת הגישה הלאה."
+  },
+  {
+   "key": "deserialization",
+   "term": "deserialization",
+   "aliases": [
+    "deserialization"
+   ],
+   "category": "concept",
+   "definition_he": "פענוח נתונים מובנים חזרה לאובייקטים בתוכנה. כשהנתונים מגיעים ממקור לא אמין, פענוח לא בטוח עלול לאפשר הרצת קוד."
+  },
+  {
+   "key": "memory-corruption",
+   "term": "memory corruption",
+   "aliases": [
+    "memory corruption"
+   ],
+   "category": "concept",
+   "definition_he": "שחיתות זיכרון: שגיאה שבה תוכנה כותבת או קוראת מחוץ לאזור הזיכרון המותר. תוקפים מנצלים אותה כדי להפיל את התוכנה או להריץ בה קוד."
+  },
+  {
+   "key": "race-condition",
+   "term": "race condition",
+   "aliases": [
+    "race condition"
+   ],
+   "category": "concept",
+   "definition_he": "תנאי מרוץ: תקלה שבה שתי פעולות שרצות במקביל מתנגשות, והתוצאה תלויה בתזמון. תוקפים יכולים לנצל אותה כדי לגרום לקריסה או לעקוף בדיקות."
+  },
+  {
+   "key": "null-deref",
+   "term": "NULL pointer dereference",
+   "aliases": [
+    "NULL pointer dereference"
+   ],
+   "category": "concept",
+   "definition_he": "שגיאת תכנות שבה התוכנה ניגשת לכתובת זיכרון ריקה. בדרך כלל היא גורמת לקריסה, ולכן מנוצלת בעיקר להשבתת שירות."
+  },
+  {
+   "key": "type-confusion",
+   "term": "type confusion",
+   "aliases": [
+    "type confusion"
+   ],
+   "category": "concept",
+   "definition_he": "בלבול טיפוסים: שגיאה שבה התוכנה מתייחסת לנתון כאילו הוא מסוג אחר. היא עלולה להוביל לשחיתות זיכרון ולהרצת קוד."
+  },
+  {
+   "key": "xss",
+   "term": "XSS",
+   "aliases": [
+    "XSS"
+   ],
+   "category": "concept",
+   "definition_he": "הזרקת סקריפט לאתר (Cross-Site Scripting): קוד של תוקף רץ בדפדפן של המשתמש בהקשר של אתר אחר, וכך יכול לגנוב חשבונות או נתונים."
+  },
+  {
+   "key": "syn-cookies",
+   "term": "SYN cookies",
+   "aliases": [
+    "SYN cookies"
+   ],
+   "category": "concept",
+   "definition_he": "מנגנון בליבת מערכת ההפעלה שמגן על שרתים מהצפה של בקשות חיבור TCP, בלי לשמור מצב לכל בקשה."
+  },
+  {
+   "key": "secrets",
+   "term": "secrets",
+   "aliases": [
+    "secrets"
+   ],
+   "category": "concept",
+   "definition_he": "סודות: סיסמאות, מפתחות API, אסימונים ותעודות שמערכות משתמשות בהם כדי להתחבר זו לזו. דליפה שלהם נותנת לתוקף גישה ישירה."
+  },
+  {
+   "key": "credentials",
+   "term": "credentials",
+   "aliases": [
+    "credentials"
+   ],
+   "category": "concept",
+   "definition_he": "פרטי הזדהות: שמות משתמש, סיסמאות, מפתחות ואסימונים שמאפשרים גישה למערכת."
+  },
+  {
+   "key": "csp",
+   "term": "CSP",
+   "aliases": [
+    "CSP",
+    "Content Security Policy"
+   ],
+   "category": "standard",
+   "definition_he": "מדיניות אבטחת תוכן (Content Security Policy): הוראה שאתר שולח לדפדפן, ומגדירה מאילו מקורות מותר לטעון סקריפטים ותוכן. היא מקשה על הזרקת קוד זדוני."
+  },
+  {
+   "key": "esu",
+   "term": "Extended Security Updates",
+   "aliases": [
+    "Extended Security Updates",
+    "ESU"
+   ],
+   "category": "product",
+   "definition_he": "תוכנית בתשלום של Microsoft שממשיכה לספק עדכוני אבטחה למוצרים שיצאו מהתמיכה הרגילה, לתקופה מוגבלת."
+  },
+  {
+   "key": "sigma",
+   "term": "Sigma",
+   "aliases": [
+    "Sigma"
+   ],
+   "category": "standard",
+   "definition_he": "פורמט פתוח לכתיבת חוקי זיהוי תקיפות, שאפשר להמיר לשאילתות של מערכות ניטור שונות.",
+   "url": "https://sigmahq.io"
+  },
+  {
+   "key": "sarif",
+   "term": "SARIF",
+   "aliases": [
+    "SARIF"
+   ],
+   "category": "standard",
+   "definition_he": "פורמט JSON סטנדרטי לתוצאות של כלי ניתוח קוד ואבטחה. הוא מאפשר להציג ממצאים מכלים שונים באותו מקום, למשל ב-GitHub."
+  },
+  {
+   "key": "burp-suite",
+   "term": "Burp Suite",
+   "aliases": [
+    "Burp Suite",
+    "Burp"
+   ],
+   "category": "product",
+   "definition_he": "כלי מקצועי של PortSwigger לבדיקות אבטחה של אפליקציות ווב, שמיירט ומשנה את התעבורה בין הדפדפן לשרת.",
+   "url": "https://portswigger.net/burp"
+  },
+  {
+   "key": "hackerone",
+   "term": "HackerOne",
+   "aliases": [
+    "HackerOne"
+   ],
+   "category": "company",
+   "definition_he": "פלטפורמה לתוכניות באג באונטי, שבה חוקרים מדווחים לארגונים על חולשות תמורת פרס.",
+   "url": "https://www.hackerone.com"
+  },
+  {
+   "key": "xmrig",
+   "term": "XMRig",
+   "aliases": [
+    "XMRig"
+   ],
+   "category": "product",
+   "definition_he": "תוכנת קוד פתוח לכריית המטבע Monero. תוקפים מתקינים אותה על שרתים פרוצים כדי לכרות על חשבון הקורבן."
+  },
+  {
+   "key": "mandiant",
+   "term": "Mandiant",
+   "aliases": [
+    "Mandiant"
+   ],
+   "category": "company",
+   "definition_he": "חברת תגובה לאירועי סייבר ומודיעין איומים, שנמצאת בבעלות Google."
+  },
+  {
+   "key": "gtig",
+   "term": "Google Threat Intelligence Group",
+   "aliases": [
+    "Google Threat Intelligence Group",
+    "GTIG"
+   ],
+   "category": "org",
+   "definition_he": "קבוצת מודיעין האיומים של Google (GTIG), שמאחדת צוותי מודיעין של Google ו-Mandiant ומפרסמת מחקרים על תוקפים ושיטות תקיפה."
+  },
+  {
+   "key": "project-zero",
+   "term": "Project Zero",
+   "aliases": [
+    "Google Project Zero",
+    "Project Zero"
+   ],
+   "category": "org",
+   "definition_he": "צוות חוקרי החולשות של Google, שמחפש חולשות חמורות במוצרים של כל החברות ומפרסם אותן אחרי פרק זמן קבוע לתיקון."
+  },
+  {
+   "key": "sans-isc",
+   "term": "SANS Internet Storm Center",
+   "aliases": [
+    "SANS Internet Storm Center",
+    "SANS"
+   ],
+   "category": "org",
+   "definition_he": "מכון SANS הוא גוף הדרכה ומחקר באבטחת מידע. ה-Internet Storm Center שלו עוקב אחרי סריקות ותקיפות באינטרנט ומפרסם דיווחים יומיים.",
+   "url": "https://isc.sans.edu"
+  },
+  {
+   "key": "huntress",
+   "term": "Huntress",
+   "aliases": [
+    "Huntress"
+   ],
+   "category": "company",
+   "definition_he": "חברת אבטחה אמריקאית שמספקת זיהוי ותגובה מנוהלים, בעיקר לעסקים קטנים ובינוניים ולספקי IT מנוהלים."
+  },
+  {
+   "key": "horizon3",
+   "term": "Horizon3",
+   "aliases": [
+    "Horizon3.ai",
+    "Horizon3"
+   ],
+   "category": "company",
+   "definition_he": "חברת אבטחה שמפתחת פלטפורמה לבדיקות חדירה אוטונומיות (NodeZero) ומפרסמת מחקרי חולשות."
+  },
+  {
+   "key": "wiz",
+   "term": "Wiz",
+   "aliases": [
+    "Wiz"
+   ],
+   "category": "company",
+   "definition_he": "חברת אבטחת ענן שנוסדה בישראל, וסורקת סביבות ענן כדי לאתר בהן חולשות והגדרות מסוכנות. Google הודיעה ב-2025 על רכישתה."
+  },
+  {
+   "key": "arctic-wolf",
+   "term": "Arctic Wolf",
+   "aliases": [
+    "Arctic Wolf"
+   ],
+   "category": "company",
+   "definition_he": "חברת אבטחה אמריקאית שמספקת ניטור, זיהוי ותגובה מנוהלים (SOC כשירות)."
+  },
+  {
+   "key": "aikido",
+   "term": "Aikido Security",
+   "aliases": [
+    "Aikido Security",
+    "Aikido"
+   ],
+   "category": "company",
+   "definition_he": "חברת אבטחת קוד וענן בלגית, שסורקת קוד וחבילות קוד פתוח ומפרסמת התראות על חבילות זדוניות."
+  },
+  {
+   "key": "socket",
+   "term": "Socket",
+   "aliases": [
+    "Socket"
+   ],
+   "category": "company",
+   "definition_he": "חברה לאבטחת שרשרת האספקה של קוד פתוח, שמנתחת חבילות ב-npm, ב-PyPI ובמאגרים נוספים ומזהה חבילות זדוניות.",
+   "url": "https://socket.dev"
+  },
+  {
+   "key": "check-point",
+   "term": "Check Point",
+   "aliases": [
+    "Check Point",
+    "צ'ק פוינט"
+   ],
+   "category": "company",
+   "definition_he": "חברת אבטחת המידע הישראלית הגדולה, שמפתחת חומות אש, VPN והגנות לענן ולתחנות קצה.",
+   "url": "https://www.checkpoint.com"
+  },
+  {
+   "key": "gaia-os",
+   "term": "Gaia OS",
+   "aliases": [
+    "Gaia OS",
+    "Gaia"
+   ],
+   "category": "product",
+   "definition_he": "מערכת ההפעלה של שערי האבטחה וחומות האש של Check Point."
+  },
+  {
+   "key": "fortinet",
+   "term": "Fortinet",
+   "aliases": [
+    "Fortinet",
+    "פורטינט"
+   ],
+   "category": "company",
+   "definition_he": "חברת אבטחת רשת אמריקאית, שמפתחת את חומות האש FortiGate (מערכת FortiOS) ומוצרי אבטחה רבים נוספים."
+  },
+  {
+   "key": "ivanti",
+   "term": "Ivanti",
+   "aliases": [
+    "Ivanti",
+    "איוונטי"
+   ],
+   "category": "company",
+   "definition_he": "חברה אמריקאית לניהול IT ואבטחה. מוצרי ה-VPN וניהול המכשירים שלה נפוצים בארגונים, ונפגעו בעבר מחולשות רבות."
+  },
+  {
+   "key": "barracuda",
+   "term": "Barracuda",
+   "aliases": [
+    "Barracuda Networks",
+    "Barracuda"
+   ],
+   "category": "company",
+   "definition_he": "חברת אבטחה אמריקאית שמפתחת הגנות למייל, לרשת ולאפליקציות."
+  },
+  {
+   "key": "nextron",
+   "term": "Nextron Systems",
+   "aliases": [
+    "Nextron Systems",
+    "Nextron"
+   ],
+   "category": "company",
+   "definition_he": "חברת אבטחה גרמנית שמפתחת סורקים לזיהוי פריצות, ותורמת חוקי זיהוי פתוחים כמו Sigma."
+  },
+  {
+   "key": "report-uri",
+   "term": "Report URI",
+   "aliases": [
+    "Report URI"
+   ],
+   "category": "product",
+   "definition_he": "שירות שמרכז דיווחים מדפדפנים על הפרות CSP ועל בעיות אבטחה באתרים, וכך עוזר לגלות קוד זדוני שהוזרק לאתר."
+  },
+  {
+   "key": "optimizely",
+   "term": "Optimizely",
+   "aliases": [
+    "Optimizely"
+   ],
+   "category": "company",
+   "definition_he": "פלטפורמה לניסויי A/B ולהתאמה אישית של אתרים, שמוטמעת כסקריפט JavaScript באתרים של חברות רבות. לכן כל שינוי בסקריפט שלה מגיע ישר לאתרי הלקוחות."
+  },
+  {
+   "key": "connectwise",
+   "term": "ConnectWise",
+   "aliases": [
+    "ConnectWise"
+   ],
+   "category": "company",
+   "definition_he": "חברה אמריקאית שמפתחת תוכנות לספקי IT מנוהלים, ובהן ScreenConnect לשליטה מרחוק."
+  },
+  {
+   "key": "screenconnect",
+   "term": "ScreenConnect",
+   "aliases": [
+    "ScreenConnect"
+   ],
+   "category": "product",
+   "definition_he": "כלי שליטה מרחוק של ConnectWise, שספקי IT וצוותי תמיכה משתמשים בו כדי להתחבר למחשבי לקוחות."
+  },
+  {
+   "key": "n-able",
+   "term": "N-able",
+   "aliases": [
+    "N-able"
+   ],
+   "category": "company",
+   "definition_he": "חברה שמפתחת כלים לספקי IT מנוהלים, ובהם N-central."
+  },
+  {
+   "key": "n-central",
+   "term": "N-central",
+   "aliases": [
+    "N-central"
+   ],
+   "category": "product",
+   "definition_he": "פלטפורמת ניהול וניטור מרחוק (RMM) של N-able, שספקי IT מנוהלים מנהלים דרכה את המחשבים והשרתים של הלקוחות."
+  },
+  {
+   "key": "puppet",
+   "term": "Puppet Enterprise",
+   "aliases": [
+    "Puppet Enterprise",
+    "Puppet"
+   ],
+   "category": "product",
+   "definition_he": "מערכת לניהול תצורה ואוטומציה של שרתים: מגדירים בקוד איך שרת צריך להיות מוגדר, והיא דואגת שזה יקרה. השרת המרכזי שלה שולט בכל השרתים המנוהלים."
+  },
+  {
+   "key": "perforce",
+   "term": "Perforce",
+   "aliases": [
+    "Perforce"
+   ],
+   "category": "company",
+   "definition_he": "חברת תוכנה אמריקאית שמפתחת כלי פיתוח ו-DevOps, ובבעלותה Puppet."
+  },
+  {
+   "key": "xen-orchestra",
+   "term": "Xen Orchestra",
+   "aliases": [
+    "Xen Orchestra",
+    "זן אורקסטרה"
+   ],
+   "category": "product",
+   "definition_he": "ממשק ניהול ווב לסביבות וירטואליזציה מבוססות XCP-ng, שמפותח בידי Vates."
+  },
+  {
+   "key": "xcp-ng",
+   "term": "XCP-ng",
+   "aliases": [
+    "XCP-ng"
+   ],
+   "category": "product",
+   "definition_he": "פלטפורמת וירטואליזציה בקוד פתוח מבוססת Xen, שמשמשת חלופה ל-VMware ESXi."
+  },
+  {
+   "key": "vates",
+   "term": "Vates",
+   "aliases": [
+    "Vates"
+   ],
+   "category": "company",
+   "definition_he": "חברה צרפתית שמפתחת את XCP-ng ואת Xen Orchestra."
+  },
+  {
+   "key": "esxi",
+   "term": "VMware ESXi",
+   "aliases": [
+    "VMware ESXi",
+    "ESXi"
+   ],
+   "category": "product",
+   "definition_he": "שכבת הווירטואליזציה של VMware, שמריצה מכונות וירטואליות ישירות על השרת. פריצה אליה פוגעת בכל המכונות שרצות עליה."
+  },
+  {
+   "key": "vcenter",
+   "term": "vCenter",
+   "aliases": [
+    "vCenter"
+   ],
+   "category": "product",
+   "definition_he": "ממשק הניהול המרכזי של VMware לסביבות וירטואליזציה מבוססות ESXi."
+  },
+  {
+   "key": "okta",
+   "term": "Okta",
+   "aliases": [
+    "Okta"
+   ],
+   "category": "company",
+   "definition_he": "שירות ענן לניהול זהויות ולכניסה אחידה (SSO) לארגונים."
+  },
+  {
+   "key": "entra",
+   "term": "Microsoft Entra ID",
+   "aliases": [
+    "Microsoft Entra ID",
+    "Entra ID",
+    "Entra"
+   ],
+   "category": "product",
+   "definition_he": "שירות הזהויות של Microsoft (לשעבר Azure AD), שדרכו עובדים מתחברים ל-Microsoft 365 ולמערכות ארגוניות."
+  },
+  {
+   "key": "intune",
+   "term": "Intune",
+   "aliases": [
+    "Microsoft Intune",
+    "Intune"
+   ],
+   "category": "product",
+   "definition_he": "שירות של Microsoft לניהול ולאבטחה של מחשבים וטלפונים ארגוניים מהענן."
+  },
+  {
+   "key": "clfs",
+   "term": "CLFS",
+   "aliases": [
+    "CLFS"
+   ],
+   "category": "product",
+   "definition_he": "מנגנון הלוגים המשותף של Windows (Common Log File System), רכיב בליבת המערכת שנפגע בעבר מחולשות להעלאת הרשאות."
+  },
+  {
+   "key": "kms",
+   "term": "KMS",
+   "aliases": [
+    "KMS"
+   ],
+   "category": "product",
+   "definition_he": "ראשי תיבות של Key Management Service, שיכולים לציין שני דברים: שירות להפעלת רישיונות Windows ו-Office בתוך הארגון, או שירות לניהול מפתחות הצפנה בענן. ההקשר בידיעה קובע."
+  },
+  {
+   "key": "slmgr",
+   "term": "slmgr",
+   "aliases": [
+    "slmgr.vbs",
+    "slmgr"
+   ],
+   "category": "product",
+   "definition_he": "כלי שורת פקודה של Windows לניהול רישיון ההפעלה של המערכת (slmgr.vbs)."
+  },
+  {
+   "key": "windows-defender",
+   "term": "Windows Defender",
+   "aliases": [
+    "Windows Defender"
+   ],
+   "category": "product",
+   "definition_he": "האנטי-וירוס המובנה ב-Windows, שנקרא היום Microsoft Defender Antivirus."
+  },
+  {
+   "key": "full-disk-access",
+   "term": "Full Disk Access",
+   "aliases": [
+    "Full Disk Access"
+   ],
+   "category": "concept",
+   "definition_he": "הרשאה ב-macOS שמאפשרת לאפליקציה לקרוא כמעט את כל הקבצים במחשב, כולל מידע אישי ומוגן."
+  },
+  {
+   "key": "java4shell",
+   "term": "Java4Shell",
+   "aliases": [
+    "Java4Shell"
+   ],
+   "category": "concept",
+   "definition_he": "חולשה קריטית (CVE-2026-114938) במפענח ה-Base64 של OpenJDK, שחשפו חוקרי Calif ב-17 בנובמבר 2026. היא מאפשרת השתלטות מרחוק על שרתי Java רבים, בחלקם בלי הזדהות.",
+   "url": "https://calif.io/java4shell"
+  },
+  {
+   "key": "calif",
+   "term": "Calif",
+   "aliases": [
+    "Calif"
+   ],
+   "category": "company",
+   "definition_he": "חברת מחקר אבטחה שחשפה את חולשת Java4Shell ב-Java.",
+   "url": "https://calif.io"
+  },
+  {
+   "key": "noisytcp",
+   "term": "NoisyTCP",
+   "aliases": [
+    "NoisyTCP"
+   ],
+   "category": "concept",
+   "definition_he": "חולשה (CVE-2026-99288) בת 11 שנים בטיפול של קרנל Linux בחיבורי TCP, שמאפשרת להפיל שרתים מרחוק."
+  },
+  {
+   "key": "artex",
+   "term": "ARTEX",
+   "aliases": [
+    "ARTEX"
+   ],
+   "category": "product",
+   "definition_he": "כלי תקיפה אוטונומי מבוסס AI בקוד פתוח, שתוקפים משתמשים בו ובגרסאות מפוצלות שלו כדי לנצל שירותי ווב ולגנוב סודות."
+  },
+  {
+   "key": "pentagi",
+   "term": "PentAGI",
+   "aliases": [
+    "PentAGI"
+   ],
+   "category": "product",
+   "definition_he": "מערכת קוד פתוח לבדיקות חדירה אוטונומיות, שמפעילה agents של AI עם כלי אבטחה."
+  },
+  {
+   "key": "cyberstrikeai",
+   "term": "CyberStrikeAI",
+   "aliases": [
+    "CyberStrikeAI"
+   ],
+   "category": "product",
+   "definition_he": "כלי תקיפה בקוד פתוח מבוסס AI, שמשלב מודלי שפה עם כלי אבטחה רבים לבדיקות חדירה אוטומטיות."
+  },
+  {
+   "key": "acm-ccs",
+   "term": "ACM CCS",
+   "aliases": [
+    "ACM CCS"
+   ],
+   "category": "org",
+   "definition_he": "כנס מחקר אקדמי מוביל בעולם באבטחת מחשבים."
+  },
+  {
+   "key": "ci",
+   "term": "CI/CD",
+   "aliases": [
+    "CI/CD",
+    "CI"
+   ],
+   "category": "concept",
+   "definition_he": "אינטגרציה ופריסה רציפות: תהליך אוטומטי שבונה ובודק קוד בכל שינוי (CI), ולעיתים גם פורס אותו לייצור (CD)."
+  },
+  {
+   "key": "api",
+   "term": "API",
+   "aliases": [
+    "API",
+    "APIs"
+   ],
+   "category": "concept",
+   "definition_he": "ממשק תכנותי שדרכו תוכנה אחת מדברת עם אחרת. מפתח API הוא למעשה הסיסמה של תוכנה לשירות."
+  },
+  {
+   "key": "sdk",
+   "term": "SDK",
+   "aliases": [
+    "SDK",
+    "SDKs"
+   ],
+   "category": "concept",
+   "definition_he": "ערכת פיתוח: ספריות, כלים ותיעוד שמאפשרים למפתחים לבנות תוכנה שמשתמשת בשירות או בפלטפורמה מסוימים."
+  },
+  {
+   "key": "cli",
+   "term": "CLI",
+   "aliases": [
+    "CLI"
+   ],
+   "category": "concept",
+   "definition_he": "ממשק שורת פקודה: תוכנה שמפעילים בהקלדת פקודות בטרמינל, ולא דרך חלון גרפי."
+  },
+  {
+   "key": "ide",
+   "term": "IDE",
+   "aliases": [
+    "IDE",
+    "IDEs"
+   ],
+   "category": "concept",
+   "definition_he": "סביבת פיתוח משולבת: עורך הקוד שבו מפתחים כותבים, מריצים ובודקים קוד, כמו VS Code."
+  },
+  {
+   "key": "pr",
+   "term": "pull request",
+   "aliases": [
+    "pull request",
+    "pull requests",
+    "PR",
+    "PRs"
+   ],
+   "category": "concept",
+   "definition_he": "בקשת שינוי (Pull Request): הצעה למזג קוד חדש לפרויקט, שעוברת סקירה ובדיקות לפני שהיא מתקבלת."
+  },
+  {
+   "key": "apache-2",
+   "term": "Apache-2.0",
+   "aliases": [
+    "Apache-2.0",
+    "Apache 2.0"
+   ],
+   "category": "standard",
+   "definition_he": "רישיון קוד פתוח מתירני של קרן Apache, שמאפשר גם שימוש מסחרי וכולל הגנה מפני תביעות פטנטים."
+  },
+  {
+   "key": "saas",
+   "term": "SaaS",
+   "aliases": [
+    "SaaS"
+   ],
+   "category": "concept",
+   "definition_he": "תוכנה כשירות: אפליקציה שהספק מפעיל בענן והלקוח משתמש בה דרך הדפדפן, בלי להתקין או לתחזק אותה."
+  },
+  {
+   "key": "on-prem",
+   "term": "on-prem",
+   "aliases": [
+    "on-prem",
+    "on-premises",
+    "on-premise"
+   ],
+   "category": "concept",
+   "definition_he": "התקנה בתוך מרכז הנתונים או הרשת של הארגון, ולא בענן של הספק."
+  },
+  {
+   "key": "vpn",
+   "term": "VPN",
+   "aliases": [
+    "VPN",
+    "SSL-VPN"
+   ],
+   "category": "concept",
+   "definition_he": "רשת פרטית וירטואלית: חיבור מוצפן שמאפשר לעובדים מבחוץ להתחבר לרשת הארגון. שרתי VPN חשופים לאינטרנט, ולכן הם מטרה נפוצה לתוקפים."
+  },
+  {
+   "key": "iam",
+   "term": "IAM",
+   "aliases": [
+    "IAM"
+   ],
+   "category": "concept",
+   "definition_he": "ניהול זהויות והרשאות (Identity and Access Management): מי רשאי לגשת לאילו משאבים, במיוחד בענן."
+  },
+  {
+   "key": "cdn",
+   "term": "CDN",
+   "aliases": [
+    "CDN"
+   ],
+   "category": "concept",
+   "definition_he": "רשת הפצת תוכן: שרתים מפוזרים בעולם ששומרים עותקים של אתרים וקבצים קרוב למשתמשים, כדי להאיץ את האתר ולהגן עליו."
+  },
+  {
+   "key": "multi-tenant",
+   "term": "multi-tenant",
+   "aliases": [
+    "multi-tenant",
+    "multitenant"
+   ],
+   "category": "concept",
+   "definition_he": "ריבוי דיירים: ארכיטקטורה שבה כמה לקוחות חולקים את אותה מערכת ואותה תשתית, וכל אחד אמור לראות רק את הנתונים שלו."
+  },
+  {
+   "key": "data-residency",
+   "term": "data residency",
+   "aliases": [
+    "data residency"
+   ],
+   "category": "concept",
+   "definition_he": "דרישה שהנתונים יישמרו ויעובדו רק במדינה או באזור מסוים, בגלל רגולציה או מדיניות."
+  },
+  {
+   "key": "failover",
+   "term": "failover",
+   "aliases": [
+    "failover"
+   ],
+   "category": "concept",
+   "definition_he": "מעבר אוטומטי למערכת גיבוי כשהמערכת הראשית נופלת, כדי שהשירות ימשיך לעבוד."
+  },
+  {
+   "key": "observability",
+   "term": "observability",
+   "aliases": [
+    "observability",
+    "data observability"
+   ],
+   "category": "concept",
+   "definition_he": "נראוּת: היכולת להבין מה קורה בתוך מערכת מתוך הנתונים שהיא מפיקה, כמו לוגים, מדדים ועקבות (traces)."
+  },
+  {
+   "key": "opentelemetry",
+   "term": "OpenTelemetry",
+   "aliases": [
+    "OpenTelemetry"
+   ],
+   "category": "standard",
+   "definition_he": "תקן פתוח לאיסוף לוגים, מדדים ועקבות מאפליקציות, כך שאפשר לשלוח אותם לכל כלי ניטור.",
+   "url": "https://opentelemetry.io"
+  },
+  {
+   "key": "iac",
+   "term": "infrastructure-as-code",
+   "aliases": [
+    "infrastructure-as-code",
+    "infrastructure as code",
+    "IaC"
+   ],
+   "category": "concept",
+   "definition_he": "תשתית כקוד: הגדרת שרתים, רשתות והרשאות בענן בקבצי קוד, כך שאפשר לנהל אותם בגרסאות ולפרוס אוטומטית. קובצי ה-state שלה מכילים לעיתים סודות."
+  },
+  {
+   "key": "ga",
+   "term": "GA",
+   "aliases": [
+    "GA"
+   ],
+   "category": "concept",
+   "definition_he": "זמינות כללית (General Availability): המוצר יצא מגרסת ניסיון ונתמך רשמית לשימוש בייצור."
+  },
+  {
+   "key": "preview",
+   "term": "preview",
+   "aliases": [
+    "preview",
+    "public preview"
+   ],
+   "category": "concept",
+   "definition_he": "תצוגה מקדימה: גרסה מוקדמת של מוצר לניסיון, בלי התחייבות מלאה לתמיכה וליציבות. בדרך כלל לא מומלצת לייצור."
+  },
+  {
+   "key": "deprecated",
+   "term": "deprecated",
+   "aliases": [
+    "deprecated",
+    "deprecation"
+   ],
+   "category": "concept",
+   "definition_he": "הוצא משימוש: רכיב שעדיין עובד, אבל הספק הודיע שיוסר בעתיד, ולכן צריך לתכנן מעבר."
+  },
+  {
+   "key": "fde",
+   "term": "forward-deployed engineers",
+   "aliases": [
+    "forward-deployed engineers",
+    "forward-deployed engineer"
+   ],
+   "category": "concept",
+   "definition_he": "מהנדסים שספק הטכנולוגיה מציב אצל הלקוח, כדי להטמיע את המוצר ולהתאים אותו לצרכים שלו."
+  },
+  {
+   "key": "circuit-breaker",
+   "term": "circuit breakers",
+   "aliases": [
+    "circuit breakers",
+    "circuit breaker",
+    "kill switch"
+   ],
+   "category": "concept",
+   "definition_he": "מפסק אוטומטי: מנגנון שעוצר agent או מערכת אוטומטית כשהם חורגים מגבולות מוגדרים, לפני שהנזק מתרחב."
+  },
+  {
+   "key": "data-contracts",
+   "term": "data contracts",
+   "aliases": [
+    "data contracts",
+    "data contract"
+   ],
+   "category": "concept",
+   "definition_he": "חוזי נתונים: הסכם מוגדר בין מי שמייצר נתונים לבין מי שצורך אותם (מבנה, איכות ועדכניות), כדי ששינוי במקור לא ישבור מערכות בהמשך."
+  },
+  {
+   "key": "base64",
+   "term": "Base64",
+   "aliases": [
+    "Base64"
+   ],
+   "category": "standard",
+   "definition_he": "שיטה סטנדרטית לייצג נתונים בינאריים כטקסט. משמשת כמעט בכל מקום: במייל, באסימוני כניסה, ב-API ועוד."
+  },
+  {
+   "key": "dependabot",
+   "term": "Dependabot",
+   "aliases": [
+    "Dependabot"
+   ],
+   "category": "product",
+   "definition_he": "שירות של GitHub שמתריע על חבילות פגיעות בפרויקט ופותח אוטומטית בקשות לעדכן אותן."
+  },
+  {
+   "key": "github-actions",
+   "term": "GitHub Actions",
+   "aliases": [
+    "GitHub Actions"
+   ],
+   "category": "product",
+   "definition_he": "מערכת ה-CI/CD של GitHub, שמריצה אוטומטית בנייה, בדיקות ופריסה בכל שינוי בקוד. היא מחזיקה לרוב סודות רגישים, ולכן היא מטרה לתוקפים."
+  },
+  {
+   "key": "pypi",
+   "term": "PyPI",
+   "aliases": [
+    "PyPI"
+   ],
+   "category": "product",
+   "definition_he": "מאגר החבילות הרשמי של Python, שממנו מפתחים מתקינים ספריות קוד פתוח.",
+   "url": "https://pypi.org"
+  },
+  {
+   "key": "docker",
+   "term": "Docker",
+   "aliases": [
+    "Docker"
+   ],
+   "category": "product",
+   "definition_he": "פלטפורמה לאריזה ולהרצה של תוכנה בקונטיינרים, כך שהיא רצה אותו דבר בכל מקום."
+  },
+  {
+   "key": "docker-hub",
+   "term": "Docker Hub",
+   "aliases": [
+    "Docker Hub"
+   ],
+   "category": "product",
+   "definition_he": "המאגר הציבורי הגדול של images של קונטיינרים, שממנו מורידים ומפיצים תוכנה ארוזה."
+  },
+  {
+   "key": "kubernetes",
+   "term": "Kubernetes",
+   "aliases": [
+    "Kubernetes",
+    "K8s"
+   ],
+   "category": "product",
+   "definition_he": "מערכת קוד פתוח לניהול ולהרצה של קונטיינרים בקנה מידה גדול, שהפכה לסטנדרט של תשתיות ענן.",
+   "url": "https://kubernetes.io"
+  },
+  {
+   "key": "kube-proxy",
+   "term": "kube-proxy",
+   "aliases": [
+    "kube-proxy"
+   ],
+   "category": "product",
+   "definition_he": "רכיב של Kubernetes שמנתב את תעבורת הרשת אל השירותים שרצים באשכול."
+  },
+  {
+   "key": "ipvs",
+   "term": "IPVS",
+   "aliases": [
+    "IPVS",
+    "ipvs"
+   ],
+   "category": "product",
+   "definition_he": "מנגנון איזון עומסים בליבת Linux. אחד ממצבי העבודה של kube-proxy מבוסס עליו."
+  },
+  {
+   "key": "nftables",
+   "term": "nftables",
+   "aliases": [
+    "nftables"
+   ],
+   "category": "product",
+   "definition_he": "מנגנון סינון וניתוב התעבורה המודרני בליבת Linux, שמחליף את iptables."
+  },
+  {
+   "key": "iptables",
+   "term": "iptables",
+   "aliases": [
+    "iptables"
+   ],
+   "category": "product",
+   "definition_he": "מנגנון חומת האש הוותיק בליבת Linux, שמוחלף בהדרגה ב-nftables."
+  },
+  {
+   "key": "eks",
+   "term": "Amazon EKS",
+   "aliases": [
+    "Amazon EKS Auto Mode",
+    "Amazon EKS",
+    "EKS"
+   ],
+   "category": "product",
+   "definition_he": "שירות Kubernetes המנוהל של AWS."
+  },
+  {
+   "key": "ecs",
+   "term": "Amazon ECS",
+   "aliases": [
+    "Amazon ECS",
+    "ECS"
+   ],
+   "category": "product",
+   "definition_he": "שירות הקונטיינרים המנוהל של AWS (Elastic Container Service), חלופה פשוטה יותר ל-Kubernetes."
+  },
+  {
+   "key": "ec2",
+   "term": "Amazon EC2",
+   "aliases": [
+    "Amazon EC2",
+    "EC2"
+   ],
+   "category": "product",
+   "definition_he": "שירות השרתים הווירטואליים של AWS."
+  },
+  {
+   "key": "lambda",
+   "term": "AWS Lambda",
+   "aliases": [
+    "AWS Lambda",
+    "Lambda"
+   ],
+   "category": "product",
+   "definition_he": "שירות ה-serverless של AWS: מריץ קוד בתגובה לאירועים, בלי שהלקוח מנהל שרתים."
+  },
+  {
+   "key": "nitro",
+   "term": "Nitro",
+   "aliases": [
+    "AWS Nitro",
+    "Nitro"
+   ],
+   "category": "product",
+   "definition_he": "מערכת החומרה והווירטואליזציה של AWS, שמבודדת בין מכונות של לקוחות שונים ברמת החומרה."
+  },
+  {
+   "key": "nitro-sandboxes",
+   "term": "Nitro Sandboxes",
+   "aliases": [
+    "Nitro Sandboxes"
+   ],
+   "category": "product",
+   "definition_he": "שירות של AWS שמריץ pods, משימות ומכונות וירטואליות קלות בבידוד החומרה של Nitro, בלי תוספת מחיר, גם לקוד שכתב LLM."
+  },
+  {
+   "key": "bedrock",
+   "term": "Amazon Bedrock",
+   "aliases": [
+    "Amazon Bedrock",
+    "Bedrock"
+   ],
+   "category": "product",
+   "definition_he": "שירות של AWS שנותן גישה דרך API למודלי AI של כמה ספקים, בתוך חשבון הענן של הארגון."
+  },
+  {
+   "key": "aws-interconnect",
+   "term": "AWS Interconnect",
+   "aliases": [
+    "AWS Interconnect - multicloud",
+    "AWS Interconnect"
+   ],
+   "category": "product",
+   "definition_he": "שירות של AWS לחיבור רשת פרטי ומנוהל בין AWS לעננים אחרים, בלי לעבור באינטרנט הציבורי."
+  },
+  {
+   "key": "redshift",
+   "term": "Amazon Redshift",
+   "aliases": [
+    "Amazon Redshift",
+    "Redshift"
+   ],
+   "category": "product",
+   "definition_he": "מחסן הנתונים המנוהל של AWS לשאילתות אנליטיות על כמויות גדולות של נתונים."
+  },
+  {
+   "key": "s3-vectors",
+   "term": "S3 Vectors",
+   "aliases": [
+    "Amazon S3 Vectors",
+    "S3 Vectors"
+   ],
+   "category": "product",
+   "definition_he": "שירות של AWS לאחסון וקטורים (embeddings) בתוך S3 ולחיפוש לפי דמיון, למשל עבור RAG."
+  },
+  {
+   "key": "alloydb",
+   "term": "AlloyDB",
+   "aliases": [
+    "AlloyDB AI",
+    "AlloyDB"
+   ],
+   "category": "product",
+   "definition_he": "מסד נתונים מנוהל של Google Cloud, תואם PostgreSQL, עם יכולות AI ווקטורים מובנות."
+  },
+  {
+   "key": "postgresql",
+   "term": "PostgreSQL",
+   "aliases": [
+    "PostgreSQL",
+    "Postgres"
+   ],
+   "category": "product",
+   "definition_he": "מסד נתונים רלציוני בקוד פתוח, מהנפוצים בעולם, שמשמש בסיס לשירותים מנוהלים רבים בענן.",
+   "url": "https://www.postgresql.org"
+  },
+  {
+   "key": "pg-dump",
+   "term": "pg_dump",
+   "aliases": [
+    "pg_dump",
+    "pg_restore"
+   ],
+   "category": "product",
+   "definition_he": "כלי הגיבוי (pg_dump) והשחזור (pg_restore) הסטנדרטיים של PostgreSQL."
+  },
+  {
+   "key": "plperl",
+   "term": "plperl",
+   "aliases": [
+    "plperl",
+    "PL/Perl"
+   ],
+   "category": "product",
+   "definition_he": "הרחבה של PostgreSQL שמאפשרת לכתוב פונקציות בתוך המסד בשפת Perl."
+  },
+  {
+   "key": "horizondb",
+   "term": "Azure HorizonDB",
+   "aliases": [
+    "Azure HorizonDB",
+    "HorizonDB"
+   ],
+   "category": "product",
+   "definition_he": "שירות מסד נתונים מנוהל של Microsoft Azure, תואם PostgreSQL, לעומסים קריטיים ולאפליקציות AI."
+  },
+  {
+   "key": "oltp",
+   "term": "OLTP",
+   "aliases": [
+    "OLTP"
+   ],
+   "category": "concept",
+   "definition_he": "עיבוד טרנזקציות שוטף: עומס של הרבה קריאות וכתיבות קטנות ומהירות, כמו הזמנות או תשלומים במערכת תפעולית."
+  },
+  {
+   "key": "lakehouse",
+   "term": "lakehouse",
+   "aliases": [
+    "lakehouse"
+   ],
+   "category": "concept",
+   "definition_he": "ארכיטקטורת נתונים שמשלבת את האחסון הזול של אגם נתונים עם יכולות הניהול והשאילתות של מחסן נתונים."
+  },
+  {
+   "key": "iceberg",
+   "term": "Apache Iceberg",
+   "aliases": [
+    "Apache Iceberg",
+    "Iceberg"
+   ],
+   "category": "standard",
+   "definition_he": "פורמט טבלאות פתוח לאגמי נתונים, שמאפשר לכמה מנועים שונים לקרוא ולכתוב לאותן טבלאות, כולל חזרה לגרסאות קודמות.",
+   "url": "https://iceberg.apache.org"
+  },
+  {
+   "key": "time-travel",
+   "term": "time travel",
+   "aliases": [
+    "time travel"
+   ],
+   "category": "concept",
+   "definition_he": "יכולת לשאול טבלה כפי שהייתה בנקודת זמן קודמת, לצורכי ביקורת, שחזור או השוואה."
+  },
+  {
+   "key": "bm25",
+   "term": "BM25",
+   "aliases": [
+    "BM25"
+   ],
+   "category": "concept",
+   "definition_he": "שיטת דירוג קלאסית לחיפוש טקסט, שמדרגת מסמכים לפי הופעת מילות החיפוש בהם. היום משלבים אותה עם חיפוש וקטורי בחיפוש היברידי."
+  },
+  {
+   "key": "databricks",
+   "term": "Databricks",
+   "aliases": [
+    "Databricks",
+    "דאטאבריקס"
+   ],
+   "category": "company",
+   "definition_he": "חברת פלטפורמת נתונים ו-AI, שמאפשרת לארגונים לאחסן, לעבד ולנתח נתונים ולבנות עליהם מודלים."
+  },
+  {
+   "key": "unity-catalog",
+   "term": "Unity Catalog",
+   "aliases": [
+    "Unity Catalog"
+   ],
+   "category": "product",
+   "definition_he": "שכבת הקטלוג וההרשאות של Databricks, שמנהלת במקום אחד את הנתונים, המודלים וההרשאות עליהם."
+  },
+  {
+   "key": "fabric",
+   "term": "Microsoft Fabric",
+   "aliases": [
+    "Microsoft Fabric"
+   ],
+   "category": "product",
+   "definition_he": "פלטפורמת הנתונים והאנליטיקה המאוחדת של Microsoft, שמשלבת אגם נתונים, הנדסת נתונים ו-Power BI."
+  },
+  {
+   "key": "power-bi",
+   "term": "Power BI",
+   "aliases": [
+    "Power BI"
+   ],
+   "category": "product",
+   "definition_he": "כלי הדשבורדים והניתוח העסקי של Microsoft."
+  },
+  {
+   "key": "ssh",
+   "term": "SSH",
+   "aliases": [
+    "SSH"
+   ],
+   "category": "standard",
+   "definition_he": "פרוטוקול מוצפן לכניסה מרחוק לשרתים ולניהולם. מפתחות SSH הם למעשה הסיסמאות לשרתים."
+  },
+  {
+   "key": "nginx",
+   "term": "Nginx",
+   "aliases": [
+    "Nginx",
+    "NGINX",
+    "nginx"
+   ],
+   "category": "product",
+   "definition_he": "שרת ווב ושרת proxy בקוד פתוח, מהנפוצים באינטרנט."
+  },
+  {
+   "key": "apache-httpd",
+   "term": "Apache HTTP Server",
+   "aliases": [
+    "Apache HTTP Server",
+    "Apache httpd"
+   ],
+   "category": "product",
+   "definition_he": "שרת הווב בקוד פתוח של קרן Apache, מהוותיקים והנפוצים באינטרנט."
+  },
+  {
+   "key": "mod-http2",
+   "term": "mod_http2",
+   "aliases": [
+    "mod_http2"
+   ],
+   "category": "product",
+   "definition_he": "המודול של Apache HTTP Server שמטפל בפרוטוקול HTTP/2."
+  },
+  {
+   "key": "starlette",
+   "term": "Starlette",
+   "aliases": [
+    "Starlette"
+   ],
+   "category": "product",
+   "definition_he": "ספריית Python קלה לבניית שרתי ווב אסינכרוניים, שעליה מבוססת גם FastAPI."
+  },
+  {
+   "key": "rust",
+   "term": "Rust",
+   "aliases": [
+    "Rust"
+   ],
+   "category": "product",
+   "definition_he": "שפת תכנות מודרנית שמונעת מראש שגיאות זיכרון נפוצות, ולכן נבחרת יותר ויותר לרכיבי מערכת ואבטחה."
+  },
+  {
+   "key": "playwright",
+   "term": "Playwright",
+   "aliases": [
+    "Playwright"
+   ],
+   "category": "product",
+   "definition_he": "ספרייה בקוד פתוח של Microsoft לשליטה אוטומטית בדפדפנים, לבדיקות ולאוטומציה."
+  },
+  {
+   "key": "chromium",
+   "term": "Chromium",
+   "aliases": [
+    "Chromium"
+   ],
+   "category": "product",
+   "definition_he": "פרויקט הקוד הפתוח שעליו מבוססים Chrome, Edge ודפדפנים רבים נוספים."
+  },
+  {
+   "key": "ublock",
+   "term": "uBlock Origin",
+   "aliases": [
+    "uBlock Origin"
+   ],
+   "category": "product",
+   "definition_he": "תוסף דפדפן פופולרי בקוד פתוח לחסימת פרסומות ורכיבי מעקב."
+  },
+  {
+   "key": "ubo-lite",
+   "term": "uBO Lite",
+   "aliases": [
+    "uBO Lite"
+   ],
+   "category": "product",
+   "definition_he": "הגרסה המצומצמת של uBlock Origin, שבנויה לכללי התוספים החדשים של Chrome (Manifest V3)."
+  },
+  {
+   "key": "bitly",
+   "term": "Bitly",
+   "aliases": [
+    "Bitly"
+   ],
+   "category": "company",
+   "definition_he": "שירות לקיצור קישורים ולמעקב אחרי לחיצות עליהם."
+  },
+  {
+   "key": "vercel",
+   "term": "Vercel",
+   "aliases": [
+    "Vercel"
+   ],
+   "category": "company",
+   "definition_he": "פלטפורמת ענן לאירוח ולפריסה של אתרים ואפליקציות ווב, והחברה שמפתחת את Next.js."
+  },
+  {
+   "key": "nextjs",
+   "term": "Next.js",
+   "aliases": [
+    "Next.js"
+   ],
+   "category": "product",
+   "definition_he": "ספריית פיתוח פופולרית לבניית אתרים ואפליקציות ווב מבוססות React, של חברת Vercel.",
+   "url": "https://nextjs.org"
+  },
+  {
+   "key": "react",
+   "term": "React",
+   "aliases": [
+    "React"
+   ],
+   "category": "product",
+   "definition_he": "ספריית JavaScript של Meta לבניית ממשקי משתמש, מהנפוצות בעולם.",
+   "url": "https://react.dev"
+  },
+  {
+   "key": "rsc",
+   "term": "React Server Components",
+   "aliases": [
+    "React Server Components"
+   ],
+   "category": "product",
+   "definition_he": "רכיבי React שרצים בשרת ולא בדפדפן. Next.js ומסגרות נוספות משתמשים בהם."
+  },
+  {
+   "key": "stylex",
+   "term": "StyleX",
+   "aliases": [
+    "StyleX"
+   ],
+   "category": "product",
+   "definition_he": "ספריית קוד פתוח של Meta לכתיבת עיצוב (CSS) מתוך JavaScript."
+  },
+  {
+   "key": "atlassian",
+   "term": "Atlassian",
+   "aliases": [
+    "Atlassian"
+   ],
+   "category": "company",
+   "definition_he": "חברת התוכנה שמפתחת את Jira, Confluence ו-Bitbucket."
+  },
+  {
+   "key": "jira",
+   "term": "Jira",
+   "aliases": [
+    "Jira"
+   ],
+   "category": "product",
+   "definition_he": "מערכת לניהול משימות, באגים ופרויקטים של Atlassian, נפוצה מאוד בצוותי פיתוח."
+  },
+  {
+   "key": "confluence",
+   "term": "Confluence",
+   "aliases": [
+    "Confluence"
+   ],
+   "category": "product",
+   "definition_he": "מערכת הוויקי והתיעוד הארגוני של Atlassian."
+  },
+  {
+   "key": "jenkins",
+   "term": "Jenkins",
+   "aliases": [
+    "Jenkins"
+   ],
+   "category": "product",
+   "definition_he": "שרת אוטומציה בקוד פתוח לבנייה, לבדיקה ולפריסה של קוד (CI/CD). הוא מחזיק לרוב גישה לקוד ולסודות של הארגון.",
+   "url": "https://www.jenkins.io"
+  },
+  {
+   "key": "artifactory",
+   "term": "JFrog Artifactory",
+   "aliases": [
+    "JFrog Artifactory",
+    "Artifactory"
+   ],
+   "category": "product",
+   "definition_he": "מאגר מרכזי של JFrog לאחסון ולהפצה של חבילות תוכנה ו-images בתוך הארגון."
+  },
+  {
+   "key": "pingfederate",
+   "term": "PingFederate",
+   "aliases": [
+    "PingFederate"
+   ],
+   "category": "product",
+   "definition_he": "שרת ארגוני לכניסה אחידה (SSO) ולניהול זהויות של Ping Identity."
+  },
+  {
+   "key": "keycloak",
+   "term": "Keycloak",
+   "aliases": [
+    "Keycloak"
+   ],
+   "category": "product",
+   "definition_he": "שרת קוד פתוח לניהול זהויות ולכניסה אחידה (SSO), שמנהל משתמשים, סיסמאות והרשאות עבור אפליקציות רבות. הוא עומד בפתח של מערכות רבות, ולכן פריצה אליו מסכנת את כולן.",
+   "url": "https://www.keycloak.org"
+  },
+  {
+   "key": "kafka",
+   "term": "Kafka",
+   "aliases": [
+    "Apache Kafka",
+    "Kafka"
+   ],
+   "category": "product",
+   "definition_he": "פלטפורמת קוד פתוח להעברת זרמי הודעות ואירועים בין מערכות בזמן אמת.",
+   "url": "https://kafka.apache.org"
+  },
+  {
+   "key": "solr",
+   "term": "Solr",
+   "aliases": [
+    "Apache Solr",
+    "Solr"
+   ],
+   "category": "product",
+   "definition_he": "מנוע חיפוש בקוד פתוח של קרן Apache."
+  },
+  {
+   "key": "elasticsearch",
+   "term": "Elasticsearch",
+   "aliases": [
+    "Elasticsearch"
+   ],
+   "category": "product",
+   "definition_he": "מנוע חיפוש וניתוח של חברת Elastic, שמשמש לחיפוש באתרים ובמערכות ולניתוח לוגים."
+  },
+  {
+   "key": "gerrit",
+   "term": "Gerrit",
+   "aliases": [
+    "Gerrit"
+   ],
+   "category": "product",
+   "definition_he": "מערכת קוד פתוח לסקירת קוד לפני מיזוג, שפותחה ב-Google."
+  },
+  {
+   "key": "spinnaker",
+   "term": "Spinnaker",
+   "aliases": [
+    "Spinnaker"
+   ],
+   "category": "product",
+   "definition_he": "פלטפורמת קוד פתוח לפריסה רציפה של תוכנה לעננים, שפותחה ב-Netflix."
+  },
+  {
+   "key": "openjdk",
+   "term": "OpenJDK",
+   "aliases": [
+    "OpenJDK"
+   ],
+   "category": "product",
+   "definition_he": "המימוש הרשמי בקוד פתוח של Java, שעליו מבוססות רוב הפצות ה-Java, כולל של Oracle.",
+   "url": "https://openjdk.org"
+  },
+  {
+   "key": "jdk",
+   "term": "JDK",
+   "aliases": [
+    "JDK"
+   ],
+   "category": "product",
+   "definition_he": "ערכת הפיתוח של Java, שכוללת את סביבת ההרצה ואת כלי הפיתוח."
+  },
+  {
+   "key": "jre",
+   "term": "JRE",
+   "aliases": [
+    "JRE"
+   ],
+   "category": "product",
+   "definition_he": "סביבת ההרצה של Java, שנדרשת כדי להריץ תוכנות Java."
+  },
+  {
+   "key": "jvm",
+   "term": "JVM",
+   "aliases": [
+    "JVM"
+   ],
+   "category": "product",
+   "definition_he": "המכונה הווירטואלית שמריצה תוכנות Java ושפות נוספות."
+  },
+  {
+   "key": "hugging-face",
+   "term": "Hugging Face",
+   "aliases": [
+    "Hugging Face"
+   ],
+   "category": "company",
+   "definition_he": "הפלטפורמה המרכזית לשיתוף מודלי AI, מאגרי נתונים ודמואים בקוד פתוח, מעין GitHub של עולם ה-AI.",
+   "url": "https://huggingface.co"
+  },
+  {
+   "key": "kokoro",
+   "term": "Kokoro",
+   "aliases": [
+    "Kokoro"
+   ],
+   "category": "product",
+   "definition_he": "מודל קוד פתוח קטן להמרת טקסט לדיבור (TTS), שפורסם ב-Hugging Face בידי Hexgrad."
+  },
+  {
+   "key": "agent",
+   "term": "agents",
+   "aliases": [
+    "AI agents",
+    "AI agent",
+    "agents",
+    "agent"
+   ],
+   "category": "concept",
+   "definition_he": "סוכן AI: תוכנה שמבוססת על מודל שפה ומבצעת משימות בעצמה, בכמה צעדים: מתכננת, מפעילה כלים, קוראת תוצאות וממשיכה. בניגוד לצ'טבוט, היא פועלת במערכות ולא רק עונה."
+  },
+  {
+   "key": "agentic-ai",
+   "term": "agentic AI",
+   "aliases": [
+    "agentic AI",
+    "agentic"
+   ],
+   "category": "concept",
+   "definition_he": "גישה שבה מערכות AI פועלות בעצמן לקראת מטרה ולא רק עונות על שאלות: הן מתכננות, מפעילות כלים ומבצעות פעולות."
+  },
+  {
+   "key": "coding-agents",
+   "term": "coding agents",
+   "aliases": [
+    "coding agents",
+    "coding agent"
+   ],
+   "category": "concept",
+   "definition_he": "סוכני קוד: agents שכותבים, משנים ובודקים קוד בעצמם בתוך הפרויקט, למשל Claude Code, Codex ו-Copilot."
+  },
+  {
+   "key": "harness",
+   "term": "harness",
+   "aliases": [
+    "harness engineering",
+    "harness"
+   ],
+   "category": "concept",
+   "definition_he": "המעטפת שמסביב למודל ב-agent: ההוראות, הכלים, ההרשאות, הזיכרון ולולאת הבקרה. harness engineering הוא תכנון המעטפת הזו כך שה-agent יעבוד באמינות."
+  },
+  {
+   "key": "sandbox",
+   "term": "sandbox",
+   "aliases": [
+    "agent sandboxing",
+    "sandboxing",
+    "sandboxes",
+    "sandbox"
+   ],
+   "category": "concept",
+   "definition_he": "ארגז חול: סביבה מבודדת שבה מריצים קוד או agent, כך שגם אם משהו משתבש הוא לא יכול לפגוע בשאר המערכות."
+  },
+  {
+   "key": "evals",
+   "term": "evals",
+   "aliases": [
+    "eval-driven development",
+    "evals",
+    "eval"
+   ],
+   "category": "concept",
+   "definition_he": "הערכות: מבחנים אוטומטיים שבודקים איכות ובטיחות של מודל או agent על משימות מוגדרות, בדומה לבדיקות אוטומטיות לקוד רגיל."
+  },
+  {
+   "key": "inference",
+   "term": "inference",
+   "aliases": [
+    "inference"
+   ],
+   "category": "concept",
+   "definition_he": "הרצה של מודל AI מאומן כדי לקבל ממנו תשובה. זה רוב עלות השימוש במודלים, בניגוד לאימון."
+  },
+  {
+   "key": "fine-tune",
+   "term": "fine-tune",
+   "aliases": [
+    "fine-tuning",
+    "fine-tuned",
+    "fine-tune"
+   ],
+   "category": "concept",
+   "definition_he": "כוונון עדין: אימון נוסף של מודל קיים על נתונים ייעודיים, כדי להתאים אותו למשימה או לתחום מסוים."
+  },
+  {
+   "key": "checkpoint",
+   "term": "checkpoint",
+   "aliases": [
+    "checkpoints",
+    "checkpoint"
+   ],
+   "category": "concept",
+   "definition_he": "נקודת שמירה: עותק של משקלי המודל בשלב מסוים באימון, שאפשר לטעון, להפיץ או להמשיך ממנו."
+  },
+  {
+   "key": "abliteration",
+   "term": "abliteration",
+   "aliases": [
+    "abliteration",
+    "abliterated"
+   ],
+   "category": "concept",
+   "definition_he": "טכניקה להסרת מנגנוני הסירוב של מודל שפה פתוח בעריכה ישירה של המשקלים, כך שהמודל יענה גם על בקשות שהוא אמור לדחות."
+  },
+  {
+   "key": "alignment",
+   "term": "alignment",
+   "aliases": [
+    "alignment"
+   ],
+   "category": "concept",
+   "definition_he": "יישור: התחום שמוודא שמודלי AI פועלים לפי הכוונות והערכים של מי שמפעיל אותם, ולא מחפשים קיצורי דרך מזיקים."
+  },
+  {
+   "key": "guardrails",
+   "term": "guardrails",
+   "aliases": [
+    "guardrails"
+   ],
+   "category": "concept",
+   "definition_he": "מעקות בטיחות: כללים ומנגנונים שמגבילים מה מודל או agent רשאי לעשות או לומר."
+  },
+  {
+   "key": "reward-seeking",
+   "term": "reward-seeking",
+   "aliases": [
+    "reward-seeking",
+    "reward hacking"
+   ],
+   "category": "concept",
+   "definition_he": "נטייה של מודל שאומן בחיזוקים לחפש דרך להשיג ציון גבוה במקום לבצע את המשימה באמת, למשל לרמות במבחן."
+  },
+  {
+   "key": "context-window",
+   "term": "context window",
+   "aliases": [
+    "context window",
+    "חלון ההקשר",
+    "חלון הקשר"
+   ],
+   "category": "concept",
+   "definition_he": "חלון הקשר: כמות הטקסט (בטוקנים) שמודל יכול לקרוא ולהתחשב בה בבת אחת, כולל ההוראות, המסמכים וההיסטוריה."
+  },
+  {
+   "key": "context-rot",
+   "term": "context rot",
+   "aliases": [
+    "context rot"
+   ],
+   "category": "concept",
+   "definition_he": "התדרדרות באיכות התשובות של מודל כשההקשר שלו ארוך, ישן או מלא במידע לא רלוונטי."
+  },
+  {
+   "key": "tokens",
+   "term": "tokens",
+   "aliases": [
+    "tokens",
+    "token",
+    "טוקנים",
+    "טוקן"
+   ],
+   "category": "concept",
+   "definition_he": "טוקן: יחידת הטקסט הבסיסית שמודל שפה קורא וכותב, בערך חלק ממילה. לפיה נמדדים גם המחיר וגם גודל חלון ההקשר."
+  },
+  {
+   "key": "llm",
+   "term": "LLM",
+   "aliases": [
+    "LLMs",
+    "LLM"
+   ],
+   "category": "concept",
+   "definition_he": "מודל שפה גדול: מודל AI שאומן על כמויות עצומות של טקסט, ומסוגל לכתוב, לסכם, לתכנת ולענות על שאלות."
+  },
+  {
+   "key": "frontier-model",
+   "term": "frontier model",
+   "aliases": [
+    "frontier models",
+    "frontier model",
+    "frontier"
+   ],
+   "category": "concept",
+   "definition_he": "מודל חזית: המודלים החזקים והמתקדמים ביותר של המעבדות המובילות בכל רגע נתון."
+  },
+  {
+   "key": "moe",
+   "term": "MoE",
+   "aliases": [
+    "MoE",
+    "Mixture of Experts"
+   ],
+   "category": "concept",
+   "definition_he": "ארכיטקטורת מודל (Mixture of Experts) שבה רק חלק מהמודל, כמה «מומחים», פועל בכל צעד. כך מקבלים מודל גדול בעלות חישוב נמוכה יותר."
+  },
+  {
+   "key": "reasoning",
+   "term": "reasoning",
+   "aliases": [
+    "reasoning"
+   ],
+   "category": "concept",
+   "definition_he": "היסק: מודלים שחושבים בשלבים לפני שהם עונים, ומשקיעים יותר חישוב כדי לפתור בעיות מורכבות."
+  },
+  {
+   "key": "tool-calling",
+   "term": "tool calling",
+   "aliases": [
+    "tool calling",
+    "tool use"
+   ],
+   "category": "concept",
+   "definition_he": "קריאה לכלים: היכולת של מודל לבקש להפעיל פונקציה או כלי חיצוני (חיפוש, מסד נתונים, API) ולהשתמש בתוצאה בתשובה."
+  },
+  {
+   "key": "system-card",
+   "term": "system card",
+   "aliases": [
+    "system card"
+   ],
+   "category": "concept",
+   "definition_he": "מסמך שמעבדת AI מפרסמת עם השקת מודל, ומתאר את היכולות, מבחני הבטיחות והסיכונים שלו."
+  },
+  {
+   "key": "long-horizon",
+   "term": "long-horizon",
+   "aliases": [
+    "long-horizon"
+   ],
+   "category": "concept",
+   "definition_he": "משימות ארוכות טווח: עבודה של agent לאורך שעות ובהרבה צעדים, בלי התערבות של אדם."
+  },
+  {
+   "key": "mcp",
+   "term": "MCP",
+   "aliases": [
+    "MCP",
+    "Model Context Protocol"
+   ],
+   "category": "standard",
+   "definition_he": "פרוטוקול פתוח (Model Context Protocol) שמחבר מודלי AI ו-agents לכלים, למערכות ולמקורות נתונים בצורה אחידה. שרת MCP חושף למודל פעולות שהוא יכול לבצע.",
+   "url": "https://modelcontextprotocol.io"
+  },
+  {
+   "key": "rag",
+   "term": "RAG",
+   "aliases": [
+    "RAG"
+   ],
+   "category": "concept",
+   "definition_he": "שליפה ושילוב (Retrieval-Augmented Generation): המודל מחפש קודם מידע רלוונטי במסמכי הארגון ורק אז עונה, כדי לבסס את התשובה על נתונים עדכניים."
+  },
+  {
+   "key": "formal-verification",
+   "term": "formal verification",
+   "aliases": [
+    "formal verification",
+    "אימות פורמלי"
+   ],
+   "category": "concept",
+   "definition_he": "אימות פורמלי: הוכחה מתמטית שתוכנה עומדת בדרישות מסוימות בכל מצב, במקום רק לבדוק אותה על מקרים לדוגמה."
+  },
+  {
+   "key": "lean",
+   "term": "Lean",
+   "aliases": [
+    "Lean"
+   ],
+   "category": "product",
+   "definition_he": "שפת תכנות וכלי להוכחות מתמטיות פורמליות, שמחשב בודק את נכונותן.",
+   "url": "https://lean-lang.org"
+  },
+  {
+   "key": "tee",
+   "term": "TEE",
+   "aliases": [
+    "TEE",
+    "TEEs",
+    "confidential computing"
+   ],
+   "category": "concept",
+   "definition_he": "סביבת הרצה מבודדת ומוצפנת בתוך המעבד (Trusted Execution Environment), שבה נתונים מעובדים בלי שאפילו מפעיל השרת יכול לראות אותם."
+  },
+  {
+   "key": "gpu",
+   "term": "GPU",
+   "aliases": [
+    "GPUs",
+    "GPU"
+   ],
+   "category": "concept",
+   "definition_he": "מעבד גרפי: שבב שמבצע הרבה חישובים במקביל, ולכן משמש היום בעיקר לאימון ולהרצה של מודלי AI."
+  },
+  {
+   "key": "tpu",
+   "term": "TPU",
+   "aliases": [
+    "TPUs",
+    "TPU"
+   ],
+   "category": "product",
+   "definition_he": "שבב AI ייעודי שמפתחת Google לאימון ולהרצה של מודלים, וזמין בענן שלה."
+  },
+  {
+   "key": "hbm",
+   "term": "HBM",
+   "aliases": [
+    "HBM"
+   ],
+   "category": "concept",
+   "definition_he": "זיכרון מהיר במיוחד (High Bandwidth Memory) שמוצמד למעבדי AI. הוא אחד מצווארי הבקבוק העיקריים בייצור שבבי AI."
+  },
+  {
+   "key": "h100",
+   "term": "H100",
+   "aliases": [
+    "H100",
+    "H200"
+   ],
+   "category": "product",
+   "definition_he": "מעבדי ה-GPU של Nvidia למרכזי נתונים מדור Hopper (H100 ו-H200), שמשמשים לאימון ולהרצה של מודלי AI."
+  },
+  {
+   "key": "vera-rubin",
+   "term": "Vera Rubin",
+   "aliases": [
+    "Vera Rubin NVL72",
+    "Vera Rubin"
+   ],
+   "category": "product",
+   "definition_he": "דור מערכות ה-AI של Nvidia למרכזי נתונים שבא אחרי Blackwell. NVL72 היא תצורת ארון עם 72 מעבדים."
+  },
+  {
+   "key": "tpp",
+   "term": "TPP",
+   "aliases": [
+    "TPP"
+   ],
+   "category": "concept",
+   "definition_he": "מדד עוצמת חישוב (Total Processing Performance) שבו משתמשים כללי הייצוא האמריקאיים כדי לסווג שבבי AI."
+  },
+  {
+   "key": "anthropic",
+   "term": "Anthropic",
+   "aliases": [
+    "Anthropic",
+    "אנת'רופיק"
+   ],
+   "category": "company",
+   "definition_he": "חברת מחקר ופיתוח AI אמריקאית, שמפתחת את מודלי Claude.",
+   "url": "https://www.anthropic.com"
+  },
+  {
+   "key": "claude",
+   "term": "Claude",
+   "aliases": [
+    "Claude"
+   ],
+   "category": "product",
+   "definition_he": "משפחת מודלי ה-AI והעוזר של Anthropic."
+  },
+  {
+   "key": "claude-code",
+   "term": "Claude Code",
+   "aliases": [
+    "Claude Code"
+   ],
+   "category": "product",
+   "definition_he": "כלי ה-agent לכתיבת קוד של Anthropic. הוא רץ בטרמינל ובעורכי קוד, קורא את הפרויקט ומבצע בו שינויים ופקודות."
+  },
+  {
+   "key": "claude-managed-agents",
+   "term": "Claude Managed Agents",
+   "aliases": [
+    "Claude Managed Agents",
+    "Managed Agents"
+   ],
+   "category": "product",
+   "definition_he": "שירות של Anthropic להרצת agents מנוהלים, שאפשר להריץ גם בתוך הרשת של הארגון."
+  },
+  {
+   "key": "gemini",
+   "term": "Gemini",
+   "aliases": [
+    "Gemini"
+   ],
+   "category": "product",
+   "definition_he": "משפחת מודלי ה-AI והעוזר של Google."
+  },
+  {
+   "key": "gemini-cli",
+   "term": "Gemini CLI",
+   "aliases": [
+    "Gemini CLI"
+   ],
+   "category": "product",
+   "definition_he": "כלי agent של Google לשורת הפקודה, שמשתמש במודלי Gemini לכתיבת קוד ולמשימות בטרמינל."
+  },
+  {
+   "key": "antigravity",
+   "term": "Google Antigravity",
+   "aliases": [
+    "Google Antigravity",
+    "Antigravity"
+   ],
+   "category": "product",
+   "definition_he": "סביבת פיתוח מבוססת agents של Google, שבה agents מתכננים, כותבים ובודקים קוד."
+  },
+  {
+   "key": "deepmind",
+   "term": "DeepMind",
+   "aliases": [
+    "Google DeepMind",
+    "DeepMind"
+   ],
+   "category": "org",
+   "definition_he": "מעבדת המחקר ל-AI של Google, שמפתחת את Gemini ומערכות מחקר כמו AlphaFold ו-AlphaProof."
+  },
+  {
+   "key": "alphaproof-code",
+   "term": "AlphaProof Code",
+   "aliases": [
+    "AlphaProof Code"
+   ],
+   "category": "product",
+   "definition_he": "מערכת של DeepMind שמוכיחה באופן פורמלי, ב-Lean, תכונות של קוד, למשל תכונות אבטחה."
+  },
+  {
+   "key": "codex",
+   "term": "Codex",
+   "aliases": [
+    "Codex"
+   ],
+   "category": "product",
+   "definition_he": "ה-agent לכתיבת קוד של OpenAI, שזמין ב-CLI, בעורכי קוד ובענן."
+  },
+  {
+   "key": "codex-security",
+   "term": "Codex Security",
+   "aliases": [
+    "Codex Security"
+   ],
+   "category": "product",
+   "definition_he": "כלי של OpenAI לאיתור חולשות בקוד ולתיקונן, עם CLI ו-SDK."
+  },
+  {
+   "key": "github-copilot",
+   "term": "GitHub Copilot",
+   "aliases": [
+    "GitHub Copilot"
+   ],
+   "category": "product",
+   "definition_he": "עוזר כתיבת הקוד מבוסס ה-AI של GitHub, שמשתלב בעורכי קוד ומציע ומבצע שינויים בקוד."
+  },
+  {
+   "key": "copilot-cli",
+   "term": "Copilot CLI",
+   "aliases": [
+    "GitHub Copilot CLI",
+    "Copilot CLI"
+   ],
+   "category": "product",
+   "definition_he": "גרסת שורת הפקודה של GitHub Copilot, שמריצה agent לכתיבת קוד בטרמינל."
+  },
+  {
+   "key": "cursor",
+   "term": "Cursor",
+   "aliases": [
+    "Cursor CLI",
+    "Cursor"
+   ],
+   "category": "product",
+   "definition_he": "עורך קוד מבוסס AI (נגזר מ-VS Code) של חברת Anysphere, עם agents שכותבים ומשנים קוד."
+  },
+  {
+   "key": "opencode",
+   "term": "OpenCode",
+   "aliases": [
+    "OpenCode"
+   ],
+   "category": "product",
+   "definition_he": "כלי agent בקוד פתוח לכתיבת קוד בטרמינל, שעובד מול מודלים של ספקים שונים."
+  },
+  {
+   "key": "opencode-browse",
+   "term": "OpenCode Browse",
+   "aliases": [
+    "OpenCode Browse"
+   ],
+   "category": "product",
+   "definition_he": "שרת MCP של צוות OpenCode, כתוב ב-Rust, שמאפשר ל-agents לעבוד בתוך הדפדפן האמיתי של המשתמש."
+  },
+  {
+   "key": "open-code-review",
+   "term": "Open Code Review",
+   "aliases": [
+    "Open Code Review"
+   ],
+   "category": "product",
+   "definition_he": "כלי סקירת הקוד מבוסס ה-AI של Alibaba, שנפתח כקוד פתוח."
+  },
+  {
+   "key": "loopforge",
+   "term": "LoopForge",
+   "aliases": [
+    "LoopForge"
+   ],
+   "category": "product",
+   "definition_he": "סביבת קוד פתוח של Tencent לניהול coding agents, עם שערי אישור אנושיים לפני כל שלב."
+  },
+  {
+   "key": "plannotator",
+   "term": "Plannotator",
+   "aliases": [
+    "Plannotator"
+   ],
+   "category": "product",
+   "definition_he": "כלי קוד פתוח לסקירה מקומית של תוכניות ושינויי קוד ש-agents מציעים, לפני שמאשרים אותם."
+  },
+  {
+   "key": "univer",
+   "term": "Univer",
+   "aliases": [
+    "Univer Office SDK",
+    "Univer"
+   ],
+   "category": "product",
+   "definition_he": "ערכת קוד פתוח לבניית גיליונות, מסמכים ומצגות בתוך אפליקציות ווב, שמוצגת כמשרד פתוח שגם agents יכולים לעבוד בו."
+  },
+  {
+   "key": "astryx",
+   "term": "Astryx",
+   "aliases": [
+    "Astryx"
+   ],
+   "category": "product",
+   "definition_he": "מערכת עיצוב בקוד פתוח של Meta, שבנויה גם לשימוש של agents."
+  },
+  {
+   "key": "mwg",
+   "term": "Modern Web Guidance",
+   "aliases": [
+    "Modern Web Guidance"
+   ],
+   "category": "product",
+   "definition_he": "ערכת הנחיות ו-skills של צוות Chrome, שמעבירה ל-coding agents המלצות עדכניות לפיתוח ווב: נגישות, ביצועים ותכונות דפדפן."
+  },
+  {
+   "key": "agent-framework",
+   "term": "agent-framework",
+   "aliases": [
+    "Microsoft Agent Framework",
+    "agent-framework"
+   ],
+   "category": "product",
+   "definition_he": "חבילת קוד פתוח של Microsoft לבניית agents ומערכות מרובות agents."
+  },
+  {
+   "key": "sglang",
+   "term": "SGLang",
+   "aliases": [
+    "SGLang"
+   ],
+   "category": "product",
+   "definition_he": "מנוע קוד פתוח להרצה מהירה של מודלי שפה בשרתים (inference), שמשמש ספקי AI רבים."
+  },
+  {
+   "key": "litellm",
+   "term": "LiteLLM",
+   "aliases": [
+    "LiteLLM"
+   ],
+   "category": "product",
+   "definition_he": "ספרייה ושרת proxy בקוד פתוח שנותנים ממשק אחיד לעשרות ספקי מודלים, ולכן מחזיקים לרוב את מפתחות ה-API של הארגון."
+  },
+  {
+   "key": "openrouter",
+   "term": "OpenRouter",
+   "aliases": [
+    "OpenRouter"
+   ],
+   "category": "company",
+   "definition_he": "שירות שמאפשר לגשת דרך API אחד למודלים של ספקים רבים, ולבחור ביניהם לפי מחיר וזמינות."
+  },
+  {
+   "key": "vercel-ai-gateway",
+   "term": "Vercel AI Gateway",
+   "aliases": [
+    "Vercel AI Gateway"
+   ],
+   "category": "product",
+   "definition_he": "שירות של Vercel שמנתב בקשות למודלי AI של ספקים שונים דרך נקודת גישה אחת, עם בקרת עלויות וגיבוי בין ספקים."
+  },
+  {
+   "key": "fireworks",
+   "term": "Fireworks AI",
+   "aliases": [
+    "Fireworks AI"
+   ],
+   "category": "company",
+   "definition_he": "ספקית ענן להרצת מודלי AI (inference), שמארחת מודלים פתוחים ומודלים מותאמים של לקוחות."
+  },
+  {
+   "key": "near-ai",
+   "term": "NEAR AI",
+   "aliases": [
+    "NEAR AI"
+   ],
+   "category": "company",
+   "definition_he": "חברת AI מבית פרויקט הבלוקצ'יין NEAR, שמציעה שירותי הרצת מודלים."
+  },
+  {
+   "key": "dify",
+   "term": "Dify",
+   "aliases": [
+    "Dify"
+   ],
+   "category": "product",
+   "definition_he": "פלטפורמת קוד פתוח לבנייה ולהפעלה של אפליקציות ו-agents מבוססי מודלי שפה, בממשק ויזואלי."
+  },
+  {
+   "key": "kimi",
+   "term": "Kimi",
+   "aliases": [
+    "Kimi"
+   ],
+   "category": "product",
+   "definition_he": "משפחת מודלי AI של החברה הסינית Moonshot AI."
+  },
+  {
+   "key": "metr",
+   "term": "METR",
+   "aliases": [
+    "METR"
+   ],
+   "category": "org",
+   "definition_he": "ארגון מחקר ללא מטרות רווח שמודד יכולות מסוכנות של מודלי AI, בעיקר את היכולת שלהם לבצע משימות ארוכות בעצמם.",
+   "url": "https://metr.org"
+  },
+  {
+   "key": "apollo-research",
+   "term": "Apollo Research",
+   "aliases": [
+    "Apollo Research"
+   ],
+   "category": "org",
+   "definition_he": "ארגון מחקר בריטי שבודק אם מודלי AI מטעים או פועלים בסתר נגד הכוונות של מפעיליהם."
+  },
+  {
+   "key": "transluce",
+   "term": "Transluce",
+   "aliases": [
+    "Transluce"
+   ],
+   "category": "org",
+   "definition_he": "מעבדת מחקר ללא מטרות רווח שמפתחת כלים פתוחים להבנה ולבדיקה של מה שקורה בתוך מודלי AI."
+  },
+  {
+   "key": "goodfire",
+   "term": "Goodfire",
+   "aliases": [
+    "Goodfire"
+   ],
+   "category": "company",
+   "definition_he": "חברת מחקר שמתמחה בפענוח המנגנונים הפנימיים של מודלי AI (interpretability)."
+  },
+  {
+   "key": "artificial-analysis",
+   "term": "Artificial Analysis",
+   "aliases": [
+    "Artificial Analysis"
+   ],
+   "category": "company",
+   "definition_he": "חברה עצמאית שמשווה מודלי AI וספקים לפי איכות, מהירות ומחיר, ומפרסמת מדדים מקובלים בתעשייה."
+  },
+  {
+   "key": "libsignal",
+   "term": "libsignal",
+   "aliases": [
+    "libsignal"
+   ],
+   "category": "product",
+   "definition_he": "ספריית ההצפנה בקוד פתוח של Signal, שעליה מבוססת ההצפנה מקצה לקצה באפליקציה."
+  },
+  {
+   "key": "qubit",
+   "term": "qubit",
+   "aliases": [
+    "qubits",
+    "qubit",
+    "קיוביטים",
+    "קיוביט"
+   ],
+   "category": "concept",
+   "definition_he": "קיוביט: יחידת המידע הבסיסית של מחשב קוונטי. בניגוד לביט רגיל הוא יכול להיות בסופרפוזיציה ולהישזר עם קיוביטים אחרים. מספר הקיוביטים לבדו לא מעיד על יכולת המחשב, האיכות חשובה לא פחות."
+  },
+  {
+   "key": "ghz",
+   "term": "GHZ",
+   "aliases": [
+    "GHZ"
+   ],
+   "category": "concept",
+   "definition_he": "מצב GHZ: מצב שבו כל הקיוביטים שזורים יחד. יצירתו משמשת מבחן לאיכות של מחשב קוונטי."
+  },
+  {
+   "key": "qec",
+   "term": "quantum error correction",
+   "aliases": [
+    "quantum error correction",
+    "QEC",
+    "תיקון שגיאות קוונטי"
+   ],
+   "category": "concept",
+   "definition_he": "תיקון שגיאות קוונטי: שילוב של קיוביטים פיזיים רבים לקיוביט לוגי אחד אמין. זה התנאי למחשב קוונטי שימושי בקנה מידה."
+  },
+  {
+   "key": "error-mitigation",
+   "term": "error mitigation",
+   "aliases": [
+    "error mitigation"
+   ],
+   "category": "concept",
+   "definition_he": "הפחתת שגיאות: שיטות תוכנה שמקטינות את השפעת הרעש בחישוב קוונטי, בלי תיקון שגיאות מלא."
+  },
+  {
+   "key": "qpu",
+   "term": "QPU",
+   "aliases": [
+    "QPUs",
+    "QPU"
+   ],
+   "category": "concept",
+   "definition_he": "מעבד קוונטי (Quantum Processing Unit): החומרה שמכילה את הקיוביטים ומריצה את החישוב הקוונטי."
+  },
+  {
+   "key": "hpc",
+   "term": "HPC",
+   "aliases": [
+    "HPC"
+   ],
+   "category": "concept",
+   "definition_he": "מחשוב-על (High Performance Computing): אשכולות גדולים של מחשבים שפותרים יחד בעיות חישוב כבדות, כמו סימולציות ומחקר מדעי."
+  },
+  {
+   "key": "slurm",
+   "term": "Slurm",
+   "aliases": [
+    "Slurm"
+   ],
+   "category": "product",
+   "definition_he": "מערכת קוד פתוח לתזמון ולניהול משימות במחשבי-על ובאשכולות חישוב: היא מחליטה איזו משימה רצה, מתי ועל אילו מעבדים.",
+   "url": "https://slurm.schedmd.com"
+  },
+  {
+   "key": "cuda-q",
+   "term": "CUDA-Q",
+   "aliases": [
+    "CUDA-Q QEC",
+    "CUDA-Q"
+   ],
+   "category": "product",
+   "definition_he": "פלטפורמת התוכנה של Nvidia לתכנות מחשבים קוונטיים בשילוב מחשבים קלאסיים (GPU). QEC היא הספרייה שלה לתיקון שגיאות קוונטי."
+  },
+  {
+   "key": "qiskit",
+   "term": "Qiskit",
+   "aliases": [
+    "Qiskit"
+   ],
+   "category": "product",
+   "definition_he": "ערכת הפיתוח בקוד פתוח של IBM לתכנות מחשבים קוונטיים.",
+   "url": "https://www.ibm.com/quantum/qiskit"
+  },
+  {
+   "key": "nighthawk",
+   "term": "IBM Nighthawk",
+   "aliases": [
+    "IBM Nighthawk",
+    "Nighthawk"
+   ],
+   "category": "product",
+   "definition_he": "משפחת המעבדים הקוונטיים של IBM עם 120 קיוביטים וקישוריות גבוהה יותר בין הקיוביטים."
+  },
+  {
+   "key": "heron",
+   "term": "IBM Heron",
+   "aliases": [
+    "IBM Heron",
+    "Heron"
+   ],
+   "category": "product",
+   "definition_he": "מעבד קוונטי של IBM עם עד 156 קיוביטים (בגרסה r2)."
+  },
+  {
+   "key": "starling",
+   "term": "IBM Quantum Starling",
+   "aliases": [
+    "IBM Quantum Starling",
+    "Starling"
+   ],
+   "category": "product",
+   "definition_he": "מחשב קוונטי עמיד לשגיאות ש-IBM מתכננת לבנות עד 2029."
+  },
+  {
+   "key": "quantinuum",
+   "term": "Quantinuum",
+   "aliases": [
+    "Quantinuum"
+   ],
+   "category": "company",
+   "definition_he": "חברת מחשוב קוונטי שנוסדה ממיזוג של Honeywell Quantum Solutions ו-Cambridge Quantum, ומפתחת מחשבים מבוססי יונים לכודים."
+  },
+  {
+   "key": "pasqal",
+   "term": "Pasqal",
+   "aliases": [
+    "Pasqal"
+   ],
+   "category": "company",
+   "definition_he": "חברה צרפתית שמפתחת מחשבים קוונטיים מבוססי אטומים ניטרליים."
+  },
+  {
+   "key": "iqm",
+   "term": "IQM",
+   "aliases": [
+    "IQM"
+   ],
+   "category": "company",
+   "definition_he": "חברה פינית שמפתחת מחשבים קוונטיים על-מוליכים."
+  },
+  {
+   "key": "rigetti",
+   "term": "Rigetti",
+   "aliases": [
+    "Rigetti",
+    "ריגטי"
+   ],
+   "category": "company",
+   "definition_he": "חברה אמריקאית ציבורית שמפתחת מחשבים קוונטיים על-מוליכים."
+  },
+  {
+   "key": "xanadu",
+   "term": "Xanadu",
+   "aliases": [
+    "Xanadu",
+    "זנאדו"
+   ],
+   "category": "company",
+   "definition_he": "חברה קנדית שמפתחת מחשבים קוונטיים פוטוניים ואת ספריית PennyLane."
+  },
+  {
+   "key": "psiquantum",
+   "term": "PsiQuantum",
+   "aliases": [
+    "PsiQuantum"
+   ],
+   "category": "company",
+   "definition_he": "חברה אמריקאית שמפתחת מחשב קוונטי פוטוני בקנה מידה גדול."
+  },
+  {
+   "key": "alice-bob",
+   "term": "Alice & Bob",
+   "aliases": [
+    "Alice & Bob"
+   ],
+   "category": "company",
+   "definition_he": "חברה צרפתית שמפתחת מחשב קוונטי מבוסס cat qubits, שמוגנים מראש מפני חלק מסוגי השגיאות."
+  },
+  {
+   "key": "aqt",
+   "term": "AQT",
+   "aliases": [
+    "Alpine Quantum Technologies",
+    "AQT"
+   ],
+   "category": "company",
+   "definition_he": "חברה אוסטרית (Alpine Quantum Technologies) שמפתחת מחשבים קוונטיים מבוססי יונים לכודים."
+  },
+  {
+   "key": "q-ctrl",
+   "term": "Q-CTRL",
+   "aliases": [
+    "Q-CTRL"
+   ],
+   "category": "company",
+   "definition_he": "חברה אוסטרלית שמפתחת תוכנה לשיפור הביצועים והיציבות של מחשבים קוונטיים, וגם חיישנים קוונטיים."
+  },
+  {
+   "key": "qedma",
+   "term": "Qedma",
+   "aliases": [
+    "Qedma"
+   ],
+   "category": "company",
+   "definition_he": "חברה ישראלית שמפתחת תוכנה להפחתת שגיאות ולדיכוי רעש במחשבים קוונטיים."
+  },
+  {
+   "key": "darpa-qbi",
+   "term": "DARPA QBI",
+   "aliases": [
+    "DARPA QBI",
+    "QBI"
+   ],
+   "category": "org",
+   "definition_he": "תוכנית של סוכנות המחקר הביטחוני האמריקאית DARPA (Quantum Benchmarking Initiative), שבודקת אילו חברות יכולות להגיע למחשב קוונטי שימושי עד 2033."
+  },
+  {
+   "key": "fermilab",
+   "term": "Fermilab",
+   "aliases": [
+    "Fermilab"
+   ],
+   "category": "org",
+   "definition_he": "מעבדה לאומית אמריקאית לפיזיקת חלקיקים, ליד שיקגו."
+  },
+  {
+   "key": "riken",
+   "term": "RIKEN",
+   "aliases": [
+    "RIKEN"
+   ],
+   "category": "org",
+   "definition_he": "מכון המחקר הלאומי של יפן, שמפעיל את מחשב-העל Fugaku."
+  },
+  {
+   "key": "fugaku",
+   "term": "Fugaku",
+   "aliases": [
+    "Fugaku"
+   ],
+   "category": "product",
+   "definition_he": "מחשב-העל הלאומי של יפן, שמופעל בידי RIKEN ומשמש חוקרים רבים."
+  },
+  {
+   "key": "sc26",
+   "term": "SC26",
+   "aliases": [
+    "SC26"
+   ],
+   "category": "org",
+   "definition_he": "כנס מחשוב-העל השנתי המרכזי (Supercomputing) לשנת 2026, שבו מוכרזות מערכות HPC חדשות."
+  },
+  {
+   "key": "bis",
+   "term": "BIS",
+   "aliases": [
+    "BIS"
+   ],
+   "category": "org",
+   "definition_he": "הלשכה לתעשייה וביטחון במשרד המסחר האמריקאי, שאחראית על כללי פיקוח הייצוא, כולל על שבבי AI."
+  },
+  {
+   "key": "ai-diffusion-rule",
+   "term": "AI Diffusion Rule",
+   "aliases": [
+    "AI Diffusion Rule"
+   ],
+   "category": "standard",
+   "definition_he": "כלל פיקוח ייצוא אמריקאי מינואר 2025, שחילק את מדינות העולם לשלוש דרגות גישה לשבבי AI מתקדמים."
+  },
+  {
+   "key": "tsmc",
+   "term": "TSMC",
+   "aliases": [
+    "TSMC"
+   ],
+   "category": "company",
+   "definition_he": "יצרנית השבבים הגדולה בעולם, מטייוואן, שמייצרת את השבבים של Nvidia, Apple ורבות אחרות."
+  },
+  {
+   "key": "21vianet",
+   "term": "21Vianet",
+   "aliases": [
+    "21Vianet"
+   ],
+   "category": "company",
+   "definition_he": "חברה סינית שמפעילה את Microsoft Azure בסין ברישיון מקומי."
+  },
+  {
+   "key": "faa",
+   "term": "FAA",
+   "aliases": [
+    "FAA"
+   ],
+   "category": "org",
+   "definition_he": "רשות התעופה הפדרלית של ארה\"ב."
+  },
+  {
+   "key": "hpe",
+   "term": "HPE",
+   "aliases": [
+    "HPE",
+    "Hewlett Packard Enterprise"
+   ],
+   "category": "company",
+   "definition_he": "חברת השרתים, האחסון והרשתות Hewlett Packard Enterprise, שרכשה את Juniper Networks."
+  },
+  {
+   "key": "juniper",
+   "term": "Juniper Networks",
+   "aliases": [
+    "Juniper Networks",
+    "Juniper"
+   ],
+   "category": "company",
+   "definition_he": "יצרנית ציוד רשת אמריקאית (נתבים ומתגים), כיום חלק מ-HPE."
+  },
+  {
+   "key": "io",
+   "term": "I&O",
+   "aliases": [
+    "I&O"
+   ],
+   "category": "concept",
+   "definition_he": "תשתיות ותפעול (Infrastructure & Operations): הצוותים שמפעילים את השרתים, הרשתות והענן של הארגון."
+  },
+  {
+   "key": "ignite",
+   "term": "Microsoft Ignite",
+   "aliases": [
+    "Microsoft Ignite",
+    "Ignite"
+   ],
+   "category": "org",
+   "definition_he": "כנס הלקוחות והמפתחים השנתי של Microsoft לארגונים, שבו מוכרזים מוצרי ענן ו-AI."
+  },
+  {
+   "key": "ms-threat-intel",
+   "term": "Microsoft Threat Intelligence",
+   "aliases": [
+    "Microsoft Threat Intelligence"
+   ],
+   "category": "org",
+   "definition_he": "צוות המודיעין של Microsoft, שעוקב אחרי קבוצות תקיפה ומפרסם דוחות והתראות."
+  },
+  {
+   "key": "amazon-threat-intel",
+   "term": "Amazon Threat Intelligence",
+   "aliases": [
+    "Amazon Threat Intelligence"
+   ],
+   "category": "org",
+   "definition_he": "צוות המודיעין של Amazon, שעוקב אחרי תקיפות על תשתיות AWS ומפרסם ממצאים."
+  },
+  {
+   "key": "hacker-news",
+   "term": "Hacker News",
+   "aliases": [
+    "Hacker News"
+   ],
+   "category": "org",
+   "definition_he": "אתר קהילתי לחדשות טכנולוגיה ודיונים, של קרן ההשקעות Y Combinator."
+  },
+  {
+   "key": "pragmatic-engineer",
+   "term": "The Pragmatic Engineer",
+   "aliases": [
+    "The Pragmatic Engineer"
+   ],
+   "category": "org",
+   "definition_he": "ניוזלטר ופודקאסט פופולרי של Gergely Orosz על הנדסת תוכנה ועל חברות טכנולוגיה."
+  },
+  {
+   "key": "404-media",
+   "term": "404 Media",
+   "aliases": [
+    "404 Media"
+   ],
+   "category": "org",
+   "definition_he": "אתר חדשות טכנולוגיה עצמאי, שהוקם ב-2023 בידי עיתונאים לשעבר של Vice Motherboard."
+  },
+  {
+   "key": "gemini-4-neon",
+   "term": "Gemini 4 Neon",
+   "aliases": [
+    "Gemini 4 Neon"
+   ],
+   "category": "product",
+   "definition_he": "מודל AI של Google שהושק בנובמבר 2026, בין Gemini 4 Carbon ל-Gemini 4 Hydrogen. מיועד לפיתוח תוכנה, לעבודת ידע ולמדע, במחיר ובמהירות של מודל ביניים.",
+   "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/"
+  },
+  {
+   "key": "jalapeno",
+   "term": "Jalapeño",
+   "aliases": [
+    "Jalapeño"
+   ],
+   "category": "product",
+   "definition_he": "שבב ההסקה (inference) הראשון שתכננה OpenAI בעצמה, להרצת המודלים שלה."
+  },
+  {
+   "key": "synopsys",
+   "term": "Synopsys",
+   "aliases": [
+    "Synopsys"
+   ],
+   "category": "company",
+   "definition_he": "חברה אמריקאית מובילה בתוכנות לתכנון ולאימות של שבבים (EDA), שבהן משתמשות רוב חברות השבבים.",
+   "url": "https://www.synopsys.com/"
+  },
+  {
+   "key": "rtl",
+   "term": "RTL",
+   "aliases": [
+    "RTL"
+   ],
+   "category": "concept",
+   "definition_he": "תיאור של מעגל דיגיטלי בשפת חומרה כמו Verilog, שממנו מייצרים את תכנון השבב. זה ה'קוד' של מהנדסי החומרה."
+  },
+  {
+   "key": "ppa",
+   "term": "PPA",
+   "aliases": [
+    "PPA"
+   ],
+   "category": "concept",
+   "definition_he": "קיצור של Power, Performance, Area: צריכת ההספק, הביצועים והשטח של שבב. אלה שלושת המדדים העיקריים לאיכות של תכנון שבבים."
+  },
+  {
+   "key": "eda",
+   "term": "EDA",
+   "aliases": [
+    "EDA"
+   ],
+   "category": "concept",
+   "definition_he": "תוכנות לתכנון אוטומטי של רכיבים אלקטרוניים (Electronic Design Automation), שבהן מתכננים, מדמים ומאמתים שבבים."
+  },
+  {
+   "key": "extenddb",
+   "term": "ExtendDB",
+   "aliases": [
+    "ExtendDB",
+    "extenddb-dev"
+   ],
+   "category": "product",
+   "definition_he": "מתאם קוד פתוח של AWS שתואם ל-API של DynamoDB ושומר את הנתונים במסד נתונים אחר, כמו PostgreSQL או MongoDB. מאפשר להריץ אפליקציות DynamoDB מחוץ ל-AWS.",
+   "url": "https://aws.amazon.com/about-aws/whats-new/2026/11/aws-extenddb-1-0/"
+  },
+  {
+   "key": "dynamodb",
+   "term": "DynamoDB",
+   "aliases": [
+    "DynamoDB",
+    "Amazon DynamoDB"
+   ],
+   "category": "product",
+   "definition_he": "מסד נתונים מנוהל של AWS מסוג NoSQL, ששומר נתונים לפי מפתח ומיועד לעומסים גדולים עם זמני תגובה קצרים.",
+   "url": "https://aws.amazon.com/dynamodb/"
+  },
+  {
+   "key": "sqlite",
+   "term": "SQLite",
+   "aliases": [
+    "SQLite"
+   ],
+   "category": "product",
+   "definition_he": "מסד נתונים קטן וחינמי שנשמר כקובץ אחד בתוך האפליקציה, בלי שרת נפרד. נפוץ מאוד בטלפונים, בדפדפנים ובכלי פיתוח.",
+   "url": "https://sqlite.org/"
+  },
+  {
+   "key": "cassandra",
+   "term": "Cassandra",
+   "aliases": [
+    "Cassandra",
+    "Apache Cassandra"
+   ],
+   "category": "product",
+   "definition_he": "מסד נתונים מבוזר בקוד פתוח של קרן Apache, מסוג NoSQL, שמיועד לכמויות נתונים גדולות על הרבה שרתים בלי נקודת כשל אחת.",
+   "url": "https://cassandra.apache.org/"
+  },
+  {
+   "key": "mongodb",
+   "term": "MongoDB",
+   "aliases": [
+    "MongoDB"
+   ],
+   "category": "company",
+   "definition_he": "חברה ומסד נתונים מסוג מסמכים (document database) שבו הנתונים נשמרים כמבנים דמויי JSON. נפוץ מאוד באפליקציות web ומובייל.",
+   "url": "https://www.mongodb.com/"
+  },
+  {
+   "key": "firebolt",
+   "term": "Firebolt",
+   "aliases": [
+    "Firebolt"
+   ],
+   "category": "company",
+   "definition_he": "חברת מחסן נתונים בענן לשאילתות אנליטיות מהירות, שנוסדה בישראל ב-2019. בנובמבר 2026 הודיעה MongoDB על רכישתה."
+  },
+  {
+   "key": "olap",
+   "term": "OLAP",
+   "aliases": [
+    "OLAP"
+   ],
+   "category": "concept",
+   "definition_he": "עיבוד אנליטי (Online Analytical Processing): שאילתות גדולות שמסכמות ומנתחות הרבה נתונים, כמו בדוחות ובמחסני נתונים. ההפך מ-OLTP, שמטפל בפעולות קטנות ושוטפות."
+  },
+  {
+   "key": "cat-qubits",
+   "term": "cat qubits",
+   "aliases": [
+    "cat qubits",
+    "cat qubit"
+   ],
+   "category": "concept",
+   "definition_he": "סוג של קיוביט מוליך-על שמדכא ברמת החומרה סוג אחד של שגיאות (bit-flip). כך צריך פחות קיוביטים פיזיים לכל קיוביט לוגי; השיטה מזוהה עם Alice & Bob."
+  },
+  {
+   "key": "logical-qubit",
+   "term": "logical qubits",
+   "aliases": [
+    "logical qubits",
+    "logical qubit"
+   ],
+   "category": "concept",
+   "definition_he": "קיוביט לוגי: קבוצה של קיוביטים פיזיים שעובדים יחד עם תיקון שגיאות, כך שהיא מתנהגת כקיוביט אחד אמין. זה המדד החשוב ליכולת אמיתית של מחשב קוונטי."
+  },
+  {
+   "key": "shor",
+   "term": "Shor",
+   "aliases": [
+    "Shor"
+   ],
+   "category": "concept",
+   "definition_he": "אלגוריתם קוונטי, על שם Peter Shor, שמפרק מספרים גדולים לגורמים במהירות. מחשב קוונטי גדול שיריץ אותו יוכל לשבור הצפנות נפוצות כמו RSA."
+  },
+  {
+   "key": "pqc",
+   "term": "PQC",
+   "aliases": [
+    "PQC",
+    "post-quantum cryptography"
+   ],
+   "category": "concept",
+   "definition_he": "הצפנה עמידה לקוונטים (Post-Quantum Cryptography): שיטות הצפנה חדשות שלא ניתן לשבור גם עם מחשב קוונטי, ושאותן צריך להטמיע לפני שמחשבים כאלה יהיו זמינים."
+  },
+  {
+   "key": "ml-kem",
+   "term": "ML-KEM",
+   "aliases": [
+    "ML-KEM"
+   ],
+   "category": "standard",
+   "definition_he": "תקן NIST להחלפת מפתחות הצפנה שעמיד בפני מחשבים קוונטיים. משמש היום לצד שיטות רגילות בחיבורי TLS (מצב היברידי).",
+   "url": "https://csrc.nist.gov/pubs/fips/203/final"
+  },
+  {
+   "key": "windows-server-2028",
+   "term": "Windows Server 2028",
+   "aliases": [
+    "Windows Server 2028"
+   ],
+   "category": "product",
+   "definition_he": "הגרסה הבאה של מערכת ההפעלה לשרתים של Microsoft, בגרסת preview מנובמבר 2026. מגיעה עם מאות הגדרות אבטחה מופעלות כברירת מחדל."
+  },
+  {
+   "key": "server-core",
+   "term": "Server Core",
+   "aliases": [
+    "Server Core"
+   ],
+   "category": "concept",
+   "definition_he": "אופן התקנה מינימלי של Windows Server, בלי ממשק גרפי. יש בו פחות רכיבים, ולכן פחות עדכונים ופחות נקודות תקיפה."
+  },
+  {
+   "key": "ntlm",
+   "term": "NTLM",
+   "aliases": [
+    "NTLM"
+   ],
+   "category": "standard",
+   "definition_he": "שיטת הזדהות ישנה של Microsoft ב-Windows, שנחשבת חלשה ונוחה לתקיפה. Microsoft מעבירה בהדרגה את הארגונים ל-Kerberos."
+  },
+  {
+   "key": "kerberos",
+   "term": "Kerberos",
+   "aliases": [
+    "Kerberos"
+   ],
+   "category": "standard",
+   "definition_he": "פרוטוקול הזדהות ברשת שמבוסס על 'כרטיסים' מוצפנים, ומשמש כשיטת ההזדהות העיקרית ב-Active Directory של Windows."
+  },
+  {
+   "key": "lsass",
+   "term": "LSASS",
+   "aliases": [
+    "LSASS"
+   ],
+   "category": "concept",
+   "definition_he": "תהליך מערכת ב-Windows שמטפל בהזדהות ומחזיק בזיכרון פרטי הזדהות. תוקפים מנסים לשלוף ממנו סיסמאות, ולכן מגינים עליו במיוחד."
+  },
+  {
+   "key": "smb",
+   "term": "SMB",
+   "aliases": [
+    "SMB"
+   ],
+   "category": "standard",
+   "definition_he": "פרוטוקול לשיתוף קבצים ומדפסות ברשת, בעיקר ב-Windows. חתימה והצפנה של SMB מונעות מתוקף ברשת לזייף או לקרוא את התעבורה."
+  },
+  {
+   "key": "winrm",
+   "term": "WinRM",
+   "aliases": [
+    "WinRM"
+   ],
+   "category": "product",
+   "definition_he": "שירות של Windows לניהול מרחוק של מחשבים ושרתים, בין היתר דרך PowerShell."
+  },
+  {
+   "key": "ltsc",
+   "term": "LTSC",
+   "aliases": [
+    "LTSC"
+   ],
+   "category": "concept",
+   "definition_he": "ערוץ שירות לטווח ארוך (Long-Term Servicing Channel): גרסה של Windows שמקבלת עדכוני אבטחה שנים רבות בלי שינויים בתכונות, ומיועדת לשרתים ולמערכות יציבות."
+  },
+  {
+   "key": "lambda-managed-instances",
+   "term": "Lambda Managed Instances",
+   "aliases": [
+    "Lambda Managed Instances"
+   ],
+   "category": "product",
+   "definition_he": "אפשרות ב-AWS Lambda להריץ פונקציות על מכונות EC2 ש-AWS מנהלת עבורנו, בתמחור של EC2 ועם גישה לסוגי מכונות מיוחדים, כמו GPU."
+  },
+  {
+   "key": "nginx2root",
+   "term": "nginx2root",
+   "aliases": [
+    "nginx2root",
+    "NGINX2Root"
+   ],
+   "category": "concept",
+   "definition_he": "השם שנתנה חברת Xint לחמש חולשות זיכרון ב-nginx שפורסמו בנובמבר 2026, ושלפי החוקרים מאפשרות הרצת קוד מרחוק בלי הזדהות.",
+   "url": "https://xint.io/blog/nginx2root-remote-code-execution"
+  },
+  {
+   "key": "f5",
+   "term": "F5",
+   "aliases": [
+    "F5"
+   ],
+   "category": "company",
+   "definition_he": "חברה אמריקאית שמפתחת את BIG-IP, מאזני עומסים ושערי אבטחה לאפליקציות, ומחזיקה גם בפרויקט nginx.",
+   "url": "https://www.f5.com/"
+  },
+  {
+   "key": "xint",
+   "term": "Xint",
+   "aliases": [
+    "Xint"
+   ],
+   "category": "company",
+   "definition_he": "חברת מחקר אבטחה שחשפה את חולשות nginx2root בנובמבר 2026."
+  },
+  {
+   "key": "http2",
+   "term": "HTTP/2",
+   "aliases": [
+    "HTTP/2",
+    "HTTP/3"
+   ],
+   "category": "standard",
+   "definition_he": "גרסאות מודרניות של פרוטוקול ה-web, שמעבירות כמה בקשות במקביל על חיבור אחד. מופעלות כמעט בכל אתר HTTPS מודרני."
+  },
+  {
+   "key": "aslr",
+   "term": "ASLR",
+   "aliases": [
+    "ASLR"
+   ],
+   "category": "concept",
+   "definition_he": "מנגנון הגנה שמציב את הקוד והנתונים בכתובות אקראיות בזיכרון, כדי שיהיה קשה יותר לנצל חולשות זיכרון. תוקפים מנסים 'לעקוף' אותו בעזרת דליפת כתובות."
+  },
+  {
+   "key": "php",
+   "term": "PHP",
+   "aliases": [
+    "PHP"
+   ],
+   "category": "product",
+   "definition_he": "שפת תכנות בקוד פתוח לאתרי web, שעליה בנויים WordPress, Laravel ואתרים רבים אחרים.",
+   "url": "https://www.php.net/"
+  },
+  {
+   "key": "php2shell",
+   "term": "PHP2Shell",
+   "aliases": [
+    "PHP2Shell"
+   ],
+   "category": "concept",
+   "definition_he": "שם לשתי חולשות קריטיות ב-PHP שפורסמו באוקטובר 2026, ואפשרו הרצת קוד מרחוק בלי הזדהות דרך בקשות HTTP. לפי הדיווחים, נוצלו בפועל בהיקף מוגבל."
+  },
+  {
+   "key": "apache-roller",
+   "term": "Apache Roller",
+   "aliases": [
+    "Apache Roller",
+    "Roller"
+   ],
+   "category": "product",
+   "definition_he": "פלטפורמה בקוד פתוח של קרן Apache לניהול בלוגים של קבוצות וארגונים, כתובה ב-Java. נתח השוק שלה קטן.",
+   "url": "https://roller.apache.org/"
+  },
+  {
+   "key": "apache-axis",
+   "term": "Apache Axis",
+   "aliases": [
+    "Apache Axis",
+    "Axis"
+   ],
+   "category": "product",
+   "definition_he": "ספרייה ותיקה ב-Java של קרן Apache לבניית web services מסוג SOAP, שמוטמעת בהרבה מערכות ארגוניות ישנות. חלק מהגרסאות כבר לא נתמכות.",
+   "url": "https://axis.apache.org/"
+  },
+  {
+   "key": "soap",
+   "term": "SOAP",
+   "aliases": [
+    "SOAP"
+   ],
+   "category": "standard",
+   "definition_he": "פרוטוקול ותיק להעברת הודעות בין מערכות בפורמט XML, שנפוץ במערכות ארגוניות ובממשקי web services ישנים."
+  },
+  {
+   "key": "xml-rpc",
+   "term": "XML-RPC",
+   "aliases": [
+    "XML-RPC"
+   ],
+   "category": "standard",
+   "definition_he": "פרוטוקול ישן ופשוט לקריאה לפונקציות בשרת מרוחק בהודעות XML, שעדיין פעיל בפלטפורמות בלוגים ותוכן."
+  },
+  {
+   "key": "redcap",
+   "term": "REDCap",
+   "aliases": [
+    "REDCap"
+   ],
+   "category": "product",
+   "definition_he": "מערכת web לאיסוף ולניהול נתוני מחקר וסקרים, שפותחה באוניברסיטת Vanderbilt ונפוצה מאוד באוניברסיטאות ובבתי חולים.",
+   "url": "https://projectredcap.org/"
+  },
+  {
+   "key": "synology-dsm",
+   "term": "Synology DSM",
+   "aliases": [
+    "Synology DSM",
+    "Synology"
+   ],
+   "category": "product",
+   "definition_he": "מערכת ההפעלה של התקני האחסון ברשת (NAS) של חברת Synology, שנפוצים בעסקים קטנים ובינוניים."
+  },
+  {
+   "key": "big-ip",
+   "term": "BIG-IP",
+   "aliases": [
+    "BIG-IP"
+   ],
+   "category": "product",
+   "definition_he": "משפחת מוצרים של F5 לאיזון עומסים, להאצה ולאבטחה של תעבורת אפליקציות. מוצבת בדרך כלל בקצה הרשת, ונפוצה בארגונים גדולים ובבנקים.",
+   "url": "https://www.f5.com/products/big-ip"
+  },
+  {
+   "key": "irules",
+   "term": "iRules",
+   "aliases": [
+    "iRules",
+    "iRule"
+   ],
+   "category": "concept",
+   "definition_he": "סקריפטים שמנהלי רשת כותבים ב-BIG-IP של F5 כדי לשלוט באופן שבו התעבורה מנותבת ומטופלת."
+  },
+  {
+   "key": "tmm",
+   "term": "TMM",
+   "aliases": [
+    "TMM"
+   ],
+   "category": "concept",
+   "definition_he": "רכיב הליבה ב-BIG-IP של F5 (Traffic Management Microkernel) שמעבד את תעבורת הרשת. נפילה שלו עוצרת את התעבורה עד שהוא עולה מחדש."
+  },
+  {
+   "key": "watchtowr",
+   "term": "watchTowr",
+   "aliases": [
+    "watchTowr"
+   ],
+   "category": "company",
+   "definition_he": "חברת אבטחה שמתמחה במציאת חולשות במוצרים שחשופים לאינטרנט, כמו מכשירי רשת ושערי VPN.",
+   "url": "https://watchtowr.com/"
+  },
+  {
+   "key": "epoch-ai",
+   "term": "Epoch AI",
+   "aliases": [
+    "Epoch AI"
+   ],
+   "category": "org",
+   "definition_he": "מכון מחקר עצמאי שעוקב אחרי מגמות ב-AI, כמו כוח מחשוב, עלויות ונתוני אימון, ומפרסם נתונים וניתוחים.",
+   "url": "https://epoch.ai/"
+  },
+  {
+   "key": "palo-alto-networks",
+   "term": "Palo Alto Networks",
+   "aliases": [
+    "Palo Alto Networks"
+   ],
+   "category": "company",
+   "definition_he": "חברת סייבר אמריקאית גדולה, שמוכרת חומות אש, אבטחת ענן ושירותי מודיעין ותגובה (Unit 42).",
+   "url": "https://www.paloaltonetworks.com/"
+  },
+  {
+   "key": "applied-compute",
+   "term": "Applied Compute",
+   "aliases": [
+    "Applied Compute"
+   ],
+   "category": "company",
+   "definition_he": "חברה שמפתחת פלטפורמה להתאמה של מודלי AI פתוחים לנתונים של ארגון ולהרצתם בייצור. בנובמבר 2026 הודיעה Palo Alto Networks על רכישתה."
+  },
+  {
+   "key": "unit-42",
+   "term": "Unit 42",
+   "aliases": [
+    "Unit 42"
+   ],
+   "category": "org",
+   "definition_he": "צוות מחקר האיומים ותגובת האירועים של Palo Alto Networks.",
+   "url": "https://unit42.paloaltonetworks.com/"
+  },
+  {
+   "key": "open-weight",
+   "term": "open-weight",
+   "aliases": [
+    "open-weight",
+    "open-weight models"
+   ],
+   "category": "concept",
+   "definition_he": "מודל AI שהמשקלים שלו פורסמו להורדה, כך שאפשר להריץ ולהתאים אותו בתשתית שלנו, גם אם קוד האימון והנתונים לא פורסמו."
+  },
+  {
+   "key": "paperorchestra",
+   "term": "PaperOrchestra",
+   "aliases": [
+    "PaperOrchestra"
+   ],
+   "category": "product",
+   "definition_he": "מסגרת קוד פתוח של Google Cloud AI Research שבה כמה agents כותבים יחד מאמר מחקר מלא, מרעיונות ויומני ניסויים ועד קובץ LaTeX.",
+   "url": "https://github.com/google-research/paper-orchestra"
+  },
+  {
+   "key": "latex",
+   "term": "LaTeX",
+   "aliases": [
+    "LaTeX"
+   ],
+   "category": "product",
+   "definition_he": "מערכת לעימוד מסמכים, נפוצה מאוד במאמרים מדעיים, שבה כותבים את המסמך כקוד שמתורגם לקובץ מעוצב."
+  },
+  {
+   "key": "stitch-loop",
+   "term": "Stitch Loop",
+   "aliases": [
+    "Stitch Loop"
+   ],
+   "category": "product",
+   "definition_he": "כלי ניסיוני של Google Labs שמחובר לקוד ולנתוני הייצור של מוצר, מציע שיפורים, כותב קוד ופותח בקשות לשינוי לאישור אנושי.",
+   "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-loop/"
+  },
+  {
+   "key": "google-labs",
+   "term": "Google Labs",
+   "aliases": [
+    "Google Labs"
+   ],
+   "category": "org",
+   "definition_he": "היחידה של Google שמשיקה מוצרי AI ניסיוניים לציבור לפני שהם הופכים למוצרים מלאים.",
+   "url": "https://labs.google/"
+  },
+  {
+   "key": "skillevaluator",
+   "term": "SkillEvaluator",
+   "aliases": [
+    "SkillEvaluator"
+   ],
+   "category": "product",
+   "definition_he": "כלי קוד פתוח של Nvidia שבודק skills ותוספים של agents: כללי איכות ואבטחה, תאימות ל-agents שונים ומדידת התועלת שלהם.",
+   "url": "https://github.com/NVIDIA/SkillEvaluator"
+  },
+  {
+   "key": "agent-skills",
+   "term": "Agent Skills",
+   "aliases": [
+    "Agent Skills"
+   ],
+   "category": "standard",
+   "definition_he": "מפרט פתוח לחבילות של הוראות וקבצים שמלמדות agents לבצע משימות מסוימות. agents כמו Claude Code ו-Codex טוענים אותן לפי הצורך."
+  },
+  {
+   "key": "risky-business",
+   "term": "Risky Business",
+   "aliases": [
+    "Risky Business",
+    "Seriously Risky Business"
+   ],
+   "category": "org",
+   "definition_he": "פודקאסט וניוזלטר אוסטרלי ותיק על אבטחת מידע, שכולל גם פרשנות מדיניות של Tom Uren.",
+   "url": "https://risky.biz/"
+  },
+  {
+   "key": "censys",
+   "term": "Censys",
+   "aliases": [
+    "Censys"
+   ],
+   "category": "company",
+   "definition_he": "חברת אבטחה שסורקת את האינטרנט וממפה שרתים ושירותים חשופים, ומפרסמת ניתוחים על חולשות חדשות.",
+   "url": "https://censys.com/"
+  },
+  {
+   "key": "agent-harness",
+   "term": "agent harness",
+   "aliases": [
+    "agent harness"
+   ],
+   "category": "concept",
+   "definition_he": "הקוד שעוטף מודל שפה ב-agent: מחליט מתי לקרוא למודל, אילו כלים וצעדים מותר להריץ, ואיך לבדוק ולטפל בפלט שלו."
+  },
+  {
+   "key": "fallback",
+   "term": "fallback",
+   "aliases": [
+    "fallback"
+   ],
+   "category": "concept",
+   "definition_he": "מסלול גיבוי שמופעל אוטומטית כשרכיב נכשל או איטי מדי, כדי שהמשתמש יקבל תוצאה סבירה במקום שגיאה."
+  },
+  {
+   "key": "ai-discover",
+   "term": "AI Discover",
+   "aliases": [
+    "AI Discover"
+   ],
+   "category": "product",
+   "definition_he": "לשונית ניסיונית באפליקציית הטלוויזיה של Netflix, שבה המנוי בוחר נושא ומקבל שורת כותרים עם הסבר שנוצר בעזרת מודלי שפה.",
+   "url": "https://medium.com/netflix-techblog/engineering-ai-discover-e244944cdc38"
+  },
+  {
+   "key": "ec2-capacity-blocks",
+   "term": "EC2 Capacity Blocks",
+   "aliases": [
+    "EC2 Capacity Blocks",
+    "Capacity Blocks"
+   ],
+   "category": "product",
+   "definition_he": "שירות של AWS לשריון מראש של שרתי GPU לתקופה קצובה, בתשלום מראש ובמחיר שמתעדכן לפי היצע וביקוש.",
+   "url": "https://aws.amazon.com/ec2/capacityblocks/"
+  }
+ ]
 }

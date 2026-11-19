@@ -1,0 +1,907 @@
+{
+  "date": "2026-11-19",
+  "title": "סקירת טכנולוגיה יומית – 19 בנובמבר 2026",
+  "language": "he",
+  "format_version": "2-layered",
+  "period": {
+    "from": "2026-11-18T07:30:00+02:00",
+    "to": "2026-11-19T08:00:00+02:00"
+  },
+  "exec_summary": [
+    "דחוף היום: חמש חולשות חמורות ב-nginx, שרת ה-web וה-reverse proxy הנפוץ בעולם (nginx2root), מאפשרות לפי החוקרים להריץ קוד מרחוק בלי סיסמה. העדכון זמין, ועדיין אין דיווח על ניצול בפועל; נדרש טיפול מיידי בשרתים החשופים לאינטרנט.",
+    "עוד היום: עדכון אבטחה קריטי ל-PHP יוצא היום בין 16:00 ל-16:30 שעון ישראל, אבל החולשות הקריטיות בו דורשות הגדרות לא שגרתיות. במקביל, Apache Roller ו-Apache Axis כבר מותקפים בפועל, ו-F5 פרסמה שש חולשות קריטיות ב-BIG-IP שרלוונטיות רק להגדרות מסוימות.",
+    "בתחום ה-AI: חברת Google השיקה את Gemini 4 Neon, מודל מהיר וזול יותר שמתקרב למודלים המובילים, ו-OpenAI הראתה שהמודלים שלה שיפרו תכנון של שבבי AMD בעד 14%.",
+    "בשוק: חברת Anthropic גייסה 81.3 מיליארד דולר בהנפקה הגדולה בהיסטוריה; Palo Alto Networks קונה את Applied Compute ב-4.5 מיליארד דולר; ו-MongoDB רוכשת את Firebolt, שנוסדה בישראל.",
+    "לתכנון: חברת Microsoft פתחה לבדיקה את Windows Server 2028, שמגיע מוקשח כברירת מחדל, וחלק מהאפליקציות הישנות עלולות לא לעבוד עליו בלי התאמות."
+  ],
+  "items": [
+    {
+      "id": "2026-11-19-ai-1",
+      "section": "בינה מלאכותית",
+      "topic_key": "ai",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "high",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "חברת Google השיקה את Gemini 4 Neon: ביצועים קרובים לצמרת, במחיר ובמהירות של מודל ביניים",
+      "exec_summary": "מודל חדש של Google שמדורג שלישי במדד העצמאי של Artificial Analysis, בעלות נמוכה יותר למשימה.",
+      "summary": "חברת Google השיקה ב-18 בנובמבר את Gemini 4 Neon, שממוקם בין Gemini 4 Carbon ל-Hydrogen ומיועד לפיתוח תוכנה, לעבודת ידע ולמדע. המחיר הוא 3 דולר למיליון טוקני קלט (0.15 דולר לקלט שמור) ו-15 דולר למיליון טוקני פלט, עם חלון הקשר של מיליון טוקנים. לפי Artificial Analysis, המודל מקבל ציון 61 ומדורג שלישי במדד שלה, עם שיפור קטן לעומת Gemini 4 Carbon בעלות נמוכה בכ-17% למשימה; הוא זמין ב-Gemini API, ב-Antigravity, באפליקציית Gemini למנויי Pro ו-Ultra, ובאופן כללי גם ב-GitHub Copilot.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "זה עוד מודל ברמת הצמרת שמחירו נמוך מהמודלים הגדולים, וההשקות מגיעות עכשיו כמעט כל שבוע. מי שבוחר מודל ל-agents או לכתיבת קוד צריך להשוות לפי עלות למשימה שהושלמה ולא לפי מחיר לטוקן.",
+      "action": "לצוות הפיתוח: להוסיף את Gemini 4 Neon להשוואה הפנימית מול GPT-6.2 ו-MAI Code 2 על כמה משימות אמיתיות שלנו, כולל עלות ושיעור השלמה.",
+      "entities": [
+        "Google",
+        "Gemini 4 Neon",
+        "Google DeepMind",
+        "Artificial Analysis",
+        "GitHub Copilot",
+        "Antigravity"
+      ],
+      "sources": [
+        {
+          "label": "ההודעה בבלוג של Google",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
+          "type": "blog",
+          "source_id": "google-ai-blog",
+          "reliability": 5
+        },
+        {
+          "label": "הניתוח של Artificial Analysis ב-X",
+          "url": "https://x.com/ArtificialAnlys/status/2123170645777526962",
+          "type": "x",
+          "source_id": "artificial-analysis",
+          "reliability": 4
+        },
+        {
+          "label": "ההודעה של GitHub על זמינות ב-Copilot",
+          "url": "https://x.com/github/status/2123181574116233646",
+          "type": "x",
+          "source_id": "github-blog",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-ai-2",
+      "section": "בינה מלאכותית",
+      "topic_key": "ai",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "חברת OpenAI: המודלים שלה שיפרו תכנון של שבבי AMD בעד 14%, ושל שבב ההסקה Jalapeño",
+      "exec_summary": "מודלי שפה מתחילים לשפר תכנון שבבים ברמה של מהנדסים מומחים, לפי OpenAI ו-AMD.",
+      "summary": "חברת OpenAI פרסמה ב-18 בנובמבר שהמודלים שלה הציעו שינויים בקוד ה-RTL שמתאר את המעגלים, ושיפרו בעד 14% את מדדי ההספק, הביצועים והשטח (PPA) של רכיבי ה-GPU המובילים של AMD, ביחס לתכנון שכבר עבר אופטימיזציה רבה. לפי OpenAI, חלק מהשינויים כבר נכנסו לתכנון ש-AMD שלחה לייצור, ובשבב ההסקה של OpenAI עצמה, Jalapeño, השינויים הקטינו את שטח התאים ב-13% ביחידת הווקטורים וב-10% ביחידת המטריצות. החברה גם הודיעה על שיתוף פעולה עם Synopsys לאימון מודל בשם GPT-Synopsys שעובד עם כלי ה-EDA שלה.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "זו דוגמה לכך ש-AI עובר מכתיבת קוד תוכנה לשיפור של תכנון חומרה, תחום שבו כל אחוז שווה הרבה כסף. הנתונים הם של OpenAI, אבל AMD אימתה לפי ההודעה חלק מהשיפורים במעבד הבא שלה.",
+      "action": null,
+      "entities": [
+        "OpenAI",
+        "AMD",
+        "Jalapeño",
+        "Synopsys",
+        "GPT-Synopsys",
+        "RTL",
+        "PPA"
+      ],
+      "sources": [
+        {
+          "label": "הפוסט של OpenAI",
+          "url": "https://openai.com/index/advancing-chip-design-with-our-models/",
+          "type": "blog",
+          "source_id": "openai",
+          "reliability": 5
+        },
+        {
+          "label": "ההודעה של OpenAI ב-X",
+          "url": "https://x.com/OpenAI/status/2123100386638877054",
+          "type": "x",
+          "source_id": "openai",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-ai-3",
+      "section": "בינה מלאכותית",
+      "topic_key": "ai",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "חברת Netflix חושפת את הארכיטקטורה של AI Discover: שכבת agent שמשלבת LLM עם מערכת ההמלצות, תחת בקרה בקוד",
+      "exec_summary": "פירוט הנדסי נדיר של agent harness בייצור, מול מסכי טלוויזיה של מנויים.",
+      "summary": "בבלוג ההנדסה שלה (17 בנובמבר) מתארת Netflix את שכבת הבינה שמאחורי AI Discover, לשונית ניסיונית באפליקציית הטלוויזיה שבה קבוצה קטנה של מנויים בוחרת נושא ומקבלת שורת כותרים עם הסבר קצר. במקום למסור את כל הבקשה ל-LLM, רכיב controller בונה לכל בקשה תוכנית: גרף של צעדים מאושרים מראש (אחזור, דירוג, יצירת טקסט ואריזה), שכל אחד מהם מצהיר על הקלט, הפלט וההתנהגות במקרה של כישלון. התוכנית נבדקת לפני הריצה, רכיב executor מריץ צעדים במקביל עם deadline ו-fallback לכל צעד, והתוצאה נבדקת שוב לפני שהיא מוצגת. הפלט של המודל מטופל כקלט לא מהימן, כל כותר חייב להיות זמין בקטלוג, והמנוי מקבל דף גם כשקריאה למודל נכשלת.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "זו תבנית מעשית ל-agents בייצור: המודל מקבל משימות צרות בתוך תוכנית שנאכפת בקוד, ולא שליטה מלאה. מי שבונה אצלנו agents מול לקוחות יכול לאמץ את העקרונות: חוזה מוצהר לכל צעד, בדיקת התוכנית לפני הריצה, fallback מובטח ותיעוד מובנה של כל בקשה לניתוח בדיעבד.",
+      "action": "לצוותי ה-AI והפלטפורמה: לקרוא את הפוסט ולבדוק מול ה-agents שלנו אם לכל קריאה למודל יש fallback, ואם הפלט שלו נבדק לפני שהוא מגיע למשתמש.",
+      "entities": [
+        "Netflix",
+        "AI Discover",
+        "agent harness",
+        "LLM",
+        "Memory Hub",
+        "MemberLLM"
+      ],
+      "sources": [
+        {
+          "label": "הפוסט בבלוג ההנדסה של Netflix ב-Medium",
+          "url": "https://medium.com/netflix-techblog/engineering-ai-discover-e244944cdc38",
+          "type": "medium",
+          "source_id": "netflix-tech",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-data-1",
+      "section": "דאטה",
+      "topic_key": "data",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "חברת AWS שחררה את ExtendDB 1.0: שכבה פתוחה שמריצה אפליקציות DynamoDB על Postgres או MongoDB",
+      "exec_summary": "אפשר להריץ קוד שנכתב ל-DynamoDB גם מחוץ ל-AWS, על מסד נתונים לבחירתנו.",
+      "summary": "חברת AWS הודיעה ב-18 בנובמבר על גרסה 1.0 של ExtendDB, מתאם קוד פתוח (רישיון Apache 2.0) שתואם ל-API של Amazon DynamoDB ומריץ את הנתונים על מסד נתונים אחר. הגרסה תומכת בארבעה מסדי נתונים: PostgreSQL, SQLite, Cassandra ו-MongoDB, ומאפשרת להריץ עומסי DynamoDB במרכזי נתונים מקומיים, בעננים אחרים ובקצה בלי לשכתב את הקוד. לפיתוח מקומי ול-CI יש image בשם extenddb-dev שמריץ נקודת קצה תואמת על SQLite.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "מי שבנה על DynamoDB היה תלוי עד היום ב-AWS. עכשיו AWS עצמה מציעה דרך רשמית להריץ את אותו קוד במקום אחר, וזה רלוונטי לדרישות ריבונות נתונים, לסביבות מנותקות ולבדיקות מקומיות.",
+      "action": "לצוותים שעובדים עם DynamoDB: לבחון את extenddb-dev כתחליף לאמולטור בבדיקות ה-CI.",
+      "entities": [
+        "AWS",
+        "ExtendDB",
+        "Amazon DynamoDB",
+        "PostgreSQL",
+        "SQLite",
+        "Cassandra",
+        "MongoDB"
+      ],
+      "sources": [
+        {
+          "label": "ההודעה של AWS",
+          "url": "https://aws.amazon.com/about-aws/whats-new/2026/11/aws-extenddb-1-0/",
+          "type": "blog",
+          "source_id": "aws-whats-new",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-data-2",
+      "section": "דאטה",
+      "topic_key": "data",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "medium",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "חברת MongoDB רוכשת את Firebolt, שנוסדה בישראל, כדי להוסיף ניתוח נתונים בזמן אמת",
+      "exec_summary": "מסד הנתונים התפעולי הפופולרי מוסיף מנוע אנליטי, כדי שאפליקציות ו-agents לא יצטרכו מחסן נתונים נפרד.",
+      "summary": "חברת MongoDB הודיעה ב-18 בנובמבר שהיא רוכשת את Firebolt, מחסן נתונים בענן שנוסד בישראל ב-2019 והוערך ב-1.4 מיליארד דולר בגיוס של 2022; המחיר לא פורסם. לפי MongoDB, המנוע של Firebolt ירוץ לצד מסד הנתונים ויסונכרן אוטומטית, בלי pipeline שהלקוח צריך לבנות, כדי לאפשר שאילתות אנליטיות על נתונים תפעוליים עדכניים. האינטגרציה עוד לא זמינה, ולקוחות קיימים של Firebolt ימשיכו לקבל שירות.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "זה עוד צעד במגמה של איחוד מסדי נתונים תפעוליים ואנליטיים, אחרי Databricks עם Lakebase. לפי The Register, עדיין לא ברור אם הנתונים נשמרים בעותק נפרד, ולכן כדאי לחכות לפרטים הטכניים לפני תכנון ארכיטקטורה סביב זה.",
+      "action": null,
+      "entities": [
+        "MongoDB",
+        "Firebolt",
+        "Databricks",
+        "OLTP",
+        "OLAP"
+      ],
+      "sources": [
+        {
+          "label": "ההודעה של MongoDB",
+          "url": "https://www.mongodb.com/company/blog/news/mongodb-acquires-firebolt",
+          "type": "blog",
+          "source_id": "mongodb",
+          "reliability": 5
+        },
+        {
+          "label": "כתבת The Register",
+          "url": "https://www.theregister.com/databases/2026/11/18/mongodb-snaps-up-firebolt-to-bring-transactions-and-analytics-under-one-roof/5310809",
+          "type": "article",
+          "source_id": "theregister",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-quantum-1",
+      "section": "קוונטים",
+      "topic_key": "quantum",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "low",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "חברת Alice & Bob מקדימה את מפת הדרכים: 200 קיוביטים לוגיים עד 2030, ו-Shor לראשונה ב-2032",
+      "exec_summary": "יצרנית קוונטים צרפתית מכפילה את היעד שלה ל-2030 ומציבה תאריך להרצה ראשונה של אלגוריתם Shor.",
+      "summary": "חברת Alice & Bob הצרפתית פרסמה ב-18 בנובמבר מפת דרכים מעודכנת: מערכת בשם Carbon עם 200 קיוביטים לוגיים כבר ב-2030, שייבנו מ-3,600 קיוביטים פיזיים מסוג cat qubits, פי שניים מהיעד הקודם. לפי התוכנית, יגיעו 6 קיוביטים לוגיים ב-2028, 1,024 ב-2032 עם הרצה ראשונה של אלגוריתם Shor ויישומי סייבר, ו-2,048 ב-2034. השיטה מבוססת על קיוביטים מוליכי-על שמדכאים ברמת החומרה סוג אחד של שגיאות, ועל חיבור כמה מעבדים בטמפרטורה קריוגנית.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "זו מפת דרכים של יצרן ולא הוכחה, אבל עוד חברה מציבה תאריך ליכולת שקשורה לשבירת הצפנה. זה מחזק את הצורך לתכנן מעבר להצפנה עמידה לקוונטים (PQC) כבר עכשיו.",
+      "action": null,
+      "entities": [
+        "Alice & Bob",
+        "cat qubits",
+        "logical qubits",
+        "Shor",
+        "PQC"
+      ],
+      "sources": [
+        {
+          "label": "ההודעה של Alice & Bob ב-X",
+          "url": "https://x.com/Alice__Bob/status/2123064864478310542",
+          "type": "x",
+          "source_id": "alice-bob",
+          "reliability": 4
+        },
+        {
+          "label": "ההודעה לעיתונות ב-The Quantum Insider",
+          "url": "https://thequantuminsider.com/2026/11/18/alice-bobs-updated-roadmap-targets-200-logical-qubits-from-3600-physical-qubits-by-2030/",
+          "type": "article",
+          "source_id": "tqi",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-cloud-1",
+      "section": "ענן ותשתיות",
+      "topic_key": "cloud",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "high",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "מערכת Windows Server 2028 זמינה לבדיקה: מוקשחת כברירת מחדל, וחלק מהישן עלול להישבר",
+      "exec_summary": "הגרסה הבאה של Windows Server מפעילה מאות הגדרות אבטחה מההתקנה הראשונה, על חשבון תאימות לאחור.",
+      "summary": "חברת Microsoft פתחה ב-17 בנובמבר, בכנס Ignite, גרסת preview ציבורית של Windows Server 2028, גרסת התמיכה הארוכה (LTSC) הבאה, בלי תאריך ליציאה סופית. בהתקנת Server Core מופעלות כברירת מחדל מאות הגדרות אבטחה, ובהן Kerberos במקום NTLM, הגנה על LSASS, חתימה והצפנה של SMB, חומת אש בכל הפרופילים, TLS מודרני עם החלפת מפתחות היברידית עמידה לקוונטים (ML-KEM) ו-WinRM בלי Basic. לפי The Register, תהליכים ישנים עלולים להיכשל בגלל ההקשחה, ולצד זה Microsoft מוסיפה ניהול שרתים דרך Intune ותמיכה במאיצי AI, כמו כרטיס AMD Instinct MI350P מהמחצית הראשונה של 2027.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "מערכת מוקשחת מראש חוסכת עבודת הקשחה, אבל כל אפליקציה או סקריפט שתלויים ב-NTLM, ב-SMB לא חתום או ב-RDP ישן ייתקלו בבעיות. זה הזמן לבדוק תאימות, הרבה לפני מועד השדרוג.",
+      "action": "לצוות התשתיות: להקים שרת בדיקה של Windows Server 2028 ולהריץ עליו את האפליקציות והסקריפטים הקריטיים שלנו, עם דגש על תלות ב-NTLM.",
+      "entities": [
+        "Microsoft",
+        "Windows Server 2028",
+        "Server Core",
+        "NTLM",
+        "Kerberos",
+        "ML-KEM",
+        "Intune",
+        "AMD Instinct MI350P"
+      ],
+      "sources": [
+        {
+          "label": "הבלוג של Microsoft",
+          "url": "https://techcommunity.microsoft.com/blog/windowsservernewsandbestpractices/windows-server-2028-a-trusted-foundation-for-an-evolving-enterprise/4574112",
+          "type": "blog",
+          "source_id": "microsoft-techcommunity",
+          "reliability": 5
+        },
+        {
+          "label": "כתבת BleepingComputer",
+          "url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-announces-windows-server-2028-with-hardened-security/",
+          "type": "article",
+          "source_id": "bleeping",
+          "reliability": 4
+        },
+        {
+          "label": "כתבת The Register על התאימות",
+          "url": "https://www.theregister.com/os-platforms/2026/11/18/windows-server-2028-wont-be-compatible-by-default/5310766",
+          "type": "article",
+          "source_id": "theregister",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-cloud-2",
+      "section": "ענן ותשתיות",
+      "topic_key": "cloud",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "שירות AWS Lambda מריץ עכשיו פונקציות על GPU, בלי לנהל דרייברים או אשכולות",
+      "exec_summary": "הסקה של מודלים ועיבוד מדיה על GPU בצורה serverless, בתוך סביבת AWS.",
+      "summary": "חברת AWS הודיעה ב-18 בנובמבר על תמיכה במכונות GPU מסדרת G של EC2 עבור Event Functions שרצות על Lambda Managed Instances. הפונקציות נפרסות כ-container images, ו-Lambda מטפלת בהקצאה, בהרחבה ובחיבור לאירועי AWS, בלי צורך לנהל דרייברים, גרסאות CUDA או אשכולות. לפי AWS, השירות מותאם להסקה (inference) ולא לאימון, ומרכז כמה פונקציות על אותה מכונה כדי לנצל טוב יותר את ה-GPU.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "עד היום, מי שרצה להריץ מודל קטן על GPU בתגובה לאירוע היה צריך לנהל מכונות או לצאת לשירות חיצוני. עכשיו אפשר לעשות את זה בתוך Lambda, עם אותה הרשאה ורשת, בתמחור של EC2.",
+      "action": null,
+      "entities": [
+        "AWS",
+        "AWS Lambda",
+        "Lambda Managed Instances",
+        "EC2",
+        "GPU"
+      ],
+      "sources": [
+        {
+          "label": "הבלוג של AWS",
+          "url": "https://aws.amazon.com/blogs/aws/aws-lambda-now-supports-gpu-instances-for-event-functions-on-lambda-managed-instances/",
+          "type": "blog",
+          "source_id": "aws-news",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-cyber-1",
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "חמש חולשות חמורות ב-nginx (nginx2root) מאפשרות הרצת קוד מרחוק בלי הזדהות; יש עדכון",
+      "exec_summary": "חולשות בשרת ה-web הנפוץ בעולם, הקשה שבהן פוגעת בכל שרת עם HTTP/2; העדכון זמין, ואין עדיין דיווח על ניצול בפועל.",
+      "summary": "ב-18 בנובמבר פרסמו F5 ו-nginx.org עשר חולשות ב-nginx, שתוקנו בגרסאות 1.30.7 ו-1.31.9. חמש מהן, שחברת המחקר Xint קוראת להן nginx2root, הן חולשות זיכרון שלפי החוקרים מאפשרות הרצת קוד מרחוק בלי הזדהות; F5 מדרגת אותן 8.1 (CVSS 3.1) ו-9.2 (CVSS 4.0), ואומרת שהרצת קוד מחייבת לעקוף את ASLR. החמורה, CVE-2026-123007, נמצאת בבקרת הזרימה של HTTP/2 ופוגעת בכל שרת עם HTTP/2 מאז גרסה 1.9.5 מ-2015, ו-Wiz הדגימה הרצת קוד גם בשרת שמגיש קבצים סטטיים בלבד; ארבע האחרות דורשות הגדרות מסוימות (HTTP/3 או HTTP/2 עם proxy, resolver עם משתנים, או mail proxy). חברת Xint גם מדווחת על חולשה בקרנל של Linux שאיתה הגיעה להרשאות root, גם מתוך container, ומעכבת את הפרטים עד לתיקון.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "רמת הסיכון: החולשה המרכזית ניתנת לניצול מרחוק בלי הזדהות (pre-auth) בכל nginx שמפעיל HTTP/2, הגדרה נפוצה מאוד באתרי HTTPS, ולכן השרתים החשופים לאינטרנט נמצאים בסיכון הגבוה ביותר. nginx הוא שרת ה-web וה-reverse proxy הנפוץ בעולם, ולעיתים קרובות מוטמע גם בתוך מוצרים, appliances ו-container images. לפי Zero Wire של Cloudflare, נכון ל-18 בנובמבר אין דיווח על ניצול בפועל והחולשות אינן בקטלוג KEV של CISA, ו-Xint השמיטה את שלבי הניצול האחרונים; תיקון זמין בגרסאות 1.30.7 ו-1.31.9 ובחבילות של ההפצות. בשורה התחתונה: טיפול מיידי בשרתי nginx החשופים לאינטרנט, כולל כאלה שמוטמעים במוצרים. שרת nginx אחד מגיש לעיתים כמה אפליקציות, ולכן פריצה אליו פוגעת בכולן, גם אם הקוד שלהן תקין.",
+      "action": "למפות היום את כל מופעי nginx, כולל ב-images ובמוצרי צד שלישי; לעדכן ל-1.30.7 או 1.31.9 (או לחבילה המתוקנת של ההפצה) ולהפעיל מחדש, קודם בשרתים החשופים לאינטרנט. לבדוק את גרסת החבילה המלאה ולא רק את nginx -v, כי הפצות מכניסות תיקונים בלי לשנות את מספר הגרסה.",
+      "entities": [
+        "nginx2root",
+        "nginx",
+        "F5",
+        "Xint",
+        "Wiz",
+        "CVE-2026-123007",
+        "CVE-2026-123633",
+        "HTTP/2"
+      ],
+      "sources": [
+        {
+          "label": "הפרסום של Xint",
+          "url": "https://xint.io/blog/nginx2root-remote-code-execution",
+          "type": "blog",
+          "source_id": "xint",
+          "reliability": 3
+        },
+        {
+          "label": "רשימת החולשות של nginx.org",
+          "url": "https://nginx.org/en/security_advisories.html",
+          "type": "report",
+          "source_id": "nginx-org",
+          "reliability": 5
+        },
+        {
+          "label": "תדריך Zero Wire של Cloudflare",
+          "url": "https://radar.cloudflare.com/zero-wire/nginx2root",
+          "type": "report",
+          "source_id": "cloudflare-zero-wire",
+          "reliability": 4
+        },
+        {
+          "label": "המחקר של Wiz",
+          "url": "https://www.wiz.io/blog/nginx-http2-rce-vulnerabilities",
+          "type": "blog",
+          "source_id": "wiz-research",
+          "reliability": 4
+        },
+        {
+          "label": "הדיווח ב-LWN",
+          "url": "https://lwn.net/Articles/1108362/",
+          "type": "article",
+          "source_id": "lwn",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-cyber-2",
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "עדכון אבטחה קריטי ל-PHP יוצא היום אחר הצהריים, לכל הגרסאות הנתמכות",
+      "exec_summary": "עדכון קריטי ל-PHP היום ב-16:00–16:30 שעון ישראל; החולשות הקריטיות דורשות הגדרות לא שגרתיות.",
+      "summary": "צוות האבטחה של PHP הודיע שעדכוני אבטחה לכל הגרסאות הנתמכות ייצאו היום, 19 בנובמבר, בין 14:00 ל-14:30 UTC (16:00–16:30 שעון ישראל). לפי ההודעה, החומרה הגבוהה ביותר היא קריטית, אבל החולשות הקריטיות דורשות הגדרה שאינה ברירת מחדל או סביבה לא שגרתית; הפרטים ומספרי הגרסאות יפורסמו עם העדכון. לפי Aikido ו-The Hacker News, העדכון צפוי לכלול את CVE-2026-115560, חולשת הרצת קוד מרחוק בטיפול ב-session upload progress, שמנוצלת רק כשהאפליקציה משנה את ה-session serializer בקוד לפני session_start.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "רמת הסיכון: לפי המידע שפורסם, הניצול אפשרי מרחוק בלי הזדהות, אבל רק באפליקציות שמשתמשות בצירוף הגדרות מסוים ולא נפוץ. נכון לבוקר 19 בנובמבר לא דווח על ניצול בפועל של החולשות החדשות, והתיקון ייצא היום; PHP עצמה ממליצה כבר מאוקטובר להגדיר session.upload_progress.enabled=0 כהגנה זמנית. בשורה התחתונה: לא נדרש לחץ, אבל כדאי לעדכן את שרתי ה-PHP החשופים לאינטרנט בימים הקרובים, ובמיוחד אחרי שהחולשות של PHP2Shell באוקטובר כבר נוצלו בפועל.",
+      "action": "לתאם חלון עדכון לשרתי PHP ול-container images החל מהערב; עד אז, אם האפליקציה לא צריכה מד התקדמות להעלאת קבצים, להגדיר session.upload_progress.enabled=0 ולהפעיל מחדש את ה-PHP workers.",
+      "entities": [
+        "PHP",
+        "CVE-2026-115560",
+        "PHP2Shell",
+        "session.upload_progress"
+      ],
+      "sources": [
+        {
+          "label": "ההודעה של PHP",
+          "url": "https://www.php.net/archive/2026.php",
+          "type": "blog",
+          "source_id": "php-net",
+          "reliability": 5
+        },
+        {
+          "label": "הניתוח של Aikido",
+          "url": "https://www.aikido.dev/blog/php-security-release-19-november-2026-cve-2026-115560",
+          "type": "blog",
+          "source_id": "aikido-security",
+          "reliability": 3
+        },
+        {
+          "label": "כתבת The Hacker News",
+          "url": "https://thehackernews.com/2026/11/php-warns-of-critical-security-flaws.html",
+          "type": "article",
+          "source_id": "thehackernews",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-cyber-3",
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "action",
+      "tag_he": "דורש פעולה",
+      "priority": "high",
+      "audience": [
+        "team"
+      ],
+      "headline": "מנוצלות בפועל: Apache Roller ו-Apache Axis, וגם REDCap, Synology DSM ו-LiteLLM נכנסו לקטלוג של CISA",
+      "exec_summary": "חמש חולשות שמנוצלות עכשיו, שלוש מהן בלי הזדהות; כדאי לבדוק אם המוצרים האלה קיימים אצלנו.",
+      "summary": "קרן Apache הודיעה שחולשה קריטית ב-Apache Roller (CVE-2026-129448, CVSS 9.8) מנוצלת בפועל: נקודת הקצה XML-RPC מפרקת נתונים לפני בדיקת ההזדהות, וכך מאפשרת הרצת קוד מרחוק בגרסאות 4.0.0 עד 6.1.4; התיקון בגרסה 6.1.6. ב-18 בנובמבר הוסיפה CISA לקטלוג KEV ארבע חולשות מנוצלות: Apache Axis (CVE-2026-90436), שמאפשרת הרצת קוד בלי הזדהות דרך הודעת SOAP; REDCap (CVE-2026-90817), הזרקת קוד בלי הזדהות; Synology DSM (CVE-2024-10441); ו-LiteLLM (CVE-2026-40217), הרצת קוד דרך נקודת הקצה לבדיקת guardrails. ל-Axis, ל-REDCap ול-Synology נתנה CISA לסוכנויות הפדרליות שלושה ימים בלבד, עד 21 בנובמבר.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "רמת הסיכון: ב-Roller, ב-Axis וב-REDCap הניצול אפשרי מרחוק בלי הזדהות (pre-auth), ולכן שרתים חשופים לאינטרנט נמצאים בסיכון המיידי. Apache Roller היא פלטפורמת בלוגים ארגונית ב-Java עם נתח שוק קטן; Apache Axis היא ספרייה ותיקה ל-web services מסוג SOAP שמוטמעת בהרבה מערכות Java ארגוניות ישנות, ולפי CISA ייתכן שחלק מהגרסאות כבר לא נתמכות; REDCap היא מערכת לאיסוף נתוני מחקר שנפוצה באוניברסיטאות ובבתי חולים. כל החמש מנוצלות בפועל, ולכולן יש תיקון או הנחיות הגנה. בשורה התחתונה: טיפול מיידי בשירותים החשופים לאינטרנט, אם המוצרים האלה קיימים אצלנו; Axis היא החשודה העיקרית כי היא מסתתרת בתוך אפליקציות ישנות.",
+      "action": "לחפש במלאי התוכנה ובסריקת התלויות של אפליקציות Java את axis.jar, ולוודא ש-LiteLLM, Synology DSM ו-Roller (אם קיימים) מעודכנים. ב-Roller שלא ניתן לעדכן מיד: להסיר את מיפוי /roller-services/xmlrpc, כי לפי Apache כיבוי XML-RPC בממשק לא מספיק.",
+      "entities": [
+        "Apache Roller",
+        "Apache Axis",
+        "REDCap",
+        "Synology DSM",
+        "LiteLLM",
+        "CISA KEV",
+        "CVE-2026-129448",
+        "CVE-2026-90436"
+      ],
+      "sources": [
+        {
+          "label": "ההודעה של CISA על ארבע החולשות",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/18/cisa-adds-four-known-exploited-vulnerabilities-catalog",
+          "type": "report",
+          "source_id": "cisa-advisories",
+          "reliability": 5
+        },
+        {
+          "label": "קטלוג KEV של CISA",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+          "type": "report",
+          "source_id": "cisa-kev",
+          "reliability": 5
+        },
+        {
+          "label": "כתבת BleepingComputer על Roller",
+          "url": "https://www.bleepingcomputer.com/news/security/apache-warns-of-roller-rce-vulnerability-exploited-in-attacks/",
+          "type": "article",
+          "source_id": "bleeping",
+          "reliability": 4
+        },
+        {
+          "label": "ההודעה של Apache על Axis",
+          "url": "https://lists.apache.org/thread/8slf0j9gz35z56t0glt5h0ncwlbn4bdz",
+          "type": "report",
+          "source_id": "apache-security",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-cyber-4",
+      "section": "סייבר",
+      "topic_key": "cyber",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "חברת F5 פרסמה שש חולשות קריטיות ב-BIG-IP, שרלוונטיות רק להגדרות iRules ו-APM מסוימות",
+      "exec_summary": "חולשות קריטיות במאזן העומסים הנפוץ של F5, אבל רק בהגדרות ספציפיות; יש תיקוני חירום.",
+      "summary": "חברת F5 פרסמה ב-18 בנובמבר שש חולשות stack overflow במישור הנתונים של BIG-IP, כולן בדירוג 9.8 (CVSS 3.1) ו-9.3 (CVSS 4.0). לפי F5, תוקף לא מזוהה יכול להפיל את רכיב TMM שמעביר את התעבורה, וייתכן שגם להריץ קוד, אבל רק כשעל השרת הווירטואלי מוגדר iRule שמשתמש בפקודות מסוימות (כמו MR::message, PSC::ip_address או DNS::scrape) או מדיניות APM עם סוכני Client Information ו-Endpoint Security. התיקונים הם engineering hotfixes לגרסאות 17.1, 17.5 ו-21.1 ול-BIG-IP Next for Kubernetes, בלי פתרון עוקף; ממשק הניהול לא חשוף.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "רמת הסיכון: הניצול אפשרי מרחוק בלי הזדהות דרך התעבורה הרגילה שעוברת ב-BIG-IP, שלרוב מוצב בקצה הרשת מול האינטרנט, אבל רק בהגדרות שמשתמשות בפקודות הספציפיות. BIG-IP הוא מאזן עומסים ושער אפליקציות נפוץ מאוד בארגונים גדולים ובבנקים. לפי F5 ו-Censys, נכון ל-18 בנובמבר אין דיווח על ניצול או קוד הדגמה ציבורי, והתיקונים הם hotfixes שלא עברו בדיקות מלאות. בשורה התחתונה: אם יש לנו BIG-IP, לבדוק עוד השבוע אם ה-iRules משתמשים בפקודות האלה; אם לא, אין צורך בלחץ.",
+      "action": "לצוות הרשת: לחפש ב-iRules את הפקודות שמופיעות בהודעות של F5 ואת מדיניות ה-APM הרלוונטית, ולהתקין hotfix רק במכשירים שבאמת מושפעים.",
+      "entities": [
+        "F5",
+        "BIG-IP",
+        "iRules",
+        "APM",
+        "TMM",
+        "watchTowr"
+      ],
+      "sources": [
+        {
+          "label": "כתבת The Hacker News",
+          "url": "https://thehackernews.com/2026/11/f5-warns-6-critical-big-ip-flaws-can.html",
+          "type": "article",
+          "source_id": "thehackernews",
+          "reliability": 3
+        },
+        {
+          "label": "הניתוח של Censys",
+          "url": "https://censys.com/advisory/cve-2026-121805/",
+          "type": "report",
+          "source_id": "censys",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-enterprise-1",
+      "section": "ארגונים ואנליסטים",
+      "topic_key": "enterprise",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "medium",
+      "audience": [
+        "management"
+      ],
+      "headline": "חברת Anthropic גייסה 81.3 מיליארד דולר בהנפקה הגדולה בהיסטוריה; המסחר בנאסד\"ק מתחיל היום",
+      "exec_summary": "היצרנית של Claude נכנסת לבורסה בשווי של כ-1.5 טריליון דולר, מעל טווח המחירים שתוכנן.",
+      "summary": "חברת Anthropic תמחרה את המניה ב-83 דולר, מעל הטווח של 70–78 דולר, ומכרה כ-980 מיליון מניות, כך שהגיוס הגיע ל-81.3 מיליארד דולר, יותר מגיוס ה-IPO הראשוני של SpaceX ביוני. לפי CNBC, השווי המלא הוא כ-1.5 טריליון דולר, והמסחר בנאסד\"ק מתחיל היום תחת הסימול ANT; Google, Microsoft, Nvidia ו-AMD התחייבו להשקיע יחד 26 מיליארד דולר במחיר ההנפקה. לפי Epoch AI, על בסיס התשקיף, Anthropic הוציאה 10 מיליארד דולר על מחשוב ותשתיות ברבעון השלישי בלבד.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "לספק מודלים שאנחנו עשויים להשתמש בו תהיה עכשיו חובת דיווח ציבורית, שקיפות פיננסית ולחץ של משקיעים על רווחיות, ואלה עשויים להשפיע על מחירים ועל תנאי שימוש. זה גם מבחן לתיאבון של השוק להשקעות ב-AI.",
+      "action": null,
+      "entities": [
+        "Anthropic",
+        "Claude",
+        "Nasdaq",
+        "Google",
+        "Microsoft",
+        "Nvidia",
+        "AMD",
+        "Epoch AI"
+      ],
+      "sources": [
+        {
+          "label": "ההודעה של Anthropic ב-X",
+          "url": "https://x.com/AnthropicAI/status/2123196808675405860",
+          "type": "x",
+          "source_id": "anthropic",
+          "reliability": 5
+        },
+        {
+          "label": "כתבת CNBC",
+          "url": "https://www.cnbc.com/2026/11/18/anthropic-ipo-ai-offering-price.html",
+          "type": "article",
+          "source_id": "cnbc",
+          "reliability": 4
+        },
+        {
+          "label": "הניתוח של Epoch AI ב-X",
+          "url": "https://x.com/EpochAIResearch/status/2123159919042207823",
+          "type": "x",
+          "source_id": "epoch-ai",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-enterprise-2",
+      "section": "ארגונים ואנליסטים",
+      "topic_key": "enterprise",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "medium",
+      "audience": [
+        "management"
+      ],
+      "headline": "חברת Palo Alto Networks קונה את Applied Compute ב-4.5 מיליארד דולר, כדי להריץ מודלים פתוחים אצל הלקוחות",
+      "exec_summary": "ענקית האבטחה נכנסת לתחום התאמה והרצה של מודלי AI פתוחים, גם בסביבות ריבוניות.",
+      "summary": "חברת Palo Alto Networks הודיעה ב-18 בנובמבר על רכישת Applied Compute בעסקת מניות בשווי 4.5 מיליארד דולר. הפלטפורמה של Applied Compute מאפשרת לארגונים להתאים מודלים פתוחים (open-weight) לנתונים שלהם ולהריץ אותם בייצור, ו-Palo Alto תציע אותה ללקוחות האבטחה שלה בעננים ציבוריים ובסביבות ריבוניות; לפי המנכ\"ל Nikesh Arora, צוות Unit 42 בדק את אבטחת הפלטפורמה לפני העסקה. באותו יום דיווחה החברה על הכנסות של 3.44 מיליארד דולר ברבעון, עלייה של 39%, והעסקה צפויה להיסגר ברבעון השלישי של שנת הכספים 2027.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "ספקי אבטחה גדולים מתחילים למכור גם את תשתית ה-AI עצמה, ולא רק את ההגנה עליה. לארגונים שרוצים מודלים פתוחים בתוך הסביבה שלהם זו אפשרות נוספת, אבל גם סיכון לתלות גדולה יותר בספק אחד.",
+      "action": null,
+      "entities": [
+        "Palo Alto Networks",
+        "Applied Compute",
+        "Nikesh Arora",
+        "Unit 42",
+        "open-weight models"
+      ],
+      "sources": [
+        {
+          "label": "כתבת SecurityWeek",
+          "url": "https://www.securityweek.com/palo-alto-networks-to-buy-ai-startup-applied-compute-for-4-5-billion/",
+          "type": "article",
+          "source_id": "securityweek",
+          "reliability": 3
+        },
+        {
+          "label": "כתבת CNBC",
+          "url": "https://www.cnbc.com/2026/11/18/palo-alto-networks-panw-q1-2027-earnings-.html",
+          "type": "article",
+          "source_id": "cnbc",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-emerging-1",
+      "section": "טכנולוגיות מתפרצות",
+      "topic_key": "emerging",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "מערכת PaperOrchestra של Google הופכת רעיונות ויומני ניסויים למאמר מחקר מוכן להגשה",
+      "exec_summary": "מסגרת agents פתוחה של Google שכותבת מאמר מחקר שלם, ומזנקת השבוע ב-GitHub.",
+      "summary": "מערכת PaperOrchestra, של חוקרי Google Cloud AI Research, היא מסגרת קוד פתוח (Apache 2.0) שבה כמה agents מתמחים בונים מאמר: מתאר, סקירת ספרות, כתיבת פרקים, ליטוש וגרפים, עד קובץ LaTeX שמתאים לתבנית של כנס. המאמר שמתאר אותה פורסם ב-arXiv באפריל, אבל המאגר עלה לראש מגמות GitHub רק השבוע. היא עובדת עם מודלי Gemini או OpenAI, דרך מפתחות API של המשתמש.",
+      "heat": 3,
+      "momentum": "דף GitHub trending היומי (19.11): 1,524 כוכבים ביום, 4,477 בסך הכול לפי ה-API; לפי פוסטים ב-X: כ-1,596 כוכבים ב-17.11 וכ-3,030 ב-18.11, מקום 12 ביומי ב-17.11 ומקום 15 ב-19.11; שיתופים באנגלית, יפנית, קוריאנית, תאית וערבית.",
+      "why_it_matters": "זו דוגמה למגמה של agents שמבצעים תהליך עבודה מקצועי שלם, לא רק משימה אחת. אותה גישה רלוונטית גם למסמכים פנימיים כמו דוחות טכניים, ובמקביל מגבירה את הצורך לבדוק מקורות וטענות במסמכים שנכתבו על ידי AI.",
+      "action": null,
+      "entities": [
+        "PaperOrchestra",
+        "Google Cloud AI Research",
+        "LaTeX",
+        "Gemini"
+      ],
+      "sources": [
+        {
+          "label": "המאגר ב-GitHub",
+          "url": "https://github.com/google-research/paper-orchestra",
+          "type": "github",
+          "source_id": "github-trending",
+          "reliability": 3
+        },
+        {
+          "label": "המאמר ב-arXiv",
+          "url": "https://arxiv.org/abs/2604.05018",
+          "type": "report",
+          "source_id": "arxiv-cs-ai",
+          "reliability": 5
+        },
+        {
+          "label": "פוסט ב-X על המיקום ב-GitHub trending",
+          "url": "https://x.com/chinchoukou/status/2123219758388764758",
+          "type": "x",
+          "source_id": null,
+          "reliability": 2
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-emerging-2",
+      "section": "טכנולוגיות מתפרצות",
+      "topic_key": "emerging",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "medium",
+      "audience": [
+        "team"
+      ],
+      "headline": "הכלי Stitch Loop של Google Labs ממשיך לשפר את המוצר אחרי ההשקה, ומעורר באזז ברשת X",
+      "exec_summary": "סוכן AI שמחובר לקוד ולמדדי הייצור, מציע שיפורים ופותח pull requests לאישור.",
+      "summary": "הכלי Stitch Loop, ניסוי חדש של Google Labs, מתחבר ל-GitHub ולנתוני המוצר (לוגים, התנהגות משתמשים ומשוב) דרך יותר מ-180 אינטגרציות או שרתי MCP, ורץ ברציפות מול יעדים מדידים. בכל סבב הוא מציע שיפור על בסיס הנתונים, כותב קוד בסביבה מבודדת בענן ופותח pull request לאישור, ואחר כך עוקב אם המדד השתפר. יש לו לולאות מובנות לאבטחה, לזמני תגובה ולנגישות, והגישה כרגע דרך רשימת המתנה.",
+      "heat": 2,
+      "momentum": "פוסט ההשקה של @stitchbygoogle ב-X (18.11, 17:07 UTC): כ-1,375 לייקים תוך כ-12 שעות; עשרות פוסטים משתפים באנגלית, ערבית, פרסית ואינדונזית; הגישה דרך רשימת המתנה.",
+      "why_it_matters": "זה המשך המעבר מ-agents שכותבים קוד ל-agents שמשפרים מוצר חי לאורך זמן. לפני שמחברים כלי כזה לנתוני ייצור, צריך להחליט אילו נתונים הוא רואה ומי מאשר את השינויים.",
+      "action": null,
+      "entities": [
+        "Stitch Loop",
+        "Google Labs",
+        "Stitch",
+        "MCP",
+        "GitHub"
+      ],
+      "sources": [
+        {
+          "label": "פוסט ההשקה ב-X",
+          "url": "https://x.com/stitchbygoogle/status/2123100817863663686",
+          "type": "x",
+          "source_id": null,
+          "reliability": 3
+        },
+        {
+          "label": "ההודעה בבלוג של Google",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-loop/",
+          "type": "blog",
+          "source_id": "google-ai-blog",
+          "reliability": 5
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-emerging-3",
+      "section": "טכנולוגיות מתפרצות",
+      "topic_key": "emerging",
+      "tag": "watch",
+      "tag_he": "למעקב",
+      "priority": "low",
+      "audience": [
+        "team"
+      ],
+      "headline": "הכלי SkillEvaluator של Nvidia בודק skills של agents לפני שמכניסים אותם לשימוש",
+      "exec_summary": "בדיקות איכות ואבטחה אוטומטיות ל-skills ולתוספים של coding agents, כולל ב-CI.",
+      "summary": "הכלי SkillEvaluator של Nvidia (קוד פתוח, Apache 2.0) בודק skills ותוספים של agents, כלומר תיקיות של הוראות וקבצים לפי מפרט Agent Skills. הוא מריץ יותר מ-500 כללים סטטיים וסריקות אבטחה בלי צורך במפתח למודל, בודק אם agents כמו Claude Code ו-Codex בכלל יטענו את ה-skill, ויכול למדוד אם ה-skill משפר את התוצאות. יש לו תבניות CI ל-GitHub ול-GitLab, והוא חלק מתהליך האימות של Nvidia ל-skills.",
+      "heat": 1,
+      "momentum": "דף GitHub trending היומי (19.11): 312 כוכבים ביום, 3,834 בסך הכול; המאגר נוצר ביוני 2026 ועודכן ב-19.11.",
+      "why_it_matters": "ה-skills של agents הפכו לסוג חדש של קוד צד שלישי שנכנס לסביבת הפיתוח, ולכן גם לווקטור תקיפה. כלי שבודק אותם לפני השימוש הוא בדיוק סוג הבקרה שחסר היום ברוב הארגונים.",
+      "action": "לצוות הפלטפורמה: לנסות את SkillEvaluator על ה-skills שהצוותים שלנו כבר משתמשים בהם, ולשקול להוסיף אותו כשער ב-CI.",
+      "entities": [
+        "Nvidia",
+        "SkillEvaluator",
+        "Agent Skills",
+        "Claude Code",
+        "Codex"
+      ],
+      "sources": [
+        {
+          "label": "המאגר ב-GitHub",
+          "url": "https://github.com/NVIDIA/SkillEvaluator",
+          "type": "github",
+          "source_id": "github-trending",
+          "reliability": 3
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-perspective-1",
+      "section": "זוויות מבט",
+      "topic_key": "perspective",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "low",
+      "audience": [
+        "management",
+        "team"
+      ],
+      "headline": "החוקר Johannes Ullrich: גל החולשות הקריטיות הוא השגרה החדשה, לא מצב חירום",
+      "exec_summary": "ראש ה-Internet Storm Center של SANS מסביר למה לא העלה את רמת הכוננות, ומה לעשות במקום.",
+      "summary": "בפוסט ב-SANS Internet Storm Center מסביר Johannes Ullrich, שמוביל את המרכז, למה רמת הכוננות שלו נשארת ירוקה למרות Java4Shell ו-nginx2root: כוננות גבוהה כל הזמן מאבדת משמעות, ואי אפשר לעדכן ארגון גדול לפני שיוצא קוד ניצול. לדעתו צריך להתייחס לגל הזה כשגרה החדשה: להפעיל עדכונים אוטומטיים לפחות במערכות פחות קריטיות, לצמצם חשיפה לאינטרנט ותלות בספקים חיצוניים, ולא לנטוש את התוכנית בכל פעם שמתפרסמת חולשה חדשה. הוא ממליץ גם להיעזר בכלי AI לאוטומציה ולארגון העבודה.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "זו תפיסה מעשית לניהול צוות שמתמודד עם חולשה קריטית כמעט כל יום. כדאי לבדוק אצלנו אילו מערכות אפשר להעביר לעדכון אוטומטי, כדי לשמור את העבודה הידנית לשרתים הרגישים.",
+      "action": null,
+      "entities": [
+        "Johannes Ullrich",
+        "SANS Internet Storm Center",
+        "Java4Shell",
+        "nginx2root"
+      ],
+      "sources": [
+        {
+          "label": "הפוסט ב-SANS ISC",
+          "url": "https://isc.sans.edu/diary/33532",
+          "type": "blog",
+          "source_id": "sans-isc",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-perspective-2",
+      "section": "זוויות מבט",
+      "topic_key": "perspective",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "low",
+      "audience": [
+        "management"
+      ],
+      "headline": "הכותב Tom Uren: הקלה רגולטורית לנפגעי תקיפות AI היא פתרון זמני, צריך לעודד ניסוי בהגנה",
+      "exec_summary": "פרשן מדיניות הסייבר של Risky Business מגיב להצעה לא להעניש ארגונים שנפגעו מתקיפות AI.",
+      "summary": "בגיליון Seriously Risky Business כותב Tom Uren שצוות ה-AI של הממשל האמריקאי ממליץ לרגולטורים להקל לפחות 12 חודשים על ארגונים שנפגעו מתקיפות מבוססות AI, כדי לא להרתיע דיווח. לדעתו זה הגיוני בטווח הקצר, כי לא הוגן להעניש על הגדרות שהיו סבירות לפני שנה, אבל זה רק פתרון זמני. הוא מציע להרחיב את הסובלנות גם לניסויים בהגנה מבוססת AI, כמו red teaming אוטומטי, ושממשלות יפרסמו הנחיות מעשיות שמתעדכנות כל הזמן.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "הוויכוח הזה ישפיע על דרישות הדיווח והציות גם מחוץ לארה\"ב. הנקודה המעשית היא שכדאי להתחיל לנסות כלי הגנה מבוססי AI בצורה מבוקרת כבר עכשיו, ולתעד את הניסויים.",
+      "action": null,
+      "entities": [
+        "Tom Uren",
+        "Risky Business",
+        "AI security",
+        "regulation"
+      ],
+      "sources": [
+        {
+          "label": "הגיליון של Seriously Risky Business",
+          "url": "https://risky.biz/SRB191/",
+          "type": "newsletter",
+          "source_id": "risky-biz",
+          "reliability": 4
+        }
+      ]
+    },
+    {
+      "id": "2026-11-19-perspective-3",
+      "section": "זוויות מבט",
+      "topic_key": "perspective",
+      "tag": "background",
+      "tag_he": "רקע",
+      "priority": "low",
+      "audience": [
+        "management"
+      ],
+      "headline": "הכותבת Joan Westenberg: כוח חישוב הוא «הנפט החדש» רק בחצי, ומחירי ה-GPU דווקא עולים",
+      "exec_summary": "מאמר דעה על כוח חישוב כתשומה אסטרטגית, על רקע עליית מחירים אצל ספקי הענן.",
+      "summary": "במאמר ב-Medium טוענת Joan Westenberg שכוח חישוב דומה לנפט בכך שהוא תשומה לכל ענף, מרוכז בידי מעט ספקים, יקר ואיטי להרחבה ונושא למאבק גאופוליטי. לעומת זאת, לדבריה, העלות של כל יחידת יכולת של מודל ממשיכה לרדת מהר, והמגבלה האמיתית היא חשמל ותשתית רשת ולא שבבים. היא מציינת שמחירי שבבים מדור קודם עלו במקום לרדת, ואכן AWS העלתה ב-7 באוקטובר את מחיר ה-Capacity Blocks ל-H100 מ-5.19 ל-5.97 דולר לשעת GPU, כ-15%, בעוד מחירי On-Demand ו-Savings Plans לא השתנו.",
+      "heat": null,
+      "momentum": null,
+      "why_it_matters": "ה-agents צורכים הרבה יותר חישוב מצ'אטבוט, ולכן התקציב שלהם רגיש למחירי GPU ולשינויים חדים אצל הספקים. כדאי לתכנן את עלויות ה-AI לפי עלות לתוצאה ולא רק לפי מחיר לטוקן, ולשריין קיבולת כשהמחיר קבוע, כי ב-AWS המחיר ננעל ביום הרכישה והעדכון הבא מתוכנן לינואר 2027.",
+      "action": null,
+      "entities": [
+        "Joan Westenberg",
+        "AWS",
+        "EC2 Capacity Blocks",
+        "H100",
+        "Nvidia"
+      ],
+      "sources": [
+        {
+          "label": "המאמר של Joan Westenberg ב-Medium",
+          "url": "https://medium.com/westenberg/is-compute-the-new-oil-and-are-we-all-f-ked-73a46f6cdf4f",
+          "type": "medium",
+          "source_id": "medium",
+          "reliability": 3
+        },
+        {
+          "label": "דף התמחור של EC2 Capacity Blocks",
+          "url": "https://aws.amazon.com/ec2/capacityblocks/pricing/",
+          "type": "blog",
+          "source_id": "aws-news",
+          "reliability": 5
+        }
+      ]
+    }
+  ],
+  "watchlist": [
+    {
+      "text": "שפת Ruby שחררה את גרסאות 4.0.10, 3.4.13 ו-3.3.14, שמתקנות שבע חולשות במנוע הביטויים הרגולריים ובהמרת אותיות; לפי הצוות, יש קוד הדגמה שמראה הרצת קוד מרחוק בחלק מהמקרים.",
+      "url": "https://www.ruby-lang.org/en/news/2026/11/18/multiple-vulnerabilities-in-regexp-and-string/"
+    },
+    {
+      "text": "דוח COLD RELIC של Mandiant ו-GTIG: קבוצת ריגול רוסית השתמשה בנתונים ובזהויות שגנבה מארגון אמריקאי אחד בסוף 2025 כדי לפרוץ לארגון שני ב-2026.",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/cold-relic-a-case-study-in-impersonation-and-compromise/"
+    },
+    {
+      "text": "חוקר ב-ZDI הראה איך container עם הרשאות ברירת מחדל יכול לנצל את Docker Model Runner ב-Docker Desktop, ובהגדרות לא שגרתיות להגיע להרצת קוד על המחשב המארח ב-macOS וב-Windows.",
+      "url": "https://www.thezdi.com/blog/2026/11/17/hostile-inference-exploiting-docker-model-runner-for-container-escapes"
+    },
+    {
+      "text": "חברת Hugging Face מעבירה את ניתוב בקשות ההסקה שלה ל-OpenRouter, עם מעבר אוטומטי לספק אחר בתקלה; בשלב הראשון 160 מודלים מ-38 מעבדות.",
+      "url": "https://thenewstack.io/hugging-face-openrouter-inference/"
+    }
+  ]
+}

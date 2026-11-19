@@ -9,7 +9,13 @@
  * The render functions are a line-by-line port of build.py (render_brief, render_item, gl_html, archive_*,
  * render_actions, render_glossary, build_admin/render_source) and of glossary_lib.Matcher, so a built-in day renders
  * to the same HTML as the static page (checked by replica/tests/parity.test.js).
- * Imported JSON is data: every value is HTML-escaped, and only http(s) links are rendered. No network requests.
+ * Imported JSON is data: every value is HTML-escaped, and only http(s) links are rendered.
+ *
+ * Three layers (SPEC 9.10): the data built into the site, the shared server folder data/updates/ (every visitor, read by
+ * CTOImport.loadServer over http(s) only) and the files imported in this browser (IndexedDB). Precedence per day: a
+ * server or local copy always replaces the built-in day; between server and local the newer generated_at wins, and
+ * on a tie the server copy wins. Glossaries are merged key by key (newer file wins a key); the sources registry is
+ * taken whole from the newest file. A file removed from the manifest stops showing on the next page load.
  */
 (function () {
   "use strict";
@@ -411,26 +417,56 @@
 
   // ------------------------------------------------------------------ data merge
   var merged = null;
+  function ts(x) { var t = Date.parse(x || ""); return isNaN(t) ? 0 : t; }
+  function emptyServer() { return { ok: false, files: [], errors: [] }; }
   function loadMerged() {
     var I = window.CTOImport;
-    var base = { briefs: D.briefs, glossary: D.glossary, sources: window.CTO_REPLICA_SOURCES || null, local: { briefs: [], glossary: null, sources: null } };
-    if (!I || !window.indexedDB) return Promise.resolve(base);
+    var base = { briefs: D.briefs, glossary: D.glossary, sources: window.CTO_REPLICA_SOURCES || null,
+                 local: { briefs: [], glossary: null, sources: null }, server: emptyServer(), from: {} };
+    if (!I) return Promise.resolve(base);
     I.setBaseline({
       brief: function (d) { return BUILTIN[d] ? { brief: BUILTIN[d], generated_at: D.generated_at } : null; },
       glossary: function () { return { data: D.glossary, generated_at: D.generated_at }; },
       sources: function () { return window.CTO_REPLICA_SOURCES ? { data: window.CTO_REPLICA_SOURCES, generated_at: D.generated_at } : null; }
     });
-    return Promise.all([I.getBriefs(), I.getMeta("glossary"), I.getMeta("sources")]).then(function (r) {
-      var map = {}; D.briefs.forEach(function (b) { map[b.date] = b; });
-      r[0].forEach(function (rec) { if (rec && rec.brief && isDate(rec.date)) map[rec.date] = rec.brief; });
-      base.briefs = Object.keys(map).sort().reverse().map(function (k) { return map[k]; });
-      if (r[1] && r[1].data) base.glossary = r[1].data;
-      if (r[2] && r[2].data) base.sources = r[2].data;
-      base.local = { briefs: r[0], glossary: r[1] || null, sources: r[2] || null };
-      return base;
-    }, function () { return base; });
+    var localP = window.indexedDB ? Promise.all([I.getBriefs(), I.getMeta("glossary"), I.getMeta("sources")]).catch(function () { return [[], null, null]; })
+      : Promise.resolve([[], null, null]);
+    var srvP = I.loadServer ? I.loadServer(REL).catch(emptyServer) : Promise.resolve(emptyServer());
+    return Promise.all([localP, srvP]).then(function (x) { return combine(base, x[0], x[1] || emptyServer(), I); }, function () { return base; });
   }
-  function hasLocal(m) { return !!(m.local.briefs.length || m.local.glossary || m.local.sources); }
+  function combine(base, r, srv, I) {
+    var locB = (r[0] || []).filter(function (rec) { return rec && rec.brief && isDate(rec.date); });
+    var pick = {}; // date -> {brief, stamp, rank}; rank 2 = server, 1 = this browser (wins only when strictly newer)
+    function offer(b, stamp, rank) {
+      if (!b || !isDate(b.date)) return;
+      var c = pick[b.date];
+      if (!c || ts(stamp) > ts(c.stamp) || (ts(stamp) === ts(c.stamp) && rank > c.rank)) pick[b.date] = { brief: b, stamp: stamp, rank: rank };
+    }
+    locB.forEach(function (rec) { offer(rec.brief, rec.generated_at, 1); });
+    srv.files.forEach(function (f) { (f.briefs || []).forEach(function (b) { offer(b, f.stamp, 2); }); });
+    var map = {}; D.briefs.forEach(function (b) { map[b.date] = b; base.from[b.date] = "built"; });
+    Object.keys(pick).forEach(function (d) { map[d] = pick[d].brief; base.from[d] = pick[d].rank === 2 ? "server" : "local"; });
+    base.briefs = Object.keys(map).sort().reverse().map(function (k) { return map[k]; });
+    // glossary: built-in, then every file glossary from oldest to newest (server after local on a tie), merged key by key
+    var gl = [];
+    if (r[1] && r[1].data) gl.push({ g: r[1].data, stamp: r[1].generated_at, rank: 1 });
+    srv.files.forEach(function (f) { if (f.glossary) gl.push({ g: f.glossary, stamp: f.stamp, rank: 2 }); });
+    gl.sort(function (a, b) { return (ts(a.stamp) - ts(b.stamp)) || (a.rank - b.rank); });
+    var g = D.glossary;
+    gl.forEach(function (x) { g = I.mergeGlossary(g, x.g, true).data; });
+    base.glossary = g;
+    // sources registry: the newest file replaces it whole (server wins a tie)
+    var src = null;
+    if (r[2] && r[2].data) src = { data: r[2].data, stamp: r[2].generated_at, rank: 1 };
+    srv.files.forEach(function (f) {
+      if (f.sources && (!src || ts(f.stamp) > ts(src.stamp) || (ts(f.stamp) === ts(src.stamp) && 2 > src.rank))) src = { data: f.sources, stamp: f.stamp, rank: 2 };
+    });
+    if (src) base.sources = src.data;
+    base.local = { briefs: locB, glossary: r[1] || null, sources: r[2] || null };
+    base.server = srv;
+    return base;
+  }
+  function hasLocal(m) { return !!(m.local.briefs.length || m.local.glossary || m.local.sources || (m.server && m.server.files.length)); }
 
   // ------------------------------------------------------------------ page rendering
   function $(sel) { return document.querySelector(sel); }
@@ -486,9 +522,18 @@
     dl.push(li("סקירות שנבנו עם האתר: " + D.briefs.length + (D.briefs.length ? " (" + heDate(D.briefs[D.briefs.length - 1].date, false) + " עד " + heDate(D.briefs[0].date, false) + ")" : "")));
     var loc = m.local.briefs.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
     dl.push(li("סקירות שנטענו לדפדפן הזה: " + (loc.length ? loc.length + " – " + loc.map(function (r) {
-      return '<a href="' + dayHref(r.date) + '">' + heDate(r.date, false) + "</a>" + (BUILTIN[r.date] ? " (מחליפה את הגרסה שנבנתה)" : ""); }).join(", ") : "אין")));
-    dl.push(li("מילון מושגים: " + m.glossary.entries.length + " ערכים" + (m.local.glossary ? " (נטען מקובץ)" : " (כפי שנבנה עם האתר)")));
-    dl.push(li("מאגר מקורות: " + (m.sources ? m.sources.sources.length + " מקורות" + (m.local.sources ? " (נטען מקובץ)" : " (כפי שנבנה עם האתר)") : "לא נבנה עם האתר")));
+      return '<a href="' + dayHref(r.date) + '">' + heDate(r.date, false) + "</a>" + (m.from[r.date] === "server" ? " (מוצגת גרסת השרת)" : BUILTIN[r.date] ? " (מחליפה את הגרסה שנבנתה)" : ""); }).join(", ") : "אין")));
+    var sv = m.server || { files: [] }, svDates = [];
+    sv.files.forEach(function (f) { (f.briefs || []).forEach(function (b) { if (svDates.indexOf(b.date) < 0) svDates.push(b.date); }); });
+    svDates.sort().reverse();
+    dl.push(li("תיקיית העדכונים בשרת (<span dir=\"ltr\">data/updates</span>, לכל המשתמשים): " + (sv.offline ? "לא נקראת כשהאתר נפתח מהדיסק (file://)"
+      : !sv.ok ? "לא נמצא קובץ manifest.json בשרת" : sv.files.length + (sv.files.length === 1 ? " קובץ" : " קבצים") +
+      (svDates.length ? " – " + svDates.map(function (d) { return '<a href="' + dayHref(d) + '">' + heDate(d, false) + "</a>" + (m.from[d] === "server" ? "" : " (מוצגת גרסה אחרת)"); }).join(", ") : ""))));
+    if (sv.errors && sv.errors.length) dl.push(li("קבצים שנדחו בתיקיית העדכונים: " + sv.errors.map(esc).join(" ")));
+    var anyFileGl = m.local.glossary || sv.files.some(function (f) { return f.glossary; });
+    var anyFileSrc = m.local.sources || sv.files.some(function (f) { return f.sources; });
+    dl.push(li("מילון מושגים: " + m.glossary.entries.length + " ערכים" + (anyFileGl ? " (כולל קבצים שנטענו)" : " (כפי שנבנה עם האתר)")));
+    dl.push(li("מאגר מקורות: " + (m.sources ? m.sources.sources.length + " מקורות" + (anyFileSrc ? " (מקובץ שנטען)" : " (כפי שנבנה עם האתר)") : "לא נבנה עם האתר")));
     box.innerHTML = "<ul>" + dl.join("") + "</ul>";
   }
 

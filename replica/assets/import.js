@@ -1,8 +1,9 @@
 /* CTO Review replica – reference implementation of «טעינת קובץ JSON» (SPEC section 9).
  *
- * Classic script (no ES module), so it also runs from file:// . No network calls: no fetch, no XHR,
- * no external URLs. Files are read with Blob.text(), stored in IndexedDB, and every text value is
- * later rendered with textContent only (this file never uses innerHTML).
+ * Classic script (no ES module), so it also runs from file:// . No external URLs. Files are read with Blob.text(),
+ * stored in IndexedDB, and every text value is later rendered with textContent only (this file never uses innerHTML).
+ * The only network request is same-origin and read-only: loadServer() reads the shared server folder
+ * data/updates/ (manifest.json + the files it lists, SPEC 9.10) over http(s). From file:// it does nothing.
  *
  * Accepted file types (auto-detected by structure, never by file name):
  *   brief     – daily tech-brief-YYYY-MM-DD.json   {format_version:"2-layered", date, items:[...]}
@@ -24,6 +25,11 @@
  *   exportAll() -> Promise<{name, json}>           full export of the local store, re-importable
  *   idbStore() / memoryStore()                     storage adapters (IndexedDB / in-memory for tests)
  *   wire(root)                                     binds the picker, drop zone, summary and export button
+ *   loadServer(rel) -> Promise<{ok, files, errors}> reads data/updates/manifest.json and the files it lists (no-store),
+ *                                                  validates each file exactly like a manual import, caches the parsed
+ *                                                  result in IndexedDB (meta key "srv:<name>", signature size|sha256|
+ *                                                  generated_at from the manifest, else the ETag) and never writes it
+ *                                                  into the local store: a file removed from the manifest disappears.
  *
  * ui (all optional, each returns a Promise):
  *   confirm(messageHe) -> boolean                  e.g. a native <dialog> (never window.confirm)
@@ -208,6 +214,8 @@
       allBriefs: function () { return run("briefs", "readonly", function (s) { return s.getAll(); }); },
       getMeta: function (key) { return run("meta", "readonly", function (s) { return s.get(key); }); },
       putMeta: function (rec) { return run("meta", "readwrite", function (s) { s.put(rec); }); },
+      deleteMeta: function (key) { return run("meta", "readwrite", function (s) { s.delete(key); }); },
+      metaKeys: function () { return run("meta", "readonly", function (s) { return s.getAllKeys(); }); },
       clear: function () {
         return run("briefs", "readwrite", function (s) { s.clear(); }).then(function () { return run("meta", "readwrite", function (s) { s.clear(); }); });
       }
@@ -223,6 +231,8 @@
       allBriefs: function () { return Promise.resolve(Object.keys(B).map(function (k) { return clone(B[k]); })); },
       getMeta: function (k) { return Promise.resolve(clone(M[k])); },
       putMeta: function (r) { M[r.key] = clone(r); return Promise.resolve(); },
+      deleteMeta: function (k) { delete M[k]; return Promise.resolve(); },
+      metaKeys: function () { return Promise.resolve(Object.keys(M)); },
       clear: function () { B = {}; M = {}; return Promise.resolve(); }
     };
   }
@@ -476,11 +486,100 @@
     });
   }
 
+
+  // ---------------------------------------------------------------- shared server folder data/updates/ (SPEC 9.10)
+  // The admin publishes files for every visitor with tools/add-update.ps1 (or tools/add_update.py), which copies the file
+  // into data/updates/ and rewrites data/updates/manifest.json. IIS does not list folders, so the manifest is the index.
+  var SERVER_DIR = "data/updates/", MANIFEST_FORMAT = "cto-review-updates-manifest", SRV_PREFIX = "srv:";
+  var SERVER_KINDS = ["update", "brief", "export", "glossary", "sources"], MAX_SERVER_FILES = 400;
+  var SAFE_NAME = /^[A-Za-z0-9][A-Za-z0-9._-]{0,120}\.json$/;
+  function canFetch() {
+    return typeof fetch === "function" && typeof location !== "undefined" && /^https?:$/.test(location.protocol);
+  }
+  function fetchText(url, ms) { // same-origin GET, never cached by the browser; rejects on 404, timeout or a huge body
+    var ctl = typeof AbortController === "function" ? new AbortController() : null;
+    var timer = ctl ? setTimeout(function () { ctl.abort(); }, ms || 8000) : null;
+    var done = function () { if (timer) clearTimeout(timer); };
+    return fetch(url, { cache: "no-store", credentials: "same-origin", signal: ctl ? ctl.signal : undefined }).then(function (r) {
+      if (!r.ok) throw new Error("http " + r.status);
+      if (Number(r.headers.get("content-length") || 0) > MAX_BYTES) throw new Error("big");
+      return r.text().then(function (t) {
+        if (t.length > MAX_BYTES) throw new Error("big");
+        return { text: t, etag: r.headers.get("etag") || r.headers.get("last-modified") || "" };
+      });
+    }).then(function (x) { done(); return x; }, function (e) { done(); throw e; });
+  }
+  function parseManifest(text) {
+    var o = JSON.parse(String(text).replace(/^\uFEFF/, ""));
+    if (!isObj(o) || o.format !== MANIFEST_FORMAT || !Array.isArray(o.files)) throw new Error("manifest");
+    var meta = {}, seen = {}, out = [];
+    (Array.isArray(o.entries) ? o.entries : []).forEach(function (e) { if (isObj(e) && typeof e.name === "string") meta[e.name] = e; });
+    o.files.forEach(function (n) {
+      if (typeof n !== "string" || !SAFE_NAME.test(n) || n.toLowerCase() === "manifest.json" || seen[n]) return;
+      seen[n] = 1;
+      var m = meta[n] || {}, sig = (m.size || m.sha256) ? [m.size || "", m.sha256 || "", m.generated_at || ""].join("|") : "";
+      out.push({ name: n, sig: sig, generated_at: ts(m.generated_at) ? m.generated_at : "" });
+    });
+    return { generated_at: ts(o.generated_at) ? o.generated_at : "", files: out.slice(0, MAX_SERVER_FILES) };
+  }
+  function serverRecord(f, kind, o, etag) { // validated file -> one layer (briefs / glossary / sources + its stamp)
+    var rec = { key: SRV_PREFIX + f.name, name: f.name, kind: kind, sig: f.sig, etag: etag || "", fetched_at: nowISO(),
+                stamp: "", briefs: [], glossary: null, sources: null };
+    var srcStamp = function (r) { return ts(r.updated) ? new Date(ts(r.updated)).toISOString() : ""; };
+    if (kind === "brief") {
+      rec.briefs = [stripBrief(o)];
+      rec.stamp = (o.generated_at && ts(o.generated_at) && o.generated_at) || (o.period && ts(o.period.to) && o.period.to) || f.generated_at;
+    } else if (kind === "update" || kind === "export") {
+      rec.stamp = o.generated_at;
+      rec.briefs = (kind === "update" ? [o.brief] : o.briefs).map(stripBrief);
+      rec.glossary = o.glossary || null;
+      rec.sources = o.sources ? Object.assign({}, o.sources, { count: o.sources.sources.length }) : null;
+    } else if (kind === "glossary") {
+      rec.glossary = o; rec.stamp = (ts(o.generated_at) && o.generated_at) || (ts(o.updated) && o.updated) || f.generated_at;
+    } else if (kind === "sources") {
+      rec.sources = Object.assign({}, o, { count: o.sources.length }); rec.stamp = srcStamp(o) || f.generated_at;
+    }
+    return rec;
+  }
+  function quiet(p, dflt) { try { return Promise.resolve(p()).catch(function () { return dflt; }); } catch (e) { return Promise.resolve(dflt); } }
+  function loadServer(rel) {
+    var res = { ok: false, files: [], errors: [], manifest: null };
+    if (!canFetch()) { res.offline = true; return Promise.resolve(res); } // file:// : built-in + local data only
+    var base = (rel || "") + SERVER_DIR;
+    return fetchText(base + "manifest.json?t=" + Date.now()).then(function (x) {
+      var man = parseManifest(x.text);
+      res.ok = true; res.manifest = man;
+      return Promise.all(man.files.map(function (f) {
+        return quiet(function () { return S().getMeta(SRV_PREFIX + f.name); }, null).then(function (cached) {
+          if (cached && f.sig && cached.sig === f.sig) return cached; // unchanged since the last visit: no download
+          return fetchText(base + encodeURIComponent(f.name) + "?v=" + encodeURIComponent(f.sig || String(Date.now()))).then(function (y) {
+            if (cached && !f.sig && y.etag && cached.etag === y.etag) return cached;
+            var o;
+            try { o = JSON.parse(y.text.replace(/^\uFEFF/, "")); } catch (e) { res.errors.push("הקובץ " + f.name + " בתיקיית העדכונים אינו JSON תקין."); return null; }
+            var kind = detect(o), errs = SERVER_KINDS.indexOf(kind) < 0 ? validate(null, o) : validate(kind, o);
+            if (errs.length) { res.errors.push("הקובץ " + f.name + " בתיקיית העדכונים נדחה: " + errs.slice(0, 3).join(" ")); return null; }
+            var rec = serverRecord(f, kind, o, y.etag);
+            return quiet(function () { return S().putMeta(rec); }, null).then(function () { return rec; });
+          }, function () { res.errors.push("לא הצלחנו להוריד את הקובץ " + f.name + " מתיקיית העדכונים."); return null; });
+        });
+      })).then(function (recs) {
+        res.files = recs.filter(Boolean);
+        var keep = {}; man.files.forEach(function (f) { keep[SRV_PREFIX + f.name] = 1; });
+        return quiet(function () { // forget cached copies of files that are no longer in the manifest
+          return S().metaKeys().then(function (keys) {
+            return Promise.all(keys.filter(function (k) { return typeof k === "string" && k.indexOf(SRV_PREFIX) === 0 && !keep[k]; })
+              .map(function (k) { return S().deleteMeta(k); }));
+          });
+        }, null).then(function () { return res; });
+      });
+    }).catch(function () { return res; }); // no manifest (404), bad manifest, offline: the site keeps its built-in content
+  }
+
   function clearAll() { return S().clear(); }
 
   var api = { detect: detect, setBaseline: function (b) { baseline = Object.assign(baseline, b || {}); }, clearAll: clearAll, exportData: exportData, validate: validate, importFiles: importFiles, exportAll: exportAll, summaryText: summaryText,
               mergeGlossary: mergeGlossary, idbStore: idbStore, memoryStore: memoryStore, wire: wire,
-              useStore: function (s) { store = s; },
+              useStore: function (s) { store = s; }, loadServer: loadServer, parseManifest: parseManifest,
               getBriefs: function () { return S().allBriefs(); }, getMeta: function (k) { return S().getMeta(k); },
               deleteBrief: function (d) { return S().deleteBrief(d); } };
   if (typeof module !== "undefined" && module.exports) module.exports = api;

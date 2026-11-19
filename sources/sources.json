@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updated": "2026-11-18",
-  "count": 776,
+  "updated": "2026-11-19",
+  "count": 784,
   "sources": [
     {
       "id": "openai",
@@ -21,8 +21,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 3,
+      "last_verified": "2026-11-19",
+      "times_used": 4,
       "notes": "Automated check returned HTTP 403 (bot blocking); page exists, open in browser"
     },
     {
@@ -43,8 +43,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-12",
-      "times_used": 1,
+      "last_verified": "2026-11-19",
+      "times_used": 2,
       "notes": null
     },
     {
@@ -134,8 +134,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 2,
+      "last_verified": "2026-11-19",
+      "times_used": 3,
       "notes": null
     },
     {
@@ -470,8 +470,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 0,
+      "last_verified": "2026-11-19",
+      "times_used": 1,
       "notes": null
     },
     {
@@ -628,8 +628,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 1,
+      "last_verified": "2026-11-19",
+      "times_used": 2,
       "notes": null
     },
     {
@@ -696,8 +696,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 0,
+      "last_verified": "2026-11-19",
+      "times_used": 1,
       "notes": null
     },
     {
@@ -1298,8 +1298,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 0,
+      "last_verified": "2026-11-19",
+      "times_used": 1,
       "notes": null
     },
     {
@@ -1548,7 +1548,7 @@
       "status": "active",
       "added": "2026-11-11",
       "last_verified": "2026-11-11",
-      "times_used": 0,
+      "times_used": 1,
       "notes": "Automated check returned HTTP 403 (bot blocking); page exists, open in browser"
     },
     {
@@ -1928,8 +1928,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 1,
+      "last_verified": "2026-11-19",
+      "times_used": 2,
       "notes": null
     },
     {
@@ -2390,8 +2390,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 3,
+      "last_verified": "2026-11-19",
+      "times_used": 4,
       "notes": null
     },
     {
@@ -2483,8 +2483,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 0,
+      "last_verified": "2026-11-19",
+      "times_used": 1,
       "notes": null
     },
     {
@@ -2738,8 +2738,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 3,
+      "last_verified": "2026-11-19",
+      "times_used": 4,
       "notes": "2026-11-16: פער קטן מול המקור הראשוני (ירידת מחיר באוסטרליה 4.5% מול 4% בהודעת מיקרוסופט); ללא שינוי דירוג, לאמת מספרים במקור."
     },
     {
@@ -2760,8 +2760,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 3,
+      "last_verified": "2026-11-19",
+      "times_used": 4,
       "notes": "(2026-11-11) סומן כערוץ הכרזות ענן בעדיפות, לפי הנחיה לעקוב אחרי הכרזות כל ספקי הענן.",
       "priority": "cloud_announcements"
     },
@@ -2784,8 +2784,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 0,
+      "last_verified": "2026-11-19",
+      "times_used": 2,
       "notes": "(2026-11-11) סומן כערוץ הכרזות ענן בעדיפות, לפי הנחיה לעקוב אחרי הכרזות כל ספקי הענן.",
       "priority": "cloud_announcements"
     },
@@ -3016,8 +3016,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-18",
-      "last_verified": "2026-11-18",
-      "times_used": 1,
+      "last_verified": "2026-11-19",
+      "times_used": 2,
       "notes": "הושק בנובמבר 2026. פיד RSS אומת ב-18 בנובמבר 2026 בכתובת https://radar.cloudflare.com/zero-wire/rss; גם https://radar.cloudflare.com/zero-wire/feed מחזיר את אותו פיד, והכתובת https://radar.cloudflare.com/security/zero-wire/rss מפנה אליו. יש לקרוא גם את דף התדריך עצמו כשנדרש פירוט. ראו גם https://blog.cloudflare.com/zero-wire/ ו-https://developers.cloudflare.com/changelog/post/2026-11-03-radar-zero-wire/",
       "frequency": "irregular",
       "discovered_via": "other"
@@ -3179,8 +3179,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 1,
+      "last_verified": "2026-11-19",
+      "times_used": 2,
       "notes": "feed_url is JSON, not RSS"
     },
     {
@@ -3201,8 +3201,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 1,
+      "last_verified": "2026-11-19",
+      "times_used": 2,
       "notes": null
     },
     {
@@ -3400,8 +3400,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 6,
+      "last_verified": "2026-11-19",
+      "times_used": 7,
       "notes": null
     },
     {
@@ -3422,8 +3422,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 3,
+      "last_verified": "2026-11-19",
+      "times_used": 4,
       "notes": null
     },
     {
@@ -3466,8 +3466,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 4,
+      "last_verified": "2026-11-19",
+      "times_used": 5,
       "notes": null
     },
     {
@@ -3488,8 +3488,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 2,
+      "last_verified": "2026-11-19",
+      "times_used": 3,
       "notes": "מנוי ל-Risky Bulletin. פיד הפודקאסט הקיים נשמר; פיד הניוזלטר אומת ב-https://news.risky.biz/rss. (2026-11-11) נוסף מנוי במייל, לגרסה החינמית.",
       "frequency": "frequent",
       "delivery": "מנוי במייל",
@@ -3585,8 +3585,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 1,
+      "last_verified": "2026-11-19",
+      "times_used": 2,
       "notes": null
     },
     {
@@ -3784,8 +3784,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-11",
-      "times_used": 1,
+      "last_verified": "2026-11-19",
+      "times_used": 2,
       "notes": null
     },
     {
@@ -4445,7 +4445,7 @@
       "status": "active",
       "added": "2026-11-11",
       "last_verified": "2026-11-17",
-      "times_used": 1,
+      "times_used": 2,
       "notes": "יש חשבון מחובר; Automated check returned HTTP 403 (bot blocking); page exists, open in browser"
     },
     {
@@ -15560,8 +15560,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-11",
-      "last_verified": "2026-11-12",
-      "times_used": 0,
+      "last_verified": "2026-11-19",
+      "times_used": 1,
       "notes": "סריקת רשת ב-X (2026-11-11); website verified"
     },
     {
@@ -16817,8 +16817,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-15",
-      "last_verified": "2026-11-15",
-      "times_used": 2,
+      "last_verified": "2026-11-19",
+      "times_used": 3,
       "notes": null
     },
     {
@@ -16839,8 +16839,8 @@
       "language": "en",
       "status": "probation",
       "added": "2026-11-15",
-      "last_verified": "2026-11-15",
-      "times_used": 3,
+      "last_verified": "2026-11-19",
+      "times_used": 4,
       "notes": "נוסף אחרי שימוש בניתוח wfx-loot (15.11.2026); פיד RSS אומת."
     },
     {
@@ -17423,8 +17423,8 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-18",
-      "last_verified": "2026-11-18",
-      "times_used": 1,
+      "last_verified": "2026-11-19",
+      "times_used": 2,
       "notes": null,
       "discovered_via": "other"
     },
@@ -17518,12 +17518,12 @@
       "language": "en",
       "status": "active",
       "added": "2026-11-18",
-      "last_verified": "2026-11-18",
-      "times_used": 1,
+      "last_verified": "2026-11-19",
+      "times_used": 2,
       "notes": null,
       "discovered_via": "other",
-      "momentum": "18.11.2026: נבדקו הדפים היומי והשבועי (07:40 שעון ישראל) – Claude-BugHunter במקום ראשון ביומי, open-code-review ו-LoopForge ברשימה היומית.",
-      "last_momentum_check": "2026-11-18"
+      "momentum": "18.11.2026: נבדקו הדפים היומי והשבועי (07:40 שעון ישראל) – Claude-BugHunter במקום ראשון ביומי, open-code-review ו-LoopForge ברשימה היומית. 19.11.2026: נבדק הדף היומי – PaperOrchestra במקום ראשון (1,524 ביום), NVIDIA SkillEvaluator ברשימה (312 ביום).",
+      "last_momentum_check": "2026-11-19"
     },
     {
       "id": "alibaba-open-code-review",
@@ -17602,6 +17602,200 @@
       "discovered_via": "other",
       "momentum": "18.11.2026: מקום ראשון ב-GitHub trending היומי, 1,005 כוכבים ביום, 2,508 בשבוע, 9,708 בסך הכול; מקום 5 ב-17.11 ומקום 9 ב-16.11 לפי פוסטים ב-X.",
       "last_momentum_check": "2026-11-18"
+    },
+    {
+      "id": "xint",
+      "name": "Xint – research blog",
+      "url": "https://xint.io/blog/",
+      "feed_url": null,
+      "x_handle": null,
+      "type": "research_lab",
+      "topics": [
+        "cyber"
+      ],
+      "reliability": 3,
+      "reliability_rationale": "חברת המחקר שחשפה את nginx2root; הממצאים אושרו בידי F5 ו-nginx.org",
+      "bias_notes": "חברה מסחרית; שמות ממותגים לחולשות",
+      "best_for": "חשיפות חולשות ב-nginx ובליבת Linux",
+      "access": "free",
+      "language": "en",
+      "status": "probation",
+      "added": "2026-11-19",
+      "last_verified": "2026-11-19",
+      "times_used": 1,
+      "notes": null,
+      "discovered_via": "other"
+    },
+    {
+      "id": "nginx-org",
+      "name": "nginx.org – security advisories",
+      "url": "https://nginx.org/en/security_advisories.html",
+      "feed_url": null,
+      "x_handle": null,
+      "type": "primary_vendor",
+      "topics": [
+        "cyber",
+        "cloud"
+      ],
+      "reliability": 5,
+      "reliability_rationale": "דף ההודעות הרשמי של פרויקט nginx על חולשות וגרסאות מתוקנות",
+      "bias_notes": "יצרן – לגבי עצמו בלבד",
+      "best_for": "גרסאות מתוקנות של nginx",
+      "access": "free",
+      "language": "en",
+      "status": "active",
+      "added": "2026-11-19",
+      "last_verified": "2026-11-19",
+      "times_used": 1,
+      "notes": null,
+      "discovered_via": "other"
+    },
+    {
+      "id": "php-net",
+      "name": "PHP.net – news",
+      "url": "https://www.php.net/",
+      "feed_url": null,
+      "x_handle": null,
+      "type": "primary_vendor",
+      "topics": [
+        "cyber",
+        "systems_products"
+      ],
+      "reliability": 5,
+      "reliability_rationale": "האתר הרשמי של פרויקט PHP; הודעות גרסה ואבטחה",
+      "bias_notes": "יצרן – לגבי עצמו בלבד",
+      "best_for": "גרסאות ועדכוני אבטחה של PHP",
+      "access": "free",
+      "language": "en",
+      "status": "active",
+      "added": "2026-11-19",
+      "last_verified": "2026-11-19",
+      "times_used": 1,
+      "notes": null,
+      "discovered_via": "other"
+    },
+    {
+      "id": "apache-security",
+      "name": "Apache Software Foundation – security announcements",
+      "url": "https://www.apache.org/security/",
+      "feed_url": null,
+      "x_handle": null,
+      "type": "primary_vendor",
+      "topics": [
+        "cyber"
+      ],
+      "reliability": 5,
+      "reliability_rationale": "רשימות התפוצה הרשמיות של ASF להודעות אבטחה",
+      "bias_notes": "יצרן – לגבי עצמו בלבד",
+      "best_for": "הודעות חולשות ותיקונים בפרויקטי Apache",
+      "access": "free",
+      "language": "en",
+      "status": "active",
+      "added": "2026-11-19",
+      "last_verified": "2026-11-19",
+      "times_used": 1,
+      "notes": null,
+      "discovered_via": "other"
+    },
+    {
+      "id": "censys",
+      "name": "Censys – advisories",
+      "url": "https://censys.com/",
+      "feed_url": null,
+      "x_handle": null,
+      "type": "research_lab",
+      "topics": [
+        "cyber"
+      ],
+      "reliability": 4,
+      "reliability_rationale": "חברת סריקת אינטרנט ותיקה; מספרי חשיפה מבוססי סריקות",
+      "bias_notes": "מספרי חשיפה הם הערכה לפי סריקה; האתר חוסם curl",
+      "best_for": "היקף חשיפה לאינטרנט של מוצרים פגיעים",
+      "access": "free",
+      "language": "en",
+      "status": "active",
+      "added": "2026-11-19",
+      "last_verified": "2026-11-19",
+      "times_used": 1,
+      "notes": null,
+      "discovered_via": "other"
+    },
+    {
+      "id": "google-research-paper-orchestra",
+      "name": "PaperOrchestra (GitHub, Google Research)",
+      "url": "https://github.com/google-research/paper-orchestra",
+      "feed_url": null,
+      "x_handle": null,
+      "type": "primary_vendor",
+      "topics": [
+        "ai"
+      ],
+      "reliability": 4,
+      "reliability_rationale": "המאגר הרשמי של Google Research; עובדות על הכלי עצמו",
+      "bias_notes": "תוצאות ההשוואה הן של המחברים – לדרג 3",
+      "best_for": "כתיבת מאמרי מחקר עם multi-agent",
+      "access": "free",
+      "language": "en",
+      "status": "probation",
+      "added": "2026-11-19",
+      "last_verified": "2026-11-19",
+      "times_used": 0,
+      "notes": null,
+      "discovered_via": "other",
+      "momentum": "19.11.2026: מקום ראשון ב-GitHub trending היומי, 1,524 כוכבים ביום, 4,477 בסך הכול; פוסטים ב-X בכמה שפות; מאמר arXiv 2604.05018.",
+      "last_momentum_check": "2026-11-19"
+    },
+    {
+      "id": "google-stitch",
+      "name": "Stitch by Google",
+      "url": "https://stitch.withgoogle.com/",
+      "feed_url": null,
+      "x_handle": "stitchbygoogle",
+      "type": "primary_vendor",
+      "topics": [
+        "ai",
+        "systems_products"
+      ],
+      "reliability": 4,
+      "reliability_rationale": "החשבון והבלוג הרשמיים של Google Labs על Stitch",
+      "bias_notes": "יצרן – לגבי עצמו בלבד",
+      "best_for": "כלי עיצוב ו-agents של Google Labs",
+      "access": "free",
+      "language": "en",
+      "status": "probation",
+      "added": "2026-11-19",
+      "last_verified": "2026-11-19",
+      "times_used": 0,
+      "notes": null,
+      "discovered_via": "other",
+      "momentum": "19.11.2026: הכרזת Stitch Loop ב-X מ-@stitchbygoogle עם כ-1,375 לייקים בתוך שעות; פוסט בבלוג של Google.",
+      "last_momentum_check": "2026-11-19"
+    },
+    {
+      "id": "nvidia-skillevaluator",
+      "name": "NVIDIA SkillEvaluator (GitHub)",
+      "url": "https://github.com/NVIDIA/SkillEvaluator",
+      "feed_url": null,
+      "x_handle": null,
+      "type": "primary_vendor",
+      "topics": [
+        "ai",
+        "systems_products"
+      ],
+      "reliability": 4,
+      "reliability_rationale": "המאגר הרשמי של Nvidia",
+      "bias_notes": "יצרן – לגבי עצמו בלבד",
+      "best_for": "בדיקת skills של agents",
+      "access": "free",
+      "language": "en",
+      "status": "probation",
+      "added": "2026-11-19",
+      "last_verified": "2026-11-19",
+      "times_used": 0,
+      "notes": null,
+      "discovered_via": "other",
+      "momentum": "19.11.2026: ברשימת GitHub trending היומית, 312 כוכבים ביום, 3,834 בסך הכול.",
+      "last_momentum_check": "2026-11-19"
     }
   ],
   "changelog": [
@@ -17656,6 +17850,10 @@
     {
       "date": "2026-11-18",
       "change": "נוסף מקור Zero Wire של Cloudflare Radar (פיד RSS אומת) לאימות חולשות קריטיות ולהסבר סיכון להנהלה; עודכן מונה השימוש ב-Aikido Security Blog בעקבות ציטוט בעדכון Java4Shell. סה\"כ 776 מקורות."
+    },
+    {
+      "date": "2026-11-19",
+      "change": "סקירה יומית 19.11: עודכן מונה השימוש ל-32 מקורות; נוספו 8 מקורות מאומתים (Xint – research blog, nginx.org – security advisories, PHP.net – news, Apache Software Foundation – security announcements, Censys – advisories, PaperOrchestra (GitHub, Google Research), Stitch by Google, NVIDIA SkillEvaluator (GitHub)); נרשמו שדות התאוצה הפנימיים לפריטי הטכנולוגיות המתפרצות. סה\"כ 784 מקורות."
     }
   ]
 }
